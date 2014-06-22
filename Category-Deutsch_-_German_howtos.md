@@ -1,1 +1,1 @@
-[[Category:howtos]]
+<Category:howtos>

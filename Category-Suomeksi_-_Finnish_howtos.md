@@ -1,2 +1,1 @@
-{{Template:Howto}}
-[[Category:howtos]]
+<Category:howtos>

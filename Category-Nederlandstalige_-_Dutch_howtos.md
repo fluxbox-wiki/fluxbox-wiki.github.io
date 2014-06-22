@@ -1,8 +1,12 @@
-'''Plaats het volgende aan het einde van je artikel om het in deze categorie te plaatsen:'''
+**Plaats het volgende aan het einde van je artikel om het in deze
+categorie te plaatsen:**
 
- <nowiki>[[Category:</nowiki>{{PAGENAME}}<nowiki>]]</nowiki>
+`[[Category:``]]`
 
-'''Start je paginanaam niet met "howto" maar gebruik gewoon het onderwerp van de howto als naam, anders hebben we hopen artikels onder de "H".
+'''Start je paginanaam niet met "howto" maar gebruik gewoon het
+onderwerp van de howto als naam, anders hebben we hopen artikels onder
+de "H".
 
-'''Bedankt'''
-[[Category:howtos]]
+**Bedankt**
+
+<Category:howtos>

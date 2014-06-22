@@ -1,3 +1,4 @@
-http://fluxspace.sourceforge.net/
-[[Category:English howtos]]
-[[Category:Misc howtos]]
+<http://fluxspace.sourceforge.net/>
+
+[Category:English howtos](Category:English howtos "wikilink")
+[Category:Misc howtos](Category:Misc howtos "wikilink")

@@ -1,3 +1,4 @@
-#REDIRECT [[howto change font]]
-[[Category:English howtos]]
-[[Category:Style howtos]]
+1.  REDIRECT [howto change font](howto change font "wikilink")
+
+[Category:English howtos](Category:English howtos "wikilink")
+[Category:Style howtos](Category:Style howtos "wikilink")

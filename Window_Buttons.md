@@ -1,33 +1,39 @@
-[[Category:English howtos]]
-[[Category:Configuration howtos]]
+### How to change what buttons are on the windows' titlebar
 
-===How to change what buttons are on the windows' titlebar===
-By default Fluxbox has four buttons on the titlebar, one on the left side ('''Stick''') and three on the right side ('''Minimize, Maximize, Close''')
+By default Fluxbox has four buttons on the titlebar, one on the left
+side (**Stick**) and three on the right side (**Minimize, Maximize,
+Close**)
 
-You can change them by editing '''~/.fluxbox/init'''
-Find the following lines:
- session.titlebar.left: Stick
- session.titlebar.right: Minimize Maximize Close
+You can change them by editing **\~/.fluxbox/init** Find the following
+lines:
+
+`session.titlebar.left: Stick`\
+`session.titlebar.right: Minimize Maximize Close`
 
 Then just change those. Possible buttons are (in Fluxbox 0.9.14):
- MenuIcon
-     A button to show either the program's icon or default menu icon in theme
-     Pops up the window menu when clicked (same as right clicking the titlebar)
 
- Stick
-     Toggles whether window sticks or not, meaning it is visible on all workspaces
+`MenuIcon`\
+`    A button to show either the program's icon or default menu icon in theme`\
+`    Pops up the window menu when clicked (same as right clicking the titlebar)`
 
- Shade
-     Shades the window, only the titlebar will be left visible
+`Stick`\
+`    Toggles whether window sticks or not, meaning it is visible on all workspaces`
 
- Minimize
-     Self explanatory
+`Shade`\
+`    Shades the window, only the titlebar will be left visible`
 
- Maximize
-     This too ...
+`Minimize`\
+`    Self explanatory`
 
- Close
-     ... and this
+`Maximize`\
+`    This too ...`
 
+`Close`\
+`    ... and this`
 
-After editing, save the file and from fluxbox menu choose ''Config -> Reconfigure or Reload config or Restart'''
+After editing, save the file and from fluxbox menu choose *Config -\>
+Reconfigure or Reload config or Restart*'
+
+[Category:English howtos](Category:English howtos "wikilink")
+[Category:Configuration
+howtos](Category:Configuration howtos "wikilink")

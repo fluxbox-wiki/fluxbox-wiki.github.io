@@ -1,3 +1,4 @@
-#REDIRECT [[howto fluxspace]]
-[[Category:English howtos]]
-[[Category:Misc howtos]]
+1.  REDIRECT [howto fluxspace](howto fluxspace "wikilink")
+
+[Category:English howtos](Category:English howtos "wikilink")
+[Category:Misc howtos](Category:Misc howtos "wikilink")

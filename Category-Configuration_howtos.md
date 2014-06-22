@@ -1,5 +1,3 @@
-{{Template:Howto}}
+new one
 
-new one 
-
-[[Category:English howtos]]
+[Category:English howtos](Category:English howtos "wikilink")

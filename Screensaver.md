@@ -1,3 +1,5 @@
-#REDIRECT [[howto screensaver and lock]]
-[[Category:English howtos]]
-[[Category:Misc howtos]]
+1.  REDIRECT [howto screensaver and
+    lock](howto screensaver and lock "wikilink")
+
+[Category:English howtos](Category:English howtos "wikilink")
+[Category:Misc howtos](Category:Misc howtos "wikilink")
