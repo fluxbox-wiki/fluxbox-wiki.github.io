@@ -1,5 +1,3 @@
-\_\_TOC\_\_
-
 How to add Fluxbox to GDM
 -------------------------
 
@@ -10,13 +8,12 @@ How do I add fluxbox to my GDM sessions menu.
 
 Create the file: /etc/gdm/Sessions/fluxbox with contents:
 
-`#!/bin/sh`\
-`#`\
-`# /etc/gdm/Sessions/fluxbox`\
-`#`\
-`# global fluxbox session file -- used by gdm`\
-\
-`exec /etc/X11/Xsession /usr/bin/startfluxbox`
+    #!/bin/sh
+    #
+    # /etc/gdm/Sessions/fluxbox
+    #
+    # global fluxbox session file -- used by gdm
+    exec /etc/X11/Xsession /usr/bin/startfluxbox
 
 Of course, change /usr/bin/startfluxbox to wherever your startfluxbox
 startup script is.
