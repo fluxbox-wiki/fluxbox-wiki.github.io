@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="introduction">Introduction</h2>
+<p>Fluxbox' tabs aren't in any way a new idea. The implementation is much like that of the PWM Window Manager.<br />Multiple windows are grouped together and they share the same geometry and position, moving one window results in moving them all. Think of them as a stack of papers. The tabs are like those little little plastic tabs you can stick on papers to make flipping to a certain page very easy and fast.</p>
+<p>Sounds confusing? It's not! You'll soon be addicted to this way of working with your desktop.</p>
+<h2 id="how">How?</h2>
+<p>To move a window into another, to form a group, you use ctrl-left_click (see &quot;OnTitlebar Control Mouse1 :StartTabbing&quot; in <code>~/.fluxbox/keys</code>) on a window's tab (or titlebar) and drag it to the desired window. In the same way you can ungroup a set of windows, by dragging the tab away to a free space on the desktop, or in another window or group.<br />Tabs can be shown outside the window or embedded in the titlebar, which you can configure in the Configuration menu &gt; Tab Options:</p>
+<ul>
+<li>Position : where to put the tab when is shown</li>
+<li>Tabs in Titlebar : shows the tab outside or inside the titlebar</li>
+<li>Maximize Over : shows or hides the tab when the window is maximized</li>
+<li>Show Pictures : shows the application's pixmap</li>
+<li>External Tab width : width of the tab when is shown</li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<p>With the default behaviour, a window may be grouped by dragging one tab (or titlebar) and dropping it anywhere on another window; in same circumstances it could be inconvenient so we can choose to attach it only when the tab (or the titlebar) is on the target window's titlebar.</p>
+<p>In <code>~/.fluxbox/init</code> change or add this variable:</p>
+<p><code>session.tabsAttachArea: Titlebar</code></p>
+<p>and apply it with &quot;reconfigure&quot; from the Configuration menu.</p>
+<h2 id="autogrouping">Autogrouping</h2>
+<p>Via <a href="http://fluxbox-wiki.org/index.php?title=Editing_the_apps_file#Grouping_apps_via_the_apps_file"><code>~/.fluxbox/apps</code></a>, windows can be grouped according to certain specific criteria.</p>
+<p>For example, we want to group all web browsers in the current workspace and with a specific position:</p>
+<p><code>[group]  (workspace=[current])</code><br /><code> [app] (name=Navigator) (class=Iceweasel) (role=browser)</code><br /><code> [app] (name=luakit) (class=luakit)</code><br /><code> [app] (name=dillo) (class=Dillo)</code><br /><code>  [Position]    (UPPERLEFT)     {81 0}</code><br /><code>[end</code></p>
+<h2 id="style">Style</h2>
+<p>To utilize fluxbox' neat tabs and make them look (even more) pretty you'll need to add some extra entries to your desired style (theme).<br />However, note that you don't have to do this, fluxbox is very capable of setting the tabs to a proper color/style by itself, but if you want to have more control of how they look you might want to add a few lines like this:</p>
+<p><code>window.tab.justify:                     Right</code><br /><code>window.tab.label.unfocus:               Flat Solid</code><br /><code>window.tab.label.unfocus.color:         rgb:AC/AC/AC</code><br /><code>window.tab.label.unfocus.textColor:     black</code><br /><code>window.tab.label.focus:                 Raised Solid</code><br /><code>window.tab.label.focus.color:           rgb:CC/CC/CC</code><br /><code>window.tab.label.focus.textColor:       black</code><br /><code>window.tab.borderWidth:                 1</code><br /><code>window.tab.borderColor:                 rgb:10/10/10</code><br /><code>window.tab.font:                        fixed</code></p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Configuration howtos" title="wikilink">Category:Configuration howtos</a></p>
+</body>
+</html>

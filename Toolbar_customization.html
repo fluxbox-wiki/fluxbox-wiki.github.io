@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="how-to-remove-the-arrows-from-the-toolbar">how to remove the arrows from the toolbar</h2>
+<p>Simply open your ~/.fluxbox/init and search for this line:</p>
+<p><code>session.screen0.toolbar.tools</code></p>
+<p>Make sure <strong>nothing</strong> of this is in the tools:</p>
+<p><code>prevworkspace, nextworkspace, prevwindow, nextwindow</code></p>
+<p>Reload your configuration from the menu and the toolbar arrows will be gone.</p>
+<h2 id="other-possible-elements-in-toolbar">other possible elements in toolbar</h2>
+<p>Toolbar can have these tools, in any order, separated by commas.</p>
+<p><code>workspacename</code><br /><code>    shows the name of the current workspace</code></p>
+<p><code>iconbar  </code><br /><code>    displays minimized windows, all windows etc, it is the &quot;taskbar&quot;</code></p>
+<p><code>systemtray</code><br /><code>    the place for some applications to sit, like gaim or others</code></p>
+<p><code>clock</code><br /><code>    A clock based on the C strftime function</code></p>
+<p><code>prevworkspace  nextworkspace</code><br /><code>    buttons for changing workspaces</code></p>
+<p><code>prevwindow  nextwindow</code><br /><code>    buttons for changing the active window</code></p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Configuration howtos" title="wikilink">Category:Configuration howtos</a></p>
+</body>
+</html>

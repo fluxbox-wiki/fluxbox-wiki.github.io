@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="how-to-add-fluxbox-to-gdm">How to add Fluxbox to GDM</h2>
+<p>Note: This was copied from fluxbox's site. Someone using gdm should check this etc.</p>
+<p>How do I add fluxbox to my GDM sessions menu.</p>
+<p>Create the file: /etc/gdm/Sessions/fluxbox with contents:</p>
+<p><code>#!/bin/sh</code><br /><code>#</code><br /><code># /etc/gdm/Sessions/fluxbox</code><br /><code>#</code><br /><code># global fluxbox session file -- used by gdm</code><br /><br /><code>exec /etc/X11/Xsession /usr/bin/startfluxbox</code></p>
+<p>Of course, change /usr/bin/startfluxbox to wherever your startfluxbox startup script is.</p>
+<p>If the /etc/gdm directory doesn't exist, it may be /etc/X11/gdm/Sessions/fluxbox on your computer.</p>
+<h2 id="the-first-section-doesnt-work-for-me-what-can-i-do">The first section doesnt work for me, what can I do?</h2>
+<p>If your on debian distro you need to <strong>touch ~/.Xsession</strong> use your favorite editor edit ~/.Xsession and put <strong>exec /usr/bin/startfluxbox</strong> then save the file and restart your GDM session.</p>
+<h3 id="there-is-another-way">There is another way</h3>
+<p>On some distros you need to do something a bit different. For Debian, Ubuntu and a few other distros you need to follow this little guide instead.</p>
+<p>If you decide you need to compile Fluxbox from git on your Ubuntu system you might have noticed, after it installed, that there was no way to start using Fluxbox, even if you tried to do</p>
+<p><code> $ startx `which fluxbox` -- :1</code></p>
+<p>you get premission denied and are unable to connect to the X server (I only tried this on Hoary). So on to the fix....</p>
+<p><code> $ sudo gedit /usr/share/xsessions/fluxbox.desktop</code></p>
+<p>Add to that file the following information:</p>
+<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configureable low resource X11 Window Manager</code><br /><code> Exec=</code><strong><code>/usr/local/bin/startfluxbox</code></strong><br /><code> Terminal=False</code><br /><code> TryExec=</code><strong><code>/usr/local/bin/startfluxbox</code></strong><br /><code> Type=Application</code></p>
+<p>NOTE: The bold lines, <strong>/usr/local/bin/startfluxbox</strong> are for custom built fluxboxs. If you have installed with the package manager, use <strong>/usr/bin/startfluxbox</strong>.</p>
+<p>NOTE: For FreeBSD 6.0 try to put fluxbox.desktop on /usr/X11R6/share/gdm/xsessions/fluxbox.desktop</p>
+<p>Then save the file and restart your GDM session. This can be done by logging out of your current X session then pressing ctrl+alt+backspace note: NOT ctrl+alt+del (that would work but will also reboot your computer)</p>
+<h2 id="customize-the-startup-script">Customize the startup script</h2>
+<p>To customize the startup script see <a href="Howto edit the startup file" title="wikilink">this page</a> You will find information explaining how to start applications at startup, how to execute apps automatically after fluxbox has already started, and other topics.</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Integration/Startup howtos" title="wikilink">Category:Integration/Startup howtos</a></p>
+</body>
+</html>

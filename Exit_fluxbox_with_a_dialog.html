@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="howto-exit-fluxbox-with-a-dialog">Howto exit fluxbox with a dialog</h2>
+<p>It's not very hard or tricky to have a nice popup-dialog at the exit of fluxbox to prevent one from exiting just by accident.</p>
+<p>There are basicly 2 problems to solve:</p>
+<ul>
+<li>which kind of dialog one wants to use</li>
+<li>to find out the processid of fluxbox to kill the right process</li>
+</ul>
+<p>Beside the famous xmessage there are several other dialog-programs available: zenity, kdialog, gxmessage, gdialog and what not. Each of them are able to provide several widgets as buttons, textboxes and so on. They read info from stdinput, popup, wait that the user clicks on a widget and provide some feedback.</p>
+<p>example:</p>
+<p><code> $&gt; xmessage -nearmouse -buttons no:1,yes:0 &quot;really logout?&quot;</code></p>
+<p>and if you click on yes or no you get either 0 or 1 as feedback.</p>
+<p>so, the example <code>logout.sh</code> would look like:</p>
+<p><code> #!/bin/sh</code><br /><code> pid=&quot;&quot;</code><br /><code> message=&quot;really logout?&quot;</code><br /><code> if xmessage -nearmouse -buttons no:1,yes:0 &quot;$message&quot;; then</code><br /><code>   echo &quot;i would kill $pid if i would know it&quot;</code><br /><code> fi</code></p>
+<p>so, now we just need to know the processid of the current fluxbox. thats pretty easy:</p>
+<p><code> $&gt; xprop -root _BLACKBOX_PID | awk '{print $3}'</code></p>
+<p>this would give you exactly the pid of the currently used fluxbox.</p>
+<p><code> #!/bin/sh</code><br /><code> message=&quot;really logout?&quot;</code><br /><code> if xmessage -nearmouse -buttons no:1,yes:0 &quot;$message&quot;; then</code><br /><code>       kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')</code><br /><code> fi</code></p>
+<p>if you want to use zenity (more eye-candy), an option could be:</p>
+<p><code>#!/bin/sh</code><br /><code>if zenity --question --title &quot;Alert&quot; --text &quot;really wanna loose all that  work?!&quot;; then</code><br /><code>        kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')</code><br /><code>fi</code></p>
+<p>--<a href="User:Curley sue" title="wikilink">Curley sue</a> 18:31, 7 November 2006 (CST) (correction of kill line and adding zenity)</p>
+<p>and that's it :) put this <code>logout.sh</code> to some place in your <code>PATH</code>, make it executable <code>(chmod u+x logout.sh)</code> and replace <code>[exit]</code> in your <code>~/.fluxbox/menu</code> with</p>
+<p><code>[exec] (exit) {Exec logout.sh} </code></p>
+<p>if one is too lazy to do all of this one could use a tiny program called &quot;fbcmd&quot; that it available at</p>
+<p><a href="http://darkshed.net/files/c_cpp/fbcmd/">http://darkshed.net/files/c_cpp/fbcmd/</a></p>
+<p>and then use:</p>
+<p><code> $&gt; fbcmd logout zenity &quot;really logout?&quot;</code></p>
+<p>or</p>
+<p><code> $&gt; fbcmd logout gdialog &quot;really really logut?&quot;</code></p>
+<p>or whatever one likes.<br />fbcmd can do a bit more than that but thats another topic :)</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Integration/Startup howtos" title="wikilink">Category:Integration/Startup howtos</a></p>
+</body>
+</html>

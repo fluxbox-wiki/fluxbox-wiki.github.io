@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>For users of fluxbox-1.1.1 or later, you can use the new <strong>ChangeWorkspace</strong> mechanism to track the last workspace you were on, and then bind a key to jump back there.</p>
+<h2 id="example-script">Example Script</h2>
+<pre><code>#!/bin/bash
+#
+# Designed to be used for a &quot;Switch to last desktop&quot; key
+#
+# Version: 1
+# Author: Jim Ramsay &lt;i.am@jimramsay.com&gt;
+# Released under a &quot;Do whatever you want with it&quot; license.
+# 
+# Example Keys file usage:
+#   Mod4 6 :Exec fluxbox-lastworkspace
+#   ChangeWorkspace :Exec fluxbox-lastworkspace --set
+#
+# Requires you have xprop and wmctrl installed.
+#
+
+FLUXBOXROOT=${FLUXBOXROOT:-${HOME}/.fluxbox}
+CURRENTFILE=${FLUXBOXROOT}/currentdesktop
+LASTFILE=${FLUXBOXROOT}/lastdesktop
+LOGFILE=${LASTFILE}.log
+
+if [[ -f $LASTFILE ]]; then
+    last=$(&lt;$LASTFILE)
+fi
+if [[ -f $CURRENTFILE ]]; then
+    current=$(&lt;$CURRENTFILE)
+fi
+
+if [[ $# -gt 0 ]]; then
+    if [[ $1 != &quot;-s&quot; &amp;&amp; $1 != &quot;--set&quot; ]]; then
+        new=$1
+        echo &quot;Manually setting current workspace from $current to $new&quot; &gt; $LOGFILE
+    else
+        new=$(xprop -root _NET_CURRENT_DESKTOP | awk &#39;{print $3}&#39;)
+        echo &quot;Automatically setting current workspace&quot; &gt; $LOGFILE
+        echo &quot;  Current was $current, new is $new&quot; &gt;&gt; $LOGFILE
+
+        # Due to a race condition between the _NET_CURRENT_DESKTOP property being
+        # updated and the Fluxbox &quot;ChangeWorkspace&quot; event, we need to potentially
+        # spin here until we really see the new workspace number.
+        if [[ -n $current &amp;&amp; $current == $new ]]; then
+            c=0
+            while [[ $current == $new &amp;&amp; $c &lt; 10 ]]; do
+                sleep 0.2
+                new=$(xprop -root _NET_CURRENT_DESKTOP | awk &#39;{print $3}&#39;)
+                ((c+=1))
+            done
+
+            if [[ -n $current &amp;&amp; $current == $new ]]; then
+                echo &quot;  Workspace did not change! ($c iterations)&quot; &gt;&gt; $LOGFILE
+            else
+                echo &quot;  New is $new after $c iterations&quot; &gt;&gt; $LOGFILE
+            fi
+        fi
+    fi
+
+    # We now really have the new workspace
+    if [[ -f $CURRENTFILE ]]; then
+        mv &quot;$CURRENTFILE&quot; &quot;$LASTFILE&quot;
+    fi
+    echo $new &gt; &quot;$CURRENTFILE&quot;
+else
+    wmctrl -s ${last:-0}
+fi</code></pre>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Configuration howtos" title="wikilink">Category:Configuration howtos</a></p>
+</body>
+</html>

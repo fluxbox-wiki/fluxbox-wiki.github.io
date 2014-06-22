@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="introduction">Introduction</h2>
+<p>Idesk is an app used to show icons on the desktop, which by simple or double clicking (acording to users preferences) will execute a command. It's used mostly to work with window managers. Icons can be dragged to the desired postition on the desktop and that position will be remembered on next idesk startup. The formats supported are png and svg, though there might be problems with the last mentioned format.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>Idesk needs some dependencies installed in order to work.</p>
+<p><code> pkg-config</code><br /><code> librsvg-2.0.1</code><br /><code> gdk-pixbuf-2</code><br /><code> </code></p>
+<h2 id="installing-idesk">Installing idesk</h2>
+<p>There are many ways to install idesk. Users without experience perhaps prefer using binaries packages, depending on the distro they are working with. The other option is to download the sources from <a href="http://sourceforge.net/projects/idesk/">idesk site</a> To download binaries <a href="http://www.rpmseek.com">rpmseek</a> or <a href="http://www.rpmsearch.com">rpmsearch</a></p>
+<h3 id="mandriva-or-red-hatfedora">Mandriva or Red Hat/Fedora</h3>
+<p>Once we have our binaries we just log as root and:</p>
+<p><code> # rpm -i /path/to/file/idesk.rpm</code><br /><code> (double clicking on .rpm file will install it too)</code><br /><code> </code></p>
+<h3 id="debian">Debian</h3>
+<p><code> # apt-cache search idesk | sort - u | less (to search the package </code><br /><code>                                        and obtain an ordered list)</code><br /><code> # apt-get install idesk</code><br /><code> </code></p>
+<h3 id="gentoo">Gentoo</h3>
+<p><code> # emerge -uvp idesk</code><br /><code> These are the packages I would merge in order</code><br /><code> ...</code><br /><code> total size of downloads 0kb (this line indicates that all packages </code><br /><code>                              are available to begin installation)</code><br /><code> # emerge idesk</code></p>
+<h3 id="arch-linux">Arch Linux</h3>
+<p><code> # pacman -S idesk</code></p>
+<p>Thats all! :)</p>
+<h3 id="sources">Sources</h3>
+<p>Installing from sources is pretty easy too. We decompress and untar the tar.gz file into any directory. Inside that directory:</p>
+<p><code> $ make</code><br /><code> $ su</code><br /><code> # make install</code></p>
+<p>Make install will copy the executable to /usr/local/bin/idesk.</p>
+<p>We have concluded installation process.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Now it's time to start tweaking our idesk to make it functional. With our favourite editor we will create a file called .ideskrc inside our home directory.</p>
+<p><code> $ nano -w ~/.ideskrc</code><br /><code> </code></p>
+<p>Inside .ideskrc we will put the following:</p>
+<p><code> table Config</code><br /><code>   FontName: tahoma</code><br /><code>   FontSize: 8</code><br /><code>   FontColor: #ffffff</code><br /><code>   Locked: false</code><br /><code>   Transparency: 150</code><br /><code>   HighContrast: true</code><br /><code>   Shadow: true </code><br /><code>   ShadowColor: #000000</code><br /><code>   ShadowX: 1</code><br /><code>   ShadowY: 2</code><br /><code>   Bold: false</code><br /><code>   ClickDelay: 300</code><br /><code>   IconSnap: true</code><br /><code>   SnapWidth: 55 </code><br /><code>   SnapHeight: 100</code><br /><code>   SnapOrigin: BottomRight</code><br /><code>   SnapShadow: true</code><br /><code>   SnapShadowTrans: 200</code><br /><code>   CaptionOnHover: false</code><br /><code> end</code><br /><code> table Actions</code><br /><code>   Lock: control right doubleClk</code><br /><code>   Reload: middle doubleClk</code><br /><code>   Drag: left hold</code><br /><code>   EndDrag: left singleClk</code><br /><code>   Execute[0]: left doubleClk</code><br /><code>   Execute[1]: right doubleClk</code><br /><code> end</code><br /><code> </code></p>
+<p>If we look well we will realize that we can play with the values of the variables. As a hint, Transparency goes from 0 to 255. 0 gives as solid color and 255 will give us transparent icons that will only be seen with mouse over them. For a more detailed explanation we have to look at readme file locatead in <strong>/usr/share/doc/idesk</strong>.</p>
+<h2 id="creating-icons-and-associated-actions">Creating icons and associated actions</h2>
+<p>Now the only thing to do is define icons what is that we want them to do. Inside home directory we have to create a directory called .idesktop</p>
+<p><code> $ mkdir ~/.idesktop</code></p>
+<p>Inside this directory we will creat text files with the following format.</p>
+<p><code> $ nano -w ~/.idesktop/name_of_icon.lnk</code><br /><code> </code></p>
+<p>We've just created an icon. If we want it to launch Mozilla Firefox for example we have to do the following. Inside the file recentely created we have to write:</p>
+<p><code> table Icon</code><br /><code>   Caption: Mozilla Firefox</code><br /><code>   Command: firefox</code><br /><code>   Icon: /path/to/image/firefox.png</code><br /><code>   X: 100</code><br /><code>   Y: 50</code><br /><code> end</code><br /><code> </code><br /></p>
+<p>Caption: name of the icon shown on desktop</p>
+<p>Command: command to execute</p>
+<p>Icon: path to the icon image</p>
+<p>X and Y indicate initial position on screen, we can leave a default value and then dragg wherever we want it.</p>
+<p>That's it. We are ready to use idesk. Can be executed from a terminal:</p>
+<p><code> $ idesk</code><br /><code> </code></p>
+<p>or add it to startup (<strong>~/.fluxbox/startup</strong>)</p>
+<p><code> idesk &amp;</code><br /><code> </code></p>
+<p>Enjoy it</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Misc howtos" title="wikilink">Category:Misc howtos</a></p>
+</body>
+</html>

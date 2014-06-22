@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="where-to-get-gtk-themes">Where to get GTK themes</h3>
+<p>You can get GTK themes from, for example, <a href="http://xfce-look.org/index.php?xcontentmode=100">xfce-look.org</a> <a href="http://gnome-look.org/index.php?xcontentmode=100">gnome-look.org</a> [<a href="http://browse.deviantart.com/?qh">http://browse.deviantart.com/?qh</a>=&amp;section=&amp;q=GTK+theme deviantart.com]</p>
+<h3 id="how-do-i-install-these-themes">How do I install these themes?</h3>
+<p>You only need to untar those themes under <strong>~/.themes</strong>, so first:</p>
+<p><code>$ mkdir ~/.themes</code></p>
+<p>and then:</p>
+<p><code>$ cd ~/.themes</code><br /><code>$ tar -zxvf theme-name-here.tar.gz      or</code><br /><code>$ tar -jxvf theme-name-here.tar.bz2</code></p>
+<p>Make sure you check the what engines the theme needs, usually with somethin like</p>
+<p><code>$ grep engine ~/.themes/</code><theme-name><code>/gtk-2.0/gtkrc</code></p>
+<p>You can most likely install them through your package manager, like:</p>
+<p><code># apt-get install gtk2-engines-pixbuf    or</code><br /><code># apt-get install gtk2-engines-*         or</code><br /><code># emerge gtk2-engines-pixbuf</code></p>
+<p>You should get the idea.</p>
+<h3 id="and-to-use-them">And to use them?</h3>
+<h2 id="gtk2">GTK2</h2>
+<p>Get <a href="http://www.muhri.net/nav.php3?node=gts">gtk-theme-switch</a> (note that there is also a version for GTK2) or <a href="http://plasmasturm.org/code/gtk-chtheme/">gtk-chtheme</a>. Then just fire 'em up and you should see a nice list of all styles. Just select the one you want to use and click <strong>Apply</strong>. You can also use <a href="http://wiki.lxde.org/en/LXAppearance">LXAppearance</a> to change the gtk-themes.</p>
+<p>This shows you how to edit GTK settings without any extra application installed.</p>
+<p>Install the GTK theme as shown above (extract theme to ~/.themes and icon set to ~/.icons).<br />Create or edit the ~/.gtkrc-2.0 file. In that file input parameters such as the following:</p>
+<p><code>#sets the font</code><br /><code> gtk-font-name = &quot;sans 8&quot; </code><br /><code> #sets the theme</code><br /><code> gtk-theme-name = &quot;Clearlooks Crystal 1.1&quot; </code><br /><code> #sets the icon theme</code><br /><code> gtk-icon-theme-name = &quot;CrystalClear-GNOME-1.0.0&quot; </code><br /><code> #shows only icons in the toolbar</code><br /><code> gtk-toolbar-style = GTK_TOOLBAR_ICONS </code><br /><code> #shows small icons in the toolbar</code><br /><code> gtk-toolbar-icon-size = GTK_ICON_SIZE_SMALL_TOOLBAR  </code><br /><code> #sets the background color in Rox back to white because some GTK themes set it to light gray</code><br /><code> style &quot;rox&quot; = &quot;default&quot;</code><br /><code> {</code><br /><code>   bg[NORMAL] = &quot;#ffffff&quot;</code><br /><code>   bg[ACTIVE] = &quot;#ffffff&quot;</code><br /><code> }</code><br /><code> widget_class &quot;*Collection*&quot; style &quot;rox&quot;</code></p>
+<p>Resources:</p>
+<ul>
+<li><a href="http://developer.gnome.org/gtk/stable/GtkSettings.html">http://developer.gnome.org/gtk/stable/GtkSettings.html</a></li>
+<li><a href="http://developer.gnome.org/gtk3/stable/GtkSettings.html">http://developer.gnome.org/gtk3/stable/GtkSettings.html</a></li>
+</ul>
+<p>You can also use a different GTK theme, icon theme and fonts for specific GTK applications. If you just want to change the GTK theme, run your application with the following command:</p>
+<p><code>$ GTK2_RC_FILES=/path/to/your/theme/gtkrc your_application</code></p>
+<p>If you like to set a custom icon theme and font, create an empty file wherever you find convenient and call it whatever you want (for example, ~/.themes/custom.gtkrc). Then fill it with your different settings:</p>
+<p><code>gtk-font-name = &quot;sans 7&quot;</code><br /><code>gtk-theme-name = &quot;niroki&quot;</code><br /><code>gtk-icon-theme-name = &quot;SimplyGrey&quot;</code></p>
+<p>Now run the application with the following command:</p>
+<p><code>$ GTK2_RC_FILES=/path/to/your/custom.gtkrc your_application</code></p>
+<p>Add the command in your menu or launcher and enjoy.</p>
+<h2 id="gtk3">GTK3</h2>
+<p>To use GTK3 themes, edit (or create) the <strong>~/.config/gtk-3.0/settings.ini</strong> file. Specify the theme you want with the <strong>gtk-theme-name</strong> parameter. For example, if you want to use the Adwaita theme, your <strong>settings.ini</strong> file should look like:</p>
+<p><code>[settings]</code><br /><code> gtk-theme-name = Adwaita</code><br /><code> gtk-icon-theme-name = SimplyGrey</code><br /><code> gtk-fallback-icon-theme = gnome</code><br /><code> gtk-font-name = Sans 10</code><br /><code># next option is applicable only if selected theme supports it</code><br /><code> gtk-application-prefer-dark-theme = true</code><br /></p>
+<p>That's it.</p>
+<h2 id="see-also">See also</h2>
+<p><a href="http://fluxbox-wiki.org/index.php?title=Install_fonts">How to install fonts</a></p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Misc howtos" title="wikilink">Category:Misc howtos</a></p>
+</body>
+</html>

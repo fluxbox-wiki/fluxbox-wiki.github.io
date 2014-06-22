@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="howto-shutdown-your-computer-with-a-dialog">Howto shutdown your computer with a dialog</h2>
+<p>Fluxbox doesn't come with some nice and eyecandy way to shutdown your computer. But, if you're using <a href="GDM" title="wikilink">GDM</a> to log in, you can also tell it to shut down. For ease of use, a script giving you some confirmation dialog can be used.</p>
+<p>First, we'll create a dialog:</p>
+<p><code> xmessage -nearmouse -buttons No:1,Yes:0 &quot;Really shutdown?&quot;</code></p>
+<p>There are other ways to do this, we're not bound to use xmessage here. It's an easy way, though.</p>
+<p>If the user clicks the &quot;no&quot; button, nothing else needs to be done, except maybe for giving hime some advice on using his mouse. If he clicks on &quot;yes&quot;, we'll shut down his computer.</p>
+<p>To do so, we'll first tell GDM that we want to shutdown by the time fluxbox exits:</p>
+<p><code> gdmflexiserver -a -c 'SET_LOGOUT_ACTION HALT'</code></p>
+<p>Then, we kill fluxbox:</p>
+<p><code> kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')</code></p>
+<p>Some string and tape adds up to a script to add to your menu:</p>
+<p><code> #!/bin/sh</code><br /><code> if xmessage -nearmouse -buttons No:1,Yes:0 &quot;Really shutdown?&quot;; then</code><br /><code>   gdmflexiserver -a -c 'SET_LOGOUT_ACTION HALT'</code><br /><code>   kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')</code><br /><code> else</code><br /><code>   xmessage -nearmouse &quot;Then why did you press that big red button?&quot;</code><br /><code> fi</code></p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Integration/Startup howtos" title="wikilink">Category:Integration/Startup howtos</a></p>
+</body>
+</html>
