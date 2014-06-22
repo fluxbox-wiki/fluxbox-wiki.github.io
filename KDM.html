@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>kdm should automatically find that you have installed fluxbox and will display it as a choice.</p>
+<h2 id="fluxbox-startup-script">fluxbox startup script</h2>
+<p>By this way it is not possible (at least in my <em>Debian 3.1 Sarge</em> with <em>kdm</em>) to use <em>~/.fluxbox/startup</em> script, but in <em>Debian 4.0 Etch</em> it seems to work.</p>
+<p>For <em>Debian 3.1 Sarge</em>, first edit <strong>/usr/share/xsessions/fluxbox.desktop</strong>:</p>
+<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configurable and low resource X11 Window manager</code><br /><code> </code><strong><code>Exec=/usr/bin/startfluxbox</code></strong><br /><code> Terminal=False</code><br /><code> </code><strong><code>TryExec=/usr/bin/startfluxbox</code></strong><br /><code> Type=Application</code><br /><code> </code><br /><code> [Window Manager]</code><br /><code> SessionManaged=true</code></p>
+<p>changing the bold lines: it's started <em>/usr/bin/startfluxbox</em> script, not just <em>fluxbox</em>. Finally edit <strong>~/.fluxbox/startup</strong>:</p>
+<p><code> #!/bin/bash</code><br /><code> </code><br /><code> ## uncomment it to launch xscreensaver or idesk</code><br /><code> ##xscreensaver &amp;</code><br /><code> ##idesk &amp;</code><br /><code> </code><br /><code> exec /usr/bin/fluxbox</code></p>
+<p>Now it is possible to start a fluxbox session from kdm and use the startup script <em>~/.fluxbox/startup</em> to fit your needs.</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Integration/Startup howtos" title="wikilink">Category:Integration/Startup howtos</a></p>
+</body>
+</html>

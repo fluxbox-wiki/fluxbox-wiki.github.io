@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__ First of all an important fact to know is that fluxbox doesn't control the font of external apps such as firefox or k3b. Those fonts are controlled by their related toolkits (gtk, qt,...), fluxbox fonts are <strong>only</strong> for the toolbar, the windowtitle and the menu (rootmenu, windowmenu, toolbarmenu...).</p>
+<h2 id="fluxbox-0.9.15-and-newer">Fluxbox 0.9.15 and newer</h2>
+<p>You should use <a href="Style overlay" title="wikilink">Style overlay</a> to change the appearance of your fonts, it is much easier than changing individual styles.</p>
+<h2 id="fluxbox-prior-to-0.9.15">Fluxbox prior to 0.9.15</h2>
+<p>You can change them easily in the style file. Search in this file for the lines that say <code>*font:  &lt;fontname&gt;</code>.</p>
+<p>If you don't know where your stylefile is located then copy/paste the following bash-script to a file, save it, make it executable and finally execute it :</p>
+<p><code>#!/bin/bash</code><br /><code>THEME=$(grep -i &quot;^.*\.stylefile:.*$&quot; ~/.fluxbox/init | cut -d: -f2)</code><br /><code>if [ -d $THEME ]</code><br /><code>then</code><br /><code>   exec vi $THEME/theme.cfg</code><br /><code>else</code><br /><code>   exec vi $THEME</code><br /><code>fi</code></p>
+<p>Possible lines in your hopefully now opened style file can be:</p>
+<p><code>  menu-title (the title of all fluxbox-menus you use)</code><br /><code>     </code><strong><code>menu.title.font:</code> <fontname></strong></p>
+<p><code>  frame (the entries that are in every menu)</code><br /><code>    </code><strong><code>menu.frame.font:</code> <fontname></strong></p>
+<p><code>  window (the font of the title of every window)</code><br /><code>    </code><strong><code>window.font:</code> <fontname></strong></p>
+<p><code>  clock (yeah, it's the fluxbox clock)</code><br /><code>     </code><strong><code>toolbar.clock.font:</code> <fontname></strong></p>
+<p><code>  workspace (the font of the workspace label)</code><br /><code>     </code><strong><code>toolbar.workspace.font:</code> <fontname></strong></p>
+<p><code>  iconbar (the label of the application the iconbar is holding)</code><br /><code>    </code><strong><code>toolbar.iconbar.focused.font:</code> <fontname></strong><code> </code><br /><code>    </code><strong><code>toolbar.iconbar.unfocused.font:</code> <fontname></strong></p>
+<h2 id="fontnames">Fontnames</h2>
+<p>if using xft-fonts (ttf-fonts) you use them like this: <strong><fontname>-size</strong>. You need to have libxft installed to use such fonts.</p>
+<p>You can set them bold by adding &quot;:bold&quot;; the next line will give you the tahoma font in bold, with a size of 12:</p>
+<p><code>  tahoma-12:bold</code></p>
+<p>or add a shadow effect with &quot;:shadow&quot;:</p>
+<p><code>  tahoma-12:shadow</code></p>
+<p>or both:</p>
+<p><code>  tahoma-12:bold,shadow</code></p>
+<p>If using x-fonts please run &quot;xfontsel&quot; or any similar application to find out what the right names are. For example:</p>
+<p><code>  -misc-*-*-*-*-*-*-200-*-*-*-*-*-*</code></p>
+<p>furthermore you can make fluxbox try to load several fonts</p>
+<p><code>  arial-10|-artwiz-snap-*-</code></p>
+<p>that will cause fluxbox to load (if compiled with xft) arial-10, otherwise, if the loading fails, it will load a different xft-font. while a fluxbox not compiled with xft support will try to load the artwiz-font. if everything fails all will fall back to &quot;fixed&quot;. so in the end it will always load a font even though it is not the one you have set in the style.</p>
+<h2 id="fonteffects">Fonteffects</h2>
+<p>Since the release of fluxbox 0.9.14 the handling of fonteffect changed a little bit. You have to specify them in a separate line now and not as an &quot;attribute&quot; like before.</p>
+<p>This options are only available for xft fonts.</p>
+<p><strong>Shadow:</strong></p>
+<p><code>  *.font.effect: shadow</code><br /><code>  *.font.shadow.color: </code><color><br /><code>  *.font.shadow.x: </code><int></p>
+<p><strong>Halo</strong></p>
+<p><code>  *.font.effect: halo</code><br /><code>  *.font.halo.color: </code><color></p>
+<p>You can set one effect either a shadow or a halo.</p>
+<p>Here's an example of what it can look like:</p>
+<p><code>  menu.title.font: sans-8:bold</code><br /><code>  menu.title.font.effect: shadow</code><br /><code>  menu.title.font.shadow.color: #ffffff</code><br /><code>  menu.title.font.shadow.x: 2</code><br /><code>  menu.title.font.shadow.y: 5</code><br /><code>  ----</code><br /><code>  </code><a href="http://tenr.de/howto/style_fluxbox/rootmenu2.png"><code>example</code> <code>menu</code></a></p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Style howtos" title="wikilink">Category:Style howtos</a></p>
+</body>
+</html>

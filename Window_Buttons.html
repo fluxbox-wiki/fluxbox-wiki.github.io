@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="how-to-change-what-buttons-are-on-the-windows-titlebar">How to change what buttons are on the windows' titlebar</h3>
+<p>By default Fluxbox has four buttons on the titlebar, one on the left side (<strong>Stick</strong>) and three on the right side (<strong>Minimize, Maximize, Close</strong>)</p>
+<p>You can change them by editing <strong>~/.fluxbox/init</strong> Find the following lines:</p>
+<p><code>session.titlebar.left: Stick</code><br /><code>session.titlebar.right: Minimize Maximize Close</code></p>
+<p>Then just change those. Possible buttons are (in Fluxbox 0.9.14):</p>
+<p><code>MenuIcon</code><br /><code>    A button to show either the program's icon or default menu icon in theme</code><br /><code>    Pops up the window menu when clicked (same as right clicking the titlebar)</code></p>
+<p><code>Stick</code><br /><code>    Toggles whether window sticks or not, meaning it is visible on all workspaces</code></p>
+<p><code>Shade</code><br /><code>    Shades the window, only the titlebar will be left visible</code></p>
+<p><code>Minimize</code><br /><code>    Self explanatory</code></p>
+<p><code>Maximize</code><br /><code>    This too ...</code></p>
+<p><code>Close</code><br /><code>    ... and this</code></p>
+<p>After editing, save the file and from fluxbox menu choose <em>Config -&gt; Reconfigure or Reload config or Restart</em>'</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Configuration howtos" title="wikilink">Category:Configuration howtos</a></p>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>To switch keyboard layout in fluxbox you must take some effect and carefully read <a href="http://www.xfree86.org/current/XKB-Config2.html#2">XKB Configuration</a>. Also you need to know which name have your language layout and which <strong>Variant</strong> name (if you use Variant).</p>
+<h3 id="using-xorg.conf">Using xorg.conf</h3>
+<p>First configure your <strong>xorg.conf</strong> must correctly setting your <code>/etc/X11/xorg.conf</code>, for example i use Danish (dk) keyboard layout and Iraq (iq) Kurdish-Arabic-Latin Variant(ku_ara):</p>
+<p><code>Option     &quot;XkbLayout&quot; &quot;dk,iq&quot;</code><br /><code>Option     &quot;XkbVariant&quot;    &quot;,ku_ara&quot;</code></p>
+<p>You can find more info about your keyboard layout with:</p>
+<p><code>$ less /usr/share/X11/xkb/rules/base.lst</code></p>
+<p>and search for your country code</p>
+<h3 id="using-udev-and-debian-and-derivates">Using UDEV and Debian (and derivates)</h3>
+<p><code># /etc/default/keyboard</code></p>
+<p>The configuration should look like:</p>
+<p><code>XKBMODEL=&quot;pc105&quot;</code><br /><code>XKBLAYOUT=&quot;dk,iq&quot;</code><br /><code>XKBVARIANT=&quot; ,ku_ara&quot;</code><br /><code>XKBOPTIONS=&quot;lv3:ralt_switch,compose:lwin,grp:alt_shift_toggle&quot;</code></p>
+<h3 id="adding-the-switch-in-your-rootmenu">Adding the switch in your rootmenu</h3>
+<p><code>$ vim ~/.fluxbox/menu</code></p>
+<p>This example for <strong>Danish (dk) and Iraq (iq) kurdish-arabic-latin (ku_ara)</strong>.</p>
+<p><code>[begin] (fluxbox)</code><br /><code>[include] (/etc/X11/fluxbox/fluxbox-menu)</code><br /><code>[end]</code></p>
+<p>change it to this:</p>
+<p><code>[begin] (fluxbox)</code><br /><code>[include] (/etc/X11/fluxbox/fluxbox-menu)</code><br /><code>[submenu] (Keyboards)</code><br /><code>[exec] (dk) {setxkbmap dk}</code><br /><code>[exec] (ku) {setxkbmap iq -variant ku_ara}</code><br /><code>[end]</code></p>
+<p>Another example for German (de) and Danish (dk) layout without <strong>Variant</strong>.</p>
+<p><code>[begin] (fluxbox)</code><br /><code>[include] (/etc/X11/fluxbox/fluxbox-menu)</code><br /><code>[submenu] (Keyboards)</code><br /><code>[exec] (de) {setxkbmap de}</code><br /><code>[exec] (dk) {setxkbmap dk}</code><br /><code>[end]</code></p>
+<p>Now you'll see the <strong>Keyboards</strong> option in fluxbox menu at the end.</p>
+<h3 id="input-hotplugging-with-hal">Input hotplugging with HAL</h3>
+<p><strong>HAL is dead, let's move on and keep this as reminder on how the syntax was awful.</strong><br />X will utilize HAL to allow for the hotplugging and removal of human interface devices without having to restart X. The configuration should look like:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt; &lt;!-- -*- SGML -*- --&gt;
+&lt;deviceinfo version=&quot;0.2&quot;&gt;
+  &lt;device&gt;
+    &lt;match key=&quot;info.capabilities&quot; contains=&quot;input.keymap&quot;&gt;
+      &lt;append key=&quot;info.callouts.add&quot; type=&quot;strlist&quot;&gt;hal-setup-keymap&lt;/append&gt;
+    &lt;/match&gt;
+
+    &lt;match key=&quot;info.capabilities&quot; contains=&quot;input.keys&quot;&gt;
+      &lt;merge key=&quot;input.xkb.rules&quot; type=&quot;string&quot;&gt;base&lt;/merge&gt;
+
+      &lt;!-- If we&#39;re using Linux, we use evdev by default (falling back to
+           keyboard otherwise). --&gt;
+      &lt;merge key=&quot;input.xkb.model&quot; type=&quot;string&quot;&gt;keyboard&lt;/merge&gt;
+      &lt;match key=&quot;/org/freedesktop/Hal/devices/computer:system.kernel.name&quot;
+             string=&quot;Linux&quot;&gt;
+        &lt;merge key=&quot;input.xkb.model&quot; type=&quot;string&quot;&gt;evdev&lt;/merge&gt;
+      &lt;/match&gt;
+
+      &lt;merge key=&quot;input.xkb.layout&quot; type=&quot;string&quot;&gt;dk,iq&lt;/merge&gt;
+      &lt;merge key=&quot;input.xkb.variant&quot; type=&quot;string&quot;&gt; ,ku_ara&lt;/merge&gt;
+      &lt;merge key=&quot;input.xkb.options&quot; type=&quot;string&quot;&gt;grp:alt_shift_toggle&lt;/merge&gt;
+    &lt;/match&gt;
+  &lt;/device&gt;
+&lt;/deviceinfo&gt;</code></pre>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a></p>
+</body>
+</html>

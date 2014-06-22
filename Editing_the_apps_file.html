@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="how-to-edit-the-apps-file">How to edit the apps file</h2>
+<p>One thing to know is: if you run fluxbox 0.9.13 or lower, when you edit the apps file while running fluxbox, on a restart or a reload of the config all changes will be reset to the previous. For higher versions of fluxbox there is no problem.</p>
+<p>A workaround for this problem (when you use on old version of fluxbox):</p>
+<ul>
+<li>modify the file and save your changes</li>
+<li>chmod 444 ~/.fluxbox/apps</li>
+<li>restart fluxbox</li>
+<li>chmod 744 ~/.fluxbox/apps</li>
+</ul>
+<p>In order to obtain a skeleton configuration with the right atoms (name, class, role) for the application, pick up a random entry from the Remember submenu in the <a href="http://fluxbox-wiki.org/index.php?title=Editing_the_windowmenu">windowmenu</a>, then edit the <code>~/.fluxbox/apps</code> as you need.</p>
+<p>You can also find atoms by executing</p>
+<p><code>  $ xprop WM_CLASS | xmessage -file - -center</code></p>
+<p>and clicking onto the desired window:</p>
+<p><code>WM_CLASS(STRING) = &quot;xterm&quot;, &quot;XTerm&quot;</code></p>
+<p>The first field is the name, the second one the class, so in this case &quot;xterm&quot; is the name and &quot;XTerm&quot; the class.</p>
+<h2 id="apps-file-entries">Apps file entries</h2>
+<p>The format for the apps file is:</p>
+<p><code>  [app] (app-name) {count - optional}</code><br /><code>          [Property1]  {value1}</code><br /><code>          [Property2]  {value2}</code><br /><code>          ...</code><br /><code>  [end]</code></p>
+<p>Each app-name can be a string or a regular expression. By default the name is matched against a windows WM_CLASS property (the first string in it, called the &quot;instance&quot;). You can match against the title, instance name (default), class name, or role (the WM_WINDOW_ROLE property) by explicitly specifying it. You can also specify multiple matches, which must ALL match for the properties to be applied. If a count is supplied in curly brackets at the end of the app line, then the entry will only match at most count at any time (default is to match all matching windows).</p>
+<p>Some examples of the several others are:</p>
+<ul>
+<li>match a standard xterm</li>
+</ul>
+<p><code>  [app] (xterm)</code><br /><code>      ... Properties ...</code><br /><code>  [end]</code></p>
+<ul>
+<li>match an xterm started like: <code>xterm -name myshell</code></li>
+</ul>
+<p><code>  [app] (myshell)</code><br /><code>      ... Properties ...</code><br /><code>  [end]</code></p>
+<ul>
+<li>match any one Firefox window (the instance name is &quot;Gecko&quot;)</li>
+</ul>
+<p><code>  [app] (class=Firefox-bin) {1}</code><br /><code>      ... Properties ...</code><br /><code>  [end]</code></p>
+<ul>
+<li>match the gaim buddy list window</li>
+</ul>
+<p><code>  [app] (role=buddy_list)</code><br /><code>      ... Properties ...</code><br /><code>  [end]</code></p>
+<ul>
+<li>match an rdesktop window to a particular host</li>
+</ul>
+<p><code>  [app] (title=rdesktop - hostname.*)</code><br /><code>      ... Properties ...</code><br /><code>  [end]</code></p>
+<ul>
+<li>hides Firefox's transient windows from the toolbar</li>
+</ul>
+<p><code>  [transient] (name=firefox-bin) (class=Firefox-bin)</code><br /><code>      [IconHidden]  {yes}</code><br /><code>  [end]</code></p>
+<p>A transient window is a window dialog like 'Save as..' or 'Print', we can apply any kind of rule to them, here's another example:</p>
+<ul>
+<li>maximizes Firefox's print window</li>
+</ul>
+<p><code>  [transient] (name=firefox-bin) (class=Firefox-bin) (title=Print)</code><br /><code>      [Maximized]  {yes}</code><br /><code>  [end]</code></p>
+<p>For the complete list of the properties that can be defined in each [app] entry see the SETTINGS section in the <a href="http://fluxbox.org/help/man-fluxbox-apps.php">fluxbox-apps</a> manpage.</p>
+<p>Each name must be enclosed in square brackets, and the value is generally in curly brackets.</p>
+<p>The apps file also allows you to specify applications that should be started. Could be used to specify the screen, not the workspace, on which the application should be started. Startup is not yet setable by menu.</p>
+<p>Finally, you can set windows to group together by using the `apps' file. This is achieved with either regular expressions using:</p>
+<p><code>  [app] (property=expr) ... {number}</code></p>
+<p>Property can be one of the following tags:</p>
+<ul>
+<li>name - the name of the window (the first field of WM_CLASS)</li>
+<li>class - class of the window (the second field of WM_CLASS)</li>
+<li>title - title of the window ( WM_NAME property)</li>
+<li>role - role of the window (the WM_WINDOW_ROLE property)</li>
+</ul>
+<p>If no `property' is specified, the name property is assumed. You can find out the value for these fields for a particular window by running <code>[http://www.linuxmanpages.com/man1/xprop.1x.php xprop(1)]</code>.</p>
+<p>Here an example of how an apps file can look like:</p>
+<p><code> [startup] {xterm}</code></p>
+<ol>
+<li>match anything ending with term, up to 2 instances</li>
+</ol>
+<p><code> [app] (.*[tT]erm) {2}</code></p>
+<ol>
+<li>match anything with `gaim' in the title</li>
+</ol>
+<p><code> [app] (title=.*gaim.*)</code><br /><code> [app] (kate)</code><br /><code>         [Dimensions]  (WINCENTER) {1022 747}</code><br /><code>         [Position]    {0 0}</code><br /><code>         [Close]       {yes}</code><br /><code> [end]</code><br /><code> [app] (konqueror)</code><br /><code>         [Workspace]   {1}</code><br /><code>         [Dimensions]  {1006 749}</code><br /><code>         [Position]    {16 0}</code><br /><code>         [Jump]        {yes}</code><br /><code> [end]</code></p>
+<ol>
+<li>hide the label in the toolbar for the window dialog (like 'open file', 'save as, etc.)</li>
+</ol>
+<p><code> [transient] (name=firefox-bin) (class=Firefox-bin)</code><br /><code>         [IconHidden]  {yes}</code><br /><code> [end]</code><br /><code> [app] (name=mirage) (class=Mirage)</code><br /><code>         [Dimensions]  {1015 730}</code><br /><code>         [Position]    (UPPERLEFT)     {87 0}</code><br /><code> [end]</code></p>
+<ol>
+<li>start all aterms without decorations</li>
+</ol>
+<p><code> [app] (aterm)</code><br /><code>         [Deco]        {NONE}</code><br /><code> [end]</code></p>
+<ol>
+<li>start the urxvt called 'screen' without decorations</li>
+<li>the command needed to run an unique instance of urxvt is <em>urxvt -name screen</em></li>
+</ol>
+<p><code> [app] (name=screen) (class=URxvt)</code><br /><code>         [Deco]        {NONE}</code><br /><code> [end]</code></p>
+<h2 id="grouping-apps-via-the-apps-file">Grouping apps via the apps file</h2>
+<p>To automatically tab together new windows, place a [group] tag around several [app] tags, with an [end] tag to indicate the end of the group. You should not use an [end] tag for individual apps in a group. You can specify dimensions, position, etc. for the group as for normal app entries.</p>
+<p>Fluxbox also can group programs using the file <code>~/.fluxbox/groups</code>.</p>
+<p><img src="Note.png" title="fig:" /> the groups file is <strong>deprecated</strong> since version 0.9.1 in favor of grouping using the <strong>apps</strong> file, since it is much more powerful. The groups file only groups windows on the same workspace, whereas the apps file searches all workspaces by default.</p>
+<p>To replicate the groups file's behavior with the apps file, use `[group] (workspace)', which was introduced in version 1.0rc3.</p>
+<p>Here is a short example of an apps file:</p>
+<ol>
+<li>a group with all windows called &quot;special-term&quot;,</li>
+<li>appears on layer 4 (bottom)</li>
+</ol>
+<p><code> [group]</code><br /><code>     [app] (special-term)</code><br /><code>         [Layer] {4}</code><br /><code> [end]</code><br /><code> </code></p>
+<ol>
+<li>a group that only looks for windows on the current workspace</li>
+</ol>
+<p><code> [group] (workspace=[current])</code><br /><code>     [app] (firefox-bin) (title=.*Mozilla Firefox.*)</code><br /><code>     [app] (opera)</code><br /><code>         [Dimensions]    {800 600}</code><br /><code>         [Position]      (UPPERRIGHT)      {0 0}</code><br /><code> [end]</code><br /><code> [group]  (workspace=[current])</code><br /><code>     [app] (name=xterm) (class=XTerm)</code><br /><code> [end]</code></p>
+<p>Note that when you are testing your [group] settings, they will only be applied to newly created windows, NOT windows already opened. Existing windows will not appear to be in the group until restarted, you'll need to start two new windows to see the grouping work.</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Configuration howtos" title="wikilink">Category:Configuration howtos</a></p>
+</body>
+</html>
