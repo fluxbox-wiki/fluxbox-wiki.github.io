@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Quando viene installato fluxbox da sorgenti, nel caso in cui utilizziate un Desktop Manager come GDM, è necessario aggiungere una voce nel menu di GDM che permetta di selezionare fluxbox al login.</p>
+<p>Per fare ciò è necessario creare un file chiamato <code>fluxbox.desktop</code> nella directory <code>/usr/share/xsessions/</code> e inserire al suo interno delle istruzioni che variano a seconda del tipo di distribuzione utilizzata. __TOC__</p>
+<h3 id="debian">Debian</h3>
+<pre><code>[Desktop Entry]
+Name=Fluxbox
+Comment=Highly configurable and low resource X11 Window manager
+Exec=/usr/local/bin/startfluxbox
+Terminal=false
+TryExec=/usr/local/bin/startfluxbox
+Type=Application
+
+[X-Window Manager]
+SessionManaged=true</code></pre>
+<p>Nota: <code>/usr/local/bin/startfluxbox</code> è il percorso predefinito usato compilando da sorgenti.</p>
+<h3 id="slackware">Slackware</h3>
+<p><code>[Desktop Entry]</code><br /><code>Encoding=UTF-8</code><br /><code>Type=XSession</code><br /><code>Name=Fluxbox</code><br /><code>Exec=/etc/X11/xinit/xinitrc.fluxbox</code></p>
+<p>Salvate il file e cambiate i suoi permessi attraverso il seguente comando:</p>
+<p><code>chmod a+x /usr/share/xsession/fluxbox.desktop</code></p>
+<p>Al riavvio di GDM nel menu che vi permette di scegliere il window manager dovrebbe apparire una voce in più relativa a fluxbox.</p>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>

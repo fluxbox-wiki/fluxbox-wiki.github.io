@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<p>Nei ports di openbsd c'è fluxbox però c'è una versione abbastanza vecchia, la 0.9.15.1. I mantenitori di OpenBSD hanno le loro ragioni per tenere ancora questa versione. Se si desidera installare l'ultima versione di fluxbox non bisogna avere paura di sporcarsi un po' le mani. Questa guida è stata scritta utilizzando OpenBSD 4.6 architettura i386/amd64. Su altre architetture la procedura può essere molto diversa.</p>
+<h2 id="git-specifiche">Git specifiche</h2>
+<p>Se desideriamo utilizzare la versione git di fluxbox bisogna fare alcuni passaggi aggiuntivi. In caso contrario l'installazione non differisce dalla versione stabile. Prima di tutto bisogna installare i pacchetti necessari:</p>
+<p><code># pkg_add automake</code><br /><code># pkg_add autoconf</code><br /><code># pkg_add GIT</code></p>
+<p>Scaricare il codice dai seguenti repository Git - usando le istruzioni. Poi bisogna definire alcune variabili d'ambiente:</p>
+<p><code>export AUTOCONF_VERSION $ = 2.61</code><br /><code>export AUTOMAKE_VERSION $ = 1.9</code></p>
+<p>Le versioni possono cambiare con il tempo quindi per sicurezza e meglio dare sempre un'occhiata per vedere la versione utilizata:</p>
+<p><code>pkg_info autoconf </code><br /><code>pkg_info automake </code></p>
+<p>Come da regola del thumb, solo per verifica, dare autoconf-$VERSIONE_AUTOCONF e automake-$VERSIONE_AUTOMAKE exist nel proprio $PATH. Ora siete pronti a partire con l'installazione</p>
+<p><code>$ ./Autogen</code></p>
+<p>La parte di che riguarda il git finisce qui.</p>
+<h2 id="costruzione-e-installazione">Costruzione e installazione</h2>
+<p>Se non volete la versione git basta scaricare il <a href="http://fluxbox.org/download/">tarball stabile</a> e estrarlo come al solito:</p>
+<p><code>tar -zxvf nomefile.tar.gz</code></p>
+<p>oppure per il pacchetto .tar.bz2</p>
+<p><code>tar -jxvf nomefile.tar.bz2</code></p>
+<p>Ora possiamo partire con la configurazione:</p>
+<p><code>$ ./configure --program-prefix=&quot;&quot; --program-suffix=&quot;&quot; --prefix=/usr/local</code></p>
+<p>Il prefisso deve essere impostato a /usr/local in parte per rispettare le convenzioni di OpenBSD e in parte per sovrascrivere fluxbox se è già installato. Ora modifichiamo il Makefile risultante, trovare SUBDIRS è impostarlo come segue:</p>
+<p><code>SUBDIRS = scr util data</code></p>
+<p>NLS non si installa correttamente al momento della scrittura, i documenti non sono costruiti bene e quindi ci dobbiamo sbarazzare di loro. Triste ma vero. Ora lanciate:</p>
+<p><code>$ make</code></p>
+<p>Se utilizzare fluxbox-1.1.1 dovrebbe compilare senza nessuno problema. Con fluxbox-git del 28/10/2009 la compilazione si blocca in src/FbTk/StringUtil.cc con il seguente errore:</p>
+<p><code>StringUtil.cc:87: error: `::extractLongNumber' undeclared (first use here)</code></p>
+<p>Per risolvere basta modificare quella stringa e cancellare “::”, rendendola:</p>
+<p><code>if (extractLongNumber (in.c_str (), risultato) &amp; &amp; out&gt; = 0) (</code></p>
+<p>ed eseguite di nuovo il comando make Adesso diventate root e date:</p>
+<p><code># Make install</code><br /></p>
+<p>A questo punto è finita l'installazione di fluxbox.</p>
+<h2 id="avvio-di-fluxbox">Avvio di FluxBox</h2>
+<p>Se si esegue X utilizzando il comando startx è necessario aggiungere startfluxbox nel file .Xinitrc come segue:</p>
+<p><code>$ echo “exec /usr/local/bin/startfluxbox” &gt; ~/.xinitrc</code><br /><code>$ chmod u+x ~/.xinitrc</code></p>
+<p>Attenzione se esiste già il file ~/.xinitrc il contenuto vera sovrascritto altrimenti vera creato il file. Oppure possiamo utilizzare:</p>
+<p><code>$ startx startfluxbox</code></p>
+<p>Se usi xdm per avviare x è ancora più facile:</p>
+<p><code>$ echo “exec /usr/local/bin/startfluxbox” &gt; .xsession</code></p>
+<h2 id="impostare-lo-sfondo">Impostare lo sfondo</h2>
+<p>Nella versione 4.6 non c'è fornito un setter wallpaper di default quindi bisogna installarlo:</p>
+<p><code># pkg_add feh</code></p>
+<p>oppure</p>
+<p><code># pkg_add chbg</code></p>
+<p>Anche alcune versioni di fbsetbg non funzionano correttamente su OpenBSD. Se avete qualcosa di simile:</p>
+<p><code>bash-4.0$ fbsetbg -f ~/.fluxbox/backgrounds/some_background.png </code><br /><code>ldd: Esetroot:: No such file or directory</code><br /><code>ldd: Command: No such file or directory</code><br /><code>ldd: not: No such file or directory</code><br /><code>ldd: found.: No such file or directory</code><br /><code>/usr/local/bin/fbsetbg[537]: wmsetbg: not found</code><br /><code>/usr/local/bin/fbsetbg[542]: gxmessage: not found</code></p>
+<p>basta editare `which fbsetbg` con il vostro editor preferito, trovare la seguente stringa:</p>
+<p><code>[ -n &quot;$1&quot; ] &amp;&amp; hash $1 2&gt; /dev/null</code></p>
+<p>e sostituirla con:</p>
+<p><code>which $1 2&gt;&amp;1 &gt; /dev/null</code></p>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__ È importante sapere che per le applicazioni esterne come firefox o k3b fluxbox non gestisce i font; questi sono invece gestiti dai rispettivi toolkit (gtk, qt, ecc.). I font di fluxbox sono soltanto per la toolbar, il titolo delle finestre e i menu (rootmenu, windowmenu, toolbarmenu, ecc.).</p>
+<h3 id="fluxbox-0.9.15-e-successivi">Fluxbox 0.9.15 e successivi</h3>
+<p>Per modificare l'aspetto dei caratteri è consigliabile utilizzare il file <a href="http://fluxbox-wiki.org/index.php?title=Style_overlay">overlay</a>, è molto più semplice che modificare i temi singolarmente.</p>
+<h3 id="fluxbox-prima-del-0.9.15">Fluxbox prima del 0.9.15</h3>
+<p>È possibile modificare facilmente il file del tema cercando la stringa: <code>*font: &lt;nome_font&gt;</code>. Se non si sa dove sia il tema copiare questo script in un file e renderlo eseguibile:</p>
+<p><code>#!/bin/bash</code><br /><code>THEME=$(grep -i &quot;^.*\.stylefile:.*$&quot; ~/.fluxbox/init | cut -d: -f2)</code><br /><code>if [ -d $THEME ]</code><br /><code>then</code><br /><code>   exec vi $THEME/theme.cfg</code><br /><code>else</code><br /><code>   exec vi $THEME</code><br /><code>fi</code></p>
+<p>Le voci possibili nel tema sono:</p>
+<p><code>  menu-title (il titolo del menu delle applicazioni, chiamato rootmenu)</code><br /><code>     </code><strong><code>menu.title.font:</code> <nome_font></strong></p>
+<p><code>  frame (le voci nel rootmenu)</code><br /><code>    </code><strong><code>menu.frame.font:</code> <nome_font></strong></p>
+<p><code>  window (il font del titolo delle finestre)</code><br /><code>    </code><strong><code>window.font:</code> <nome_font></strong></p>
+<p><code>  clock (l'orologio nella toolbar)</code><br /><code>     </code><strong><code>toolbar.clock.font:</code> <nome_font></strong></p>
+<p><code>  workspace (il font dell'etichetta dell'area di lavoro)</code><br /><code>     </code><strong><code>toolbar.workspace.font:</code> <nome_font></strong></p>
+<p><code>  iconbar (l'etichetta dell'applicazione nella toolbar)</code><br /><code>    </code><strong><code>toolbar.iconbar.focused.font:</code> <fontname></strong><code> </code><br /><code>    </code><strong><code>toolbar.iconbar.unfocused.font:</code> <nome_font></strong></p>
+<h3 id="nomi-dei-font">Nomi dei font</h3>
+<p>Utilizzando font xtf (ttf) la sintassi è: <code>&lt;nome_font&gt;-dimensione</code>. È necessario avere libxft installata. È possibile impostare il grassetto con l'aggiunta di <code>&quot;:bold&quot;</code>, ecco un esempio:</p>
+<p><code>Zekton-8:bold</code></p>
+<p>Utilizzando i font di X (xfont) eseguire o qualsiasi altra applicazione simile per ottenere la stringa corretta, ad esempio:</p>
+<p><code>-*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*</code></p>
+<p>Inoltre è possibile specificare più font:</p>
+<p><code>arial-10|-artwiz-snap-*-</code></p>
+<p>in questo modo fluxbox carica (se compilato con xft) arial-10, altrimenti caricherà un font xft di fallback (solitamente sans); se invece non è presente il supporto xft userà il font artwiz (fixed come fallback). In questo modo verrà comunque utilizzato un font, anche se non è quello impostato nel tema.</p>
+<h2 id="effetti">Effetti</h2>
+<p>Dopo il rilascio di fluxbox 0.9.14, la gestione degli effetti dei font è leggermente cambiata. È necessario specificarli in una linea separata e non come un attributo come prima.</p>
+<p>Queste opzioni sono disponibili solo per i caratteri xft.</p>
+<p><strong>Shadow:</strong></p>
+<p><code>  *.font.effect: shadow</code><br /><code>  *.font.shadow.color: </code><color><br /><code>  *.font.shadow.x: </code><int></p>
+<p><strong>Halo:</strong></p>
+<p><code>  *.font.effect: halo</code><br /><code>  *.font.halo.color: </code><color></p>
+<p>È possibile impostare un effetto, un ombra o un alone; ecco un esempio di come può essere configurato:</p>
+<p><code>  menu.title.font: sans-8:bold</code><br /><code>  menu.title.font.effect: shadow</code><br /><code>  menu.title.font.shadow.color: #ffffff</code><br /><code>  menu.title.font.shadow.x: 2</code><br /><code>  menu.title.font.shadow.y: 5</code><br /><code>  ----</code><br /><code>  </code><a href="http://tenr.de/howto/style_fluxbox/rootmenu2.png"><code>menu</code> <code>di</code> <code>esempio</code></a></p>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>
