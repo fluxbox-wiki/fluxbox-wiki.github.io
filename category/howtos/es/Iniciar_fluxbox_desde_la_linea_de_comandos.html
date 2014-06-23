@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="cómo-iniciar-fluxbox-desde-la-línea-de-comandos-usando-startx">Cómo iniciar fluxbox desde la línea de comandos usando startx</h2>
+<p>Esta es una pregunta que se hace muy a menudo en #fluxbox. Es muy sencillo.</p>
+<p>Se necesita editar el archivo <a href=".xinitrc" title="wikilink">.xinitrc</a>. Puede hacerse con un solo comando ejecutando:</p>
+<p><code> echo &quot;exec startfluxbox&quot; &gt; ~/.xinitrc</code></p>
+<p>algunas personas usan una forma aún más refinada, abriendo un editor de texto y creando un archivo como este:</p>
+<p><code> #!/bin/sh</code><br /><code> exec `which startfluxbox`</code></p>
+<p>Cualquiera de los métodos usado, siempre que <strong><a href="startfluxbox" title="wikilink">startfluxbox</a></strong> se encuentre en el <strong><a href="$PATH" title="wikilink">$PATH</a></strong> hará que funcione de forma correcta.</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Inicio" title="wikilink">Category:Inicio</a></p>
+</body>
+</html>

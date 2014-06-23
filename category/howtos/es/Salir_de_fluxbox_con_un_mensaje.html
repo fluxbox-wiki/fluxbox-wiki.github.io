@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="cómo-salir-de-fluxbox-con-un-mensaje">Cómo salir de Fluxbox con un mensaje</h2>
+<p>No es muy dificil tener un mensaje al salir de Fluxbox para evitar salir por accidente.</p>
+<p>Son 2 los problemas que hay que resolver:</p>
+<p>1. Qué tipo de mensaje quieres usar</p>
+<p>2. Encontrar el id del proceso de Fluxbox para cerrar el proceso adecuado</p>
+<p>Problema 1: Además de el famoso xmessage, existen otros programas de mensajes disponibles: Zenity, Kdialog, gxmessage, gdialog entre otros. Cada uno de ellos provee varios controles como cuadros de texto, botones, etcétera. Leen información desde la entrada estandar, aparecen en pantalla, esperan que el usuario haga click en un control y devuelven alguna respuesta.</p>
+<p>Ejemplo:</p>
+<p><code> $&gt; xmessage -nearmouse -buttons no:1,yes:0 &quot;Seguro que deseas salir?&quot;</code></p>
+<p>Y si haces click en &quot;yes&quot; o &quot;no&quot;, reciviras 0 o 1 como respuesta.</p>
+<p>Entonces, el ejemplo logout.sh sería algo asi:</p>
+<p><code> #!/bin/sh</code><br /><code> pid=&quot;&quot;</code><br /><code> message=&quot;Seguro que deseas salir?&quot;</code><br /><code> if xmessage -nearmouse -buttons no:1,yes:0 &quot;$message&quot;; then</code><br /><code>   echo &quot;Voy a terminar el proceso $pid, por si acaso&quot;</code><br /><code> fi</code></p>
+<p>Entonces, sólo nos falta averiguar el actual id del proceso de fluxbox, eso es simple:</p>
+<p><code> $&gt; xprop -root _BLACKBOX_PID | awk '{print $3}'</code></p>
+<p>Esto nos dirá exactamente el pid de Fluxbox.</p>
+<p><code> #!/bin/sh</code><br /><code> pid=`xprop -root _BLACKBOX_PID | awk '{print $3}'`</code><br /><code> message=&quot;Seguro que deseas salir?&quot;</code><br /><code> if xmessage -nearmouse -buttons no:1,yes:0 &quot;$message&quot;; then</code><br /><code>   kill -TERM $pid</code><br /><code> fi</code></p>
+<p>Y eso es todo :), pon el archivo logout.sh en algun lugar de tu PATH, hazlo ejecutable (chmod u+x logout.sh) y reemplaza [exit] en tu ~/.fluxbox/menu con [exec] (exit) {ExecCommand logout.sh} Si eres muy ocioso para hacer todo esto, puedes usar un pequeño programa llamado &quot;fbcmd&quot;. Está disponible en</p>
+<p><a href="http://darkshed.net/files/c_cpp/fbcmd/">http://darkshed.net/files/c_cpp/fbcmd/</a></p>
+<p>Y luego usa:</p>
+<p><code> $&gt; fbcmd logout zenity &quot;Seguro que deseas salir?&quot;</code></p>
+<p>o</p>
+<p><code> $&gt; fbcmd logout gdialog &quot;Segurolas?&quot;</code></p>
+<p>O lo que te de la gana. fbcmd puede hacer un poco mas que eso, pero ya es otro tema :)</p>
+<p>Last update: 2006-01-08 16:40</p>
+<p>Author: <a href="http://darkshed.net/">Mathias Gumz</a></p>
+<p>Tranducido por <a href="http://jj.isgeek.net">Jj</a></p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Otros" title="wikilink">Category:Otros</a></p>
+</body>
+</html>

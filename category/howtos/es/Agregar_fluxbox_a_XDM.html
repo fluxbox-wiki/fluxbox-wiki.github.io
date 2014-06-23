@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Abrimos /etc/rc.conf con nuestro editor favorito y localizamos la línea XSESSION=&quot;&quot;.</p>
+<p><strong><code>Ejemplo:</code> <code>la</code> <code>línea</code> <code>debería</code> <code>ser</code> <code>algo</code> <code>por</code> <code>el</code> <code>estilo...</code></strong><br /><code>#XSESSION=&quot;Gnome&quot; </code></p>
+<p><strong><code>Reemplazamos</code> <code>Gnome</code> <code>por</code> <code>Fluxbox</code></strong><br /><code>XSESSION=&quot;Fluxbox&quot;</code></p>
+<p><em>Guardamos los cambios y listo</em></p>
+<h3 id="otra-solución">Otra Solución</h3>
+<p>Editamos o creamos un archivo llamado <strong>~/.xsession</strong>. Le agregamos la siguiente línea (dedemos comentar o remover las líneas que parecen ser de otros window managers):</p>
+<p><code>exec startfluxbox</code></p>
+<p>La próxima vez que reiniciemos las X vamos a iniciar con Fluxbox.</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Inicio" title="wikilink">Category:Inicio</a></p>
+</body>
+</html>

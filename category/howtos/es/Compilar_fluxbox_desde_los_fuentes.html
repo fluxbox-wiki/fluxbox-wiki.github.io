@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="compilando-fluxbox-desde-los-fuentes">Compilando Fluxbox desde los fuentes</h2>
+<h3 id="qué-necesito">¿Qué necesito?</h3>
+<p>Fluxbox puede compilarse teniendo solamente compiladores de uso común (gcc, gpp, make, etc) y las bibliotecas de desarrollo libx11.</p>
+<p>Si se obiente un error como éste</p>
+<p><code> checking for X... no configure: error: Fluxbox requires the X Window System libraries and headers.</code></p>
+<p>enotonces debemos intentar instalar los siguientes paquetes (o similares)</p>
+<p><code>xlibs-dev</code><br /><code>x-window-system-dev</code></p>
+<h4 id="debianubuntu">Debian/Ubuntu</h4>
+<p>Ya que debian e ubuntu tienen fluxbox en sus repositorios, se puede conseguir casi todo lo que necesitas para compilar fluxbox con un comando sencillo:</p>
+<p><code>apt-get build-dep fluxbox</code></p>
+<p>Que instalará lo que necesitarías para instalar fluxbox de un tarball (*.tar.bz2) pero le faltan paquetes para subversion.</p>
+<h3 id="dónde-consigo-los-fuentes">¿Dónde consigo los fuentes?</h3>
+<p>Siempre se pueden conseguir los más recientes de <a href="http://fluxbox.org/version-0.9.php">fluxbox.org</a> o de <a href="http://sf.net/projects/fluxbox">Sourceforge</a>.</p>
+<h3 id="compilando-fluxbox-pequeña-descripción">Compilando Fluxbox (pequeña descripción)</h3>
+<p><code>$ tar -zxvf fluxbox-*.tar.gz  O  tar -jxvf fluxbox-*.tar.bz2</code><br /><code>$ cd fluxbox</code><br /><code>$ ./configure</code><br /><code>$ make</code><br /><code>$ su</code><br /><code>$ make install</code></p>
+<p>Notas: configure puede tomar otros argumentos. Se describen más abajo. Se puede usar sudo en vez de su. La ruta de instalación por defecto es <strong>/usr/local/share/fluxbox/</strong></p>
+<h3 id="ok-tengo-todo.-ahora-cómo-lo-compilo">Ok, tengo todo. Ahora, cómo lo compilo?</h3>
+<p>Primero debemos descomprimir el archivo que bajamos (para .tar.gz hacemos <strong>tar -zxvf fluxbox-*.tar.gz</strong> (reemplazamos * con el número de versión) y para .tar.bz2 <strong>tar -jxvf fluxbox-*.tar.bz2</strong>. Por favor notar que se necesita gzip para tar.gz y bzip2 para tar.bz2).</p>
+<p>Luego</p>
+<p><code>$ cd fluxbox</code></p>
+<p>Ahora estamos en el mismo directorio que el código fuente. Debemos leer el archivo README e INSTALL que se encuentran dentro.</p>
+<p>Continuamos con</p>
+<p><code>$ ./configure</code></p>
+<p>Si se quiere activar xinerama (monitores múltiples) se usa <strong>./configure --enable-xinerama</strong> y si se quieren usar íconos png (y se tiene los paquetes de desarrollo imlib2 instalados) se puede usar <strong>./configure --enable-imlib2</strong>. O incluso ambos, como <strong>./configure --enable-xinerama --enable-imlib2</strong>. Fácil, no? Ante la duda <strong>./configure --help</strong> para todas las opciones.</p>
+<p>Cuando eso ha concluído debemos construir el binario con</p>
+<p><code>$ make</code></p>
+<p>Finalmente hacemos un</p>
+<p><code>$ sudo make install</code></p>
+<p>O si eso no funciona</p>
+<p><code>$ su</code><br /><code>$ make install</code></p>
+<p>Fluxbox se instalará en <strong>/usr/local/share/fluxbox</strong>.</p>
+<h2 id="qué-es-la-versión-svn-y-por-qué-debería-usarla">¿Qué es la versión svn y por qué debería usarla?</h2>
+<p>(SVN se refiere a subversion y es muy similar a CVS.)</p>
+<p>La versión svn de de Fluxbox es la última version de desarrollo disponible para prueba. Así que si se quiere tener las características más avanzadas, ayudar a descubrir bugs o crear parches personalizados esto es lo que se debería usar.</p>
+<h3 id="descargando-e-instalando-la-versión-svn">Descargando e instalando la versión svn</h3>
+<p>Se necesitan <a href="http://subversion.tigris.org">subversion</a>, automake-tools y autoconf-tools instalados.</p>
+<p>Para obtener los fuentes para compilar hay que tipear:</p>
+<p><code>$ svn checkout </code><a href="svn://svn.berlios.de/fluxbox/trunk"><code>svn://svn.berlios.de/fluxbox/trunk</code></a><code> fluxbox &amp;&amp; cd fluxbox &amp;&amp; ./autogen.sh</code></p>
+<p>Luego de esto seguimos de la manera tradicional</p>
+<p><code>$ ./configure &amp;&amp; make &amp;&amp; sudo make install</code></p>
+<p>Notar que esto no activa las características adicionales. Así que si se quiere usar xinerama, se usa ./configure --enable-xinerama y para íconos png (imlib2) agregamos --enable-imlib2.</p>
+<p>Esto compilará los fuentes y los instalará en los directorios estándar</p>
+<p><strong><code>/usr/local/bin</code></strong><code> para el binario de fluxbox binary y </code><strong><code>/usr/local/share/fluxbox/</code></strong><code> para las configuraciones de sistema y estilos de sistema.</code></p>
+<p>Para una fácil actualización:</p>
+<p><code>$ cd fluxbox &amp;&amp; svn update &amp;&amp; make &amp;&amp; sudo make install</code></p>
+<h3 id="obteniendo-una-revisión-antigua-de-los-repositorios-de-svn">Obteniendo una revisión antigua de los repositorios de svn</h3>
+<p>Por qué querríamos hacer esto?</p>
+<ul>
+<li>Probablemente tenemos algo roto en nuestro sistema y la última versión de svn no compila, pero recordamos haber compilado la versión X...</li>
+<li>Tal vez encontramos un bug que no ha sido enviado aún.</li>
+<li>Quizás queremos usar un parche que no anda con la versión más reciente.</li>
+</ul>
+<p>Cualesquiera sean las razones, ésta es la manera:</p>
+<p><code> $ svn checkout -r X </code><a href="svn://svn.berlios.de/fluxbox/trunk"><code>svn://svn.berlios.de/fluxbox/trunk</code></a><code> fluxbox</code></p>
+<p>Por supuesto debemos reemplazar la X con el número de revisión que queremos.</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Instalación" title="wikilink">Category:Instalación</a></p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<p>__TOC__</p>
+<h2 id="como-hacer-que-las-ventanas-no-tengan-decoraciones">Como hacer que las ventanas no tengan decoraciones</h2>
+<p>Tienes que editar el archivo <strong>~/.fluxbox/apps</strong> mientras fluxbox no esta ejecutandose. Agrega las siguiente lineas al archivo:</p>
+<p><code>  [app] (.*)</code><br /><code>     [Deco]    {BORDER}</code><br /><code>  [end]</code></p>
+<p>La próxima vez que ejecutes fluxbox, todas las ventanas van a tener solo el borde (si el estilo tiene definido un borde). Puedes cambiar el tamaño y el color del borde Lo puedes hacer globalmente usando el archivo de <a href="http://fluxbox-wiki.org/index.php/Como_style_overlay">overlay</a> o por separado en cada uno de los estilos.</p>
+<p>En ambos casos tenes que agregar las siguientes dos lineas al archivo apropiado:</p>
+<p><code>  window.borderWidth:   </code><numero><br /><code>  window.borderColor:   color (por ej. #009900, black, rgb:00/64/00)</code></p>
+<p>El significado debería ser obvio, el numero define el tamaño del borde en pixels, y el color el el color usado en el borde</p>
+<p>Asegurate de poner esto en las <strong>ultimas lineas</strong> del archivo de configuracion del estilo. Con esto te aseguras de que estos valores sean los usados, no necesitas comentar nada y mantienes las configuraciones originales del estilo en caso de que las quieras usar en el futuro</p>
+<h2 id="como-hacer-que-las-ventanas-no-tengan-decoraciones-pero-si-tabs">Como hacer que las ventanas no tengan decoraciones pero si tabs</h2>
+<p>Como los tabs internos regresaron con fluxbox 1.0rc puedes usarlo comúnmente (los tabs quedan fuera de la ventana) o de la manera especial. Siguiendo con la configuración ya descripta configura el archivo <strong>~/.fluxbox/apps</strong> con lo siguiente:</p>
+<p><code>  [app] (.*)</code><br /><code>     [Deco]    {TAB}</code><br /><code>  [end] </code></p>
+<p>Recibirás una ventana con solo el borde (como en el caso anterior) pero con un tab adosado</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Configuración" title="wikilink">Category:Configuración</a></p>
+</body>
+</html>

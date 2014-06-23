@@ -1,6 +1,0 @@
-[[Category:Español / Spanish howtos]]
-[[Category:Inicio]]
-
-KDM debería encontrar automáticamente que tenemos instalado fluxbox y mostrarlo como una opción automáticamente.
-
-Un caso especial es Fedora. En esta distribución, debemos copiar el archivo "/usr/share/apps/kdm/sessions/fluxbox.desktop" a la carpeta "/usr/share/xsessions"

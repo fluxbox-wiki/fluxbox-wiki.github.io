@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<h1 id="como-hacer-que-las-ventanas-no-tengan-decoraciones">Como hacer que las ventanas no tengan decoraciones</h1>
+<p>Hay dos maneras de lograr esto. La mas fácil es agregando la siguiente entrada en el archivo de configuracion <strong>~/.fluxbox/keys</strong> :</p>
+<p><code>  Mod4 t :ToggleDecor</code></p>
+<p>Puedes usar ese o elegir otra combinación de teclas (la tecla de windows + t en este caso)</p>
+<p>Ahora tienes que recargar la configuración con:</p>
+<p><code>  menu fluxbox -&gt; recargar configuración (reload config)</code></p>
+<p>o usando una señal desde la linea de comando de esta manera:</p>
+<p><code> kill -s usr2 `pgrep fluxbox`</code></p>
+<p>Después de recargar la combinación de teclas ya esta lista para usarse. El proxímo paso es ejecutar la aplicación que queres que no tenga borde.</p>
+<p>Haz click con el boton derecho sobre el titulo de la ventana para mostrar el menu. Elije 'Recordar' y marca las opciones 'Decoración' y 'salvar al cerrar' Usa la combinación de teclas para dejar la ventana sin borde, y cierra la. Al hacerlo la configuración se salvara en el archivo <strong>~/.fluxbox/apps</strong>. De ahora en mas todas las ventanas del mismo programa se ejecutaran sin bordes, y puede usar la misma combinación para devolverle temporalmente el borde</p>
+<p>De esta manera la configuración se aplicara a todas las ventanas del mismo programa. Si tu quieres, por ejemplo que aterm con irssi corriendo en el no tengan borde, pero el resto de las ventanas de aterm tengan una decoración normal, necesitas ponerle un nombre especifico a esta instancia de aterm. La mayoria de las terminales usan el parametro &quot;-name&quot; para esto:</p>
+<p><code>   $&gt; aterm -name irssiterm -e irssi</code></p>
+<p>Aplicandole la combinación de teclas y salvando la configuracion crear una nueva entrada en el archivo <strong>~/.fluxbox/apps</strong> similar a la siguiente:</p>
+<p><code>   [app] (irssiterm)  </code><br /><code>      [Deco]   {NONE}</code><br /><code>   [end]   </code></p>
+<p>Esto solo se aplicara a la aplicación llamada irssiterm</p>
+<p>La segunda forma es un poco mas complicada y una parte hay que hacerlo mientras fluxbox no esta corriendo.</p>
+<p>Abrí la aplicación que quieres correr sin decoraciones, luego abre una terminal y ejecuta:</p>
+<p><code>  xprop WM_CLASS|cut -d \&quot; -f 2</code></p>
+<p>Haz click en la aplicación. Esto te dirá el nombre para usar en el archivo de apps. Recuerdalo o escribelo porque lo estaremos usando</p>
+<p><strong>Cierra fluxbox</strong> y edita el archivo ~/.fluxbox/apps y agrega las siguientes lineas</p>
+<p><code>  [app] (nombre de la aplicación que te dije que recordaras)</code><br /><code>     [Deco]    {NONE}</code><br /><code>  [end]</code></p>
+<p>Guarda el archivo e inicia fluxbox. Las preferencias sera usadas y cada vez que ejecutes esa aplicación, aparecerá sin decoraciones</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Configuración" title="wikilink">Category:Configuración</a></p>
+</body>
+</html>

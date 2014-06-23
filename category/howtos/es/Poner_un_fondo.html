@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="configurar-un-fondo-de-escritorio-para-que-la-transparencia-funcione">Configurar un fondo de escritorio para que la transparencia funcione</h2>
+<p>__TOC__</p>
+<h3 id="qué-es-fbsetbg-y-por-qué-es-necesario">¿Qué es fbsetbg y por qué es necesario?</h3>
+<p>fbsetbg es una envoltura que intenta encontrar una aplicación adecuada para presentar el fondo de escritorio y después usa esa aplicación para mostrar el fondo de escritorio. No es necesario configurar fbsetbg, sencillamente usa la primera aplicación adecuada que encuentra.</p>
+<p>Además soporta recordar el último fondo de escritorio usado, por lo que no es necesario editar el estilo o el archivo init para cambiar el fondo de escritorio.</p>
+<p>Ayuda proporcionando mensajes de error claros en una ventana que hace depurar los problemas fácilmente.</p>
+<h3 id="búsqueda-de-herramientas-adecuadas">Búsqueda de herramientas adecuadas</h3>
+<p>Primero, debemos asegurarnos de que fbsetbg dispone de una aplicación que pueda usar, para hacer esto se abre una terminal y ejecutamos el siguiente comando como usuario:</p>
+<p><code>   fbsetbg -i</code></p>
+<p>Si se dispone de una de las aplicaciones soportadas, entonces se obtendrá un mensaje como este:</p>
+<p><code>   Esetroot is a nice wallpapersetter. You won't have any problems.</code></p>
+<p>Si no se dispone de una aplicación adecuada, entonces se obtendrá un mensaje como este:</p>
+<p><code>   display doesn't set the wallpaper properly. Transparency for fluxbox</code><br /><code>   and apps like aterm and xchat won't work right with it. Consider </code><br /><code>   installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and</code><br /><code>   I'll use them instead.</code></p>
+<h3 id="fbsetbg-muestra-este-error-y-la-transparencia-no-funciona.-qué-puedo-hacer">Fbsetbg muestra este error y la transparencia no funciona. ¿Qué puedo hacer?</h3>
+<p>fbsetbg puede usar las siguientes aplicaciones</p>
+<p><code>Esetroot</code><br /><code>wmsetbg</code><br /><code>feh</code><br /><code>hsetroot</code><br /><code>chbg</code><br /><code>display</code><br /><code>qiv</code><br /><code>xv</code><br /><code>xsri</code><br /><code>xli</code><br /><code>xsetbg</code></p>
+<p>El orden es el mejor primero y el peor por último. Para hacer funcionar todo adecuadamente, se ha de elegir uno al principio de la lista. La mayor parte de usuarios de #fluxbox sugerirá instalar <strong>Feh</strong> dado que es pequeño y muy eficiente, pero <strong>Esetroot</strong> (incluído con <strong>Eterm</strong>) es también una buena elección.</p>
+<h3 id="dispongo-de-las-herramientas-adecuadas-qué-hago-ahora">Dispongo de las herramientas adecuadas, ¿qué hago ahora?</h3>
+<p>primero veamos los consejos proporcionados cuando se ejecuta:</p>
+<p><code> fbsetbg -p</code></p>
+<p>Estos consejos nos ayudarán a hacer varias cosas preguntadas muy a menudo.</p>
+<p>El primer consejo es:</p>
+<p><code> Reemplazar todas las apariciones de bsetbg con fbsetbg en  </code><br /><code> un archivo usando este comando:</code><br /><code> perl -pi -e 's,([^f]|^)bsetbg,fbsetbg,' archivo</code></p>
+<p>Muchas personas no necesitarán ejecutar este comando. Lo que hace es que si nuestro estilo tiene en la línea <strong>rootCommand</strong>, el comando <strong>bsetbg</strong> lo reemplaza por <strong>fbsetbg</strong></p>
+<p>El tercer consejo queda cubierto en el paso 1 de este pequeño cómo, en la sección <strong>Búsqueda de herramientas adecuadas</strong></p>
+<h3 id="cómo-cargo-un-fondo-de-escritorio-al-inicio">¿Cómo cargo un fondo de escritorio al inicio?</h3>
+<p>Primeramente, debemos saber que para establecer un fondo de escritorio debemos ejecutar el siguiente comando:</p>
+<p><code> fbsetbg -f ruta/y/nombre_de_la_imagen.ext</code></p>
+<h4 id="versiones-anteriores-a-0.9.15">Versiones anteriores a 0.9.15</h4>
+<p>El segundo consejo responde a una pregunta hecha también muy a menudo: <strong>¿Cómo cargo un fondo de escritorio al inicio?</strong> Leyendo este consejo sabremos hacer que:</p>
+<p><code> Si no queremos que el estilo establezca el fondo de</code><br /><code> escritorio y queremos que fbsetbg recuerde el último</code><br /><code> empleado, debemos poner en nuestro ~/.fluxbox/init</code></p>
+<p><code> session.screen0.rootCommand:    fbsetbg -l</code></p>
+<p>Entonces colocamos un fondo de escritorio manualmente con fbsetbg. Éste último fondo de escritorio se conservará en el archivo ~/.fluxbox/lastwallpaper. Que será usado posteriormente con la opción -l.</p>
+<h4 id="versiones-posteriores-a-0.9.15">Versiones posteriores a 0.9.15</h4>
+<p>El rootCommand se eliminó en versiones posteriores a 0.9.15 ya que constituye de un riesgo para el sistema. Una manera de poner el último fondo seria poner:</p>
+<p><code>fbsetbg -l</code></p>
+<p>en el archivo ~/.fluxbox/startup.</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Otros" title="wikilink">Category:Otros</a></p>
+</body>
+</html>

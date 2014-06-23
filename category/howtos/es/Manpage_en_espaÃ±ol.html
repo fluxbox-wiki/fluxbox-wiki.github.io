@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>El manpage de fluxbox está disponible en español y ejecutando unos simples pasos podemos tenerlo funcionando en nuestros ordenadores.</p>
+<p>Lo primero es conseguir el manual. Lo podemos descargar de uno de estos links:</p>
+<p><a href="http://files.bobbens.dyndns.org/fluxbox.es.txt">http://files.bobbens.dyndns.org/fluxbox.es.txt</a></p>
+<p><a href="http://svn.berlios.de/viewcvs/*checkout*/fluxbox/trunk/doc/asciidoc/fluxbox.es.txt">http://svn.berlios.de/viewcvs/*checkout*/fluxbox/trunk/doc/asciidoc/fluxbox.es.txt</a></p>
+<p>Ahi vamos a encontrar 1 archivo:</p>
+<ul>
+<li>fluxbox.es.txt (es el manpage en formato de archivo de texto)</li>
+</ul>
+<h2 id="descargando-fluxbox.es.txt">Descargando fluxbox.es.txt</h2>
+<p>Si descargamos el archivo de texto podemos verlo con cualquier editor y si queremos lo podemos convertir al formato manpage, que es lo que paso a explicar a continuación:</p>
+<p>Primero vamos a necesitar dos pequeñas aplicaciones que nos van a ayudar a ejecutar la tarea:</p>
+<ul>
+<li>asciidoc: <a href="http://www.methods.co.nz/asciidoc/">http://www.methods.co.nz/asciidoc/</a></li>
+<li>xmlto: <a href="http://cyberelk.net/tim/xmlto/">http://cyberelk.net/tim/xmlto/</a></li>
+</ul>
+<p>Una vez instaladas estas herramientas lo unico que tenemos que hacer es lo siguiente:</p>
+<p><code> $&gt; asciidoc -b docbook -d manpage fluxbox.es.txt</code><br /><code>  (esta acción nos va a crear un archivo xml)</code><br /><code> $&gt; xmlto man fluxbox.es.xml</code><br /><code>  (y esta otra nos va a crear el archivo en formato manpage)</code></p>
+<p>lo unico que queda es usar directamente el archivo tal y como esta utilizando el comando man:</p>
+<p><code> $&gt; man /ruta/a/fluxbox.1.es</code></p>
+<p>y así podremos ver el manual en español sin alterar nada del sistema.</p>
+<p>Si quisieramos tenerlo en nuestro como parte del OS como predeterminado cuando ejecutemos el comando man tenemos que renombrar el archivo al nombre del manual por defecto de nuestro sistema. Es decir, buscamos en la carpeta de manuales donde estan alojados todos los manpages disponibles. En mi sistema se encuentra en <strong>/usr/man/man1</strong> y se llama fluxbox.1, asi que tengo que copiar el archivo fluxbox.1.es como fluxbox.1 en nuestra carpeta de sistema (esta acción sobreescribe el manual anterior, por lo que si no queremos perderlo debríamos hacer una copia de respaldo), para lo cual tenemos que convertirnos en root.</p>
+<p><code> $&gt; su</code><br /><code> Password: (insertamos nuestra contraseña de root)</code><br /><code> #&gt; cp /ruta/a/fluxbox.1.es /usr/man/man1/fluxbox.1</code></p>
+<p>y ahora usando man vamos a ver nuestro manpage en español como si siempre hubiera sido parte de la distro:</p>
+<p><code> $&gt; man fluxbox</code></p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Otros" title="wikilink">Category:Otros</a></p>
+</body>
+</html>

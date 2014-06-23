@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<ul>
+<li><strong>INTRODUCCIÓN</strong></li>
+</ul>
+<p>Dentro de la amplia gama de posibilidades que ofrece GNU/Linux al momento de elegir un administrador de ventanas o de escritorio existe Fluxbox. Fluxbox es un administrador de ventanas, derivado de Blackbox (presente en casi todas las distribuciones), que sobresale por su flexibilidad y facilidad para configurarlo y adaptarlo a las necesidades y preferencias del usuario. Uno de los aspectos a tener en cuenta, si se está acostumbrado a trabajar con administradores de escritorio (KDE o Gnome por ej.) o si se está migrando desde otro sistema operativo (el que empieza con W) es que por defecto no van a tener iconos en el escritorio. No se asusten que se pueden agregar después. Pero habitualmente nos manejaremos con el menú de Fluxbox o mediante la configuración de teclas de acceso rápido muy fácilmente configurables. Si después de haber leído todo esto estas decidido a instalar Fluxbox te invito a que sigas adelante con el How To. No te vas a arrepentir. Si no estás decidido aún te recomiendo visites <a href="http://www.fluxbox.org">http://www.fluxbox.org</a> para que veas todas las posibilidades que ofrece y lo que se puede lograr.</p>
+<ul>
+<li><strong>INSTALACIÓN</strong></li>
+</ul>
+<p>Para usuarios nuevos recomiendo usar los .deb o .rpm debido a la facilidad de instalación. Pero sin embargo mi recomendación personal sería bajarse la última version &quot;devel&quot; de <a href="http://www.fluxbox.org">http://www.fluxbox.org</a> y compilarla. No va a dar ningún tipo de de problema y los pasos serían los siguientes:</p>
+<p><code> $ tar -xvzf fluxbox-0.9.xx.tar.gz</code><br /><code> $ cd fluxbox-0.9.xx</code><br /><code> $ ./configure</code><br /><code> $ make</code><br /><code> cambiamos a root:</code><br /><code> # make install</code></p>
+<p>el directorio de instalación por defecto es <strong>/usr/local/bin/</strong>.</p>
+<p>Los usuarios de Debian, Suse o Fedora (Slackware inclusive) lo pueden conseguir en <a href="http://www.fluxbox.org">http://www.fluxbox.org</a>. Si sos usuario de Mandrake un lugar donde lo podes localizar es www.rpmseek.com (también tiene paquetes para las otras distribuciones), lo único que puede que no consigas la última versión pero igualmente a mi me anduvo muy bien. Si usas Gentoo únicamente tenés que hacer: # emerge fluxbox y esperar a que descargue e instale los paquetes. Antes de seguir vuelvo a recomendar la instalación de la ultima version devel, que si bien tienen el status de inestable es suficientemente estable como para trabajar sin problemas. Y no intenten compilar las versiones estable de fluxbox (0.1.xx) ya que no compilan correctamente en sistemas modernos porque tienene como 3 años de antigüedad y estan sin mantenimiento.</p>
+<p>Yo voy a pasar a detallar dos instalaciones (las dos que he hecho) con diferencias mínimas en cuanto a dificultad: Mandrake (que va a ser muy similar a Fedora y Debian) y Gentoo.</p>
+<ul>
+<li><strong><a href="MANDRAKE" title="wikilink">MANDRAKE</a></strong></li>
+</ul>
+<p>Una vez que conseguimos el paquete (fluxbox.rpm o algo por el estilo) tenemos dos opciones; si te gusta la consola ejecutamos como root la siguiente linea de comandos:</p>
+<p><code> # rpm -i fluxbox.rpm (siempre y cuando estemos dentro del directorio que aloja al paquete)</code></p>
+<p>de otro modo sería:</p>
+<p><code> # rpm -i /directorio/fluxbox.rpm</code></p>
+<p>o haciendo doble click sobre el archivo. Paso siguiente se nos pedirá la contraseña de root y qué es lo que deseamos hacer. Automáticamente buscará las dependencias necesarias y si no las tiene te va a informar cuales faltan y tendrás que bajarlas e instalarlas de la forma anteriormente descripta. Vamos a suponer que no falta ninguna.</p>
+<p>Ya tenés instalado Fluxbox en tu sistema. Lo único que tenemos que hacer es terminar la sesión X que estés ejecutando e iniciar la sesión con Fluxbox.</p>
+<p>La primera impresión no es lo que cuenta en este caso. Te vas a encontrar con un ambiente bastante espartano. Un fondo de pantalla de color sólido o en gradiente y una barra de tareas indicando el número de área de trabajo y la hora. Si haces un click derecho sobre el fondo se va a desplegar un menú con una distribución muy similar a la de KDE o Gnome.</p>
+<p>Y ahora viene la parte interesante de la configuración de FB, ya que es totalmente personalizable a través de la modificación de simples archivos de texto. Por defecto FB trae una serie de temas a los cuales podes acceder desde el menú haciendo click derecho, puntero del mouse sobre Fluxbox o Fluxbox menu y luego sobre estilos. Hay varios para elegir. La primera vez que ejecutemos FB va a crear su propia carpeta en</p>
+<p><strong>/home/usuario/.fluxbox</strong></p>
+<p>dentro de la cual va a guardar las configuraciones personales del usuario. Hay una carpeta llamda styles dentro de la cual podés poner temas descargados de internet. Lo más importante es que también hay dos archivos de texto que nos interesan menu y startup</p>
+<ul>
+<li><strong>Configurando startup</strong></li>
+</ul>
+<p>Este archivo contiene la configuración que cargará FB en el inicio. Necesitamos abrirlo con un editor de texto. Si le hacemos doble click seguramente MDK lo abrirá con kwrite. Para empezar nos interesan solamente dos cosas: La primera es la línea:</p>
+<p><code> #bsetbg -f ~/fondos/imagen.jpg</code></p>
+<p>Esta línea que aparece comentada por defecto (con el # delante) deberemos activarla borrando el signo #; y acá va una recomendación personal. Cambiamos ligeramente el comando y escribimos:</p>
+<p><code> fbsetbg -f ~/fondos/imagen.jpg</code></p>
+<p>posteriormente instalamos la consola Eterm la cual permitirá que FB muestre la imagen deseada. Además Eterm se adapta perfectamente a FB y nos permite el uso de transparencias sin que vaya en detrimento del rendimiento de la PC. Eterm se puede conseguir en www.rpmseek.com. Esta forma fue la que me resultó mas sencilla. Otra terminal que utiliza transparencias es aterm.</p>
+<p>La segunda es la sección de ejecución de programas en el arranque de Fluxobx. Esta sección aparece comentada y explicada al final del archivo. Aquí podremos poner los programas que queremos arrancar al inicio, como por ejemplo gkrellm, torsmo o root-tail. Lo importante es recordar que si queremos que los programas se inicien siempre deberemos ponerle &amp; al final:</p>
+<p><code> gkrellm &amp;</code><br /><code> wmxmms &amp;</code></p>
+<p>con esto damos por terminado el trabajo con este archivo. Luego cada uno podrá investigar las distintas opciones de configuración.</p>
+<ul>
+<li><strong>Configurando menu</strong></li>
+</ul>
+<p>Como el nombre lo indica este archivo tiene los contenidos y la distribución del menú de FB. Observando su estructura nos podemos dar cuenta que es muy sencilla y le podremos agregar y sacar elementos a nuestro gusto casi sin limitaciones. Lo único que debemos tener en cuenta es respetar las &quot;reglas&quot; para su armado. El menú raíz se define mediante:</p>
+<p><code> [begin] (Fluxbox)</code><br /><code> ...</code><br /><code> [end]</code></p>
+<p>Submenús: en estos podemos armar nuestros propios grupos de programas. Debemos respetar la siguiente sintaxis:</p>
+<p><code> [begin] (Fluxbox)</code><br /><code> [submenu] (nombre del submenu)</code><br /><code> ...</code><br /><code> [end]</code><br /><code> [end]</code></p>
+<p>Ejecución de programas: mediante una sintaxis muy sencilla podremos ubicar las aplicaciones que queremos que aparezcan en el menú. Siguiendo el ejemplo anterior:</p>
+<p><code> [begin] (Fluxbox)</code><br /><code> [submenu] (Terminales)</code><br /><code>        [exec] (Eterm) {Eterm --trans --buttonbar off}</code><br /><code> [end] </code><br /><code> [end]</code></p>
+<p>hay que tener en cuenta dos cosas: entre (..) colocamos el nombre para mostrar en el menú. Entre {...} colocamos el comando a ejecutar tal y como lo haríamos desde una consola, incluídas las opciones. En este ejemplo de paso mostramos como ejecutar la consola Eterm con fondo transparente y sin barra de botones. También podemos agregar íconos al menú de la siguiente manera:</p>
+<p><code> [begin] (Fluxbox)</code><br /><code> [submenu] (Terminales)</code><br /><code>     [exec] (Eterm) {Eterm --trans --buttonbar off}</code></home/usuario/iconos/icono.png><br /><code> [end]</code><br /><code> [end]</code></p>
+<p>Con estos sencillos conceptos podremos personalizar completamente un menú. Recomendación. Si querés agregarle el apagado y el reboot al menú:</p>
+<p><code> ...</code><br /><code> [exec] (Reiniciar) {reboot}</code><br /><code> [exec] (Apagar) {poweroff}</code><br /><code> ...</code></p>
+<ul>
+<li><strong>Combinaciones de teclas</strong></li>
+</ul>
+<p>En FB podemos definir combinaciones de teclas para ejecutar las aplicaciones, mediante el uso de Mod1 (tecla Alt), Mod4 (innombrable tecla Wi...ws), Control (tecla Ctrl) y Mays (tecla Shift). De todas maneras es preferible usar Mod1 y Mod4 ya que muchos programas X11 usan Control y Mays para sus propias combinaciones. El archivo a modificar es:</p>
+<p><strong>~/.fluxbox/keys</strong></p>
+<p>Ejemplos de sintaxis</p>
+<p><code> Mod4 f  :ExecCommand firefox</code><br /><code> Mod4 c  :ExecCommand xchat-2</code></p>
+<p>Así podemos seguir creando combinaciones que se adapten a nuestras preferencias.</p>
+<ul>
+<li><strong>Iconos</strong></li>
+</ul>
+<p>Para utilizar iconos en fluxbox disponemos de dos aplicaciones: fbdesk e <a href="http://fluxbox-wiki.org/index.php/Howto_usar_idesk">Idesk</a>. Son facilmente configurables. FB trae una función, slit, la misma nos permite correr aplicaciones que pueden ser maximizadas desde el área que definamos para ella. Muchas aplicaciones pueden ser utilizadas con la opción -w como por ejemplo xmms:</p>
+<p><code> $ wmxmms (podemos ingresarlo en el archivo startup para que se carguen con la Slit al inicio de FB)</code></p>
+<ul>
+<li><strong>Monitores de sistema</strong></li>
+</ul>
+<p>Muy utilizados por los usuarios de FB y otros windows managers son los monitores de sistema que nos van mostrando el estado del cpu y los HD entre otras cosas. Los más conocidos son gkrellm, torsmo (liviano y minimalista) y root-tail que nos permite mostrar el contenido de logs sobre la imagen de fondo.</p>
+<ul>
+<li><strong>Transparencias</strong></li>
+</ul>
+<p>FB permite darle transparencias al menú, a las ventanas y dependiendo de la versión a la barra de tareas. Accediendo al menú: <strong>menu/fluxbox/configuracion/alpha</strong>. Alpha toma valores desde 255 (color sólido) hasta 0 (totalmente transparente).</p>
+<p>Para más detalles podés bajarte el manual de FB de <a href="http://www.fluxbox.org/docbook.php">http://www.fluxbox.org/docbook.php</a></p>
+<p>Podemos dar por terminada la instalación y configuración de fluxbox habiendo introducido importantes y básicos conceptos.</p>
+<ul>
+<li><strong><a href="GENTOO" title="wikilink">GENTOO</a></strong></li>
+</ul>
+<p>Mientras que Gentoo proporciona los parámetros USE de gnome y kde, para proporcionar &quot;compatibilidad&quot; con los windows managers, no resultan necesarios. Si se desea añadir qt, gtk+ o cualquier otra utilidad KDE/GNOME pueden configurarse libremente de forma independiente. La instalación en Gentoo es muy fácil también:</p>
+<p><code> # emerge -uvp fluxbox</code><br /><code> These are the packages I would merge in order</code><br /><code> ...</code><br /><code> total size of downloads 0kb (indica que tenemos todos los paquetes y podemos instalar)</code></p>
+<p>Si faltara algún paquete hay dos opciones: Si tenemos internet en Gentoo se baja automáticamente. Si no lo bajamos de algún mirror de Gentoo (http://www.gentoo.org/main/en/mirrors.xml) y lo colocamos en la carpeta <strong>/usr/portage/distfiles</strong>.</p>
+<p>Luego:</p>
+<p><code> # emerge -uv fluxbox </code></p>
+<p>si queremos instalar gkrellm y Eterm</p>
+<p><code> #emerge -uv gkrellm eterm</code></p>
+<p>y si queremos indicar alguna use específica:</p>
+<p><code> # USE=&quot; gtk2 -kde -qt&quot; emerge -uv fluxbox gkrellm eterm </code></p>
+<p>Concluído el proceso de instalación de FB en Gentoo.</p>
+<ul>
+<li><strong>Configuración de Fluxbox en Gentoo </strong></li>
+</ul>
+<p>La configuración es muy similar a Mandrake. Con la diferencia de que antes deberemos acomodar ciertos &quot;detalles&quot;.</p>
+<ul>
+<li><strong>Preparando X11</strong></li>
+</ul>
+<p>Fluxbox es sencillamente otro programa que X11 ejecuta. Si se desea, se puede hacer un startx y teclear entonces fluxbox en una xterm. De cualquier forma, esto es muy molesto (por decir lo mínimo). Si uno no desea iniciar con la interfaz gráfica de usuario (GUI), pero en su lugar se desea iniciar X11 manualmente, es posible configurar X para que cargue Fluxbox ejecutando como usuario normal (no root):</p>
+<p><code> $ echo &quot;exec startfluxbox&quot; &gt; ~/.xinitrc</code></p>
+<p>Esto no es ideal para la gran mayoría de usuarios que quieran tener su entorno gráfico de escritorio durante todo el tiempo. Es bastante molesto hacer startx si se quiere tener una GUI cada vez que se inicia. Hay varios gestores de inicio de sesión gráficos entre los que se puede elegir; nosotros usaremos gdm. Pueden usarse otros, pero gdm funciona bien con Fluxbox y con otros WMs que puedan tenerse instalados como GNOME, KDE o xfce.</p>
+<p><code> # emerge gdm</code><br /><code> # rc-update add xdm default</code></p>
+<p>Importante: Hay que asegurarse de emerger gdm y de añadir xdm al nivel de ejecución default, ¡no al revés! Cambiar uno por otro causará fallos. También se necesita modificar un archivo de configuración global del sistema: Editando /etc/rc.conf</p>
+<p><code> DISPLAYMANAGER=&quot;gdm&quot;</code></p>
+<p>Cuando iniciemos fluxbox por primera vez en Gentoo el menú no va a estar muy completo y es probable que falten muchas de las aplicaciones que tenemos. Una opción para automatizar la configuración, por lo menos al inicio, es ejecutar desde una consola el siguiente comando:</p>
+<p><code> $ fluxbox-generate_menu </code></p>
+<p>este comando no es muy &quot;inteligente&quot; y puede que pase por alto algunas aplicaciones importantes, pero sirve como para empezar no tan desde cero.</p>
+<p>Para obtener mas detalles dirigite a la página <a href="http://www.gentoo.org/doc/es/fluxbox-config.xml">http://www.gentoo.org/doc/es/fluxbox-config.xml</a>. <a href="Link title" title="wikilink">Link title</a></p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Instalación" title="wikilink">Category:Instalación</a> <a href="Category:Configuración" title="wikilink">Category:Configuración</a></p>
+</body>
+</html>
