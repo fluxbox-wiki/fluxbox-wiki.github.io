@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<p>Um die Auflösung anzupassen hat man zwei Möglichkeiten:</p>
+<h3 id="dynamisch-mit-xrandr">Dynamisch mit Xrandr</h3>
+<p>Um die Auflösung dynamisch wärend des Betriebes zu verwenden kann die Xorg Erweiterung xrandr zusammen mit dem gleichnamigen Programm verwendet werden.</p>
+<p>Die meisten Distributionen sollte diese mitliefern.</p>
+<p>Ein Ausführen von xrandr auf einer Konsole sollte eine solche Ausgabe geben:</p>
+<p><code> SZ:    Pixels          Physical       Refresh</code><br /><code>*0   1600 x 1200   ( 406mm x 305mm )  *75   70   65   60  </code><br /><code> 1   1280 x 1024   ( 406mm x 305mm )   85   75   60  </code><br /><code> 2   1024 x 768    ( 406mm x 305mm )   85   75   70   60   87  </code><br /><code> 3    800 x 600    ( 406mm x 305mm )   85   75   72   70   65   60   56  </code><br /><code> 4    640 x 480    ( 406mm x 305mm )   85   75   73   60  </code><br /><code> 5   1400 x 1050   ( 406mm x 305mm )   85   75   70   60  </code><br /><code> 6   1440 x 900    ( 406mm x 305mm )   60  </code><br /><code> 7   1280 x 960    ( 406mm x 305mm )   85   60  </code><br /><code> 8   1280 x 800    ( 406mm x 305mm )   60  </code><br /><code> 9   1152 x 864    ( 406mm x 305mm )   85   75  </code><br /><code> 10  1280 x 768    ( 406mm x 305mm )   60  </code><br /><code> 11  1152 x 768    ( 406mm x 305mm )   55  </code><br /><code> 12   960 x 720    ( 406mm x 305mm )   60  </code><br /><code> 13   928 x 696    ( 406mm x 305mm )   60  </code><br /><code> 14   896 x 672    ( 406mm x 305mm )   60  </code><br /><code> 15   960 x 600    ( 406mm x 305mm )   73   60  </code><br /><code> 16   832 x 624    ( 406mm x 305mm )   75  </code><br /><code> 17   840 x 525    ( 406mm x 305mm )   60  </code><br /><code> 18   700 x 525    ( 406mm x 305mm )   85   75   70   60  </code><br /><code> 19   640 x 512    ( 406mm x 305mm )   85   75   60  </code><br /><code>Current rotation - normal</code><br /><code>Current reflection - none</code><br /><code>Rotations possible - normal </code><br /><code>Reflections possible - none</code></p>
+<p>In der Anleitung von xrandr (man xrandr) steht sehr genau beschrieben wie das Programm funktioniert, üblicherweise will man aber mit</p>
+<p><strong>xrandr -s <size>/<width>x<height></strong></p>
+<p>einfach nur die Auflösung ändern.</p>
+<p>Also kann man zun Beispiel</p>
+<p><code> xrandr -s 3</code></p>
+<p>verwenden, weil 3 ist die Zahl der SZ Kolonne in der Ausgabe oben. In dem Fall würde man auf 800x600. umschalten</p>
+<p>Oder man gibt die Auflösung direkt an, zum Beispiel so:</p>
+<p><code>xrandr -s 1024x768</code></p>
+<h3 id="fixe-einstellung-mit-der-xorg.conf">Fixe Einstellung mit der Xorg.conf</h3>
+<p>Mit dieser Lösung wird die Auflösung dauerhaft eingestellt.</p>
+<p>Als root oder mit sudo muss die Datei <strong>/etc/X11/xorg.conf</strong> oder, auf ganz alten Systemen <strong>/etc/X11/XF86Config</strong> angepasst werden.</p>
+<p>Die Datei sollte einen Bereich &quot;Screen&quot; haben, der etwa so aussieht:</p>
+<p><code>Section &quot;Screen&quot;</code><br /><code>       Identifier      &quot;Default Screen&quot;</code><br /><code>       Device          &quot;geforce256&quot;</code><br /><code>       Monitor         &quot;S/M 950p&quot;</code><br /><code>       DefaultDepth    24</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           8</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           16</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           24</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>EndSection</code></p>
+<p>Dabei werden für alle Farbtiefen die möglichen Auflösungen in Anführungszeichen angegeben.</p>
+<p>Xorg verwendet standardmässig die höchstmögliche Auflösung für die unter DefaultDepth angegebene Farbtiefe.</p>
+<p>Die Datei solle an sich selbsterklärend und leicht zu editieren sein.</p>
+<p>Die meisten Distributionen bieten zudem ein graphisches Konfigurationswerkzeug.</p>
+<h3 id="dynamische-einstellung-mit-nvidia-config">Dynamische Einstellung mit nvidia-config</h3>
+<p>Nutzer des Binärtreibers von nVidia haben zudem eine weitere Möglichkeit, die graphische nvidia-config. Diese listet alle möglichen Auflösungen für alle angeschlossenen Bildschirme und ermöglicht ein einfaches und komfortables Umschalten.</p>
+<p>Wenn man nvidia-settings -l in den Autostart von fluxbox packt kann man zudem diese Anweundung auch zum festen Einstellen verwenden.</p>
+<p>nvidia-config bietet auch an, direkt in die Xorg.conf zu schreiben. Davon sollte man aber noch absehen.</p>
+<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a> <a href="Category:Deutsch / German howtos" title="wikilink">Category:Deutsch / German howtos</a> <a href="Category:Konfiguration" title="wikilink">Category:Konfiguration</a></p>
+</body>
+</html>

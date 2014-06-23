@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="hintergrund-richtig-setzen-so-dass-auch-die-transparenz-funktioniert">Hintergrund richtig setzen, so dass auch die Transparenz funktioniert</h2>
+<p>__TOC__</p>
+<h3 id="was-ist-fbsetbg-und-warum-brauchen-wir-es">Was ist fbsetbg und warum brauchen wir es?</h3>
+<p>fbsetbg benötigen wir zum setzen eines Hintergrundbilds. Es sucht automatisch nach dafür geeigneten Programmen und verwendet das beste, das es findet. Es ist also keine Konfiguration nötig.</p>
+<p>Bei einem Fehler bemüht sich fbsetbg, eine klare Fehlermeldung auszugeben.</p>
+<h3 id="kontrollieren-ob-ein-geeignetes-tool-vorhanden-ist">Kontrollieren, ob ein geeignetes Tool vorhanden ist</h3>
+<p>Zuerst müssen wir kontrollieren, ob ein geeignetes Programm vorhanden ist. Dazu wird in einer Konsole folgender Befehl ausgeführt:</p>
+<p><code>   fbsetbg -i</code></p>
+<p>Sollte ein geeignetes Programm vorhanden sein, erscheint eine solche Nachricht:</p>
+<p><code>   Esetroot is a nice wallpapersetter. You won't have any problems.</code></p>
+<p>Sollte kein (geeignetes) Tool vorhanden sein, kommt solch eine Nachricht:</p>
+<p><code>   display doesn't set the wallpaper properly. Transparency for fluxbox</code><br /><code>   and apps like aterm and xchat won't work right with it. Consider </code><br /><code>   installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and</code><br /><code>   I'll use them instead.</code></p>
+<h3 id="transparenz-läuft-nicht---was-ist-zu-tun">Transparenz läuft nicht - was ist zu tun?</h3>
+<p>fbsetbg kann lediglich folgende Tools benutzen, um einen Hintergrund zu setzen, wovon NUR feh, esetroot und wmsetbg die Pseudotransparenz unterstützen.</p>
+<p><code>Esetroot</code><br /><code>wmsetbg</code><br /><code>feh</code><br /><code>hsetroot</code><br /><code>chbg</code><br /><code>display</code><br /><code>qiv</code><br /><code>xv</code><br /><code>xsri</code><br /><code>xli</code><br /><code>xsetbg</code></p>
+<p>Oben sind die guten Tools, unten die schlechten. Damit alles läuft sollte eines der oberen Tools installiert werden.</p>
+<h3 id="hilfreiche-tipps-und-tricks">Hilfreiche Tipps und Tricks</h3>
+<p><strong>1. Setzen vom Hintergrund beim start</strong></p>
+<p>Seit 0.9.15 gibt es die möglichkeit einen overlay zu nutzen. Im Overlay stehende Style-Angaben überschreiben die des verwendeten Style. Setzen wir im Overlay also den Hintergrund, wird kein Style einen anderen Hintergrund setzen können.</p>
+<p>In der <em>~/.fluxbox/init</em> sollte sich diese Option wiederfinden, die angibt wo unser Overlay sitzt.</p>
+<p><code>  session.styleOverlay: ~/.fluxbox/overlay</code></p>
+<p>Wenn nicht kann sie einfach hinzugefügt werden.</p>
+<p>Nun öffnet die Overlay-Datei und tragt folgendes ein:</p>
+<p><code>  background: fullscreen | aspect | tiled | centered</code><br /><code>  background.pixmap:  /pfad/zum/Wallpaper</code></p>
+<p>Es kann aber auch weiterhin der rootCommand in der init benutzt werden um den Hintergrund zu setzten. Um Fehler zu vermeiden sollte der Hintergrund nur in einer der beiden Dateien gesetzt werden.</p>
+<p><strong>2. Immer den letzten Hintergrund setzen lassen</strong> Um nicht jedes mal mühsam den Hintergrundpfad ändern zu müssen, kann man fbsetbg mit der Option aufrufen den zuletzt verwendeten Hintergrund zu benutzen:</p>
+<p><code> fbsetbg -l</code></p>
+<p>Um den Hintergrund zu ändern braucht man nun einmal aus der Konsole raus</p>
+<p><code> fbsetbg /pfad/zum/neuen/Wallpaper</code></p>
+<p>aufzurufen und beim nächsten Start von Fluxbox wird der neue Hintergrund verwendet.</p>
+<p><strong>3. Weiterhin Probleme mit der Transparenz?</strong> Sollte die Transparenz beim Start von Fluxbox nicht funktionieren, aber nach einem Neustart von Fluxbox, sollte fbsetbg -l in die <em>~/.fluxbox/startup</em> ohne ein '&amp;' am ende eingetragen werden. Beim Start wird die Datei nacheinander abgearbeitet. Das '&amp;' dahinter sorgt dafür, dass nach dem Absetzen des Befehls einfach weitergearbeitet wird. In unserem Fall setzt fbsetbg also erst in aller Ruhe den zuletzt benutzten Hintergrund und beendet sich dann, worauf hin die Liste weiter durchläuft. Danach sollte der Transparenz nicht mehr im Wege stehen.</p>
+<p><a href="Category:Integration / Startup" title="wikilink">Category:Integration / Startup</a> <a href="Category:Deutsch / German howtos" title="wikilink">Category:Deutsch / German howtos</a></p>
+</body>
+</html>

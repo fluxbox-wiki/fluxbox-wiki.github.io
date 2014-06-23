@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="fluxbox-in-der-kommandozeile-mit-startx-starten">Fluxbox in der Kommandozeile mit startx starten</h2>
+<p>Um Fluxbox aus der Kommandozeile mit startx zu starten muss die Datei .xinitrc angepasst werden:</p>
+<p><code> echo &quot;exec startfluxbox&quot; &gt; ~/.xinitrc</code></p>
+<p>Achtung: der bisherige Inhalt der .xinitrc wird dabei überschrieben. Alternativ kann man exec startfluxbox manuell in die Datei schreiben. Dabei muss darauf geachtet werden, dass vor oder nachher kein anderer Windowmanager gestartet wird.</p>
+<p>Es kann aber auch ein Script mit folgendem Inhalt erstellt werden:</p>
+<p><code> #!/bin/sh</code><br /><code> exec `which startfluxbox`</code></p>
+<p>Beide Methoden setzen voraus, dass sich <strong>startfluxbox</strong> in <strong>$PATH</strong> befindet. Ansonsten muss der volle Pfad von startfluxbox angegeben werden.</p>
+<p><a href="Category:Integration / Startup" title="wikilink">Category:Integration / Startup</a> <a href="Category:Deutsch / German howtos" title="wikilink">Category:Deutsch / German howtos</a></p>
+</body>
+</html>

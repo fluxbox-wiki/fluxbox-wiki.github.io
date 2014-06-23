@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="crashhandling-und-widerherstellung">Crashhandling und Widerherstellung</h2>
+<p>Die Datei ~/.fluxbox/startup wird ausgeführt, wenn fluxbox über den Befehl &quot;startfluxbox&quot; anstelle von &quot;fluxbox&quot; gestartet wird.</p>
+<p>Sie kann verwendet werden um bei einem Absturz von Fluxbox das Programm gleich neu zu starten, so, dass direkt weitergearbeitet werden kann.</p>
+<p>Sie entspricht einer Art Autostart, enthält also Applikationen, welche zusammen mit oder nach fluxbox gestartet werden.</p>
+<h2 id="warum-brauche-ich-das">Warum brauche ich das?</h2>
+<p>Fluxbox ist ein sehr stabiles Programm. Allerdings kann es sein, dass man eigenen Code einbringt, Patches von Dritten verwendet oder die Entwicklerversion verwendet um die</p>
+<p><code> neusten Funktionen verwenden zu können. </code></p>
+<p>Die Fensterverwaltung ist etwas sehr zentrales in X11. Je nachdem wie man X startet wird man bei einem Absturz der Fensterverwaltung direkt zu dem graphischen Login zurückbefördert und alle Applikationen mitsammt den noch nicht gespeicherten Daten gehen verloren.</p>
+<p>Das wollen wir verhindern.</p>
+<h2 id="wie-richte-ich-das-ein">Wie richte ich das ein?</h2>
+<p>Mit Hilfe der Startup Datei. Ein sehr gutes Beispiel kommt von markt, einem der Fluxbox Entwickler.</p>
+<p>Die Datei wurde von mir leicht angepasst und kommentiert</p>
+<p>~/.fluxbox/startup</p>
+<p><code> # Befehle die immer ausgeführt werden</code></p>
+<p><code> xcompmgr &amp;</code><br /><code> </code><br /><code> # Befehle, die nur beim ersten Start ausgeführt werden</code><br /><code> run_commands()</code><br /><code>{</code><br /><code> # X-Settings </code><br /><code> xset b off </code><br /><code> xset s on </code><br /><code> xscreensaver -no-splash &amp; </code><br /><code> nvidia-settings -l &amp;</code><br /><code> xmodmap .Xmodmap &amp;</code></p>
+<p><code> #Apps to start with fluxbox </code><br /><code> kmix &amp;</code><br /><code> gkrellm2 -w &amp;</code><br /><code> urxvt &amp;</code><br /><code> }</code></p>
+<p><code> # fluxbox start mit log-Funktion</code><br /><code> exec /usr/local/bin/fluxbox -log ~/.fluxbox/log &amp;</code><br /><code> fbpid=$!</code></p>
+<p><code> case &quot;x$1&quot; in x) run_commands;; esac</code></p>
+<p><code> # if fluxbox crashes, that's ok -- we'll restart another one</code><br /><code> # if this loops, I can always use control-alt-backspace</code><br /><code> wait $fbpid || exec $0 norun</code></p>
+<p>Ein normales beenden von Fluxbox mit dem Menu oder einem Signal (nicht SIGKILL) ist weiterhin möglich.</p>
+<p>Sollte fluxbox also abstürzen wird sofort eine neue Fluxbox-Instanz gestartet, welche die schon offenen Fenster wieder übernimmt. Programme im Autostart werden dabei nicht noch einmal ausgeführt.</p>
+<p><a href="Category:Integration / Startup" title="wikilink">Category:Integration / Startup</a> <a href="Category:Deutsch / German howtos" title="wikilink">Category:Deutsch / German howtos</a> <a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+</body>
+</html>
