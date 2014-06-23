@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><code>Quelques trucs pour personnaliser la barre d'outils (toolbar)</code></p>
+<p>__TOC__</p>
+<h2 id="comment-supprimer-les-petites-flêches-dans-la-toolbar">Comment supprimer les petites flêches dans <strong>'la toolbar</strong>' ?</h2>
+<p>Ouvrez le fichier <strong>'~/.fluxbox/init</strong>' et cherchez la ligne:</p>
+<p><code>session.screen0.toolbar.tools</code></p>
+<p>Supprimez les éléments suivants:</p>
+<p><code>prevworkspace, nextworkspace, prevwindow, nextwindow</code></p>
+<p>Rechargez la configuration : et voilà, plus du tout de flêches dans la toolbar !</p>
+<h2 id="quels-éléments-puis-je-avoir-dans-la-toolbar">Quels éléments puis-je avoir dans la toolbar</h2>
+<p>Vous pouvez mettre, dans n'importe quel ordre, séparé par des virgules:</p>
+<p><code>workspacename</code><br /><code>    Affiche le nom du bureau actuel</code></p>
+<p><code>iconbar  </code><br /><code>    c'est </code><strong><code>'la</code> <code>barre</code> <code>des</code> <code>taches</code></strong><code>' : elle affiche les fenêtres minimisées des applications en cours</code></p>
+<p><code>systemtray</code><br /><code>    l'endroit ou les applications iconifiées sont misent. Exemple: aMsn,gaim,...</code></p>
+<p><code>clock</code><br /><code>    une horloge (vior </code><em><code>man</code> <code>strftime</code></em><code> pour les formats d'affichage)</code></p>
+<p><code>prevworkspace  nextworkspace</code><br /><code>    boutons pour changer de bureau (précédent/suivant)</code></p>
+<p><code>prevwindow  nextwindow</code><br /><code>    boutons pour changer de fenêtre active</code></p>
+<h2 id="cacher-automatiquement-la-barre-doutil">Cacher automatiquement la barre d'outil</h2>
+<p><code>session.screen0.toolbar.autoHide:       true</code></p>
+<h2 id="changer-la-hauteur-largeur-...-de-la-toolbar">Changer la hauteur / largeur / ... de la toolbar</h2>
+<p>Changer la hauteur de la barre:</p>
+<p><code>session.screen0.toolbar.height: 50</code></p>
+<p>Changer la largeur de la barre sur l'écran:</p>
+<p><code>session.screen0.toolbar.widthPercent:   80</code></p>
+<p>Changer la transparence</p>
+<p><code>session.screen0.toolbar.alpha:  150</code></p>
+<p>Faire en sorte que les applications se mettent au dessus de la toolbar quand on les maximise (plein écran)</p>
+<p><code>session.screen0.toolbar.maxOver:        true</code></p>
+<p><strong><code>'La</code> <code>majoritée</code> <code>de</code> <code>ces</code> <code>réglages</code> <code>est</code> <code>accessible</code> <code>simplement</code> <code>via</code> <code>le</code> <code>menu</code> <code>de</code> <code>configuration</code> <code>de</code> <code>Fluxbox</code> <code>-&gt;</code> <code>toolbar</code></strong><code>'</code></p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

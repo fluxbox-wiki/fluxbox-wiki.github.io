@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="forcer-ses-propres-paramètres-par-dessus-les-thèmes-aka-styleoverlay">Forcer ses propres paramètres par dessus les thèmes (aka styleOverlay)</h3>
+<p>Depuis Fluxbox 0.9.15 il y a une option appelée <strong>session.styleOverlay</strong> qui permet de remplacer tout ou partie des paramètres du thème (style) utilisé. Par exemple si vous voulez avoir la même police dans tous vos thèmes, le même papier-peint etc...</p>
+<p>Ajoutez cette ligne à votre <strong>~/.fluxbox/init</strong></p>
+<p><code>session.styleOverlay: ~/.fluxbox/overlay</code></p>
+<p>Editez ensuite le fichier <strong>~/.fluxbox/overlay</strong> comme si vous étiez en train d'éditer un fichier de thème (style). Un exemple avec la police d'écriture:</p>
+<p><code>menu.title.font: sans-10:bold</code><br /><code>toolbar.clock.font: sans-10:bold</code><br /><code>toolbar.workspace.font: sans-10:bold</code><br /><code>.font: sans-8</code></p>
+<p>Vous pouvez (devez?:p) paramétrer votre fond d'écran:</p>
+<p><code>background: aspect</code><br /><code>background.pixmap: /home/youruser/wallpapers/mon_wallpaper.jpg</code></p>
+<p><strong>aspect</strong> peu prendre comme valeur: <strong>center</strong>, <strong>tile</strong> ou <strong>random</strong> (pour un fond d'écran aléatoire:à ce moment là il faut juste pointer sur un dossier et non un fichier en particulier).</p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

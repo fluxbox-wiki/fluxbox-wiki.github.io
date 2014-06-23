@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h3 id="xrandr-à-la-volée">Xrandr : à la volée</h3>
+<p>Pour changer sa résolution d'écran à la volée, il existe un programme livrée avec le système X, quelque soit la distribution linux utilisée : xrandr.</p>
+<p>Tout d'abord, tapez dans une console:</p>
+<p><code>xrandr</code></p>
+<p>Il va afficher ca:</p>
+<p><code> SZ:    Pixels          Physical       Refresh</code><br /><code>*0   1600 x 1200   ( 406mm x 305mm )  *75   70   65   60  </code><br /><code> 1   1280 x 1024   ( 406mm x 305mm )   85   75   60  </code><br /><code> 2   1024 x 768    ( 406mm x 305mm )   85   75   70   60   87  </code><br /><code> 3    800 x 600    ( 406mm x 305mm )   85   75   72   70   65   60   56  </code><br /><code> 4    640 x 480    ( 406mm x 305mm )   85   75   73   60  </code><br /><code> 5   1400 x 1050   ( 406mm x 305mm )   85   75   70   60  </code><br /><code> 6   1440 x 900    ( 406mm x 305mm )   60  </code><br /><code> 7   1280 x 960    ( 406mm x 305mm )   85   60  </code><br /><code> 8   1280 x 800    ( 406mm x 305mm )   60  </code><br /><code> 9   1152 x 864    ( 406mm x 305mm )   85   75  </code><br /><code> 10  1280 x 768    ( 406mm x 305mm )   60  </code><br /><code> 11  1152 x 768    ( 406mm x 305mm )   55  </code><br /><code> 12   960 x 720    ( 406mm x 305mm )   60  </code><br /><code> 13   928 x 696    ( 406mm x 305mm )   60  </code><br /><code> 14   896 x 672    ( 406mm x 305mm )   60  </code><br /><code> 15   960 x 600    ( 406mm x 305mm )   73   60  </code><br /><code> 16   832 x 624    ( 406mm x 305mm )   75  </code><br /><code> 17   840 x 525    ( 406mm x 305mm )   60  </code><br /><code> 18   700 x 525    ( 406mm x 305mm )   85   75   70   60  </code><br /><code> 19   640 x 512    ( 406mm x 305mm )   85   75   60  </code><br /><code>Current rotation - normal</code><br /><code>Current reflection - none</code><br /><code>Rotations possible - normal </code><br /><code>Reflections possible - none</code></p>
+<p>Il s'agit de toutes les résolutions supportées par votre écran.</p>
+<p>Pour changer de résolution: <strong>xrandr -s <size>/<width>x<height></strong></p>
+<p>Exemple:</p>
+<p><code> xrandr -s 3</code></p>
+<p>où 3 est le numéro correspondant à la colonne SZ du mode qui vous intéresse. Dans notre exemple du 800x600.</p>
+<p>Vous pouvez aussi utiliser:</p>
+<p><code>xrandr -s 1024x768</code></p>
+<p>Facile, c'est équivalent à <strong>xrandr -s 2</strong> et permet d'avoir, ho surprise!, un mode en 1024x768.</p>
+<p>Si vous voulez paramétrer le rafraichissement utilisez l'option <strong>-r <rate></strong>. Exemple:</p>
+<p><code>xrandr -s 800x600 -r 60</code></p>
+<p>Vous aurez un 800x600 bien moisi avec un taux de rafraichissement de 60 Hz (ca pique les yeux!).</p>
+<h3 id="xorg.conf-la-solution-permanente">Xorg.conf : la solution permanente</h3>
+<p>Si vous souhaitez que les changement soient permanent, cad à chaque démarrage de X, il faut éditer le fichier (en ROOT) : <strong>/etc/X11/xorg.conf</strong> ou <strong>/etc/X11/XF86Config</strong></p>
+<p>Trouvez la section <strong>Section &quot;Screen&quot;</strong> qui ressemble à ca:</p>
+<p><code>Section &quot;Screen&quot;</code><br /><code>       Identifier      &quot;Default Screen&quot;</code><br /><code>       Device          &quot;geforce256&quot;</code><br /><code>       Monitor         &quot;S/M 950p&quot;</code><br /><code>       DefaultDepth    24</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           8</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           16</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           24</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>EndSection</code></p>
+<p>Maintenant il faut ajouter le mode désiré <strong>EN DEBUT</strong>. Par exemple si vous voulez du 1024x768 au lieu de 1600x1200, modifiez comme suit:</p>
+<p><code>Section &quot;Screen&quot;</code><br /><code>       Identifier      &quot;Default Screen&quot;</code><br /><code>       Device          &quot;geforce256&quot;</code><br /><code>       Monitor         &quot;S/M 950p&quot;</code><br /><code>       DefaultDepth    24</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           8</code><br /><code>               Modes           &quot;1024x768&quot; &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           16</code><br /><code>               Modes           &quot;1024x768&quot; &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           24</code><br /><code>               Modes           &quot;1024x768&quot; &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>EndSection</code></p>
+<p>NOTES: Veillez à bien mettre les modes entre guillemets. Vous pouvez effacer les autres modes mais il vaut mieux les laisser car si X n'arrive pas à démarrer avec le premier mode il va essayer automatiquement le second. Si aucun autre mode ne fonctionne il ne démarrera pas.</p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Comment démarrer Fluxbox depuis la ligne de commande en utilisant &quot;startx&quot; ?</p>
+<p>Question souvent posée sur #fluxbox. C'est super simple.</p>
+<p>Il faut editer le fichier .xinitrc qui se trouve dans son dossier HOME.</p>
+<p>Tapez ensuite:</p>
+<p><code>echo &quot;exec startfluxbox&quot; &gt; ~/.xinitrc</code></p>
+<p>ou alors utilisez un simple editeur de text:</p>
+<p><code>#!/bin/sh</code><br /><code>exec `which startfluxbox`</code></p>
+<p>Peu importe la méthode, du moment que &quot;startfluxbox&quot; est dans votre $PATH cela devrait fonctionner.</p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

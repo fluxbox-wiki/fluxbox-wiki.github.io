@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Fluxbox lui même ne gère pas le fond d'écran. Pour pouvoir en mettre un, lisez ce qui suit.</p>
+<h3 id="quest-ce-que-fbsetbg-et-pourquoi-en-ai-je-besoin">Qu'est ce que <strong>'fbsetbg</strong>' et pourquoi en ai-je besoin ?</h3>
+<p><strong>'fbsetbg</strong>' est un petit programme qui permet d'appeller n'importe quel outil capable de changer le fond d'écran. Il utilisera le premier outil qu'il trouvera.</p>
+<h3 id="est-ce-que-les-outils-sont-bien-installés">Est ce que les outils sont bien installés ?</h3>
+<p>Nous devons nous assurer que <strong>'fbsetbg</strong>' trouve bien un programme à utiliser pour mettre le fond d'écran. Ouvrez une console et tapez:</p>
+<p><code>   fbsetbg -i</code></p>
+<p>Si il trouve un programme à utiliser, vous aurez ce message:</p>
+<p><code>   </code><strong><code>'Esetroot</code> <code>is</code> <code>a</code> <code>nice</code> <code>wallpapersetter.</code> <code>You</code> <code>won't</code> <code>have</code> <code>any</code> <code>problems</code></strong><code>'.</code></p>
+<p>Sinon, vous aurez ce message:</p>
+<p><code>   ''''display doesn't set the wallpaper properly. Transparency for fluxbox</code><br /><code>   and apps like aterm and xchat won't work right with it. Consider </code><br /><code>   installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and</code><br /><code>   I'll use them instead''''.</code></p>
+<h3 id="paramétrer-le-fond-décran">Paramétrer le fond d'écran !</h3>
+<p><strong>1. Au démarrage : le dernier utilisé</strong></p>
+<p>Ajoutez dans votre fichier <strong>'./fluxbox/init</strong>':</p>
+<p><code>session.screen0.rootCommand:    fbsetbg -l</code></p>
+<p>Ensuite paramétrer le fond d'écran manuellement avec <strong>'fbsetbg</strong>'. Ce fond d'écran sera noté dans <strong>'./fluxbox/lastwallpaper</strong>'. L'option <strong>'-l</strong>' de <strong>'fbsetbg</strong>' permettra de rappeller ce fond d'écran au démarrage.</p>
+<p><strong>2. Au démarrage : au dessus de tout les thèmes</strong></p>
+<p>Depuis fluxbox 0.9.15 une nouvelle fonction a été introduite: <strong>Overlay</strong>.</p>
+<p>Pour l'utiliser il faut mettre dans ~/.fluxbox/init la ligne suivante :</p>
+<p><code>  session.styleOverlay: ~/.fluxbox/overlay</code></p>
+<p>Il vous suffit maintenant d'éditer le fichier <strong>'~/.fluxbox/overlay</strong>' pour choisir quel fond d'écran sera utilisé au démarrage.</p>
+<p>NOTE: ce fond d'écran passera par dessus celui de votre thème !</p>
+<h3 id="la-transparence-ne-fonctionne-pas-que-faire">La transparence ne fonctionne pas ? Que faire ?</h3>
+<p><strong>'Fbsetbg</strong>' peut utiliser plusieurs outils pour mettre le fond d'écran, mais parmis ces outiles, SEULEMENT <strong>'feh</strong>', <strong>'esetroot</strong>' et <strong>'wmsetbg</strong>' supportent la pseudo-transparence.</p>
+<p><code>Je vous conseille d'installer </code><strong><code>Esetroot</code></strong><code> (</code><strong><code>'apt-get</code> <code>install</code> <code>Eterm</code></strong><code>) qui est livré avec </code><strong><code>'Eterm</code></strong><code>'.</code></p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

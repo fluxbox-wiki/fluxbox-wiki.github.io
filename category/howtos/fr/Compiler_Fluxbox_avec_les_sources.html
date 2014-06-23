@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="compiler-fluxbox-avec-les-sources">Compiler fluxbox avec les sources</h2>
+<h3 id="de-quoi-avec-vous-besoin">De quoi avec-vous besoin ?</h3>
+<p>Fluxbox se compile facilement avec les outils standards disponibles sur la pluspart des distributions linux (gcc, gpp, make etc) et avec les bibliothèques de développement du système graphique X11 (en général libx11-devel ou libx11-dev ou x11proto-core-dev ou xorg-dev ou autre selon la distribution).</p>
+<p>Si lors de la compilation vous avez une erreur du type:</p>
+<p><code> checking for X... no configure: error: Fluxbox requires the X Window System libraries and headers.</code></p>
+<p>Alors installez les bibliothèques manquantes du système graphique (citées ci-dessus).</p>
+<h3 id="ou-trouver-les-sources">Ou trouver les sources ?</h3>
+<p>Les sources se trouvent <a href="http://fluxbox.org/version-0.9.php">ici</a> ou <a href="http://sf.net/projects/fluxbox">sur la page Sourceforge</a>.</p>
+<h3 id="compiler-fluxbox-version-courte">Compiler Fluxbox (version courte)</h3>
+<p><code>$ tar -zxvf fluxbox-*.tar.gz  OR  tar -jxvf fluxbox-*.tar.bz2</code><br /><code>$ cd fluxbox</code><br /><code>$ ./configure</code><br /><code>$ make</code><br /><code>$ su</code><br /><code>$ make install</code></p>
+<p>Notes: &quot;configure&quot; supporte des arguments. Ils sont décrit ci-dessous. Vous pouvez utiliser SUDO au lieu de SU. Le chemin d'installation par défaut est <strong>/usr/local/share/fluxbox/</strong></p>
+<h3 id="compiler-fluxbox-version-longue-et-détaillée">Compiler Fluxbox ? (version longue et détaillée)</h3>
+<p>Il faut décompresser l'archive contenant le code source que vous venez de télécharger (pour les fichiers de type .tar.gz faire <strong>tar -zxvf fluxbox-*.tar.gz</strong> (remplacer * par la version qui correspond à votre fichier) et pour les .tar.bz2 <strong>tar -jxvf fluxbox-*.tar.bz2</strong>. Vous devez bien sur posséder gzip pour pouvoir décompresser des tar.gz et bzip2 pour les tar.bz2).</p>
+<p>Ensuite faire:</p>
+<p><code>$ cd fluxbox</code></p>
+<p>Maintenant vous vous trouvez dans le dossier de la source. Lisez le fichier README et le fichier INSTALL si vous comprenez l'anglais :)</p>
+<p>Ensuite faire:</p>
+<p><code>$ ./configure</code></p>
+<p>Si vous voulez activer le support xinerama (multi-écrans) utiliser <strong>./configure --enable-xinerama</strong> et si vous voulez le support des icônes au format PNG (et que vous avez installé les bibliothèques de développement &quot;imlib2&quot; vous pouvez utiliser <strong>./configure --enable-imlib2</strong>. Ou même les deux !, par exemple : <strong>./configure --enable-xinerama --enable-imlib2</strong>. Fastoche hein ?</p>
+<p>En cas de doute vous pouvez voir toutes les options disponibles avec <strong>./configure --help</strong>.</p>
+<p>Une fois que &quot;configure&quot; a terminé son boulot, tapez simplement:</p>
+<p><code>$ make</code></p>
+<p>Fluxbox est maintenant compilé. Pour l'installer il suffit de taper:</p>
+<p><code>$ sudo make install</code></p>
+<p>ou bien</p>
+<p><code>$ su</code><br /><code>$ make install</code></p>
+<p>Fluxbox s'installera (par défaut) dans <strong>/usr/local/share/fluxbox</strong>.</p>
+<h2 id="quest-ce-que-la-version-svn-et-est-ce-utile-pour-moi">Qu'est ce que la version SVN et est-ce utile pour moi ?</h2>
+<p>(SVN signifie &quot;subversion&quot; est ressemble à &quot;CVS&quot;. C'est un gestionnaire de version pour les développeurs de logiciel)</p>
+<p>La version &quot;Svn&quot; de Fluxbox est la dernière version disponible en cours de développement. Si vous voulez la tester vous pouvez, elle contient souvent de nouvelles fonctionnalitées ou des corrections de bug. Si vous voulez aider à chasser les bugs ou autre c'est la version qu'il vous faut.</p>
+<p>MAIS ATTENTION !! la version svn est par nature &quot;instable&quot; car le code source est manipulé constament par les développeurs. Il ne faudrait pas utiliser cette version dans votre vie de tous les jours car il peut y avoir des problèmes. Vous serez prévenu...</p>
+<h3 id="récupérer-la-version-svn-et-linstaller">Récupérer la version SVN et l'installer</h3>
+<p>Vous aurez besoin de <a href="http://subversion.tigris.org">subversion</a>, automake-tools et autoconf-tools.</p>
+<p>Pour avoir les sources SVN et préparer la compilation il faut taper:</p>
+<p><code>$ svn checkout </code><a href="svn://svn.berlios.de/fluxbox/trunk"><code>svn://svn.berlios.de/fluxbox/trunk</code></a><code> fluxbox &amp;&amp; cd fluxbox &amp;&amp; ./autogen.sh</code></p>
+<p>Ensuite, c'est comme d'habitude:</p>
+<p><code>$ ./configure</code><br /><code>$ make</code><br /><code>$ make install</code><br /></p>
+<p>Pour simplement mettre à jour:</p>
+<p><code>$ cd fluxbox &amp;&amp; svn update &amp;&amp; make &amp;&amp; sudo make install</code></p>
+<h3 id="récupérer-une-vieille-version-dans-le-svn">Récupérer une vieille version dans le SVN</h3>
+<p>Mais pourquoi faire ?</p>
+<ul>
+<li>Peut-être que la dernière version ne compile pas et que vous vous souvenez que la révision X compile...</li>
+<li>Peut-être que vous avez trouvé un bug pas encore rapporté.</li>
+<li>Peut-être que vous voulez utiliser un patch qui ne fonctionne pas avec les dernières modifications faites à la source.</li>
+</ul>
+<p>Peu importe vos raisons, voici comment faire:</p>
+<p><code> $ svn checkout -r X </code><a href="svn://svn.berlios.de/fluxbox/trunk"><code>svn://svn.berlios.de/fluxbox/trunk</code></a><code> fluxbox</code></p>
+<p>Bien sur il faut remplacer le X avec le numéro de la révision désirée.</p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

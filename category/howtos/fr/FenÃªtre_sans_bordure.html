@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="comment-supprimer-les-bordures-aux-fenêtres">Comment supprimer les bordures aux fenêtres</h1>
+<p>Ajoutez l'entrée suivante au fichier <strong>~/.fluxbox/keys</strong>:</p>
+<p><code>  Mod4 t :ToggleDecor</code></p>
+<p>Utiliser la configuration ci-dessus ou choisissez une autre combinaison de touche ( touche windows + t dans le cas présent).</p>
+<p>Vous devez désormais recharger votre nouvelle configuration depuis le menu fluxbox comme suit:</p>
+<p><code>  fluxbox menu -&gt; reload config</code></p>
+<p>ou en utilisant un signal depuis votre terminal préféré:</p>
+<p><code> kill -s usr2 `pgrep fluxbox`</code></p>
+<p>Aprés avoir recharger fluxbox, votre raccourci clavier est prêt à l'emploi. La prochaine étape consiste à ouvrir l'application que vous désirez exécuter sans bordures. Prenons aterm pour exemple.</p>
+<p><code> aterm</code></p>
+<p>Un clic-droit sur le titre de la fenêtre fait apparaître le menu contextuel des fenetres. Dans la section 'Remember' activez les options 'Save on close' et 'Decorations'</p>
+<p>A la fermeture de la fenêtre, vos paramètres seront enregistrés dans le fichier <strong>~/.fluxbox/apps</strong>. A chaque fois que vous lancerez aterm à partir de maintenant il sera dépourvu de décorations de fenêtre. Vous pourrez utiliser la combinaison de touches configurée précédemment pour faire disparaître ou apparaitre les bordures d'une fenêtre.</p>
+<p>Ceci constitue un réglage global pour une application.</p>
+<p>Vous voulez, pour l'exemple suivant, faire tourner irssi dans une console aterm sans bordures MAIS également que toutes les autres instances d'aterm soient elles, pourvues de fenêtres.</p>
+<p>Vous devez alors donner un nom à cette fenêtre aterm spécifique. La plupart des terminaux utilisent pour cela l'option <strong>-name</strong>:</p>
+<p><code>   $&gt; aterm -name irssiterm -e irssi</code></p>
+<p>Si vous utilisez la combinaison de touche sur cette instance d'aterm crééra dans le fichier <strong>~/.fluxbox/apps</strong> une section similaire à celle-ci:</p>
+<p><code>   [app] (irssiterm)  # Pour appliquer à toutes les fenêtres utilisez l'expression régulière (.*) .</code><br /><code>      [Deco]   {NONE}</code><br /><code>   [end]   </code></p>
+<p>Ceci fonctionnera <strong>SEULEMENT</strong> pour une application nommée &quot;irssiterm&quot; que vous pouvez forcer via l'option &quot;-name&quot;.</p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>
