@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Open <strong>/etc/rc.conf</strong> with your favorite text editor, and locate the <code>XSESSION=&quot;&quot;</code> line. Note that the file may differ depending the distribution you're using.</p>
+<p>Example The line should look something like this:</p>
+<p><code>XSESSION=&quot;Gnome&quot;</code></p>
+<p>Replace Gnome with Fluxbox:</p>
+<p><code>XSESSION=&quot;fluxbox&quot;</code></p>
+<p>Or comment the Gnome line and add a Fluxbox line:</p>
+<p><code>#XSESSION=&quot;Gnome&quot;</code><br /><code>XSESSION=&quot;fluxbox&quot;</code></p>
+<p>Save your changes and you're set.</p>
+<h3 id="another-solution">Another solution</h3>
+<p>Edit or create a file called <strong>~/<a href=".xsession" title="wikilink">.xsession</a></strong> Add this line to it (you should comment out or remove all lines that seems to be other windowmanagers):</p>
+<p><code>exec </code><a href="Editing the startup file" title="wikilink"><code>startfluxbox</code></a></p>
+<p>Next time you start your computer, xdm will log you into fluxbox.</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Integration/Startup howtos" title="wikilink">Category:Integration/Startup howtos</a></p>
+</body>
+</html>

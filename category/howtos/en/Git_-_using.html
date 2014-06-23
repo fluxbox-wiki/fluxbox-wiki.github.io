@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><a href="http://en.wikipedia.org/wiki/Git_%28software%29">git</a> is used to track changes to the source code of fluxbox during development. This is a small overview over the most important commands and work flows important to the developers.</p>
+<p>The fluxbox developers encourage you to use git and help developing / improving fluxbox, no matter if you code or help out with the documentation or with the translation or whatever.</p>
+<h2 id="fetch-and-build">Fetch and build</h2>
+<p>To get your very own copy of the whole fluxbox repository (including the complete history) you have to clone the repository:</p>
+<p><code>$ git clone </code><a href="git://git.fluxbox.org/fluxbox.git"><code>git://git.fluxbox.org/fluxbox.git</code></a><code> fluxbox.git</code></p>
+<p>After this step you can cut off the network, you can develop completely without any connection to the world. To keep in sync with the latest &quot;official&quot; code just do</p>
+<p><code>$ cd fluxbox.git</code><br /><code>$ git pull</code></p>
+<p>If you plan to change the code then:</p>
+<p><code>$ git config --global user.email Your.Email@domain.com</code><br /><code>$ git config --global user.name &quot;Your Real Name&quot;</code></p>
+<p>so when you sent us patches your name will show up in the repository correctly (and we can point fingers if something crashed :))</p>
+<h2 id="modifying-code">Modifying Code</h2>
+<p>Use your beloved editor and change the code, '<code>git-mv</code>' to rename files, '<code>git-add</code>' to add new files, '<code>git-rm</code>' to remove files from the repository. Check the current status of the working copy with</p>
+<p><code>$ git status</code></p>
+<p>Every change you did is transfered to the repository the very moment you execute</p>
+<p><code>$ git commit</code></p>
+<p>and this is transfered only to the current 'branch' you are in right now.</p>
+<h2 id="branching-and-merging">Branching and Merging</h2>
+<p>Branching and merging is very powerful in git. You can create thousands of local branches, one for each bug you work on or feature you implement. It is good practice to do this because it safes your from accidentally pushing changes to another repository.</p>
+<h3 id="creating-and-removing-a-branch">Creating and removing a branch</h3>
+<p>You create a branch 'bugfix123' from the 'master' branch:</p>
+<p><code>$ git checkout -b bugfix123 master</code></p>
+<p>If your are done with the branch:</p>
+<p><code>$ git branch -d bugfix123</code></p>
+<p>After that the complete branch is gone.</p>
+<p>Another option for creating branches is to create a new clone; you can clone from your local repository as well:</p>
+<p><code>$ git clone fluxbox.git big_rewrite.git</code></p>
+<p>For big changes this could be a good method to keep the working directory pretty clear from the leftovers of other branches.</p>
+<h3 id="list-branches">List branches</h3>
+<p>Show all local branches:</p>
+<p><code>$ git branch</code></p>
+<p>Show remote branches:</p>
+<p><code>$ git branch -r</code></p>
+<h3 id="switch-between-branches">Switch between branches</h3>
+<p>To easily switch between branches:</p>
+<p><code>$ git checkout 'branchname'</code></p>
+<h3 id="merge">Merge</h3>
+<p>When you are done with the changes for the bugfix or the new feature, it's time to merge some branches. Even when you are working in a branch on a bugfix and the 'master' branch evolves, it's time to merge to reflect the latest changes into the current branch:</p>
+<p><code>$ git checkout to_check master</code><br /><code>$ git merge --squash --no-commit bugfix123</code><br /><code>$ git commit</code></p>
+<p>Git would squash now all the 100 commits to your local branch 'bugfix123' to appear as ONE big commit. This way you can even work with your 'own' revision control on the bugfix without ending up with commit messages as fine as « what the f... is wrong here? » in the official repository.</p>
+<h3 id="exchange-patches-code">Exchange patches / code</h3>
+<p>Especially for 'rogue' developers, it is important to give back the changes they made to the core developers somehow. To create a nice patch, use:</p>
+<p><code>$ git format-patch -C -k --stdout master..to_push &gt; bugfix123.diff</code></p>
+<p>Which would put all the changes made to fix the 'bug123' into the one file you can mail or attach to the issue tracker. In case you once receive such a patch, you can apply it with:</p>
+<p><code>$ git applymbox -k bugfix123.diff</code></p>
+<p>Another way would to exchange chunks of code would be to create a bundle (compressed patch):</p>
+<p><code>$ git checkout to_check master</code><br /><code>$ git-bundle create bugfix123.bdl master..bugfix123</code></p>
+<p>Which could be applied with:</p>
+<p><code>$ git-fetch bugfix123.bdl bugfix123:check_bugfix123</code></p>
+<p>This would create a new branch 'check_bugfix123' where one can check if the bugfix really works.</p>
+<h2 id="tools">Tools</h2>
+<ul>
+<li><a href="http://jonas.nitro.dk/tig/">tig</a> is a nice ncurses based git-viewer.</li>
+</ul>
+<h2 id="links-and-further-information">Links and further information</h2>
+<p>Learn more about git:</p>
+<ul>
+<li><a href="http://git-scm.com/">Git official website</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Git_(software)">Git on Wikipedia</a></li>
+<li><a href="http://www.kernel.org/pub/software/scm/git/docs/everyday.html">everyday Git in 20 commands or so</a></li>
+<li><a href="http://oss.oracle.com/osswiki/GitRepositories/ForMaintainers">Git for maintainers</a></li>
+<li><a href="http://wiki.samba.org/index.php/Using_Git_for_Samba_Development">Using Git for Samba development</a></li>
+<li><a href="http://www.freedesktop.org/wiki/Infrastructure/git/Users">Git at freedesktop.org</a></li>
+<li><a href="http://cheat.errtheblog.com/s/git">Git cheat sheet with common commands</a></li>
+<li><a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/index.html">git magic</a></li>
+</ul>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a></p>
+</body>
+</html>

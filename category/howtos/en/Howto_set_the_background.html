@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="setting-the-background-so-that-transparency-works">Setting the background so that transparency works</h2>
+<p>__TOC__</p>
+<h3 id="what-is-fbsetbg-and-why-do-i-need-it">What is fbsetbg and why do I need it</h3>
+<p>fbsetbg is a wrapper that tries to find a suitable background-setting app and then tries to set the wallpaper using that app. You don't have to configure fbsetbg, it just uses the first app it can find.</p>
+<p>It aims to provide clear error messages in a window that make debugging problems easy.</p>
+<h3 id="checking-for-the-proper-tools">Checking for the proper tools</h3>
+<p>First we need to make sure fbsetbg has a suitable app to use, to do this open up a terminal and run the following command as a user:</p>
+<p><code>  $ fbsetbg -i</code></p>
+<p>If you have one of the supported apps installed you will get a message like this:</p>
+<p><code>   Esetroot is a nice wallpapersetter. You won't have any problems.</code></p>
+<p>If you do not have a suitable app installed you will recieve an error message like this:</p>
+<p><code>   display doesn't set the wallpaper properly. Transparency for fluxbox</code><br /><code>   and apps like aterm and xchat won't work right with it. Consider </code><br /><code>   installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and</code><br /><code>   I'll use them instead.</code></p>
+<h3 id="setting-the-background-in-a-style">Setting the background in a style</h3>
+<p>In Fluxbox 0.9.15, rootCommand was removed from styles; however, it still functions properly in the init file. To set a background from a style, you should now use the following settings in your theme file:</p>
+<p><code>          background: centered|aspect|tiled|fullscreen|random|solid|gradient </code><texture><code>|mod|none|unset</code><br /><code>          background.pixmap: </code><file or directory><br /><code>          background.color: </code><color><br /><code>          background.colorTo: </code><color><br /><code>          background.modX: </code><integer><br /><code>          background.modY: </code><integer><br /><code>  </code></p>
+<p>When using centered, aspect, tiled, or fullscreen, `background.pixmap' should give the full path of an image to use. When using random, `background.pixmap' gives the location of a directory containing several images, one of which is chosen at random. To set a solid background, you should specify `background.color'. The gradient textures (described more fully in `man fbsetroot') require both `background.color' and `background.colorTo'. `background.modX' and `background.modY' are specific to the `mod' background type (described more fully in `man fbsetroot'), which also requires `background.color' and `background.colorTo'. The special option `unset' is for use in user overlay files only. It specifies that fbsetbg should never be run (by default, even when `none' is set in the overlay, fluxbox will try to run &quot;fbsetbg -z&quot; to restore the last wallpaper).</p>
+<h3 id="transparency-does-not-work.-what-do-i-do">Transparency does not work. What do I do?</h3>
+<p>Fbsetbg can use following wallpapersetters of which ONLY feh, esetroot and wmsetbg support pseudo transparency:</p>
+<ul>
+<li>Esetroot</li>
+<li>wmsetbg</li>
+<li>feh</li>
+<li>hsetroot</li>
+<li>chbg</li>
+<li>display</li>
+<li>qiv</li>
+<li>xv</li>
+<li>xsri</li>
+<li>xli</li>
+<li>xsetbg</li>
+</ul>
+<p>The order is best first, worst last. So to make everything work fine, you should install something from the top of the list. Most people on #fluxbox would suggest you to install <strong>Feh</strong> as it is small and very efficient, but <strong>Esetroot</strong> (comes with <strong>Eterm</strong>) is also a good choice.</p>
+<h3 id="useful-tips-and-tricks">Useful Tips and Tricks</h3>
+<h4 id="setting-the-wallpaper-on-startup">Setting the Wallpaper on Startup</h4>
+<p>Since fluxbox 0.9.15 a new feature was introduced: <strong><a href="Style overlay" title="wikilink">Overlay</a></strong>.</p>
+<p>To use it you just need a file to which ~/.fluxbox/init points to. We use the standard file ~/.fluxbox/overlay for it. make sure the line</p>
+<p><code>  session.styleOverlay: ~/.fluxbox/overlay</code></p>
+<p>is in your init-file.</p>
+<p>The overlay file can be used to set any style attributes, such as the 'background' setting described above. Setting the background in this way will override any backgrounds in styles you use.</p>
+<h4 id="setting-the-wallpaper-on-startup-another-way">Setting the Wallpaper on Startup, another way</h4>
+<p>Just put (or remove the comment if it's there already):</p>
+<p><code> background: none</code></p>
+<p>in ~/.fluxbox/overlay</p>
+<p>Then set the background once manually with fbsetbg. This last used wallpaper will be saved in the file ~/.fluxbox/lastwallpaper. It is later used for the -l option which is in your init file now.</p>
+<p><img src="Note.png" title="fig:" /><span id="deprecated">With new versions the rootCommand way in the init file is still capable but deprecated, fluxbox calls fbsetbg internally everytime it starts. We'll keep the follow only for historical purpose.</span> This will provide an initial background, but any styles with their own wallpapers will override it:</p>
+<p><code>session.screen0.rootCommand:    fbsetbg -l</code></p>
+<h4 id="tips-on-working-with-fbsetbg">Tips on working with fbsetbg</h4>
+<p><code> $ fbsetbg -p</code></p>
+<p>this will give you some very useful tips; read them slowly.</p>
+<h2 id="how-to-have-nautilus-set-the-background">How to have nautilus set the background</h2>
+<p>If you are using nautilus as your file manager and have fbsetbg working, you can add a nautilus script that will give you a context menu item to set the background when you right-click on a graphic file. Here's how to do that.</p>
+<p>Open your favorite text editor, create a new file and add the below text to the new file:</p>
+<p><code> #!/bin/sh</code><br /><code> fbsetbg $@</code></p>
+<p>Save the file in ~/.gnome2/nautilus-scripts with a filename of &quot;Set Background&quot;. Make the file executable with &quot;chmod +x filename&quot;. Now, right-click on a .png, .gif or .jpg file in nautilus, choose Scripts -&gt; Set Background from the context menu and fbsetbg will set the background to that graphic.</p>
+<h2 id="backgrounds-on-multiple-displays">Backgrounds on Multiple Displays</h2>
+<p><img src="Note.png" title="fig:" />Don't use this method, it's here only for historical purpose. See the note <a href="#deprecated" title="wikilink">above</a> about rootCommand. Using fluxbox with multiple displays is very easy yet for a noobie setting the backgrounds on them can cause a little frustration.</p>
+<p>You can achieve different backgrounds by using the ~/.fluxbox/lastwallpaper and setting them manually the first time.<br />Once you have the background set you then can add</p>
+<p><code>session.screen0.rootCommand:    fbsetbg -l</code><br /><code>session.screen1.rootCommand:    fbsetbg -l</code></p>
+<p>To your ~/.fluxbox/init file to load them on startup.</p>
+<h2 id="set-a-color">Set a color</h2>
+<p>You may want to just set a color instead of a fancy wallpaper, in this case fbsetroot does the job.<br />The procedure is the same of fbsetbg, you run it once and the command will be stored in ~/.fluxbox/lastwallpaper.</p>
+<p>Plain gray:</p>
+<p><code>$ fbsetroot -solid grey15</code></p>
+<p>An horizontal gradient texture starting from grey to black (see the manpage for others texture strings):</p>
+<p><code>$ fbsetroot -gradient Horizontal -from grey15 -to black</code></p>
+<p>A tight and grey boxed pattern on black:</p>
+<p><code>$ fbsetroot -mod 11 11 -bg black -fg grey15</code></p>
+<p>Another variant:</p>
+<p><code>$ fbsetroot -mod 33 33 -bg black -fg grey15</code></p>
+<h2 id="disable-fbsetbg-fbsetroot">Disable fbsetbg / fbsetroot</h2>
+<p>If you want to disable the internal call because you use another way to set the background (like nitrogen for example), put</p>
+<p><code> background: unset</code></p>
+<p>in ~/.fluxbox/overlay</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Integration/Startup howtos" title="wikilink">Category:Integration/Startup howtos</a></p>
+</body>
+</html>

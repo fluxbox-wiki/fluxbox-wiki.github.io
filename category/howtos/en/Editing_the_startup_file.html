@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="editing-the-startup-file-to-launch-apps-you-want">Editing the startup file to launch apps you want</h2>
+<p>The default <strong>~/.fluxbox/startup</strong> file which is used by <strong>startfluxbox</strong> looks like the following: (If you don't have it, make sure you start fluxbox with <strong>startfluxbox</strong>)</p>
+<p><code>#!/bin/sh</code><br /><code>#</code><br /><code># fluxbox startup-script:</code><br /><code>#</code><br /><code># Lines starting with a '#' are ignored.</code><br /><br /><code># Change your keymap:</code><br /><code>xmodmap &quot;$HOME/.Xmodmap&quot;</code><br /><br /><code># Applications you want to run with fluxbox.</code><br /><code># MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN </code><em><code>&amp;</code></em><code> AT THE END.</code><br /><code>#</code><br /><code># unclutter -idle 2 &amp;</code><br /><code># wmnd &amp;</code><br /><code># wmsmixer -w &amp;</code><br /><code># idesk &amp;</code><br /><br /><code># And last but not least we start fluxbox.</code><br /><code># Because it is the last app you have to run it with </code><em><code>exec</code></em><code> before it.</code><br /><br /><code>exec fluxbox</code><br /><code># or if you want to keep a log:</code><br /><code># exec fluxbox -log &quot;$fluxdir/log&quot;</code></p>
+<p>Now just add any applications you want to run after the</p>
+<p><code># Applications you want to run with fluxbox.</code><br /><code># MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN </code><em><code>&amp;</code></em><code> AT THE END.</code></p>
+<p>and before</p>
+<p><code>exec fluxbox</code></p>
+<p>All applications should have <strong>&amp;</strong> after them, so if you want to run gaim and firefox, add following lines:</p>
+<p><code>gaim &amp;</code><br /><code>firefox &amp;</code></p>
+<p>and you're set. Remember that lines starting with # are comments.</p>
+<h2 id="how-do-i-start-an-application-after-fluxbox-starts">How do I start an application <strong>after</strong> fluxbox starts</h2>
+<p>This is pretty easy to do, and for some apps like gdesklets is often needed. The best thing to do is to edit your existing startup script and remove the line:</p>
+<p><code>exec fluxbox</code></p>
+<p>Then replace it with the following:</p>
+<p><code>fluxbox &amp;</code><br /><code>fbpid=$!</code><br /><br /><code>sleep 1</code><br /><code>{</code><br /><code>   # Applications you want to run after fluxbox has started</code><br /><code>   # MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN </code><em><code>&amp;</code></em><code> AT THE END.</code><br /><code>   # ipager &amp;</code><br /><code>   # gkrellm2 &amp;</code><br /><code>} &amp;</code><br /><code> </code><br /><code>wait $fbpid</code></p>
+<p>Probably the most easily-overlooked change here is the line <strong>fluxbox &amp;</strong>, especially the <strong>&amp;</strong> character. This will start fluxbox in the background and is required so that the other later programs will start! Note how we save fluxbox's pid in the shell variable <strong>$fbpid</strong> and then at the very end use <strong>wait</strong> to prevent us from exiting this script until fluxbox exits.</p>
+<p>Notice the <strong>sleep 1</strong>: this is where we tell our apps how long to wait before they start. If you need to wait 10 seconds before starting the app, fluxbox will already be running so setting <strong>sleep 10</strong> will not affect how long fluxbox itself takes to start; this will just mean there is a 10 second delay before your application starts. You could have multiple &quot;sleep&quot; sections, to start some applications later than others.</p>
+<h2 id="further-reading">Further Reading</h2>
+<p>When you start X, either via 'startx' or by your display manager, it runs <strong>startfluxbox</strong> which ends up running this <strong>~/.fluxbox/startup</strong> script. When this script reaches its end, the X server will shut down (or you will return to your login manager). This is why by default you must have <strong>exec fluxbox</strong> as the final line in your script, or in the latter case, the <strong>wait $fbpid</strong> line, both of which will suspend the script's execution until fluxbox exits. This ensures the X server keeps running for as long as fluxbox itself is running, which is usually what you want - Your session will be <em>really</em> short otherwise ;)</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Configuration howtos" title="wikilink">Category:Configuration howtos</a></p>
+</body>
+</html>

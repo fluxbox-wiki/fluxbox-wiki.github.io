@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>This is a question that is often asked in #fluxbox. This is pretty simple.</p>
+<p>You need to edit your <a href=".xinitrc" title="wikilink">.xinitrc</a> file. You can do this in one command by running:</p>
+<p><code> echo &quot;exec startfluxbox&quot; &gt; ~/.xinitrc</code></p>
+<p>If you want a consolekit session then you need:</p>
+<p><code> exec ck-launch-session dbus-launch --sh-syntax --exit-with-session startfluxbox</code></p>
+<p>Which ever method you use as long as <strong><a href="Howto_edit_the_startup_file" title="wikilink">startfluxbox</a></strong> is in your <strong><a href="$PATH" title="wikilink">$PATH</a></strong> then it should work just fine.</p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Integration/Startup howtos" title="wikilink">Category:Integration/Startup howtos</a></p>
+</body>
+</html>

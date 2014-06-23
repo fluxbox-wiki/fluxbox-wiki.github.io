@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="compiling-with-the-appropriate-options">Compiling with the Appropriate Options</h2>
+<p>Enabling debug output when compiling fluxbox will print a lot of messages to your stderr about what fluxbox is doing while it runs. This is not required to get a core dump, but you and/or the developers may find it useful if you provide it.</p>
+<p>If you have used a package to install fluxbox with instead of the source you will need to use the source, follow <a href="how to build fluxbox from source" title="wikilink">this</a> guide.</p>
+<p>Now what we need to do is move to the directory where our fluxbox source is. I use <a href="how to build fluxbox from source" title="wikilink">Git</a> fluxbox so what I will do is:</p>
+<p><code> $ cd ~/fluxbox</code></p>
+<p>Now that I am in my directory where the fluxbox src is I will issue the following command:</p>
+<p><code> CXXFLAGS=&quot;-g&quot; LDFLAGS=&quot;-g&quot; ./configure  --enable-debug --enable-imlib2 --enable-xinerama</code></p>
+<p>This will enable imlib2 for png support, debug symbols, and xinerama for my dual head support. The first part of the command enables debug information for gdb which is a debug tool many developers use. Once this command has finished running issue the following command to build fluxbox:</p>
+<p><code> $ make clean &amp;&amp; make</code></p>
+<p>Once this has finished you will need to gain super user privilege (aka root) to finish the install. I will be using sudo for this, you could use su - if you want:</p>
+<p><code> $ sudo make install</code></p>
+<p>Make sure you do not run `strip' on the created executable file, as this will remove all useful information from the core dump. Running the following command should show you the size of the fluxbox executable installed in your system. It should be about 10MB instead of about 1MB.</p>
+<p><code> $ ls -l `command -v fluxbox`</code></p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>All we need to do now is run this command before we start fluxbox:</p>
+<p><code> $ ulimit -c unlimited</code></p>
+<p>This command allows your shell environment to create the core dump and will allow it to be as large as it needs to be.</p>
+<p>Next just start fluxbox</p>
+<p><code> $ startx /path/to/fluxbox</code></p>
+<p>Now all you need to do is get your fluxbox to crash. Your core file will be in your $HOME directory and a file named &quot;core&quot; depending on your system.</p>
+<p>It may be more convenient to run fluxbox on a second x server. You can do this by running the following command</p>
+<p><code> $ startx /path/to/fluxbox -- :1</code></p>
+<p>When your fluxbox crashes, this will return you to your desktop instead of a tty.</p>
+<h2 id="getting-a-backtrace">Getting a Backtrace</h2>
+<p>If you're reading this, you've almost certainly been told to get a backtrace from a crash. Once you have a core file, you're almost ready to get the backtrace. If you don't have it, you will need to install `gdb'. Then, run the following command:</p>
+<p><code> $ gdb /path/to/fluxbox /path/to/core</code></p>
+<p>You will see a lot of output, followed by a prompt that looks like this:</p>
+<p><code> (gdb)</code></p>
+<p>Type `bt', press enter, and you will be presented with the backtrace. You can exit the program by typing `q', followed by enter.</p>
+<p><a href="Category:Debugging howtos" title="wikilink">Category:Debugging howtos</a> <a href="Category:English howtos" title="wikilink">Category:English howtos</a></p>
+</body>
+</html>

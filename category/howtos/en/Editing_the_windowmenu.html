@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="what-is-windowmenu">What is windowmenu</h2>
+<p>Windowmenu is the menu you get when you right click on a window's titlebar, press the menu-button on the titlebar, use the :WindowMenu keybind or even from the workspaces menu. By default it has options to maximize, minimize, shade etc windows, send them to different layers or workspaces and to rembember window's options.</p>
+<h2 id="preparations">Preparations</h2>
+<p>First, check that Fluxbox uses a custom windowmenu in <strong>~/.fluxbox/init</strong>:</p>
+<p><code>session.screen0.windowMenu: ~/.fluxbox/windowmenu</code></p>
+<h2 id="editing-the-menu">Editing the menu</h2>
+<p>Windowmenu is like the <a href="howto edit menu" title="wikilink">rootmenu</a>, except it has some special items that normal menu doesn't.</p>
+<p>The menu should start with <strong>[begin]</strong> and end with <strong>[end]</strong>.</p>
+<p>You can use the <a href="Editing_the_menu#What_really_is_possible.3F" title="wikilink">normal menuitems</a> or special ones from the list below. Note that (label) is optional, without it a default one will be used:</p>
+<p><code>[shade] (label)</code><br /><code>   This option shades/unshades the window, only titlebar will be left visible.</code><br /><code>   Same effect as double clicking on the title, pressing the shade button, using a </code><br /><code>   keybind or maybe even scrolling with the mousewheel.</code></p>
+<p><code>[close] (label)</code><br /><code>   Closes the window. Just like pressing the X on the corner.</code></p>
+<p><code>[stick] (label)</code><br /><code>   Toggles the window stickiness. When it is sticky, it is visible on all workspaces.</code></p>
+<p><code>[maximize] (label)</code><br /><code>   Maximizes and restores the window.</code></p>
+<p><code>[iconify] (label)</code><br /><code>   Minimizes (iconifies) the window.</code></p>
+<p><code>[raise] (label)</code><br /><code>   Raises the window to an upper layer.</code></p>
+<p><code>[lower] (label)</code><br /><code>   Lowers the window one layer.</code></p>
+<p><code>[settitledialog] (label)</code><br /><code>   Opens a dialog which can be used to set the window's title.</code></p>
+<p><code>[sendto] (label)</code><br /><code>   Shows the &quot;Send To...&quot; menu. Allows sending windows to other workspaces.</code></p>
+<p><code>[layer] (label)</code><br /><code>   Shows the &quot;Layer...&quot; menu, allowind user to change the window's layer easily.</code></p>
+<p><code>[alpha] (label)</code><br /><code>   A submenu containing various options for window transparency.</code></p>
+<p><code>[extramenus]</code><br /><code>   Shows the &quot;Remember...&quot; menu to remember window parameters through sessions.</code></p>
+<p><code>[separator]</code><br /><code>   Horizontal separator line, does nothing but sits there.</code></p>
+<p><code>[close] (label)</code><br /><code>   Closes the window gracefully, equivalent to the titlebar button.</code></p>
+<p><code>[kill] (label)</code><br /><code>   Kills the window's process, like xkill(1).</code></p>
+<p>After editing the menu, save it, and choose <strong>Reload config</strong> from Fluxbox' menu or you won't see your changes.</p>
+<h2 id="examples">Examples</h2>
+<p>This one should make a menu similar to the default one:</p>
+<p><code># ~/.fluxbox/windowmenu  -  a 'custom' windowmenu</code><br /><code>[begin]</code><br /><code>  [shade] (Shade)</code><br /><code>  [stick] (Stick)</code><br /><code>  [maximize]</code><br /><code>  [iconify] (Iconify)</code><br /><code>  [raise]</code><br /><code>  [lower]</code><br /><code>  [sendto]</code><br /><code>  [layer]</code><br /><code>  [extramenus]</code><br /><code>  [separator]</code><br /><code>  [close] (Close)</code><br /><code>[end]</code></p>
+<p>This one is a little different:</p>
+<p><code>[begin]</code><br /><code>  [exec] (terminal) {xterm}</code><br /><code>  [maximize] (maximize)</code><br /><code>  [iconify] (minimize)</code><br /><code>  [submenu] (advanced)</code><br /><code>    [layer] (layer)</code><br /><code>    [extramenus] (remember)</code><br /><code>    [sendto] (send to)</code><br /><code>  [end]</code><br /><code>  [separator]</code><br /><code>  [close] (close)</code><br /><code>[end]</code></p>
+<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Configuration howtos" title="wikilink">Category:Configuration howtos</a></p>
+</body>
+</html>
