@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="благодарности">Благодарности</h2>
+<p>Спасибо Mark Tiefenbruck (_markt/#fluxbox/Freenode), которого долго пинали, чтобы он наконец написал этот замечательный код. :)</p>
+<h2 id="что-такое-keymodes">Что такое KeyModes?</h2>
+<p>KeyModes или &quot;Пространства имен в файле keys&quot; - это способ временно заменить бинды, нажав комбинацию клавиш. Смысл их - соответствие другим WM, имеющим несколько <strong>режимов</strong> для перемещения и изменения размеров окон. На данный момент возможно назначить таким образом:</p>
+<p><code>Mod4 Shift Up        :ResizeVertical -2</code><br /><code>Mod4 Shift Down      :ResizeVertical +2</code><br /><code>Mod4 Shift Left      :ResizeHorizontal -2</code><br /><code>Mod4 Shift Right     :ResizeHorizontal +2</code><br /><code>Mod1 Shift Up        :ResizeVertical -10</code><br /><code>Mod1 Shift Down      :ResizeVertical +10</code><br /><code>Mod1 Shift Left      :ResizeHorizontal -10</code><br /><code>Mod1 Shift Right     :ResizeHorizontal +10</code></p>
+<p>Как видно, при таком подходе кнопки бысто кончаются :)</p>
+<h2 id="что-нужно-для-keymodes">Что нужно для KeyModes?</h2>
+<p>KeyModes появились в <strong>svn версии 4298</strong> и в версии 1.0rc.</p>
+<h2 id="как-настроить-keymodes">Как настроить KeyModes?</h2>
+<p>Синтаксис следующий:</p>
+<p><code>[NameSpace:] </code><mod><code> [</code><mod><code> </code><mod><code>] key [key key] :command </code><commanoptions></p>
+<p>Если не указано NameSpace, то по умолчанию используется <strong>default</strong>.</p>
+<p>Новой командой является <strong>KeyMode</strong>.</p>
+<p><code>:KeyMode </code><NameOfMode><code> [</code><mod><code> [mod mod ...] </code><key><code> [key key ...]]</code></p>
+<p>Последняя комбинация &quot;<mod>...<key>&quot; используется для возврата в &quot;обычный&quot; режим. Если не указана, то по умолчанию используется клавиша &quot;Escape&quot;.</p>
+<h2 id="пример">Пример</h2>
+<p>Для лучшего понимания преводится пример.</p>
+<h5 id="различные-комбинации-для-изменения-размера-окна-пока-не-нажат-escape">Различные комбинации для изменения размера окна, пока не нажат &quot;Escape&quot;</h5>
+<p><code>## ResizeMode</code><br /><code>Mod4 w Mod4 r               :KeyMode ResizeMode</code><br /><code>ResizeMode: None Up         :ResizeVertical -2</code><br /><code>ResizeMode: None Down       :ResizeVertical +2</code><br /><code>ResizeMode: None Left       :ResizeHorizontal -2</code><br /><code>ResizeMode: None Right      :ResizeHorizontal +2</code><br /><code>ResizeMode: Shift Up        :ResizeVertical -10</code><br /><code>ResizeMode: Shift Down      :ResizeVertical +10</code><br /><code>ResizeMode: Shift Left      :ResizeHorizontal -10</code><br /><code>ResizeMode: Shift Right     :ResizeHorizontal +10</code></p>
+<h5 id="различные-комбинации-для-передвижения-окон-пока-не-нажат-escape">Различные комбинации для передвижения окон, пока не нажат &quot;Escape&quot;</h5>
+<p><code>## MoveMode </code><br /><code>Mod4 w Mod4 m               :KeyMode MoveMode</code><br /><code>MoveMode: None Up           :MoveUp 2</code><br /><code>MoveMode: None Down         :MoveDown 2</code><br /><code>MoveMode: None Left         :MoveLeft 2</code><br /><code>MoveMode: None Right        :MoveRight 2</code><br /><code>MoveMode: Shift Up          :MoveUp 10</code><br /><code>MoveMode: Shift Down        :MoveDown 10</code><br /><code>MoveMode: Shift Left        :MoveLeft 10</code><br /><code>MoveMode: Shift Right       :MoveRight 10</code></p>
+<h5 id="отмена-всех-назначеных-комбинаций-для-использования-с-xnest">Отмена всех назначеных комбинаций (для использования с Xnest)</h5>
+<p><code>## XnestMode</code><br /><code>Mod1 x                      :KeyMode XnestMode</code></p>
+<h2 id="как-визуализировать-смену-режимов">Как визуализировать смену режимов?</h2>
+<p>Для визуализации смены режима можно использовать следующую строку:</p>
+<p><code>Mod4 w Mod4 r               :MacroCmd {Exec echo &quot;Resize Mode&quot; | osd_cat -d 1 -p bottom -A center } {KeyMode ResizeMode}</code></p>
+<p><a href="Ru:Howtos" title="wikilink">Вернуться на предыдущую страницу</a></p>
+<p><a href="Category:Русский / Russian howtos" title="wikilink">Category:Русский / Russian howtos</a></p>
+</body>
+</html>

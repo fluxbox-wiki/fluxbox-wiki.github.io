@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="instalação">Instalação</h2>
+<p>Para debian e distribuições baseadas em deb:</p>
+<p><code>apt-get install fbdesk</code></p>
+<p>No Fedora:</p>
+<p><code>yum install fbdesk</code></p>
+<p>No Gentoo</p>
+<p><code>emerge fbdesk</code></p>
+<p>Compilando o código fonte:</p>
+<p><code>./configure (--help   to check all options)</code><br /><code>make</code><br /><code>make check (optional)</code><br /><code>su -</code><br /><code>make install</code></p>
+<h2 id="dependencias">Dependencias</h2>
+<p>O fbdesk só precisa do libpng.</p>
+<h2 id="configuração">Configuração</h2>
+<p>Bem, o fbdesk mostra o ícone padrão em 64 64, nós podemos clicar com o botão direito no ícone e seguir para propriedades</p>
+<p><code>Icon menu</code><br /><code>Set command</code><br /><code>Set label</code><br /><code>_________</code><br /><code>New icon</code><br /><code>Delete icon</code><br /><code>_________</code><br /><code>Text alpha:  0</code><br /><code>Icon alpha:  255</code><br /><code>Reload config</code><br /><code>_________</code><br /><code>Exit FbDesk</code></p>
+<p>Normalmente o fbdesk detecta automaticamente o estilo que está sendo usado, mas nós podemos acelerar isso adicionando o seguinte comando para ~/.fluxbox/startup :</p>
+<p><code>fbdesk -rc ~/.fluxbox/init &amp;</code></p>
+<p>E nós podemos adicionar as seguintes configurações para ~/.fluxbox/init :</p>
+<p><code>fbdesk.iconFile:  </code><filename to icon file><code> (default: ~/.fluxbox/fbdesk.icons)</code><br /><code>fbdesk.font: </code><icon font name><code> (default: fixed)</code><br /><code>fbdesk.textColor:  </code><color for icon text><code>  (default: black)</code><br /><code>fbdesk.snapX: </code><x snap size><code> (default: 5)</code><br /><code>fbdesk.snapY: </code><y snap size><code> (default: 5)</code><br /><code>fbdesk.doubleClickInterval: </code><time interval between clicks for a double click><code> (default: 200)</code><br /><code>fbdesk.textPlacement: </code><placement for text around icon image><code>  (default: Bottom)</code><br /><code>fbdesk.iconAlpha: </code><number between 0 and 255 (opaque)><code> (default: 255)</code><br /><code>fbdesk.textAlpha: </code><number between 0 and 255 (opaque)><code> (default: 0)</code><br /><code># Possible values for text placement: Left, Right, Top and Bottom</code><br /><code>session.styleFile: </code></p>
+<style file for menu>
+<p>(default: none)</p>
+<p>De acordo com o valor padrão, as configurações do arquivo ~/.fluxbox/fbdesk.icons são:</p>
+<p><code>[Deskop Entry]</code><br /><code>Icon=the image filename</code><br /><code>Name=the icon label</code><br /><code>Exec=what it executes</code><br /><code>Pos= horiz vert  # position of the icon</code><br /><code>[end]</code></p>
+<p>Bem, agora nós precisamos de ícones, no site do gentoo tem uma variedade deles:</p>
+<p><a href="http://www.gentoo.org/images/icons/icons.tar.bz2"><code>http://www.gentoo.org/images/icons/icons.tar.bz2</code></a><br /><a href="http://www.ionbox.org/files/gentoo-bubble-icons.tgz"><code>http://www.ionbox.org/files/gentoo-bubble-icons.tgz</code></a></p>
+<p>Dependendo dos nossos aplicações preferidas nós também podemos dar uma olhada na seção de temas de ícones:</p>
+<p><a href="http://gnome-look.org/"><code>http://gnome-look.org/</code></a><br /><a href="http://kde-look.org/"><code>http://kde-look.org/</code></a></p>
+<p>Nós podemos descompacta-los ou em ~/.fluxbox/icons ou /usr/share/pixmaps ou /usr/share/icons</p>
+<h2 id="criando-ícones-e-ações-associadas">Criando ícones e ações associadas</h2>
+<p>Aqui vai um exemplo:</p>
+<p><code>[Desktop Entry]</code><br /><code>Name=DVD</code><br /><code>Exec=/bin/mount /media/cdrom &amp;&amp; /usr/bin/xfe /media/cdrom &amp;&amp; /usr/bin/eject /media/cdrom</code><br /><code>Icon=/usr/share/pixmaps/gentoo/l33t_DEV_dvd_umount.png</code><br /><code>Pos= 20 20</code><br /><code>[end]</code><br /><br /><code>[Desktop Entry]</code><br /><code>Name=xterm</code><br /><code>Exec=/usr/bin/xterm</code><br /><code>Icon=/usr/share/pixmaps/gentoo/l33t_TER_Eterm.png</code><br /><code>Pos= 20 110</code><br /><code>[end]</code></p>
+<p>Essa posição foi dada em 20 horizontal e 20 vertical, nós podemos adicionar novas entradas horizontais até não ter mais espaço disponível, e ir incrementando o valor vertical para 90 pixels. Se precisarmos criar outra coluna de ícones, nós começamos a adicionar entradas de Pos= 110 20; 110 110 e por ai vai.</p>
+<p>É uma boa idéia fazer um backup do arquivo ~/.fluxbox/fbdesk.icons, caso por acidente nós mudarmos um ícone de lugar, fbdesk vai lembrar sua posição, salvando isso em um arquivo.</p>
+<p><a href="Category: Português-Br_/_Portuguese-Br howtos" title="wikilink">Category: Português-Br_/_Portuguese-Br howtos</a> <a href="Category: Variados" title="wikilink">Category: Variados</a></p>
+</body>
+</html>

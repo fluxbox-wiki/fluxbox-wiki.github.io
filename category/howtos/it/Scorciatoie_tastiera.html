@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Fluxbox integra un &quot;keygrabber&quot;, un tool che nasce dall'evoluzione di bbkeys. Il keygrabber si occupa di riconoscere delle sequenze di caratteri preimpostate e di eseguire delle operazioni associate alla sequenza digitata. Anche se le mio parole possono sembrarvi un pò criptiche ve le chiarisco subito con un esempio. Avviate fluxbox e provate a digitare ALT + F1, quindi digitate ALT + F2. Avete visto cosa c'è scritto nella toolbar dopo aver digitato la seconda sequenza? Si, siete passati al secondo workspace.</p>
+<p>__TOC__</p>
+<h1 id="dove-sono-memorizzate-le-combinazioni">Dove sono memorizzate le &quot;combinazioni&quot; ?</h1>
+<p>Il file nel quale sono memorizzate tutte le associazioni [combinazione di caratteri] - [operazione] (aka Key Bindings) sono salvate nel file ~/.fluxbox/keys. Di default questo file contiene quasi unicamente i key bindings per lo switch fra le differenti aree di lavoro e l'aspetto che ha è approssimativamente il seguente:</p>
+<p><code>OnDesktop Mouse1 :HideMenus </code><br /><code>OnDesktop Mouse2 :WorkspaceMenu</code><br /><code>OnDesktop Mouse3 :RootMenu</code><br /><code>OnDesktop Mouse4 :NextWorkspace</code><br /><code>OnDesktop Mouse5 :PrevWorkspace</code><br /><code>Mod1 Tab :NextWindow</code><br /><code>Mod1 Shift Tab :PrevWindow</code><br /><code>Mod1 F1 :Workspace 1</code><br /><code>Mod1 F2 :Workspace 2</code><br /><code>Mod1 F3 :Workspace 3</code><br /><code>Mod1 F4 :Workspace 4</code><br /><code>Mod1 F5 :Workspace 5</code><br /><code>Mod1 F6 :Workspace 6</code><br /><code>Mod1 F7 :Workspace 7</code><br /><code>Mod1 F8 :Workspace 8</code><br /><code>Mod1 F9 :Workspace 9</code><br /><code>Mod1 F10 :Workspace 10</code><br /><code>Mod1 F11 :Workspace 11</code><br /><code>Mod1 F12 :Workspace 12</code></p>
+<p>Come si vede ogni riga contiene una &quot;espressione&quot; che ha una struttura molto semplice: la parte della riga dopo i &quot;:&quot; è il comando da eseguire mentre la parte prima dei &quot;:&quot; è la sequenza di caratteri associata al comando.</p>
+<h1 id="i-nomi-dei-pulsanti">I nomi dei pulsanti</h1>
+<p>I nomi che X11 associa ai pulsanti si possono visualizzare utilizzando l'utility xev. Digitando xev nel terminale si apre una finestra bianca. Cliccando con il mouse sulla finestra e successivamente digitando un pulsante nel terminale vengono visualizzate una serie di informazioni tra le quali c'è anche il nome del pulsante. Ad esempio digitando il pulsante &quot;g&quot; nell'output di xev c'è un blocco che ha la seguente forma: (keysym 0x67, g). In questo blocco è racchiuso il nome del pulsante, che nell'esempio è &quot;g&quot;. Nella tabella seguente sono riassunti i nomi associati ai &quot;pulsanti speciali&quot;.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p>Key</p></td>
+<td style="text-align: left;"><p>Nome</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>Control, CTRL, Strg</p></td>
+<td style="text-align: left;"><p>Control</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Alt</p></td>
+<td style="text-align: left;"><p>Mod1</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>Super, Meta, Mela, Tasto windows</p></td>
+<td style="text-align: left;"><p>Mod4</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Shift</p></td>
+<td style="text-align: left;"><p>Shift</p></td>
+</tr>
+</tbody>
+</table>
+<h1 id="azioni">Azioni</h1>
+<p>Fluxbox mette a disposizione un numero elevato di azioni che possono essere eseguite da scorciatoie da tastiera. Le azioni non sono case-sensitive, tuttavia sarebbe buona regola rispettare l'ortografia riportata in tabella per semplificare la lettura e la modifica del file di configurazione.</p>
+<p>(Attenzione! L'ultimo carattere prima dell'azione deve essere &quot;:&quot;. Non inserite spazi tra &quot;:&quot; e l'azione.)</p>
+<p>La sintassi delle azioni è riportata nelle seguenti tabelle.</p>
+<h2 id="navigazione">Navigazione</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p>Azione</p></td>
+<td style="text-align: left;"><p>Risultato</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>Workspace #</p></td>
+<td style="text-align: left;"><p>Passa al Workspace numero # (#è un intero !)</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>NextWindow</p></td>
+<td style="text-align: left;"><p>Passa alla finestra successiva (Corrisponde all'operazione ALT+TAB !)</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>PrevWindow</p></td>
+<td style="text-align: left;"><p>Passa alla finestra precedente (Corrisponde ad ALT+TAB &quot;al contrario&quot;)</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>NextWorkspace</p></td>
+<td style="text-align: left;"><p>Passa al workspace successivo</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>PrevWorkspace</p></td>
+<td style="text-align: left;"><p>Passa al workspace precedente</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>LeftWorkspace</p></td>
+<td style="text-align: left;"><p>Equivale a PrevWorkspace</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>RightWorkspace</p></td>
+<td style="text-align: left;"><p>Equivale a NextWorkspace</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>NexTab/PrevTab</p></td>
+<td style="text-align: left;"><p>Passa alla Tab successiva/precedente del gruppo di finestre corrente</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>NextGroup/PrevGroup</p></td>
+<td style="text-align: left;"><p>Passa al precedente/successivo gruppo di finestre</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="operazioni-sulle-finestre">Operazioni sulle finestre</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p>Azione</p></td>
+<td style="text-align: left;"><p>Risultato</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>KillWindow</p></td>
+<td style="text-align: left;"><p>Chiude la finestra corrente</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Minimize</p></td>
+<td style="text-align: left;"><p>Riduce la finestra corrente ad icona</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>ShadeWindow</p></td>
+<td style="text-align: left;"><p>Riduce/ripristina la finestra attiva nello/dallo stato &quot;sahde&quot; (Ovvero&quot;comprime&quot; la finestra nella sua bassa del titolo)</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>StickWindow</p></td>
+<td style="text-align: left;"><p>Riduce/ripristina la finestra attiva nello/dallo stato &quot;stick&quot;</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>ToggleDecor</p></td>
+<td style="text-align: left;"><p>Mostra/nasconde il bordo e la barra del titolo della finestra attiva</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Raise/Lower</p></td>
+<td style="text-align: left;"><p>Sposta la finestra sopra/sotto tutte le altre</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="sizing-delle-finestre">Sizing delle Finestre</h2>
+<figure>
+<img src="ArrangeWindows.png" title="Risultato dell&#39;azione &quot;ArrangeWindows&quot;" alt="Risultato dell&#39;azione &quot;ArrangeWindows&quot;" /><figcaption>Risultato dell'azione &quot;ArrangeWindows&quot;</figcaption>
+</figure>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p>Azione</p></td>
+<td style="text-align: left;"><p>Risultato</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>MaximizeHorizontal</p></td>
+<td style="text-align: left;"><p>Massimizza la dimensione orizzontale della finestra attiva</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>MaximizeVertical</p></td>
+<td style="text-align: left;"><p>Massimizza la dimensione verticale della finestra attiva</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>MaximizeWindow</p></td>
+<td style="text-align: left;"><p>Massimizza le dimensioni della finestra attiva</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Resize Dx Dy</p></td>
+<td style="text-align: left;"><p>Ridimensiona la finestra attiva di un assegnato Dx, Dy (Delta). Il comportamento di questa azione dipende dall'applicazione attiva</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>ResizeTo X Y</p></td>
+<td style="text-align: left;"><p>Ridimensiona la finestra attiva alle dimensioni X e Y assegnate. Il comportamento di questa azione dipende dall'applicazione attiva</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>ResizeHorizontal Dx</p></td>
+<td style="text-align: left;"><p>Come resize, solamente che agisce unicamente sulla dimensione orizzontale della finestra attiva</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>ResizeVertical Dy</p></td>
+<td style="text-align: left;"><p>Come resize, solamente che agisce unicamente sulla dimensione verticale della finestra attiva</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>ShowDesktop</p></td>
+<td style="text-align: left;"><p>Riduce ad icona tutte le finestre</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>ArrangeWindows</p></td>
+<td style="text-align: left;"><p>Affianca tutte le finestre (Vedi l'immagine)</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="spostamento-finestre">Spostamento Finestre</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p>Azione</p></td>
+<td style="text-align: left;"><p>Risultato</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>SendToWorkspace #</p></td>
+<td style="text-align: left;"><p>Invia la finestra al workspace numero #</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Move Dx Dy</p></td>
+<td style="text-align: left;"><p>Sposta la finestra di Dx, Dy</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>MoveLeft D</p></td>
+<td style="text-align: left;"><p>Sposta la finestra a sinistra di D</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>MoveRight D</p></td>
+<td style="text-align: left;"><p>Sposta la finestra a destra di D</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>MoveUp D</p></td>
+<td style="text-align: left;"><p>Sposta la finestra in alto di D</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>MoveDown D</p></td>
+<td style="text-align: left;"><p>Sposta la finestra in basso di D</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="misc">Misc</h2>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p>Azione</p></td>
+<td style="text-align: left;"><p>Risultato</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>ExecCommand <cmd></p></td>
+<td style="text-align: left;"><p>Esegue il comando <cmd></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>RootMenu</p></td>
+<td style="text-align: left;"><p>Apre il menu principale di fluxbox</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>WorkSpaceMenu</p></td>
+<td style="text-align: left;"><p>Apre il menu dei workspace</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>Restart</p></td>
+<td style="text-align: left;"><p>Riavvia fluxbox</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>Reconfigure</p></td>
+<td style="text-align: left;"><p>Ricarica i files di configurazione di fluxbox</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p>SetStyle</p></td>
+<td style="text-align: left;"><p>Carica il di stile specificato</p></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p>Quit</p></td>
+<td style="text-align: left;"><p>Chiude fluxbox</p></td>
+</tr>
+</tbody>
+</table>
+<h1 id="collegamenti-esterni">Collegamenti esterni</h1>
+<p><a href="http://fluxbox.sourceforge.net/docbook/en/html/fluxbox-man.html#lbAU">man fluxbox</a></p>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>

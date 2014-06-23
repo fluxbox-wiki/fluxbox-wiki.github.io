@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><a href="http://voins.program.ru/wdm/">WDM</a> es un pequeño y liviano reemplazo para XDM. Si estas buscando por un bonito y simple reemplazo para XDM es muy recomendable.</p>
+<p>Es muy facil de agregar fluxbox (o cualquier otro window manager) a su lista en el momento de loguearse.</p>
+<p>Asumo que quie WDM está instalado y trabajando adecuadamente. Si no deberíamos hacer eso primero y luego volver.</p>
+<p>Primeramente se necesita editar dos de los archivos de configuración de WDM. El primero es <strong>Xclients</strong> y el segundo es <strong>wdm-config</strong>. En gentoo se encuentran localizados en <strong>/etc/X11/wdm</strong>.</p>
+<p>__TOC__</p>
+<h2 id="editando-el-archivo-xclients">Editando el archivo <strong>Xclients</strong></h2>
+<p>En el archivo <strong>Xclients</strong> necesitaremos agregar un pequeño script que verficará si existe el ejecutable de fluxbox y que sea ejecutable.</p>
+<p>Abrimos <strong>Xclients</strong> con nuestro editor favorito. La parte del script que queremos cambiar empieza así:</p>
+<p><code> # Primero chequea las preferencias del usuario</code><br /><code> if [ -f $HOME/.wm_style ] ; then</code><br /><code>    WMSTYLE=`cat $HOME/.wm_style`</code><br /><code>    case &quot;$WMSTYLE&quot; in</code></p>
+<p>y está lleno de una cantidad de ítems que lucen mas o menos así</p>
+<p><code> wmaker*|WindowMaker*)</code><br /><code>   # startup WindowMaker</code><br /><code>   WMAKER_PATH=/usr/bin/wmaker</code><br /><code>   if ! test -x $WMAKER_PATH ; then</code><br /><code>      FindInPath $WMAKER_PATH</code><br /><code>      if test -n &quot;$result&quot; -a -x &quot;$result&quot;; then</code><br /><code>          WMAKER_PATH=&quot;$result&quot;;</code><br /><code>      fi</code><br /><code>   fi</code><br /><code>   if test -x $WMAKER_PATH ; then</code><br /><code>      echo Starting WindowMaker &gt;$HOME/.xwm.msgs</code><br /><code>      env &gt; &quot;$HOME&quot;/Xrootenv.0</code><br /><code>      exec $WMAKER_PATH &gt;&gt;$HOME/.xwm.msgs 2&gt;&amp;1</code><br /><code>   fi</code><br /><code>   ;;</code><br /><code>   esac</code><br /><code> fi</code></p>
+<p>necesitamos agregar una porción de código para decirle que chequee por el ejecutable de fluxbox, así antes del final del código anterior agregamos las siguientes líneas:</p>
+<p><code> fluxbox*|FluxBox)</code><br /><code> # startup fluxbox</code><br /><code> FLUXBOX_PATH=/usr/bin/startfluxbox</code><br /><code> if ! test -x $FLUXBOX_PATH ; then</code><br /><code>   FindInPath $FLUXBOX_PATH</code><br /><code>   if test -n &quot;$result&quot; -a -x &quot;$result&quot;; then</code><br /><code>     $FLUXBOX_PATH=&quot;$result&quot;;</code><br /><code>   fi</code><br /><code> fi</code><br /><code> if [ -x $FLUXBOX_PATH ] ; then</code><br /><code>   echo Starting FluxBox &gt;$HOME/.xwm.msgs</code><br /><code>   exec $FLUXBOX_PATH &gt;&gt;$HOME/.xwm.msgs 2&gt;&amp;1</code><br /><code> fi</code><br /><code> ;;</code></p>
+<h2 id="editando-el-archivo-wdm-config">Editando el archivo <strong>wdm-config</strong></h2>
+<p>Después de que hayamos hecho esto, necesitaremos agregar fluxbox a wdm-config. Abrimos este archivo con nuestro editor favorito y buscamos la siguiente línea:</p>
+<p><code>  DisplayManager*wdmWm:           WindowMaker:None</code></p>
+<p>y la cambiamos para que se vea así</p>
+<p><code>  DisplayManager*wdmWm:  WindowMaker:FluxBox</code></p>
+<p>Y eso es todo. Reiniciamos WDM y listo, FluxBox aparece en el menu.</p>
+<p>A disfrutarlo</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Inicio" title="wikilink">Category:Inicio</a></p>
+</body>
+</html>

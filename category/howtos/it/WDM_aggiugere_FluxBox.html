@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<p>WDM è un piccolo, e leggero sostituto di XDM. Se stai cercando qualcosa di semplice da sostituire a XDM è altamente consigliato.</p>
+<p>E' abbastanza semplice da aggiungere alla lista delle sessioni Fluxbox (o qualunque altro gestore desktop)</p>
+<p>Dovrete aver installato WDM e correttamente funzionante. In caso contrario installate WDM e tornare indietro.</p>
+<p>Per prima cosa modificare i due files di configurazione per WDM. Il primo è XClients e il secondo è WDM-Config. Che si trovano in /etc/X11/wdm</p>
+<h3 id="modificare-xclients">Modificare XClients</h3>
+<p>Nel file XClients bisogna aggiungere un po di script che controllerà se fluxbox esiste ed è eseguibile. Aprire con il vostro editor preferito il file XClients. La parte dello script che dovrete cambiare è questa:</p>
+<p><code> # First thing - check the user preferences</code><br /><code> if [ -f $HOME/.wm_style ] ; then</code><br /><code>    WMSTYLE=`cat $HOME/.wm_style`</code><br /><code>    case &quot;$WMSTYLE&quot; in</code></p>
+<p>Ed è compilata con un gruppo di articoli che assomigliano a questo:</p>
+<p><code>    wmaker*|WindowMaker*)</code><br /><code>   # startup WindowMaker</code><br /><code>   WMAKER_PATH=/usr/bin/wmaker</code><br /><code>   if ! test -x $WMAKER_PATH ; then</code><br /><code>      FindInPath $WMAKER_PATH</code><br /><code>      if test -n &quot;$result&quot; -a -x &quot;$result&quot;; then</code><br /><code>          WMAKER_PATH=&quot;$result&quot;;</code><br /><code>      fi</code><br /><code>   fi</code><br /><code>   if test -x $WMAKER_PATH ; then</code><br /><code>      echo Starting WindowMaker &gt;$HOME/.xwm.msgs</code><br /><code>      env &gt; &quot;$HOME&quot;/Xrootenv.0</code><br /><code>      exec $WMAKER_PATH &gt;&gt;$HOME/.xwm.msgs 2&gt;&amp;1</code><br /><code>   fi</code><br /><code>   ;;</code><br /><code>   esac</code><br /><code> fi</code></p>
+<p>E abbiamo bisogno di aggiungere un pezzo di codice per controllare se fluxbox è eseguibile. Quindi, prima di salvare il tutto aggiungete queste righe:</p>
+<p><code>  fluxbox*|FluxBox)</code><br /><code> # startup fluxbox</code><br /><code> FLUXBOX_PATH=/usr/bin/startfluxbox</code><br /><code> if ! test -x $FLUXBOX_PATH ; then</code><br /><code>   FindInPath $FLUXBOX_PATH</code><br /><code>   if test -n &quot;$result&quot; -a -x &quot;$result&quot;; then</code><br /><code>     $FLUXBOX_PATH=&quot;$result&quot;;</code><br /><code>   fi</code><br /><code> fi</code><br /><code> if [ -x $FLUXBOX_PATH ] ; then</code><br /><code>   echo Starting FluxBox &gt;$HOME/.xwm.msgs</code><br /><code>   exec $FLUXBOX_PATH &gt;&gt;$HOME/.xwm.msgs 2&gt;&amp;1</code><br /><code> fi</code><br /><code> ;;</code></p>
+<h3 id="modifica-del-file-wdm-config">Modifica del file WDM-config</h3>
+<p>Dopo aver modificato XClients, avremo bisogno di aggiungere fluxbox al file WDM-Config. Aprire il file e cercare una riga come questa:</p>
+<p><code>DisplayManager*wdmWm:           WindowMaker:None</code></p>
+<p>e cambiarla in:</p>
+<p><code>DisplayManager*wdmWm:  WindowMaker:FluxBox</code></p>
+<p>Salvate tutto, riavviate WDM e fluxbox apparirà nel menù</p>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>

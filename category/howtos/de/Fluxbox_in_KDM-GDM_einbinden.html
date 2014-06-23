@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="fluxbox-in-kdmgdm-einbinden">Fluxbox in KDM/GDM einbinden</h2>
+<p>Sollte das Paket, mit dem Fluxbox installiert wurde, nicht automatisch einen Eintrag in KDM/GDM (den graphischen Loginscreens von KDE/Gnome) eingerichtet haben muss man dies von Hand erledigen</p>
+<h2 id="der-normale-weg">Der normale Weg</h2>
+<p>Die meisten Distributionen verwenden heute ein gemeinsames Verzeichnis mit .desktop Dateien für die verschiedenen X Sitzungen.</p>
+<p>Diese Dateien entsprechen einem freedesktop Standard und sollten inzwischen von GDM und KDM problemlos interpretiert werden können.</p>
+<p>Dieser Ordner befindet sich nicht immer an der selben Stelle, bei vielen Distributionen ist es jedoch</p>
+<p>/usr/share/xsessions/</p>
+<p>In diesem Ordner erstellen wir die Textdatei fluxbox.desktop</p>
+<p>Mit folgendem Inhalt:</p>
+<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configureable low resource X11 Window Manager</code><br /><code> Exec=</code><strong><code>/usr/local/bin/startfluxbox</code></strong><br /><code> Terminal=False</code><br /><code> TryExec=</code><strong><code>/usr/local/bin/startfluxbox</code></strong><br /><code> Type=Application</code></p>
+<p>Wichtig: Der Pfad /usr/local/bin wird eigentlich nur von einem git-Fluxbox verwendet, die meisten Distributionen installieren fluxbox nach /usr/bin. Ergo muss man das anpassen.</p>
+<p>Die genaue Position von startfluxbox liefern die Befehle</p>
+<p><code>which startfluxbox </code></p>
+<p>respektive</p>
+<p><code>whereis startfluxbox</code></p>
+<p><a href="Category:Deutsch / German howtos" title="wikilink">Category:Deutsch / German howtos</a> <a href="Category:Integration / Startup" title="wikilink">Category:Integration / Startup</a></p>
+</body>
+</html>

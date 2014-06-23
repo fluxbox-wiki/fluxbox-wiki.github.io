@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="modifier-le-fichier-de-démarrage-pour-lancer-ses-applications-à-louverture-de-fluxbox">Modifier le fichier de démarrage pour lancer ses applications à l'ouverture de Fluxbox</h2>
+<p>Le fichier <strong>~/.fluxbox/startup</strong> utilisé par la commande<strong>startfluxbox</strong> est composé comme suit: (Si le fichier est inexistant, assurez-vous de démarrer Fluxbox avec la commande <strong>startfluxbox</strong>)</p>
+<ol>
+<li>fluxbox startup-script:</li>
+</ol>
+<p><code>#</code><br /><code># Lines starting with a '#' are ignored.</code><br /><br /><code># You can set your favourite wallpaper here if you don't want</code><br /><code># to do it from your style.</code><br /><code>#</code><br /><code># fbsetbg -f ~/pictures/wallpaper.png</code><br /><code>#</code><br /><code># This sets a black background</code><br /><br /><code>/usr/local/bin/fbsetroot -solid black</code><br /><br /><code># This shows the fluxbox-splash-screen</code><br /><code># fbsetbg -C /usr/local/share/fluxbox/splash.jpg</code><br /><br /><code># Other examples. Check man xset for details.</code><br /><code>#</code><br /><code># Turn off beeps:</code><br /><code># xset -b</code><br /><code>#</code><br /><code># Increase the keyboard repeat-rate:</code><br /><code># xset r rate 195 35</code><br /><code>#</code><br /><code># Your own fonts-dir:</code><br /><code># xset +fp $HOME/.font</code><br /><code>#</code><br /><code># Your favourite mouse cursor:</code><br /><code># xsetroot -cursor_name right_ptr</code><br /><code># </code><br /><code># Change your keymap:</code><br /><code># xmodmap ~/.Xmodmap</code><br /><br /><br /><br /><code># Applications you want to run with fluxbox.</code><br /><code># MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN </code><em><code>&amp;</code></em><code> AT THE END.</code><br /><code>#</code><br /><code># unclutter -idle 2 &amp;</code><br /><code># wmnd &amp;</code><br /><code># wmsmixer -w &amp;</code><br /><code># idesk &amp;</code><br /><br /><code># And last but not least we start fluxbox.</code><br /><code># Because it is the last app you have to run it with </code><em><code>exec</code></em><code> before it.</code><br /><br /><code>exec /usr/local/bin/fluxbox</code><br /><code># or if you want to keep a log:</code><br /><code># exec /usr/local/bin/fluxbox -log ~/.fluxbox/log</code></p>
+<p>Pour lancer des applications au démarrage de Fluxbox, il suffit de les ajouter après ce bloc :</p>
+<p><code># Applications you want to run with fluxbox.</code><br /><code># MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN </code><em><code>&amp;</code></em><code> AT THE END.</code></p>
+<p>et AVANT cette ligne :</p>
+<p><code>exec /usr/local/bin/fluxbox</code></p>
+<p>Il faut mettre le symbole <strong>&amp;</strong> après pour que cela fonctionne. Donc, par exemple, si vous voulez lancer gaim et firefox, ajoutez les lignes suivantes:</p>
+<p><code>gaim &amp;</code><br /><code>firefox &amp;</code></p>
+<p>Et voila !. (Rappel: les lignes qui commencent par # ne sont pas prisent en compte).</p>
+<h2 id="comment-démarrer-une-application-apres-que-fluxbox-ai-lui-même-démarré">Comment démarrer une application <strong>APRES</strong> que Fluxbox ai lui-même démarré ?</h2>
+<p>C'est assez simple à faire, et pour certaines applications comme gdesklets c'est parfois obligatoire.</p>
+<p><code>La meilleur chose à faire c'est de créer un fichier de démarrage personnalisé, en se basant sur une copie du fichier actuel. Dans cet exemple, nous allons utiliser un fichier que j'ai modifié et qui a été fait par </code><a href="http://darkshed.net/"><code>akira</code></a><code> à l'origine. </code><br /><code> #!/bin/sh</code><br /><code> # fluxbox startup-script: </code><br /><code> #</code><br /><code> </code><br /><code> # repeat rate</code><br /><code> xset r rate 195 35</code><br /><code> xmodmap ~/.Xmodmap</code><br /><code> # hides the mousepointer when not in use</code><br /><code> unclutter -idle 2 -jitter 10 -root &amp;</code><br /><code> # keeps the different cut-buffers in sync</code><br /><code> autocutsel  &amp;</code><br /><code> </code><br /><code> exec fluxbox &amp;</code><br /><code> fbpid=$!</code><br /><code> </code><br /><code> sleep 1 </code><br /><code> { </code><br /><code>    xsetroot -cursor_name left_ptr -fg white -bg black &amp;</code><br /><code>    ipager &amp;</code><br /><code>    gkrellm2 &amp;</code><br /><code> } &amp;</code><br /><code> </code><br /><code> wait $fbpid</code></p>
+<p>Remarquez l'utilisation de <strong>sleep 1</strong> pour forcer notre application d'attendre un peu avant de démarrer.</p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

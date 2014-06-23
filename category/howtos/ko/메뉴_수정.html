@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h3 id="텍스트-에디터-이해하기">텍스트 에디터 이해하기</h3>
+<p>플럭스박스 메뉴 문법은 이해하기 매우 쉽고 메뉴 수정을 하기 위해 알아야 <strong>할</strong> 것도 단지 몇 개다.</p>
+<p>첫 번째가 가장 기본 문법이다:</p>
+<p><code> [begin]</code><br /><code> [exec] (term) {xterm} </code></usr/share/pixmaps/terminal.png><br /><code> [reconfig] (Reload config)</code><br /><code> [exit] (Exit)</code><br /><code> [end]</code></p>
+<p>이것은 아주 단순한 메뉴를 줄 것이다. xterm, 설정 다시 읽어들이기, 재시작 그리고 종료. 플럭스박스가 IMLIB2를 지원하게 컴파일됐고 terminal.png 아이콘이 /usr/share/pixmaps 폴더에 있다면 메뉴에서 또한 아이콘을 볼 것이다.</p>
+<h3 id="메뉴에-아이콘을-넣을-수-있게-컴파일되었는지-어떻게-아나">메뉴에 아이콘을 넣을 수 있게 컴파일되었는지 어떻게 아나</h3>
+<p>이 명령을 실행하라</p>
+<p><code> fluxbox -i</code></p>
+<p>명령의 출력 결과가 플럭스박스에서 함께 컴파일된 것들의 목록이다, 목록에</p>
+<p><code>-IMLIB2</code><br /><code>나</code><br /><code>-XPM</code></p>
+<p>이 있다면 이것을 지원하지 않게 컴파일되었다는 뜻이다 (<strong>-</strong>에 주목할 것). 플럭스박스에서 아이콘 지원을 위해 필요한 것들은: IMLIB2 (png 아이콘을 쓸 수 있게 한다) 그리고 XPM (xpm 아이콘을 쓸 수 있게 한다)이다. 메뉴뿐만 아니라 스타일에서도 마찬가지. <strong>XPM</strong> (- 없이)만 보인다면, <strong>.xpm</strong> 아이콘을 쓸 수 있고, <strong>IMLIB2</strong>가 있다면 <strong>.png</strong> (혹은 .jpg 등등, 물론 .xpm도)를 쓸 수 있다.</p>
+<p>아이콘 경로는 절대 경로여야 한다, 이렇게 <strong></home/joeuser/.fluxbox/pixmaps/aterm.png></strong></p>
+<h3 id="실제로-사용할-수-있는-것들은">실제로 사용할 수 있는 것들은?</h3>
+<p>위 예시처럼, 문법은 거의가 이런 식이다</p>
+<p><code>[tag] (제목 또는 파일명) {명령 또는 파일명} </code><아이콘 파일명></p>
+<p>지원되는 태그들이다 (man 페이지에서 발췌):</p>
+<p><code>[begin] (label)</code><br /><code>   This tells Fluxbox to start parsing the menu file. This tag is required</code><br /><code>   for Fluxbox to read your menu file. If it cannot find it, the system</code><br /><code>   default menu is used in it's place.</code></p>
+<p><code>[end]</code><br /><code>   This tells Fluxbox that it is at the end of a menu. This can either be a </code><br /><code>   submenu or the main root menu. There must be at least one of these tags in </code><br /><code>   our menu to correspond to the required [begin] tag.</code></p>
+<p><code>[exec] (label) {command}</code><br /><code>   Inserts a command item into the menu. When you select the menu item from </code><br /><code>   the menu, Fluxbox runs command.</code></p>
+<p><code>[exit] (label)</code><br /><code>   Inserts an item that shuts down and exits Fluxbox. Any open windows are </code><br /><code>   reparented to the root window before Fluxbox exits.</code></p>
+<p><code>[include] (file-or-directory-name)</code><br /><code>   Parses the file specified by filename inline with the current menu. The </code><br /><code>   filename can be the full path to a file or it can begin with ~/, which </code><br /><code>   will be expanded into your home directory. If the path is a directory, </code><br /><code>   then all files in the directory are included.</code></p>
+<p><code>[nop] (label)</code><br /><code>   Insert a non-operational item into the current menu. This can be used to </code><br /><code>   help format the menu into blocks or sections if so desired. This tag does </code><br /><code>   support a label, but one is not required in which case a blank item will </code><br /><code>   be used instead.</code></p>
+<p><code>[separator]</code><br /><code>   This will create a nice separation line. Useful for splitting up sections </code><br /><code>   in a pretty way.</code></p>
+<p><code>[style] (label) {filename}</code><br /><code>   This tells Fluxbox to insert an item that, when selected, reads style file</code><br /><code>   named filename and apply the new textures, colors and fonts to the current</code><br /><code>   running session.</code></p>
+<p><code>[stylesmenu] (directory)</code><br /><code>   Reads all filenames from the specified directory, assuming that they are </code><br /><code>   all valid style files, and creates menu items in the current menu for </code><br /><code>   every filename, that, when selected by the user will apply the selected </code><br /><code>   style file to the current session. The labels that are created in the menu</code><br /><code>   are the filenames of the style files.</code></p>
+<p><code>[stylesdir] (label) {directory}</code><br /><code>   Creates a submenu entry with label (that is also the title of the new </code><br /><code>   (submenu), and inserts in that submenu all filenames in the specified </code><br /><code>   directory, assuming that they are all valid style files (directories are </code><br /><code>   ignored) in the same way as the [stylesdir] command does. Both [stylesdir]</code><br /><code>   and [stylesmenu] commands make it possible to install style files without </code><br /><code>   editing your init file.</code></p>
+<p><code>[submenu] (label) {menutitle}</code><br /><code>   This tells Fluxbox to create and parse a new menu. This menu is inserted </code><br /><code>   as a submenu into the parent menu. These menus are parsed recursively, so </code><br /><code>   there is no limit to the number of levels or nested submenus you can have.</code><br /><code>   The title for the new menu is optional, if none is supplied, the new </code><br /><code>   menu's title is the same as the item label. An [end] tag is required to </code><br /><code>   end the submenu.</code></p>
+<p><code>[reconfig] (label)</code><br /><code>   When selected this item re-reads the current style and menu files and </code><br /><code>   applies any changes. This is useful for creating a new style or theme,</code><br /><code>   as you don't have to constantly restart Fluxbox every time you save your </code><br /><code>   style. However, Fluxbox automagically rereads the menu whenever it </code><br /><code>   changes.</code></p>
+<p><code>[restart] (label) {command}</code><br /><code>   This tells Fluxbox to restart. If command is supplied, it shuts down and </code><br /><code>   runs the command (which is commonly the name of another windowmanager). </code><br /><code>   If the command is omitted, Fluxbox restarts itself.</code></p>
+<p><code>[config] (label)</code><br /><code>   Inserts a Fluxbox native submenu item, containing numerous configuration</code><br /><code>   options concerning window placement, focus style, window moving style, </code><br /><code>   etc.</code></p>
+<p><code>[wallpapers] (directory)</code><br /><code>   This allows you to list your backgrounds. This tag is built in to use </code><br /><code>   fbsetbg(1) and allows you to simply click on an image to set your </code><br /><code>   wallpaper. See? Fluxbox makes it easy…</code></p>
+<p><code>[workspaces] (label)</code><br /><code>   This tells Fluxbox to insert a link to the workspaces menu directly into </code><br /><code>   your menu. This is handy for those users who can't access the workspace </code><br /><code>   menu directly (e.g. if you don't have a 3 button mouse, it is rather hard </code><br /><code>   to middle click to show the workspace menu).</code></p>
+<h3 id="gui그래픽-유저-인터페이스가-필요해">GUI(그래픽 유저 인터페이스)가 필요해</h3>
+<p>Long story short. Use <a href="http://fluxmenu.berlios.de">fluxMenu</a>. It is still under development but works just fine. There is also <a href="http://fme.rhymux.info/">Fluxbox Menu Editor</a>. Another editor for fluxbox.</p>
+<p><a href="Category:Coreano / Korean howtos" title="wikilink">Category:Coreano / Korean howtos</a> <a href="Category:설정 howtos" title="wikilink">Category:설정 howtos</a></p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p><a href="http://voins.program.ru/wdm/">WDM</a> 은 작고, 가벼운 XDM의 대체물이다. XDM의 간단하면서 쓸만한 대체품을 찾는다면 이것을 추천한다.</p>
+<p>로그인 시 플럭스박스를(또는 다른 윈도 매니저들) wdm의 리스트에 추가하는 일은 상당히 쉽다.</p>
+<p>__TOC__ 일단 WDM이 설치되었고 제대로 작동한다고 가정을 하겠다. 그렇지 않다면, 그러하도록 해놓고 다시 이 페이지를 볼 것.</p>
+<p>일단, wdm에 관련된 설정 파일 두 개를 수정해야 할 것이다. 첫 번째는 '''Xclients'이고 두 번째 것은 <strong>wdm-config</strong>이다. 내가 쓰는 배포판 (<a href="http://www.gentoo.org">Gentoo</a>) 에는 이들이 <strong>/etc/X11/wdm</strong>에 있다.</p>
+<h2 id="xclients-파일-수정"><strong>Xclients</strong> 파일 수정</h2>
+<p><strong>Xclients</strong>에다가 약간의 스크립트를 추가해줘야 한다. 이 스크립트는 fluxbox 실행 파일이 존재하는 지, 그리고 실행 가능한 지 확인을 할 것이다.</p>
+<p><strong>Xclients</strong> 파일을 자신이 좋아하는 에티터로 연다. 우리가 고치고 싶어하는 스크립트 부분은 이렇게 시작한다:</p>
+<p><code> # First thing - check the user preferences</code><br /><code> if [ -f $HOME/.wm_style ] ; then</code><br /><code>    WMSTYLE=`cat $HOME/.wm_style`</code><br /><code>    case &quot;$WMSTYLE&quot; in</code></p>
+<p>그리고 이와 같은 식으로 여러 윈도 매니저, 데스크톱 환경 항목들이 채워져 있다:</p>
+<p><code> wmaker*|WindowMaker*)</code><br /><code>   # startup WindowMaker</code><br /><code>   WMAKER_PATH=/usr/bin/wmaker</code><br /><code>   if ! test -x $WMAKER_PATH ; then</code><br /><code>      FindInPath $WMAKER_PATH</code><br /><code>      if test -n &quot;$result&quot; -a -x &quot;$result&quot;; then</code><br /><code>          WMAKER_PATH=&quot;$result&quot;;</code><br /><code>      fi</code><br /><code>   fi</code><br /><code>   if test -x $WMAKER_PATH ; then</code><br /><code>      echo Starting WindowMaker &gt;$HOME/.xwm.msgs</code><br /><code>      env &gt; &quot;$HOME&quot;/Xrootenv.0</code><br /><code>      exec $WMAKER_PATH &gt;&gt;$HOME/.xwm.msgs 2&gt;&amp;1</code><br /><code>   fi</code><br /><code>   ;;</code><br /><code>   esac</code><br /><code> fi</code></p>
+<p>플럭스박스 실행 파일을 체크하도록 코드를 첨가해주어야 할 것이다. 그러므로 위에 표시된 마무리 코드 부분 앞에다가, 다음과 같이 덧붙여라:</p>
+<p><code> fluxbox*|FluxBox)</code><br /><code> # startup fluxbox</code><br /><code> FLUXBOX_PATH=/usr/bin/startfluxbox</code><br /><code> if ! test -x $FLUXBOX_PATH ; then</code><br /><code>   FindInPath $FLUXBOX_PATH</code><br /><code>   if test -n &quot;$result&quot; -a -x &quot;$result&quot;; then</code><br /><code>     $FLUXBOX_PATH=&quot;$result&quot;;</code><br /><code>   fi</code><br /><code> fi</code><br /><code> if [ -x $FLUXBOX_PATH ] ; then</code><br /><code>   echo Starting FluxBox &gt;$HOME/.xwm.msgs</code><br /><code>   exec $FLUXBOX_PATH &gt;&gt;$HOME/.xwm.msgs 2&gt;&amp;1</code><br /><code> fi</code><br /><code> ;;</code></p>
+<h2 id="wdm-config-파일-수정"><strong>wdm-config</strong> 파일 수정</h2>
+<p>이렇게 하고 나서, wdm-config 파일에 플럭스박스를 추가해주어야 한다. 이 파일을 가장 좋아하는 에디터로 열고 다음과 같은 줄을 찾아라:</p>
+<p><code>  DisplayManager*wdmWm:           WindowMaker:None</code></p>
+<p>그리고 그것을 아래와 같이 바꿔준다.</p>
+<p><code>  DisplayManager*wdmWm:  WindowMaker:FluxBox</code></p>
+<p>다 했다. WDM를 재시작하고 수리수리 마수리 얍! 메뉴에 플럭스박스가 나타난다.</p>
+<p>즐~</p>
+<p><a href="Category:Coreano / Korean howtos" title="wikilink">Category:Coreano / Korean howtos</a> <a href="Category:통합/시작법 howtos" title="wikilink">Category:통합/시작법 howtos</a></p>
+</body>
+</html>

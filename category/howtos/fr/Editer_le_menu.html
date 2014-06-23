@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h3 id="sortez-votre-éditeur-de-texte">Sortez votre éditeur de texte</h3>
+<p>La syntaxe du menu Fluxbox est très simple et il y a juste deux ou trois trucs à connaitre avant de pouvoir créer ses propres menus.</p>
+<p>Tout d'abord, voici un menu ultra simple:</p>
+<p><code> [begin]</code><br /><code> [exec] (term) {xterm} </code></usr/share/pixmaps/terminal.png><br /><code> [reconfig] (Recharger la configuration)</code><br /><code> [exit] (Quitter)</code><br /><code> [end]</code></p>
+<p>Ces quelques lignes ci-dessus vont vous donner un petit menu tout simple. Il contiendra un lien pour lancer 'xterm', un autre pour recharger la configuration de fluxbox, et un autre pour quitter. Si votre fluxbox a été compilé avec le support des icône ('IMLIB2') et que vous avez une icone appelé 'terminal.png' dans le dossier /usr/share/pixmaps vous aurez un bel icone dans votre menu pour l'élément 'xterm'.</p>
+<h3 id="comment-savoir-si-mon-fluxbox-supporte-les-icônes">Comment savoir si mon Fluxbox supporte les icônes</h3>
+<p>Tapez:</p>
+<p><code> fluxbox -i</code></p>
+<p>si parmis les lignes affichées vous avez</p>
+<p><code>-IMLIB2</code><br /><code>ou</code><br /><code>-XPM</code></p>
+<p>cela signifie que vous n'avez pas le support des icônes (remarquez le signe <strong>-</strong>). Si vous avez vu seulement <strong>XPM</strong> (sans le signe '-') ou bien <strong>IMLIB2</strong> (sans le signe '-') alors c'est bon !</p>
+<p>Il faut par contre spécifier le chemin complet vers l'icône <strong></home/joeuser/.fluxbox/pixmaps/aterm.png></strong></p>
+<h3 id="donc-je-peux-faire-quoi-de-beau-avec-le-menu">Donc je peux faire quoi de beau avec le menu ?</h3>
+<p>La syntaxte de base est:</p>
+<p><code>[tag] (label) {commande} </code><chemin vers l'icône></p>
+<p>Les tags supportés sont (voir la doc la plus récente si il y en a d'autres):</p>
+<p><code>[begin] (label)</code><br /><code>   Cela permet de dire à Fluxbox que c'est le début de votre menu. C'est</code><br /><code>   obligatoire.   Si Fluxbox ne trouve pas ca il va créer un menu système par </code><br /><code>   défaut.</code></p>
+<p><code>[end]</code><br /><code>   Ca permet de dire à Fluxbox que c'est la fin de votre menu. Cela peut aussi </code><br /><code>   fermer un sous-menu. Vérifiez bien la correspondance avec le tag [begin].</code></p>
+<p><code>[exec] (label) {commande}</code><br /><code>   Ajoute un programme dans le menu. Le programma apparaitra sous le nom </code><br /><code>   'label'.</code></p>
+<p><code>[exit] (label)</code><br /><code>   Insert un élément nommé 'label' qui ferme Fluxbox.</code></p>
+<p><code>[include] (fichier ou dossier)</code><br /><code>   Permet d'inclure dans votre menu actuel un ou des menus contenus dans un</code><br /><code>    dossier ou un fichier.</code></p>
+<p><code>[nop] (label)</code><br /><code>   Permet d'insérer un élément inactif dans votre menu. Si vous utilisez un </code><br /><code>   label, il sera utilisé, sinon une ligne vide sera utilisée.</code></p>
+<p><code>[separator]</code><br /><code>   Ajoute un séparateur. Vous aurez une jolie barre horizontale.</code></p>
+<p><code>[style] (label) {fichier}</code><br /><code>   Cet élément permet de dire à Fluxbox de charger immédiatement le fichier de </code><br /><code>   thème spécifié.</code></p>
+<p><code>[stylesmenu] (dossier)</code><br /><code>   Lit tous les fichiers contenus dans le dossier spécifié et créé des </code><br /><code>   raccourci dans le menu actuel vers tous ces thèmes. Quand un utilisateur va </code><br /><code>   cliquer sur un des éléments, le thème sera chargé immédiatement. Les noms de </code><br /><code>   fichier utilisés seront les label affichés dans le menu.</code></p>
+<p><code>[stylesdir] (label) {dossier}</code><br /><code>   Créé un sous-menu appelé 'label' et lit tous les fichiers contenus dans le dossier</code><br /><code>   spécifié et créé des raccourci dans le menu actuel vers tous ces thèmes. Quand un utilisateur va </code><br /><code>   cliquer sur un des éléments, le thème sera chargé immédiatement. Les noms de </code><br /><code>   fichier utilisés seront les label affichés dans le menu.</code></p>
+<p><code>[submenu] (label) {titre du menu}</code><br /><code>   Indique à Fluxbox de créer un nouveau sous-menu. Le 'label' est optionnel.</code><br /><code>   Attention à bien mettre un tag [end] correspondant à la fin de votre sous-</code><br /><code>   menu.</code></p>
+<p><code>[reconfig] (label)</code><br /><code>   Permet de relire les thème et fichiers de menu et de les recharger </code><br /><code>   immédiatement sans redémarrer Fluxbox. Normalement Fluxbox sait détecter et </code><br /><code>   recharger un menu qui a changé.</code></p>
+<p><code>[restart] (label) {commande}</code><br /><code>   Indique à Fluxbox de redémarrer. Si 'commande' est indiqué il va fermer </code><br /><code>   Fluxbox et lancer cette commande (en général celle d'un autre windowmanager)</code><br /><code>   Si la 'commande' n'est pas spécifiée alors Fluxbox redémarre.</code></p>
+<p><code>[config] (label)</code><br /><code>   Insert un menu spécial à Fluxbox en tant que sous-menu et qui contient des </code><br /><code>   commandes pour configurer le placement des fenêtres par fluxbox, etc...</code></p>
+<p><code>[wallpapers] (dossier)</code><br /><code>   Permet de lister tous vos papier-peints contenus dans le dossier spécifié</code><br /><code>   Ce menu spécial utilise fbsetbg et permet, lorsque vous cliquez sur un </code><br /><code>   élément, de simplement changer le papier-peint. </code><br /><code>   Et après on dit que c'est compliqué de changer le papier-peints sous </code><br /><code>   Fluxbox...  ;)</code></p>
+<p><code>[workspaces] (label)</code><br /><code>   Indique à Fluxbox d'insérer un lien vers le menu des workspaces. Cela est </code><br /><code>   utile pour ceux qui n'ont pas trois boutons sur la souris ou bien qui</code><br /><code>   veulent un accès aux workspaces par leur menu.</code></p>
+<h3 id="je-veux-une-interface-facile-pour-éditer-le-menu">Je veux une interface facile pour éditer le menu</h3>
+<p>Quelques liens :</p>
+<ul>
+<li><a href="http://fluxmenu.berlios.de">fluxMenu</a></li>
+<li><a href="http://fme.rhymux.info/">Fluxbox Menu Editor</a></li>
+</ul>
+<p>Le mieux reste quand même d'utiliser un éditeur de texte ;-)</p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

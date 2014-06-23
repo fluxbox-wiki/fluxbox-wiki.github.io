@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="configurando-o-papel-de-parede">Configurando o papel de parede</h2>
+<p>__TOC__</p>
+<h2 id="o-que-é-fbsetbg-e-por-que-eu-preciso-disso">O que é fbsetbg e por que eu preciso disso?</h2>
+<p>Fbsetbg é como um cobertor. Ele tenta encontrar o programa apropriado para configurar o papel de parede e então tenta botar o papel de parede usando esse programa. Você não tem que configurar o fbsetbg, ele usa o primeiro programa capaz de configurar o papel de parede que ele encontrar.</p>
+<p>Ele é útil pois mostra claramente as mensagens de erro, facilitando na eliminação dos erros.</p>
+<p>Se você quer colocar um papel de parede especial dependendo do estilo que estiver usando leia a parte mais abaixo, perto do fim desse artigo.</p>
+<h2 id="verificando-os-utilitários-certos">Verificando os utilitários certos</h2>
+<p>Primeiro precisamos ter certeza que o fbset tem por perto o programa apropriado para usar. Abra um terminal e digite o seguinte comando como usuário comum:</p>
+<p><code>  fbsetbg -i</code></p>
+<p>Se você tiver instalado um dos programas suportados você receberá uma mensagem como essa:</p>
+<p><code>  Esetroot is a nice wallpapersetter. You won't have any problems.</code></p>
+<p>Se você não tiver instalado o programa apropriado você vai receber uma mensagem de erro como essa:</p>
+<p><code>  display doesn't set the wallpaper properly. Transparency for fluxbox</code><br /><code>  and apps like aterm and xchat won't work right with it. Consider </code><br /><code>  installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and</code><br /><code>  I'll use them instead.</code></p>
+<h2 id="a-transparência-não-funciona-o-que-eu-devo-fazer">A transparência não funciona, o que eu devo fazer?</h2>
+<p>Fbsetbg pode usar um dos seguintes configuradores de papel de parede dois quais apenas feh, esetroot and wmsetbg tem suporte para transparência:</p>
+<p><code>Esetroot</code><br /><code>wmsetbg</code><br /><code>feh</code><br /><code>hsetroot</code><br /><code>chbg</code><br /><code>display</code><br /><code>qiv</code><br /><code>xv</code><br /><code>xsri</code><br /><code>xli</code><br /><code>xsetbg</code></p>
+<p>Estão ordenados em ordem de qualidade, então para ter certeza que vai funcionar você deve instalar algo do topo da lista.</p>
+<p>Muitas pessoas podem recomendar o feh por ser pequeno e eficiente, mas o Esetroot (que vem com o Eterm) também é uma boa escolha.</p>
+<h2 id="dicas-e-truques-úteis">Dicas e truques úteis</h2>
+<p>1. Carrecando o papel de parede na inicialização</p>
+<p>Desde o fluxbox 0.9.15 uma nova funcionalidade foi adicionada: Overlay.</p>
+<p>Para usar isso você precisa verificar no arquivo ~/.fluxbox/init para que arquivo ele está apontando em &quot;session.styleOverlay&quot;, se não tiver nenhum, crie. Nós usamos ~/.fluxbox/overlay por padrão, mas você pode especificar um de sua preferência. Vai ficar mais ou menos assim:</p>
+<p><code> session.styleOverlay: ~/.fluxbox/overlay</code></p>
+<p>No seu arquivo ~/.fluxbox/init.</p>
+<p>Dentro do arquivo ~/.fluxbox/overlay adicione as seguintes linhas(os &quot;|&quot; servem como &quot;ou&quot;):</p>
+<p><code> background: aspect | tiled | centered</code><br /><code> background.pixmap:  /diretorio/do/papel_deparede/exemplo.jpg</code></p>
+<p>Com isso o papel de parede será colocado toda vez que o fluxbox for iniciado, vai funcionar como um papel de prede global. Todo papel de parede que os styles tentarem colocar serão substituidos por esse, portando se quiser que cada style tenha seu papel de parede não faça essa configuração, continue lendo.</p>
+<p>Você ainda pode usar o rootCommand no arquivo ~/.fluxbox/init mas tenha certeza que você usa ou o rootCommand ou a configuração acima (overlay) e não ambos pois pode não funcionar como esperado.</p>
+<h2 id="uma-outra-forma-de-colocar-o-papel-de-parede-na-inicialização">Uma outra forma de colocar o papel de parede na inicialização</h2>
+<p>Como já foi mencionado, o rootCommand no arquivo ~/.fluxbox/init ainda funciona, então para usar isso apenas adicione:</p>
+<p><code>session.screen0.rootCommand:    fbsetbg -l</code></p>
+<p>Então configure o papel de parede manualmente com fbsetbg. O comando acima passa como parametro o &quot;-l&quot; querendo dizer que ele vai carregar o último que foi carregado, no caso esse que você acabou de configurar manualmente.</p>
+<h2 id="configurando-o-papel-de-parede-com-o-estilo-cada-estilo-tem-seu-papel-de-parede">Configurando o papel de parede com o estilo (cada estilo tem seu papel de parede)</h2>
+<p>Apenas coloque essas configurações acima no arquivo de estilos e tenha certeza que você não tem um overlay no ~/.fluxbox/init carregando um papel de parede global.</p>
+<h2 id="dicas-usando-o-fbsetbg">4. Dicas usando o fbsetbg</h2>
+<p><code>fbsetbg -p</code></p>
+<p>Isso vai te mostrar muitas dicas úteis.</p>
+<p><strong>CUIDADO: Você não pode ter mais de um RootCommand no seu arquivo ~/.fluxbox/init ou todos os outros RootCommand vão falhar.</strong></p>
+<p><a href="Category: Português-Br_/_Portuguese-Br howtos" title="wikilink">Category: Português-Br_/_Portuguese-Br howtos</a> <a href="Category: Integração/Inicialização" title="wikilink">Category: Integração/Inicialização</a></p>
+</body>
+</html>

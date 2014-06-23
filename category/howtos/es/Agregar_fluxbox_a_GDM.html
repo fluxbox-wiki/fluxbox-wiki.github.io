@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="como-agregar-fluxbox-a-gdm">Como agregar Fluxbox a GDM</h2>
+<p>Nota: Esto fue copiado del sitio de Fluxbox. Alguien usando gdm debería chequearlo.</p>
+<p>Como agrego fluxbox a mi menú de sesiones de GDM.</p>
+<p>Creamos el archivo: /etc/gdm/Sessions/fluxbox con el siguiente contenido:</p>
+<p><code>#!/bin/sh</code><br /><code>#</code><br /><code># /etc/gdm/Sessions/fluxbox</code><br /><code>#</code><br /><code># global fluxbox session file -- used by gdm</code><br /><br /><code>exec /etc/X11/Xsession /usr/bin/startfluxbox</code></p>
+<p>Por supuesto, cambiamos /usr/bin/startfluxbox por la ubicación donde tengamos el script de startup.</p>
+<p>Si el directorio /etc/gdm no existe puede estar /etc/X11/gdm/Sessions/fluxbox en nuestra computadora.</p>
+<p>__TOC__</p>
+<h2 id="la-primera-sección-no-funciona-para-mi-qué-puedo-hacer">La primera sección no funciona para mi, qué puedo hacer?</h2>
+<h3 id="aquí-hay-otra-manera">Aquí hay otra manera</h3>
+<p>En algunas distros podemos necesitar hace algo un poquito diferente. Para Debian, Ubuntu y algunas otra distros tenemos que seguir esta pequeña guía en cambio.</p>
+<p>Si decidimos que necesitamos compilar Fluxbox-SVN en nuestro sistema Ubuntu, tal ves nos dimos cuenta que, después de instalado, no hubo forma de iniciar usando Fluxbox, incluso si intentamos</p>
+<p><code> startx `which fluxbox` -- :1</code></p>
+<p>obtenemos un &quot;permission denied&quot; y no es imposible conectarnos con el servidor X (Solamente probé esto en Hoary). Así que empecemos con el arreglo...</p>
+<p><code> sudo gedit /usr/share/xsessions/fluxbox.desktop</code></p>
+<p>Agregamos a ese archivo la siguiente información:</p>
+<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configureable low resource X11 Window Manager</code><br /><code> Exec=/usr/local/bin/startfluxbox</code><br /><code> Terminal=False</code><br /><code> TryExec=/usr/local/bin/startfluxbox</code><br /><code> Type=Application</code></p>
+<p>Luego guardamos el archivo y reiniciamos nuestra sesión de GDM. Esto puede hacerse deslogueandonos de nuestra sesión actual de X presionando al mismo tiempo Ctrl+Alt+Backspace nota: NO Ctrl+Alt+Del (esto funcionará pero tambien reiniciará nuestra computadora.</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Inicio" title="wikilink">Category:Inicio</a></p>
+</body>
+</html>

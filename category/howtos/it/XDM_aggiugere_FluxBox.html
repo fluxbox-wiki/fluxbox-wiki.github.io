@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Aprire /etc/rc.conf con il vostro editor preferito, e cercare la riga XSESSION=&quot;&quot; Esempio la riga dovrebbe essere simile a questa:</p>
+<p><code>XSESSION=&quot;Gnome&quot;</code></p>
+<p>Sostituire Gnome con Fluxbox, quindi:</p>
+<p><code>XSESSION=&quot;fluxbox&quot;</code></p>
+<p>Oppure commentate la riga con Gnome e aggiungete quella con Fluxbox</p>
+<p><code>#XSESSION=&quot;Gnome&quot; </code><br /><code>XSESSION=&quot;fluxbox&quot;</code></p>
+<p>Salvate i vostri cambiamenti</p>
+<h3 id="altre-soluzioni">Altre soluzioni</h3>
+<p>Modificare o creare il file ~/.xsession ed aggiungere questa riga (commentare tutte le altre righe)</p>
+<p><code>exec startfluxbox</code></p>
+<p>Salvate, e riavviate, al prossimo avvio troverete fluxbox.</p>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>

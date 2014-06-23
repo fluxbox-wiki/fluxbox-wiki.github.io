@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Fluxbox si trova automaticamente se hai installato kdm è vera visualizzato come scelta</p>
+<h3 id="script-di-avvio-di-fluxbox">Script di avvio di Fluxbox</h3>
+<p>In questo modo non è possibile (Per Debian 3.1 Sarge + Kdm) usare il file ~/.fluxbox/startup, mentre in Debian 4.0 Etch sembra funzionare.</p>
+<p>Per Debian 3.1 Sarge, modificare /usr/share/xsessions/fluxbox.desktop:</p>
+<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configurable and low resource X11 Window manager</code><br /><code> Exec=(grassetto)/usr/bin/startfluxbox</code><br /><code> Terminal=False</code><br /><code> TryExec=(grassetto)/usr/bin/startfluxbox</code><br /><code> Type=Application</code></p>
+<p><code> [Window Manager]</code><br /><code> SessionManaged=true</code></p>
+<p>Cambiando le righe in grassetto, Infine modificate ~/.fluxbox/startup:</p>
+<p><code> #!/bin/bash</code><br /><code> ## uncomment it to launch xscreensaver or idesk</code><br /><code> ##xscreensaver &amp;</code><br /><code> ##idesk &amp;</code><br /><code> exec /usr/bin/fluxbox</code></p>
+<p>Ora è possibile avviare una sessione Fluxbox da kdm e utilizzare lo script di avvio ~/.fluxbox/startup secondo le proprie esigenze</p>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>

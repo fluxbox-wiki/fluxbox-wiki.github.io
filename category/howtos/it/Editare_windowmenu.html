@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h3 id="cosè-il-windowmenu">Cos'è il windowmenu</h3>
+<p>Windowmenu è il menu che si ottiene con un click destro del mouse sulla barra del titolo di una finestra, cliccando sul tasto menu della barra del titolo, tramite un tasto a cui è associato il comando &quot;:WindowMenu&quot; o anche dal menu delle aree di lavoro. Di default ha opzioni per massimizzare, minimizzare, nascondere la finestra etc, inviare a diversi layer o aree di lavoro e ricordare le opzioni delle finestre.</p>
+<h3 id="preparativi">Preparativi</h3>
+<p>Prima di tutto, bisogna far sapere a Fluxbox che si sta utilizzando un menu personalizzato; aprire ~/.fluxbox/init e cercare la riga</p>
+<p><code>session.screen0.windowMenu:</code></p>
+<p>cambiandola in</p>
+<p><code>session.screen0.windowMenu: ~/.fluxbox/windowmenu</code></p>
+<p>Ricaricando la configurazione di Fluxbox si dovrebbe essere pronti per iniziare le modificche del menu.</p>
+<h3 id="modificare-il-menu">Modificare il menu</h3>
+<p>Windowmenu è come il <a href="http://fluxbox-wiki.org/index.php?title=Howto_edit_menu">rootmenu</a>, eccetto alcune voci speciali che il menu normale non ha. Il menu dovrebbe iniziare con [begin] e finire con [end]. Si può usare i <a href="http://fluxbox-wiki.org/index.php?title=Editing_the_menu#What_really_is_possible.3F">normali elementi</a> oppure quelli speciali della lista sottostante. Notare che (label) è facoltativo, senza di esso sarà utilizzato quello predefinito:</p>
+<p><code>[shade]  (label)</code><br /><code>Questa opzione ombreggia la finestra, la barra del titolo sarà visibile solo a sinistra.</code></p>
+<p>Lo stesso effetto cliccando due volte sul titolo, premendo il tasto ombra, utilizzando un tasto veloce o forse anche lo scorrimento con la rotellina del mouse.</p>
+<p><code>[close]  (label)</code><br /><code>Chiude la finestra. Proprio come premendo il tasto X nell'angolo.</code></p>
+<p><code>[kill]  (label)</code><br /><code>[killwindow]  (label)</code><br /><code>Termina la finestra. È utile se il programma è andato in crash e bisogna chiuderlo.</code></p>
+<p><code>[stick]  (label)</code><br /><code>Attiva e disattiva l'attaccamento (stickiness) della finestra. Quando è appiccicosa, è visibile in tutti i workspace.</code></p>
+<p><code>[maximize] (label) </code><br /><code>Massimizza e ripristina la finestra.</code></p>
+<p><code>[iconify]  (label)</code><br /><code>Minimizza (riduce a icona) la finestra.</code></p>
+<p><code>[raise]  (label)</code><br /><code>Solleva la finestra ad un layer superiore.</code></p>
+<p><code>[lower]  (label)</code><br /><code>Abbassa la finestra di un layer.</code></p>
+<p><code>[sendto]  (label)</code><br /><code>Mostra il menu “Send to..” , permette l'invio delle finestre ad un altro workspace.</code></p>
+<p><code>[layer]  (label)</code><br /><code>Mostra il menu “Layer..” , permette all'utente di cambiare facilmente il layer della finestra.</code></p>
+<p><code>[extramenus]</code><br /><code>Mostra il menu “Remember..” , per ricordare i parametri di finestra nelle sessione.</code></p>
+<p><code>[alpha]  (label)</code><br /><code>Un sottomenu contenente varie opzioni per la trasparenza della finestra.</code></p>
+<p><code>[separator]</code><br /><code>Linea di separazione orizzontale, non fa altro che creare una linea divisoria.</code></p>
+<p>Dopo la modifica del menu, salvarlo, e scegliere Reload config dal menu di Fluxbox, o non si vedranno le modifiche.</p>
+<h3 id="esempi">Esempi</h3>
+<p>Questo dovrebbe creare un menu simile a quello di default:</p>
+<p><code># ~./fluxbox/windowmenu</code><br /><code>[begin]</code><br /><code>       [shade]  (Shade)</code><br /><code>       [stick]  (Stick)</code><br /><code>       [maximize]</code><br /><code>       [iconify]  (Iconify)</code><br /><code>       [raise]</code><br /><code>       [lower]</code><br /><code>       [sendto]</code><br /><code>       [layer]</code><br /><code>       [extramenus]</code><br /><code>       [separator]</code><br /><code>       [close] (Close)</code><br /><code>[end]</code></p>
+<p>Questo è un pò differente:</p>
+<p><code>[begin]</code><br /><code>       [exec]  (terminal)  {xterm}</code><br /><code>        [maximize]  (maximize)</code><br /><code>       [iconify]  (minimize)</code><br /><code>       [submenu]  (advanced)</code><br /><code>       [layer]  (layer)</code><br /><code>       [extramenus]  (remember)</code><br /><code>       [sendto]  (send to)</code><br /><code>[end]</code><br /><code>[separator]</code><br /><code>[close]  (close)</code><br /><code>[end]</code></p>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>

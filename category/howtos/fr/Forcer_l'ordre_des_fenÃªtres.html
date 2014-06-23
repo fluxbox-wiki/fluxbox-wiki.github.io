@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="forcer-lordre-des-fenêtres">Forcer l'ordre des fenêtres</h3>
+<p>Forcer l'ordre des fenêtres permet de dire que telle ou telle application (par exemple votre logiciel de chat ou votre navigateur internet) restera au dessus des autres fenêtres, quoi qu'il arrive.</p>
+<p>Fluxbox permet de paramétrer cela très finement car il possède x couches différentes (appelés layer) :</p>
+<ul>
+<li>Above Dock &lt;--- le plus au-dessus de toutes les fenêtres</li>
+<li>Dock</li>
+<li>Top</li>
+<li>Normal</li>
+<li>Bottom</li>
+<li>Desktop &lt;--- le plus en-dessous de toutes les fenêtres</li>
+</ul>
+<p>Exemple 1:</p>
+<p>En cliquant sur la barre de titre de n'importe quellel fenêtre, un menu va s'ouvrir et vous pourrez choisir dans le menu <strong>'layer</strong>' à quel niveau mettre la fenêtre.</p>
+<p><code>Les informations de positionnement des fenêtres sont stockées dans le fichier </code><strong><code>'./fluxbox/apps</code></strong><code>'.</code></p>
+<p><code>Faire un </code><strong><code>'man</code> <code>fluxbox</code></strong><code>' et se rendre dans le paragraphe </code><strong><code>'APPLICATIONS</code></strong><code>' qui décrit toutes</code><br /><code>les options possibles pour les fenêtres (forcer les dimensions, l'ordre,</code><br /><code>la position sur l'écran, etc...)</code></p>
+<p><strong>'ASTUCE</strong>'</p>
+<p>Certaines fenêtres n'ont pas de barre de titre (par exemple le lecteur vidéo VLC quand il est en mode plein écran). Pour connaitre le nom de la fenêtre et éditer vous-même le fichier ./fluxbox/apps, il suffit d'utiliser l'utilitaire <strong>'xprop</strong>'.</p>
+<p>Ouvrez une console et tapez xprop|grep WM_NAME Votre souris change, il suffit maintenant de cliquer sur la fenêtre concernée et xprop va vous retourner le nom exact de la fenêtre : il ne reste plus qu'à éditer le fichier <strong>'apps</strong>'.</p>
+<p><a href="Category:Français / French howtos" title="wikilink">Category:Français / French howtos</a></p>
+</body>
+</html>

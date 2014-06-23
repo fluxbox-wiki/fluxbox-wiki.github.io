@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="introducción">Introducción</h2>
+<p>Idesk es una aplicación utilizada para mostrar íconos en el escritorio, los cuales al hacerles un doble o simple click (de acuerdo a las preferencias del suario) ejecutarán un comando. Utilizada por lo general para los windows managers. Los íconos se pueden arrastrar en el escritorio hasta la posción deseada la cual será recordada en el próximo arranque. Los formatos de archivo soportados son <strong>png</strong> y <strong>svg</strong>, aunque puede haber problemas con el último formato.</p>
+<h2 id="dependencias">Dependencias</h2>
+<p><code> pkg-config</code><br /><code> librsvg-2.0.1</code><br /><code> gdk-pixbuf-2</code></p>
+<h2 id="instalación">Instalación</h2>
+<p>Para instalar idesk hay varias opciones: los usuarios nuevos tal vez prefieran usar paquetes binarios dependiendo de la distribución con la que estén trabajando. La otra opción es bajar los fuentes desde el <a href="http://idesk.sourceforge.net/download.html">sitio de idesk</a>. Los binarios se pueden buscar en <a href="http://www.rpmseek.com">rpmseek</a> o <a href="http://www.rpmsearch.com">rpmsearch</a></p>
+<h3 id="mandriva-o-red-hatfedora">Mandriva o Red Hat/Fedora</h3>
+<p>Una vez que tenemos los binarios simplemente nos logueamos como root y en una consola:</p>
+<p><code> # rpm -i /directorio/idesk.rpm</code><br /><code> (un doble click sobre el archivo también lo instalará)</code></p>
+<h3 id="debian">Debian</h3>
+<p><code> # apt-cache search idesk | sort - u | less (para buscar el paquete y  </code><br /><code>                                             obtener una lista ordenada)</code><br /><code> # apt-get install idesk</code><br /><code> </code></p>
+<h3 id="gentoo">Gentoo</h3>
+<p><code> # emerge -uvp idesk</code><br /><code> These are the packages I would merge in order</code><br /><code> ...</code><br /><code> total size of downloads 0kb (esta línea indica que todos los paquetes</code><br /><code>                              estan disponibles para la instalación)</code><br /><code> # emerge idesk</code></p>
+<h3 id="freebsd">FreeBSD</h3>
+<p>Compilación mediante la colección de ports:</p>
+<p><code> # cd /usr/ports/x11/idesk &amp;&amp; make install clean</code></p>
+<p>Instalación mediante el sistema de paquetes:</p>
+<p><code> # pkg_add -r idesk</code></p>
+<h3 id="fuentes">Fuentes</h3>
+<p>La otra opción si tenés ganas de hacerlo de la manera tradicional es a partir de las fuentes: Descomprimimos el tar.gz en un direcotorio y luego dentro del mismo directorio</p>
+<p><code>$ make</code><br /><code>$ su</code><br /><code># make install</code></p>
+<p>Make install va a crear el ejecutable en <strong>/usr/local/bin/idesk</strong></p>
+<p>Hemos concluído con la instalación</p>
+<h2 id="configurando-idesk">Configurando idesk</h2>
+<p>Ahora llego el momento de empezar a configurar idesk para que quede funcional. Con nuestro editor favorito vamos a crear un archivo de texto llamado <strong>.ideskrc</strong> en nuestra carpeta home.</p>
+<p><code> $ nano -w /home/usuario/.ideskrc</code></p>
+<p>Dentro de de .ideskrc hay que poner esto:</p>
+<p><code> table Config</code><br /><code>   FontName: tahoma</code><br /><code>   FontSize: 8</code><br /><code>   FontColor: #ffffff</code><br /><code>   Locked: false</code><br /><code>   Transparency: 150</code><br /><code>   HighContrast: true</code><br /><code>   Shadow: true</code><br /><code>   ShadowColor: #000000</code><br /><code>   ShadowX: 1</code><br /><code>   ShadowY: 2</code><br /><code>   Bold: false</code><br /><code>   ClickDelay: 300</code><br /><code>   IconSnap: true</code><br /><code>   SnapWidth: 55</code><br /><code>   SnapHeight: 100</code><br /><code>   SnapOrigin: BottomRight</code><br /><code>   SnapShadow: true</code><br /><code>   SnapShadowTrans: 200</code><br /><code>   CaptionOnHover: false</code><br /><code> end</code><br /><code> table Actions</code><br /><code>   Lock: control right doubleClk</code><br /><code>   Reload: middle doubleClk</code><br /><code>   Drag: left hold</code><br /><code>   EndDrag: left singleClk</code><br /><code>   Execute[0]: left doubleClk</code><br /><code>   Execute[1]: right doubleClk</code><br /><code> end</code></p>
+<p>Si miramos bien nos damos cuenta que podemos ir jugando con los valores de las distintas variables. Como ayuda te digo que <strong>Transparency</strong> va de 0 a 255. El 0 indica color sólido y con 255 vas a tener íconos transparentes que solo los vas a ver cuando pases el mouse por encima. Para mas explicaciones sobre los valores que pueden tomar las distintas variables hay que fijarse en el <strong>readme</strong> que esta en la carpeta <strong>/usr/share/doc/idesk</strong>.</p>
+<h2 id="creando-los-íconos-y-las-acciones-asociadas">Creando los íconos y las acciones asociadas</h2>
+<p>Ahora lo unico que queda es definir los íconos y que es lo que qeremos que hagan por así decirlo. Dentro de nuestra carpeta home vamos a crear un directorio llamado <strong>.idesktop</strong></p>
+<p><code> $ mkdir /home/usuario/.idesktop</code></p>
+<p>Dentro de este directorio vamos a crear arhcivos de texto con el siguiente formato de nombre: <strong>icono.lnk</strong></p>
+<p><code> $ nano -w /home/usuario/.idesktop/firefox.lnk</code></p>
+<p>Acabamos de crear un ícono. La intención es que sea para Mozilla Firefox en este ejemplo. Ahora tenemos que definir los parámetros. Dentro de firefox.lnk vamos a escribir</p>
+<p><code> table Icon</code><br /><code>   Caption: Mozilla Firefox</code><br /><code>   Command: firefox</code><br /><code>   Icon: /home/usuario/iconos/firefox.png</code><br /><code>   X: 100</code><br /><code>   Y: 50</code><br /><code> end</code></p>
+<p><code> Caption: indica el nombre que va a tener</code><br /><code> Command: indica el comando que va a ejecutar</code><br /><code> Icon: aca indicamos la dirección del archivo de imagen</code><br /><code> X e Y indican la posición inicial que va a tener el archivo, de todos  </code><br /><code> modos una vez creado se la damos arrastrando el icono hasta donde </code><br /><code> queremos.</code></p>
+<p>Y ahora sí. Estamos listos para usar idesk. Lo podemos ejecutar desde una consola:</p>
+<p><code> $ idesk</code></p>
+<p>o agregarlo al archivo de inicio de nuestro window manager. Para Fluxbox solamente tenemos que agregar la siguiente linea en el archivo <strong>/home/usuario/.fluxbox/startup</strong></p>
+<p><code> idesk &amp;</code></p>
+<p>A disfrutar idesk</p>
+<p><a href="Category:Español / Spanish howtos" title="wikilink">Category:Español / Spanish howtos</a> <a href="Category:Otros" title="wikilink">Category:Otros</a></p>
+</body>
+</html>

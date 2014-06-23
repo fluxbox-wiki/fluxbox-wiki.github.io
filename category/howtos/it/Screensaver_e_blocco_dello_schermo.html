@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Comunemente può essere utile installare uno screensaver ed uno screenlocker anche se con la diffusione dei monitor LCD l'utilizzo di uno screensaver ha perso la sua utilità pratica ed ha mantenuto solamente dei connotati estetici. Diverso è il discorso per gli screen locker che sono sicuramente molto utili soprattutto per motivi legati alla privacy.</p>
+<p>__TOC__</p>
+<h1 id="screensaver">Screensaver</h1>
+<p>I programmi che possono essere utilizzati come screensaver sono:</p>
+<ul>
+<li>xscreensaver (<a href="http://www.jwz.org/xscreensaver/">1</a>)</li>
+<li>xlockmore (<a href="http://gwyn.tux.org/~bagleyd/xlockmore.html">2</a>)</li>
+<li>rss (<a href="http://www.reallyslick.com/">3</a>)</li>
+<li>gnome-screensaver (<a href="http://live.gnome.org/GnomeScreensaver">4</a>)</li>
+<li>electricsheep (<a href="http://community.electricsheep.org/">5</a>)</li>
+</ul>
+<p>Tra questi il più utilizzato e il più poplare è sicuramente xscreensaver. Questo programma deve essere avviato con fluxbox e viene eseguito in background. Lo screensaver viene lanciato dopo un determinato tempo di inattività. Electricsheep è una buona alternativa a xscreensaver. gnome-screensaver è poco utilizzato dagli utenti di fluxbox perchè richiede l'installazione di mezza gnome. rss è poco popolare.</p>
+<h1 id="screenlocker-blocco-dello-schermo">Screenlocker (Blocco dello schermo)</h1>
+<p>I programmi che possono essere utilizzati come screen locker sono:</p>
+<ul>
+<li>xlock/xlockmore (<a href="http://gwyn.tux.org/~bagleyd/xlockmore.html">6</a>)</li>
+<li>xtrlock (<a href="http://hpux.connect.org.uk/hppd/hpux/X11/Desktop/xtrlock-1.0/">7</a>)</li>
+</ul>
+<p>Ciascun programma funziona approssimativamente allo stesso modo: una volta che viene avviato lo schermo viene bloccato e quando viene spinto un pulsante sulla tastiera o se viene mosso il mouse il programma chiede l'inserimento della password dell'utente per accedere alla sessione attiva. Per avviare uno di questi programmi senza dover continuamente ricorrere a fbrun o ad un terminale sarebbe opportuno avere un item nel menu di fluxbox o sul desktop.</p>
+<h1 id="aggiungere-xscreensaver-a-fluxbox">Aggiungere xscreensaver a fluxbox</h1>
+<p>Per aggiungere xscreensaver a fluxbox non è sufficiente installarlo ma è necessario avviarlo insieme al window manager in quanto il processo rimane in background durante tutta la sessione. L'installazione di xscreensaver varia da sistema a sistema ma (quasi) tutte le distribuzioni hanno il pacchetto xscreensaver nei repo ufficiali quindi sarà sufficiente utilizzare il gestore dei pacchetti per installarlo (ad esempio per le distro debian-like come ubuntu sarà sufficiente il comando: #apt-get install xscreensaver, mentre per le distro gentoo-like: #emerge xscreensaver). <img src="Xscreensaver.png" title="fig:Schermata di avvio di xscreensaver" alt="Schermata di avvio di xscreensaver" />Per configurare il programma è sufficiente lanciare il comando xscreensaver e selezionare la voce &quot;settings&quot; nella schermata che appare. Inoltre selezionando l'opzione &quot;lock screen after&quot; e impostando una durata è possibile utilizzare questo programma anche come screen locker. Tutte le impostazioni di xscreensaver vengono salvate nel file ~/.xscreensaver</p>
+<p>Per lanciare xscreensaver all'avvio di fluxbox è necessario aggiungere una riga alla fine del file di configurazione ~/.fluxbox/startup contenente il comando xscreensaver &amp; attraverso un comando del tipo:</p>
+<p>$ echo &quot;xscreensaver &amp;&quot; &gt;&gt; ~/.fluxbox/startup</p>
+<h1 id="collegamenti-esterni">Collegamenti esterni</h1>
+<ul>
+<li><a href="http://www.jwz.org/xscreensaver/">xscreensaver</a></li>
+<li><a href="http://gwyn.tux.org/~bagleyd/xlockmore.html">xlockmore</a></li>
+<li><a href="http://www.reallyslick.com/">rss</a></li>
+<li><a href="http://live.gnome.org/GnomeScreensaver">gnome-screensaver</a></li>
+<li><a href="http://community.electricsheep.org/">electricsheep</a></li>
+<li><a href="http://hpux.connect.org.uk/hppd/hpux/X11/Desktop/xtrlock-1.0/">xrtlock</a></li>
+</ul>
+<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+</body>
+</html>
