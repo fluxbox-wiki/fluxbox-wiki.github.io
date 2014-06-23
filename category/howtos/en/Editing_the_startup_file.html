@@ -31,6 +31,6 @@
 <p>Notice the <strong>sleep 1</strong>: this is where we tell our apps how long to wait before they start. If you need to wait 10 seconds before starting the app, fluxbox will already be running so setting <strong>sleep 10</strong> will not affect how long fluxbox itself takes to start; this will just mean there is a 10 second delay before your application starts. You could have multiple &quot;sleep&quot; sections, to start some applications later than others.</p>
 <h2 id="further-reading">Further Reading</h2>
 <p>When you start X, either via 'startx' or by your display manager, it runs <strong>startfluxbox</strong> which ends up running this <strong>~/.fluxbox/startup</strong> script. When this script reaches its end, the X server will shut down (or you will return to your login manager). This is why by default you must have <strong>exec fluxbox</strong> as the final line in your script, or in the latter case, the <strong>wait $fbpid</strong> line, both of which will suspend the script's execution until fluxbox exits. This ensures the X server keeps running for as long as fluxbox itself is running, which is usually what you want - Your session will be <em>really</em> short otherwise ;)</p>
-<p><a href="Category:English howtos" title="wikilink">Category:English howtos</a> <a href="Category:Configuration howtos" title="wikilink">Category:Configuration howtos</a></p>
+<p><a href="/category/howtos/en/index.html">Category:English howtos</a></p>
 </body>
 </html>
