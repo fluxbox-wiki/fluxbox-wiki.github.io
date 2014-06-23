@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h3 id="xrandr">Xrandr</h3>
+<p>Xrandr on komentoriviohjelma, jolla voi vaihtaa näytön resoluutiota lennossa helpohkosti. Xrandr lienee liki kaikissa distribuutioissa mukana valmiina. Esimerkiksi Ubuntussa (9.04) pitäisi löytä paketista x11-xserver-utils.</p>
+<p>Vaihtaaksesi resoluutiota, kirjoita komentoriville: <code>
+xrandr
+</code> Tämän pitäisi palauttaa nykyinen käytössä oleva näyttötila sekä eri vaihtoehdot, esimerkkituloste (RandR version 1.3/Ubuntu)</p>
+<pre><code>user@localhost:~$ xrandr 
+Screen 0: minimum 320 x 240, current 1280 x 1024, maximum 1280 x 1024
+default connected 1280x1024+0+0 0mm x 0mm
+   1280x1024      50.0*    51.0  
+   1280x960       52.0  
+   1152x864       53.0     54.0     55.0     56.0  
+   1024x768       57.0     58.0     59.0  
+   960x600        60.0  
+   960x540        61.0  
+   840x525        62.0     63.0     64.0  
+   832x624        65.0  
+   800x600        66.0     67.0     68.0     69.0     70.0     71.0  
+   800x512        72.0  
+   720x450        73.0  
+   680x384        74.0     75.0  
+   640x512        76.0     77.0  
+   640x480        78.0     79.0     80.0     81.0  
+   576x432        82.0     83.0     84.0     85.0  
+   512x384        86.0     87.0     88.0  
+   416x312        89.0  
+   400x300        90.0     91.0     92.0     93.0  
+   320x240        94.0     95.0     96.0  </code></pre>
+<p>Tulosteessa jokaisen rivin alussa on resoluutio <width>x<height> ja sitä seuraavat lukuarvot tarkoittavat kyseisellä resoluutiolla mahdollisia &quot;refresh rateja&quot; eli kuvataajuuksia.</p>
+<p>Resoluutiota voi vaihtaa komennolla <code>xrandr -s &lt;width&gt;x&lt;height&gt; -r &lt;rate&gt;</code>. Argumentit <width> ja <height> kertovat asetettavan resoluution (pikselimäärät leveys- ja korkeussuunnassa) ja <rate> on asetettava kuvataajuus.</p>
+<p>Esimerkiksi jos halutaan asettaa resoluutioksi 800x600 kuvapikseliä ja kuvataajuudeksi 70Hz, tämä tehtäisiin komennolla:</p>
+<p><code> xrandr -s 800x600 -r 70.0</code></p>
+<p>Kuvataajuutta ja resoluutiota ei ole pakko vaihtaa samalla kertaa, vaan ko. argumentteja voidaan antaa myös erikseen. Esimerkiksi komento <code>xrandr -r 60</code> vaihtaisi vain kuvataajuudeksi 60 (mikäli mahdollista) koskematta resoluutioon lainkaan.</p>
+<h3 id="xorg.conf--tiedoston-muokkaaminen">Xorg.conf -tiedoston muokkaaminen</h3>
+<p>Xrandr -komento ei kuitenkaan vaihda näytön oletusresoluutiota, vaan käynnistäessäsi X:n uudelleen, alkuperäinen resoluutio palaa takaisin. Tähän on olemassa toisenlainen ratkaisu: tulee muokata X:n konfiguraatiotiedostoa. Tähän toimenpiteeseen tarvitsee pääkäyttäjän (root) oikeudet.</p>
+<p>Oikea tiedosto löytynee komennolla <code>locate xorg.conf</code>. Mikäli tämä ei palauta mitään, tiedosto saattaa olla nimeltään myös XF86Config. Luultavasti relevantti tiedosto hakemistopolkuineen on joko <strong>/etc/X11/xorg.conf</strong> tai <strong>/etc/X11/XF86Config</strong></p>
+<p>Aivan ensiksi kannattaa ottaa kopio muokattavasta tiedostosta, jotta alkuperäinen tiedosto voidaan palauttaa, mikäli möhlitään jotain ja X ei enää käynnistykään.</p>
+<p>Tämän jälkeen tiedosto tulisi avata kirjoitusoikeuksilla johonkin tekstieditoriin. Resoluutiomuutokset tehdään kohtaan joka näyttää suurinpiirtein tältä:</p>
+<p><code>Section &quot;Screen&quot;</code><br /><code>       Identifier      &quot;Default Screen&quot;</code><br /><code>       Monitor         &quot;Configured Monitor&quot;</code><br /><code>       Device          &quot;Configured Video Device&quot;</code><br /><code>       DefaultDepth    24</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           16</code><br /><code>               Modes           &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           24</code><br /><code>               Modes           &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>EndSection</code></p>
+<p>Tässä vaiheessa ei kannata hätääntyä jos omassa tietokoneessa tiedosto olisi kovinkin eri näköinen. Kokonaisuudessaan tiedosto voi olla varsin pitkä (jopa satoja rivejä) - tai myös hyvin lyhyt. Oleellista on löytää vain kohta <code>Section &quot;Screen&quot;</code> - sen sisältöä muokataan (huomaa tässä vaiheessa, että jos käytössä on useampi näyttö, Screen -sektioita voi olla useampi).</p>
+<p>Nyt pitäisi löytää se Display-subsektio, joka on käytössä. Tässä näemme että oletus värisyvyys on 24 bittiä (riviltä DefaultDepth 24) joten muokkaamme jälkimmäistä subsektiota <code>SubSection &quot;Display</code>, joka on oletuksena käytössä (Depth 24). <code>Modes</code> -rivi kertoo eri resoluutiot. Ensimmäisenä on oletusresoluutio 1280x1024. Jos haluamme vaihtaa oletusresoluutioksi 1024x768, muutamme jälkimmäisen subsektion tämän näköiseksi:</p>
+<p><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           24</code><br /><code>               Modes           &quot;1024x768&quot; &quot;1280x1024&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code></p>
+<p>Nyt tiedosto tallennetaan ja kun X seuraavan kerran käynnistetään, oletusresoluution pitäisi olla 1024x768.</p>
+<p><a href="Category:Suomeksi / Finnish howtos" title="wikilink">Category:Suomeksi / Finnish howtos</a></p>
+</body>
+</html>

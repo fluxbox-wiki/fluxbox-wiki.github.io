@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__ Fluxboxissa itsessään ei ole Windowsista ja monista X:n työpöytäympäristöistä tuttuja pikakuvakkeita. Tämä ominaisuus pitää tuoda ulkoisen ohjelman, iDeskin avulla. iDesk on kevyehkö ohjelma, joka mahdollistaa ikonien/pikakuvakkeiden tuonnin työpöydälle, niiden siirtelemisen mielivaltaisesti (drag &amp; drop) sekä myöskin komentojen suorittamisen kun kuvakkeita klikkaillaan.</p>
+<h2 id="ideskin-asennus">iDeskin asennus</h2>
+<p>iDeskin voi asentaa joko valmiista binääripaketeista tai kääntämällä itse lähdekoodeista.</p>
+<h3 id="valmiiden-pakettien-asennus">Valmiiden pakettien asennus</h3>
+<p>iDeskin asennus binääripaketeista riippuu yleensä käyttöjärjestelmästä. Ainakin Debianissa ja sen johdannaisissa, sekä ilmeisesti myös useissa muissa järjestelmissä iDesk löytyy järjestelmän pakettivarastoista, jolloin se on asennettavissa erittäin helposti.</p>
+<h4 id="debian-ja-ubuntu">Debian ja Ubuntu</h4>
+<p><code> apt-get install idesk</code></p>
+<h4 id="gentoo">Gentoo</h4>
+<p><code># emerge -uvp idesk</code><br /><code># emerge idesk</code></p>
+<h4 id="arch-linux">Arch Linux</h4>
+<p><code> pacman -S idesk</code></p>
+<h4 id="redhat-ja-sen-johdannaiset">RedHat ja sen johdannaiset</h4>
+<p><code> Etsi iDeskin rpm -paketti verkosta ja lataa se</code><br /><code> rpm -i paketti.rpm</code></p>
+<p>Sama logiikka saattaa toimia muissakin järjestelmissä, missä on laajasti käytössä oleva pakettijärjestelmä. Useimmat paketinhallintajärjestelmät huolehtivat että myös riippuvuudet, eli tarvittavat oheiskirjastot yms. asennetaan. Jos kuitenkin ongelmia ilmenee, niin kannattaa varmistaa että seuraavat paketit ovat asennettu:</p>
+<p><code>pkg-config</code><br /><code>librsvg-2.0.1</code><br /><code>gdk-pixbuf-2</code><br /></p>
+<h3 id="lähdekoodeista-kääntäminen">Lähdekoodeista kääntäminen</h3>
+<p>Yleispätevä tapa millä tahansa alustalla ohjelman asentamiseen on lähdekoodeista kääntäminen. Aluksi lähdekoodit tulee ladata vaikkapa <a href="http://idesk.sourceforge.net/wiki/index.php/Main_Page">iDeskin kotisivuilta</a>. Kääntämistä varten (Ubuntu 9.04) tarvitsi asentaa seuraavat paketit:</p>
+<p><code> libimlib2</code><br /><code> libimlib2-dev</code><br /><code> libxft-dev</code></p>
+<p>Luonnollisesti lähdekoodeista käännettäessä myös käännöstyökalut ja muut tarvittavat kirjastot tulee olla asennettuna.</p>
+<p>Kun lähdekoodit on ladattu ja purettu, asennus sujuu komentorivillä yleispätevästi näin:</p>
+<p><code> ./configure</code><br /><code> make</code><br /><code> sudo make install</code></p>
+<p>Ongelmatapauksissa kannattaa varmistaa että kaikki riippuvuudet ja käännöstyökalut on asennettu.</p>
+<h2 id="asetusten-säätäminen">Asetusten säätäminen</h2>
+<p>Kun iDesk on asennettu, sitä voidaan alkaa käyttää. Sen käyttötapaa voi muokata asetustiedostosta <code>/home/user/.ideskrc</code>. Viimeisin versio näköjään generoi sinne valmiin esimerkkitiedoston, mikäli ko. tiedostoa ei löydy. Muokkaamattomana tiedosto on seuraavanlainen:</p>
+<pre><code>table Config
+  FontName: gothic
+  FontSize: 11
+  FontColor: #37CFA6
+  ToolTip.FontSize: 11
+  ToolTip.FontName: gothic
+  ToolTip.ForeColor: #0000FF
+  ToolTip.BackColor: #FFFFFF
+  ToolTip.CaptionOnHover: true
+  ToolTip.CaptionPlacement: Right
+  Locked: false
+  Transparency: 100
+  Shadow: true
+  ShadowColor: #000000
+  ShadowX: 1
+  ShadowY: 1
+  Bold: true
+  ClickDelay: 300
+  IconSnap: true
+  SnapWidth: 10
+  SnapHeight: 10
+  SnapOrigin: BottomRight
+  SnapShadow: false
+  SnapShadowTrans: 200
+  CaptionOnHover: false
+  CaptionPlacement: bottom
+  FillStyle: fillinvert
+  Background.Delay: 0
+  Background.Source: None
+  Background.File: None
+  Background.Mode: Center
+  Background.Color: #C2CCFF
+end
+
+table Actions
+  Lock: control right doubleClk
+  Reload: middle doubleClk
+  Drag: left hold
+  EndDrag: left singleClk
+  Execute[0]: left doubleClk
+  Execute[1]: right doubleClk
+end</code></pre>
+<p>Syntaksiltaan se on melko yksinkertainen ja helposti muokattavissa, mikäli osaa auttavasti englantia. Oletustiedostokin on ihan käyttökelpoinen ja tiedostoon tehtävät muutokset ovat aina käyttäjän omasta mausta kiinni, joten niitä ei käydä tässä sen tarkemmin läpi.</p>
+<h2 id="kuvakkeiden-luominen">Kuvakkeiden luominen</h2>
+<p>Kuvakkeet tehdään hakemistoon <code>/home/user/.idesktop</code>. Hakemistoa ei luoda valmiiksi, vaan se tulee tehdä itse. Tämän jälkeen hakemistoon voi lisätä kuvaketiedostoja. Nämä ovat yksinkertaisia lyhyitä tekstitiedostoja, jotka sisältävät olennaiset tiedot, tässä esimerkkitiedosto <code>/home/user/.idesktop/pidgin.lnk</code>:</p>
+<p><code> table Icon</code><br /><code>   Caption: Pidgin</code><br /><code>   Command: pidgin</code><br /><code>   Icon: /usr/share/icons/hicolor/24x24/apps/pidgin.png</code><br /><code>   X: 260</code><br /><code>   Y: 63</code><br /><code> end</code></p>
+<p>Tämä tiedosto luo työpöydälle kuvakkeen, jonka tekstinä (Caption) on <em>Pidgin</em> ja kun sitä klikkaa, suoritetaan komento (Command) <em>pidgin</em>. Kuvakkeena (Icon) toimii tiedosto pidgin.png ja kuvake lisätään työpöydälle X ja Y -muuttujien määrittelemään kohtaan (260,63). Mikäli kuvakkeita siirtää drag&amp;drop -tekniikalla pitkin työpöytää, kuvaketiedoston kohdat X ja Y päivittyvät automaattisesti.</p>
+<p>Asennettujen ohjelmien mukana tulee yleensä käyttökelpoiset kuvakkeet. Esimerkiksi jos haluat lisätä Firefoxin kuvakkeen työpöydälle, kuvake löytyy tiedostojärjestelmästäsi luultavasti komennolla <code>locate firefox.png</code>.</p>
+<h2 id="käyttöönotto">Käyttöönotto</h2>
+<p>Kun asetukset on säädetty ja kuvakkeet on lisätty, voidaan iDesk ottaa käyttöön. Komentorivillä voi suoraan ajaa komennon <code>idesk</code> jolloin kuvakkeet ilmestyvät työpöydälle. Kun prosessin tappaa, kuvakkeet luonnollisesti poistuvat. iDesk on siis pieni jatkuvasti pyörivä taustaprosessi.</p>
+<p>Jotta iDesk käynnistyisi joka kerta automaattisesti Fluxboxin yhteydessä, tiedostoon <code>~/.fluxbox/startup</code> tulee lisätä rivi</p>
+<p><code> idesk &amp;</code></p>
+<p>Lisätietoa aiheesta löytyy <a href="http://idesk.sourceforge.net/wiki/index.php/Main_Page">iDeskin kotisivuilta</a>.</p>
+<p><a href="Category:Suomeksi / Finnish howtos" title="wikilink">Category:Suomeksi / Finnish howtos</a></p>
+</body>
+</html>

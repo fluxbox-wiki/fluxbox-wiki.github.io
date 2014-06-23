@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__ Teemat ovat Fluxboxin ulkonäön määritteleviä paketteja, jotka sisältävät tyylitiedoston ja usein myös muita pieniä kuvakkeita, ikoneita ja nappeja tai taustakuvan. Fluxbox käyttää teemoista nimitystä <em>Style</em>, mutta myös teema-sanan englannin kielinen vastine <em>theme</em> on varsin yleisesti käytössä.</p>
+<h2 id="mistä-teemoja-saa">Mistä teemoja saa?</h2>
+<p>Teemoja voi latailla vaikkapa <a href="http://tenr.de/">Tennerin kotisivuilta.</a></p>
+<p>Myös Googlella löytää hyvin, hakusanoilla <em>fluxbox themes</em>.</p>
+<h2 id="asennus">Asennus</h2>
+<p>Tarkista että kotihakemistostasi löytyy alihakemisto <code>~/.fluxbox/styles/</code>. Mikäli tätä ei löydy, luo se komennolla</p>
+<p><code> mkdir ~./fluxbox/styles/</code></p>
+<p>Tämän tehtyäsi lataa jokin teema. Käytän tässä esimerkissä satunnaisesti valittua Tennerin tekemää teemaa:</p>
+<p><code> user@localhost:~$ wget </code><a href="http://tenr.de/styles/archives/summerday.tar.bz2"><code>http://tenr.de/styles/archives/summerday.tar.bz2</code></a></p>
+<p>Tämän jälkeen pura paketti:</p>
+<p><code> user@localhost:~$ tar xjf summerday.tar.bz2</code></p>
+<p>Paketti puretaan hakemistoon <code>./summerday/</code>. Tämän jälkeen koko hakemisto sisältöineen voidaan siirtää fluxboxin teema-hakemistoon:</p>
+<p><code> user@localhost:~$ mv ./summerday/ ~/.fluxbox/styles/</code></p>
+<p>Ja näin summerday -teema on asennettu ja se pitäisi löytyä Fluxboxin valikosta Styles -kohdan alta.</p>
+<p>Mikäli teemapaketti ei purkaudu hakemistoksi, tai jos se sisältää vain yksittäisen tyylitiedoston, tee hakemistoon <code>~/.fluxbox/styles/</code> jokin satunnainen alihakemisto, ja siirrä tiedostot sinne.</p>
+<p>Huomaa että teemaa asentaessa <strong>ei</strong> tarvitse olla root-käyttäjä, vaan koko prosessin voi tehdä normaalikäyttäjänä.</p>
+<p><a href="Category:Suomeksi / Finnish howtos" title="wikilink">Category:Suomeksi / Finnish howtos</a></p>
+</body>
+</html>
