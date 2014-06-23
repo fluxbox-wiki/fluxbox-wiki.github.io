@@ -4,19 +4,113 @@
         <meta charset="utf-8">
         <meta name="generator" content="pandoc">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>Fluxbox-Wiki</title>
-        <style type="text/css">code{white-space: pre;}</style>
+        <title></title>
+        <style type="text/css">code {
+            white-space: pre;
+        }</style>
         <!--[if lt IE 9]>
-          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     </head>
     <body>
-        <p><a href="/category/howtos/en/index.html" title="wikilink">Category:English howtos</a></p>
-        <p><a href="/category/howtos/es/index.html" title="wikilink">Category:EspaÃ±ol / Spanish howtos</a></p>
-        <p><a href="/category/howtos/br/index.html" title="wikilink">Category:PortuguÃªs-Br / Portuguese-Br howtos</a></p>
-        <p><a href="/category/howtos/fin/index.html" title="wikilink">Category:Suomeksi / Finnish howtos</a></p>
-        <p><a href="/category/howtos/de/index.html" title="wikilink">Category:Deutsch / German howtos</a></p>
-        <p><a href="/category/howtos/ko/index.html" title="wikilink">Category:Coreano / Korean howtos</a></p>
-        <p><a href="/category/howtos/ru/index.html" title="wikilink">Category:Русский / Russian howtos</a></p>
+        <h2 id="welcome-to-the-fluxbox-wiki">Welcome to the <a href="http://fluxbox.org/">Fluxbox</a> Wiki</h2>
+
+        <h3 id="news-announcement">News announcement</h3>
+
+        <p>
+            This wiki is not really a wiki anymore, now its a <a href="https://pages.github.com/">Github Pages</a> powered static HTML5 site.
+            If you wish to contribute please follow this workflow:<br />
+        </p>
+        <ul>
+            <li>Join <a href="https://github.com/">Github</a>. Its free!</li>
+            <li>Fork <a href="https://github.com/fluxbox-wiki/fluxbox-wiki.github.io">this</a> repo</li>
+            <li>Clone your fork.</li>
+            <li>Create a topic branch.</li>
+            <li>Make changes to add your content or fix some existing content</li>
+            <li>Commit those changes to your topic branch & Push them to Github</li>
+            <li>Open a pull request.</li>
+        </ul>
+        <p>
+            Here is an example of the commands I would run on my desktop to add "foo":<br />
+        </p>
+            <code>
+                git clone https://github.com/michaelrice/fluxbox-wiki.github.io.git
+                cd fluxbox-wiki.github.io
+                git checkout -b adding_foo
+                echo "This is foo" > foo.html
+                git add foo.html
+                git commit -m "added foo"
+                git push origin adding_foo
+            </code>
+        <p>
+            Next I would go to Github and open a pull request. For help using pull requests see:
+            <a href="https://help.github.com/articles/using-pull-requests">Using Pull Requests</a>
+        </p>
+        <h3 id="news">February 13th 2013 - New Release: 1.3.5 Is here!</h3>
+
+        <p>
+            Check the download page for more info: <a href="http://fluxbox.org/download/">http://fluxbox.org/download/</a>.<br/>
+        </p>
+
+        <h3 id="other-languages">Other Languages</h3>
+        <table>
+            <tbody>
+                <tr class="odd">
+                    <td>
+                        <a href="/category/howtos/en/index.html" title="wikilink">Category:English howtos</a>
+                    </td>
+                    <td>
+                        <a href="/category/howtos/es/index.html" title="wikilink">Category:EspaÃ±ol/Spanish howtos</a>
+                    </td>
+                </tr>
+                <tr class="even">
+                    <td>
+                        <a href="/category/howtos/fin/index.html" title="wikilink">Category:Suomeksi/Finnish howtos</a>
+                    </td>
+                    <td>
+                        <a href="/category/howtos/de/index.html" title="wikilink">Category:Deutsch/German howtos</a>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td>
+                        <a href="/category/howtos/br/index.html" title="wikilink">Category:PortuguÃªs-Br/Portuguese-Br howtos</a>
+                    </td>
+                    <td>
+                        <a href="/category/howtos/ru/index.html" title="wikilink">Category:Русский/Russian howtos</a>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td>
+                        <a href="/category/howtos/ko/index.html" title="wikilink">Category:Coreano/Korean howtos</a>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 id="what-is-fluxbox">What is Fluxbox</h3>
+        <ul>
+            <li>Fluxbox is a lightweight window manager for the X Windowing System.</li>
+            <li>Fluxbox provides configurable window decorations, a root menu to launch applications and a toolbar that shows the current workspace name, a set of application names and the current time. There is also a workspace menu which allows you to add or remove workspaces. The `slit' can be used to dock small applications, e.g. most of the bbtools can use slit.</li>
+            <li>Fluxbox can iconify windows to the toolbar, in addition to adding the window to the Icons submenu of the workspace menu. One click and they reappear. A double-click on the titlebar of the window will shade it, i.e. the window will disappear leaving only the titlebar visible.</li>
+            <li>Fluxbox uses its own graphics class to render its images on the fly. By using style files, you can determine in great detail how your desktop looks. Fluxbox styles are compatible with those of Blackbox 0.65 or earlier versions, so users migrating can still use their favourite themes.</li>
+            <li>Fluxbox supports the majority of the Extended Window Manager Hints (EWMH) specification, as well as numerous other Window Hinting standards. This allows all compliant window managers to provide a common interface to standard features used by applications and desktop utilities.</li>
+        </ul>
+        <h3 id="where-can-i-get-fluxbox">Where can I get Fluxbox</h3>
+        <p>
+            To get the fluxbox source you can visit the fluxbox <a href="http://fluxbox.org/">home page</a>.
+            Make sure you are downloading the <a href="http://fluxbox.org/download/">development</a> version.
+            Many people often want the 'stable' version but the fluxbox development version is very stable and
+            is the only version which is being worked on so finding support for problems you run into with the
+            'stable' version, such as build problems, will not be supported ('stable' is over 3 years old..).
+            If you do not want to build your version from source you need to download a package for your distro.
+            Take a look at the <a href="packages" title="wikilink">packages</a> page to find a package for your
+            distro.
+        </p>
+        <h2 id="where-else-can-i-get-help">Where else can I get help?</h2>
+        <p>
+            The #fluxbox channel on the <a href="http://freenode.net/">Freenode</a> network is the official
+            IRC channel for fluxbox.
+        </p>
     </body>
 </html>
