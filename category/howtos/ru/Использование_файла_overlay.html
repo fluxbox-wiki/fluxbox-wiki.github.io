@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="что-такое-styleoverlay">Что такое styleOverlay</h3>
+<p>С svn версии 4136 (будущая <strong>0.9.15</strong>) появилась новая опция под названием <strong>session.styleOverlay</strong>, которая позволяет пользователям делать некоторые(или даже все) элементы стиля постоянными. Очень удобно для шрифтов, например.</p>
+<p>Добавьте в <strong>~/.fluxbox/init</strong> строку:</p>
+<p><code>session.styleOverlay: ~/.fluxbox/overlay</code></p>
+<p>а затем отредактируйте файл <strong>~/.fluxbox/overlay</strong>, как если бы вы редактировали файл стиля. Например, следующим мы делаем шрифты постоянными для всех стилей:</p>
+<p><code>menu.title.font: sans-10:bold</code><br /><code>toolbar.clock.font: sans-10:bold</code><br /><code>toolbar.workspace.font: sans-10:bold</code><br /><code>.font: sans-8</code></p>
+<p><a href="Ru:Howtos" title="wikilink">Вернуться на предыдущую страницу</a></p>
+<p><a href="Category:Русский / Russian howtos" title="wikilink">Category:Русский / Russian howtos</a></p>
+</body>
+</html>

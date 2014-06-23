@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="как-установить-обои-чтобы-работала-прозрачность">Как установить обои чтобы работала прозрачность</h2>
+<p>__TOC__</p>
+<h3 id="что-такое-fbsetbg-и-зачем-он-мне">Что такое fbsetbg и зачем он мне?</h3>
+<p>fbsetbg - это скрипт, который пытается найти подходящее приложение и установить с его помощью обои. В настройке не нуждается, так как использует первое найденное.</p>
+<p>Также запоминает последние установленные обои, так что вам не придется править файл стиля или init для этого.</p>
+<p>Старается выводить четкие сообщения об ошибках, что облегчает поиск источника проблемы.</p>
+<h3 id="ищем-подходящий-инструмент">Ищем подходящий инструмент</h3>
+<p>Для начала, надо убедиться, что fbsetbg нашел подходящую программу для установки обоев, для этого откройте терминал и наберите:</p>
+<p><code>   fbsetbg -i</code></p>
+<p>Если у вас установлена одна из поддерживаемых программ, то вы получите в ответ нечто подобное:</p>
+<p><code>   Esetroot is a nice wallpapersetter. You won't have any problems.</code></p>
+<p>Если не установлена, то сообщение будет подобным этому:</p>
+<p><code>   display doesn't set the wallpaper properly. Transparency for fluxbox</code><br /><code>   and apps like aterm and xchat won't work right with it. Consider </code><br /><code>   installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and</code><br /><code>   I'll use them instead.</code></p>
+<p><code>   display не способен установить обои правильно. Прозрачность в Fluxbox </code><br /><code>   и таких программах как aterm и xchat не будет работать. Установите </code><br /><code>   feh, wmsetbg (из windowmaker) или Esetroot (из Eterm), и я использую их.</code></p>
+<h3 id="установка-обоев-из-стиля">Установка обоев из стиля</h3>
+<p>Со времен версии Fluxbox 0.9.15 команда rootCommand была удалена из стилей, однако до сих пор работает в init файле. Чтобы установить обои из стиля, вы должны использовать следующие конструкции:</p>
+<p><code>  background: centered|aspect|tiled|fullscreen|random|solid|gradient </code><texture><code>|mod|none</code><br /><code>  background.pixmap: </code><file or directory><br /><code>  background.color: </code><color><br /><code>  background.colorTo: </code><color><br /><code>  background.modX: </code><integer><br /><code>  background.modY: </code><integer></p>
+<p>При использовании опций centered, aspect, tiled или fullscreen, 'background.pixmap' должно содержать полный путь к изображению. При использовании random, в 'background.pixmap' указывается директория, содержащая изображения. Для установки заливки цветом необходимо указать цвет в 'background.color'. Для градиентов (более подробно описаных в 'man fbsetroot') необходимо указать и 'background.color', и 'background.colorTo'. 'background.modX' и 'background.modY' специфичны для опции 'mod' (также описаной в 'man fbsetroot'), для которой также требуются 'background.color' и 'background.colorTo'.</p>
+<h3 id="прозрачность-не-работает-что-делать">Прозрачность не работает, что делать?</h3>
+<p>fbsetbg может использовать следуюющие программы для установки обоев:</p>
+<p><code>Esetroot</code><br /><code>wmsetbg</code><br /><code>feh</code><br /><code>hsetroot</code><br /><code>chbg</code><br /><code>display</code><br /><code>qiv</code><br /><code>xv</code><br /><code>xsri</code><br /><code>xli</code><br /><code>xsetbg</code></p>
+<p>По порядку: первый самый лучший, последний худший. Так что, для того, чтобы все работало, установите что нибудь из верхней части списка. Многие на #fluxbox советуют маленький и удобный <strong>feh</strong>, но <strong>Esetroot</strong> (из пакета Eterm) тоже хороший выбор.</p>
+<h3 id="полезные-советы">Полезные советы</h3>
+<p><strong>1. Установка обоев при запуске</strong></p>
+<p>С версии 0.9.15 в Fluxbox появилась новая возможность: <strong>Overlay</strong>. Чтобы ее использовать, создайте файл ~/.fluxbox/overlay, и убедитесь, что в вашем init файле есть строка</p>
+<p><code>  session.styleOverlay: ~/.fluxbox/overlay</code></p>
+<p>Файл overlay может быть использован для установки любых опций стиля, как описаный выше 'background'.</p>
+<p><strong>2. Установка обоев при запуске другим способом</strong></p>
+<p>Если вы не хотите, чтобы устанавливались обои прописанные в стиле, и хотите чтобы fbsetbg запоминал последние установленные вами обои, добавьте в ~/.fluxbox/init :</p>
+<p><code>session.screen0.rootCommand:    fbsetbg -l</code></p>
+<p>Затем в ручную установите один раз обои с помощью fbsetbg. Ссылка на обои будет сохранена в файле ~/.fluxbox/lastwallpaper, который используется ключом -l.</p>
+<p><a href="Category:Русский / Russian howtos" title="wikilink">Category:Русский / Russian howtos</a></p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="как-убрать-стрелки-на-панели">Как убрать стрелки на панели</h2>
+<p>Откройте ~/.fluxbox/init и найдите следующую строку:</p>
+<p><code>session.screen0.toolbar.tools</code></p>
+<p>и удалите из нее перечисленные элементы</p>
+<p><code>prevworkspace, nextworkspace, prevwindow, nextwindow</code></p>
+<p>Перезагрузите конфиги через меню и стрелки исчезнут.</p>
+<h2 id="другие-возможные-элементы-панели">Другие возможные элементы панели</h2>
+<p>Панель может содержать следующие элементы, в любом порядке, разделенные запятыми.</p>
+<p><code>workspacename</code><br /><code>    показывает имя текущего рабочего стола</code></p>
+<p><code>iconbar  </code><br /><code>    показывает свернутые окна/все окна (в зависимости от настроек), это &quot;панель задач&quot;</code></p>
+<p><code>systemtray</code><br /><code>    трей, он и в Африке трей</code></p>
+<p><code>clock</code><br /><code>    часы, формат описан в man strftime</code></p>
+<p><code>prevworkspace  nextworkspace</code><br /><code>    кнопки для переключения рабочих столов</code></p>
+<p><code>prevwindow  nextwindow</code><br /><code>    кнопки для переключения активных окон</code></p>
+<p><a href="Ru:Howtos" title="wikilink">Вернуться на предыдущую страницу</a></p>
+<p><a href="Category:Русский / Russian howtos" title="wikilink">Category:Русский / Russian howtos</a></p>
+</body>
+</html>
