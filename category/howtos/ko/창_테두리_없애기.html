@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="어떻게-창-테두리를-없애는가">어떻게 창 테두리를 없애는가</h1>
+<p>두 가지 방법이 있다. 제일 쉬운 게 아래 내용을 자신의 <strong>~/.fluxbox/keys</strong> 파일에 넣는 것이다:</p>
+<p><code>  Mod4 t :ToggleDecor</code></p>
+<p>위엣것을 쓰든지 다른 키조합을 골라라 (위엣것은 윈도키 + t로 했다).</p>
+<p>설정 파일을 다시 로딩해야 한다. 이렇게 하라.</p>
+<p><code>  fluxbox menu -&gt; reload config</code></p>
+<p>또는 터미널 명령줄에서 시그널을 사용하라:</p>
+<p><code> kill -s usr2 `pgrep fluxbox`</code></p>
+<p>재로딩을 하면 단축키가 작동할 채비가 차려진다. 다음 단계는 테두리를 없애고 싶은 응용 프로그램을 여는 일이다. aterm을 예시로 해보자.</p>
+<p>창 타이틀을 마우스 오른쪽 버튼으로 클릭하여 창메뉴를 불러와라. '기억하기 ...' 항목으로 가서 '종료 시의 값 기억'과 '테두리 상태' 옵션을 켤 것.</p>
+<p>창을 닫으면 <strong>~/.fluxbox/apps</strong> 파일에 설정값을 저장할 것이다. 이제부터 여는 모든 aterm 창은 창 테두리가 없을 것이고 창 테두리를 임시로 보려면 위에서 정한 단축키를 써라.</p>
+<p>이 방법은 응용 프로그램 하나를 포괄하는 설정법이다. 만약 예를 들어 irssi가 돌아가는 aterm 창은 테두리가 없는 창으로 하고 다른 모든 aterm 창은 그대로 창 테두리를 보고 싶다면, 이 특정 aterm 창에 이름을 붙여야 한다. 터미널 대부분이 이를 위해 &quot;-name&quot; 스위치를 사용한다:</p>
+<p><code>   $&gt; aterm -name irssiterm -e irssi</code></p>
+<p>이 aterm 창에서 단축키를 누르면 apps 파일에 이와 비슷한 내용이 만들어 질 것이다:</p>
+<p><code>   [app] (irssiterm)  # to make this valid for ALL windows use (.*) as a regular expression.  </code><br /><code>      [Deco]   {NONE}</code><br /><code>   [end]   </code></p>
+<p>그리고 이것은 -name 스위치를 사용하여 &quot;irssiterm&quot;이라고 이름 붙인 프로그램에만 적용될 것이다.</p>
+<p>두 번째 방법은 조금 복잡하고 플럭스박스를 띄우지 <strong>않은</strong> 상황에서 해야할 일이 조금 있다.</p>
+<p>테두리 없이 쓰고 싶은 프로그램을 열어라. 그 다음 텀을 열고 이렇게 입력하라</p>
+<p><code>  xprop WM_CLASS|cut -d \&quot; -f 2</code></p>
+<p>그리고 프로그램 창을 클릭하라. apps 파일 안에다 적을 이름을 보여줄 것이다. 기억하든지 적어놔라.</p>
+<p><strong>플럭스박스를 종료하고</strong> ~/.fluxbox/apps를 열어라. 이 줄을 추가하라</p>
+<p><code>  [app] (기억하거나 적어둔 app 이름)</code><br /><code>     [Deco]    {NONE}</code><br /><code>  [end]</code></p>
+<p>저장하고 플럭스박스를 다시 시작하라. 설정이 먹힐 것이다. 플럭스박스를 실행하고 있는 동안에는 ~/.fluxbox/apps 파일을 수정할 수 없다는 걸 알고 있어라. 플럭스박스를 재시작하면 변경한 모든 것이 원래대로 되돌려질 것이다.</p>
+<p><a href="Category:Coreano / Korean howtos" title="wikilink">Category:Coreano / Korean howtos</a> <a href="Category:설정 howtos" title="wikilink">Category:설정 howtos</a></p>
+</body>
+</html>

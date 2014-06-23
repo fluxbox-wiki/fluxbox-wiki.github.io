@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="투명이-잘-작동하는-배경그림-깔기">투명이 잘 작동하는 배경그림 깔기</h2>
+<p>__TOC__</p>
+<h3 id="fbsetbg는-무엇이고-왜-필요한가">fbsetbg는 무엇이고 왜 필요한가</h3>
+<p>fbsetbg는 적절한 배경그림 설정 유틸을 찾아내어 그것을 이용해 배경그림을 까는 스크립트다. fbsetbg는 아무런 설정이 필요없고, 단지 처음으로 찾아낸 유틸을 이용한다.</p>
+<p>또한 문제 해결이 용이하도록, 명확한 에러 메시지 창 제공을 지향한다.</p>
+<p>스타일에 따라 특정한 월페이퍼를 깔고 싶다면 아랫 부분 내용을 읽을 것.</p>
+<h3 id="적당한-툴-확인하기">적당한 툴 확인하기</h3>
+<p>우선 fbsetbg가 이용할 적절한 애플리케이션이 있는 지 확인해야 한다. 터미널을 열고 다음 명령을 실행시켜라:</p>
+<p><code>   fbsetbg -i</code></p>
+<p>지원되는 애플리케이션 가운데 하나를 깔아놨다면 이와 같은 식의 메시지를 볼 것이다:</p>
+<p><code>   Esetroot is a nice wallpapersetter. You won't have any problems.</code></p>
+<p>그렇지 않다면 이와 같은 메시지를 받아볼 것이다:</p>
+<p><code>   display doesn't set the wallpaper properly. Transparency for fluxbox</code><br /><code>   and apps like aterm and xchat won't work right with it. Consider </code><br /><code>   installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and</code><br /><code>   I'll use them instead.</code></p>
+<h3 id="투명이-작동하지-않는다.-어떻게-해야-하나">투명이 작동하지 않는다. 어떻게 해야 하나?</h3>
+<p>fbsetbg는 아래의 배경그림 유틸을 이용한다. feh, esetroot 그리고 wmsetbg만 가짜 투명도를 제공한다:</p>
+<p><code>Esetroot</code><br /><code>wmsetbg</code><br /><code>feh</code><br /><code>hsetroot</code><br /><code>chbg</code><br /><code>display</code><br /><code>qiv</code><br /><code>xv</code><br /><code>xsri</code><br /><code>xli</code><br /><code>xsetbg</code></p>
+<p>위엣것이 바람직하고 아랫것은 별로다. 그러므로 모든 것이 잘 돌아가게 하려면, 목록의 상위에 있는 것을 설치하라. #fluxbox 채널의 대다수가 <strong>Feh</strong>를 추천한다. 작고 매우 쓸만하기 때문이다. 하지만 <strong>Esetroot</strong> (<strong>Eterm</strong>에 포함되어 있는) 또한 좋은 선택이다.</p>
+<h3 id="유용한-팁과-비결들">유용한 팁과 비결들</h3>
+<p><strong>1. 시작할 때 배경그림 띄우기</strong></p>
+<p>fluxbox 0.9.15부터 새로운 기능이 도입되었다: <strong>Overlay</strong></p>
+<p>이것을 쓰려면 ~/.fluxbox/init에서 지명한 파일이 필요하다. 우리는 표준인 ~/.fluxbox/overlay를 사용할 것이다.</p>
+<p><code>  session.styleOverlay: ~/.fluxbox/overlay</code></p>
+<p>이 줄이 init 파일 안에 있는 지 확인하라.</p>
+<p>그리고 나서 저 파일을 열고 아래 내용을 추가하라 ('|'는 몇몇 오해들 때문에 'or'를 나타낸다):</p>
+<p><code>  background: aspect | tiled | centered</code><br /><code>  background.pixmap:  /path/to/wallpaper</code></p>
+<p>플럭스박스를 실행할 때마다 저 wallpaper가 깔릴 것이고 포괄적인 wallpaper로 작동할 것이다. 스타일을 통해 지정된 모든 배경은 덮어 씌워진다.</p>
+<p>여전히 init 파일에서 rootCommand를 사용할 수도 있다. 위의 방법은 스타일 파일의 rootCommand만을 대체한다. rootCommand나 overlay 둘 중에 하나만 쓸 수 있지 둘 다 쓰는 건 문제가 발생할 수 있다는 걸 알아둬라.</p>
+<p><strong>2. 시작할 때 배경그림 띄우기 다른 방법</strong></p>
+<p>이미 언급한 대로 init 파일 안의 rootCommand는 여전히 사용 가능하다. 이것을 사용하려면 간단하게 그 줄을 이처럼 완성하라:</p>
+<p><code>session.screen0.rootCommand:    fbsetbg -l</code></p>
+<p>그리고 fbsetbg로 직접 배경을 설정하라. 마지막으로 사용한 월페이퍼가 ~/.fluxbox/lastwallpaper에 저장될 것이다. 그것이 지금 init 파일에 적힌 -l 옵션에 의해 나중에 사용될 것이다.</p>
+<p><strong>3. 스타일로 월페이퍼 깔기</strong></p>
+<p>그냥 위에 나온 설정 방법을 스타일 파일에 집어 넣어라. overlay 파일에는 들어가지 않아야 한다.</p>
+<p><strong>4. fbsetbg를 쓸 때 팁</strong></p>
+<p><code> fbsetbg -p</code></p>
+<p>라고 치면 몇 가지 아주 유용한 팁을 보여준다. 천천히 읽어봐라.</p>
+<p><strong>주의: ~/.fluxbox/init 파일에 rootCommand 명령을 둘 이상 두지 말 것. 그렇지 않다면, 모든 rootCommand 라인이 무시될 것이다.</strong></p>
+<h2 id="노틸러스에서-배경그림-깔기">노틸러스에서 배경그림 깔기</h2>
+<p>노틸러스에서 배경그림을 깔고 싶은가? <a href=":ko:howto nautilus set bg" title="wikilink">여기를</a> 클릭하면 방법이 나온다.</p>
+<p><a href="Category:Coreano / Korean howtos" title="wikilink">Category:Coreano / Korean howtos</a> <a href="Category:통합/시작법 howtos" title="wikilink">Category:통합/시작법 howtos</a></p>
+</body>
+</html>

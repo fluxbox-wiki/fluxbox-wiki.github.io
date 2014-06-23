@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="startx를-사용하여-커맨드-라인에서-플럭스박스-시작하기">startx를 사용하여 커맨드 라인에서 플럭스박스 시작하기</h2>
+<p>이것은 #fluxbox 채널에서 자주 제기되는 질문이다. 방법은 상당히 간단하다.</p>
+<p><a href=":ko:.xinitrc" title="wikilink">.xinitrc</a> 파일을 수정해줘야 한다.(+x 권한을 가진 실행 스크립트이다) 명령 하나로 단번에 해치울 수 있다:</p>
+<p><code> echo &quot;exec startfluxbox&quot; &gt; ~/.xinitrc</code></p>
+<p>어떤 이들은 좀 더 형식을 갖춘 방식을 사용하여 텍스트 에디터를 열고선 이와 같이 파일을 만들 것이다:</p>
+<p><code> #!/bin/sh</code><br /><code> exec `which startfluxbox`</code></p>
+<p><strong><a href="howto startup 파일 수정" title="wikilink">startfluxbox</a></strong>가 자신의 <strong><a href=":ko:$PATH" title="wikilink">$PATH</a></strong>에 들어 있는 한 어떠한 방법이든 잘 작동을 한다.</p>
+<p><a href="Category:Coreano / Korean howtos" title="wikilink">Category:Coreano / Korean howtos</a> <a href="Category:통합/시작법 howtos" title="wikilink">Category:통합/시작법 howtos</a></p>
+</body>
+</html>

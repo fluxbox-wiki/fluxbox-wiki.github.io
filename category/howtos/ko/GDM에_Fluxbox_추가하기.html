@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="gdm에-fluxbox-추가하기">GDM에 Fluxbox 추가하기</h2>
+<p>주(註): 이 내용은 플럭스박스 사이트에서 복사해 왔음. gdm을 사용하는 이는 이곳도 살펴보실 것.</p>
+<p>어떻게 해야 GDM 세션 메뉴에 플럭스박스를 추가하나.</p>
+<p>/etc/gdm/Sessions/fluxbox 파일을 아래 내용과 같이 만들어라:</p>
+<p><code>#!/bin/sh</code><br /><code>#</code><br /><code># /etc/gdm/Sessions/fluxbox</code><br /><code>#</code><br /><code># global fluxbox session file -- used by gdm</code><br /><br /><code>exec /etc/X11/Xsession /usr/bin/startfluxbox</code></p>
+<p>물론, /usr/bin/startfluxbox를 자신의 startfluxbox 시작 스크립트가 있는 경로로 바꿔 놓자.</p>
+<p>만약에 /etc/gdm 디렉토리가 없다면 /etc/X11/gdm/Sessions/fluxbox로 해보자.</p>
+<h2 id="첫번째-방법이-통하지-않는다.-어떻게-해야-하지">첫번째 방법이 통하지 않는다. 어떻게 해야 하지?</h2>
+<p>데비안을 쓴다면 <strong>touch ~/.Xsession</strong>라고 터미널에서 실행해 줘야 한다. 그리고 좋아하는 에디터로 ~/.Xsession 파일에 <strong>exec /usr/bin/startfluxbox</strong>를 써넣은 뒤 저장하고 나와서 GDM 세션을 다시 시작해보라.</p>
+<h3 id="다른-방법이-있다">다른 방법이 있다</h3>
+<p>몇몇 배포판들에서는 조금 다른 방법이 필요하다. 데비안, 우분투, 그리고 다른 배포판에서는 대신에 이러한 간단한 지침을 따라야 할 것이다.</p>
+<p>우분투 시스템에서 플럭스박스-SVN 버전을 컴파일해야겠다고 마음 먹었다면, 설치 후 플럭스박스로 엑스를 시작하는 방법이 없다는 것을 알아차렸을 것이다. 이렇게 해본다고 한들</p>
+<p><code> startx `which fluxbox` -- :1</code></p>
+<p>퍼미션 거부만 나고 엑스 서버에는 접속할 수가 없다. (나는 Horay에서만 이것을 해보았다). 그러니 이렇게</p>
+<p><code> sudo gedit /usr/share/xsessions/fluxbox.desktop</code></p>
+<p>하고선 아래의 내용을 파일에 첨가하라:</p>
+<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configureable low resource X11 Window Manager</code><br /><code> Exec=</code><strong><code>/usr/local/bin/startfluxbox</code></strong><br /><code> Terminal=False</code><br /><code> TryExec=</code><strong><code>/usr/local/bin/startfluxbox</code></strong><br /><code> Type=Application</code></p>
+<p>주(註): 굵은 줄, <strong>/usr/local/bin/startfluxbox</strong> 는 사용자가 독자적으로 컴파일한 플럭스박스를 위한 것이다. 패키지 매니저를 통해서 설치했다면, <strong>/usr/bin/startfluxbox</strong>로 적는다.</p>
+<p>주(註): FreeBSD 6.0에서는 fluxbox.desktop을 /usr/X11R6/share/gdm/xsessions/fluxbox.desktop로 넣어볼 것.</p>
+<p>파일을 저장하고선 GDM 세션을 재시작하라. 현재의 X 세션을 로그 아웃하고선 Ctrl + Alt + Backspace를 눌러주면 된다. 주(註): Ctrl + Alt + Del이 아니다(컴퓨터가 재부팅될 것이다).</p>
+<h2 id="startup-스크립트를-자기-입맛에-맞게-수정">startup 스크립트를 자기 입맛에 맞게 수정</h2>
+<p>startup 스크립트를 변경하려면 <a href="Howto startup 파일 수정" title="wikilink">여기를</a> 봐라. 시작시 어떻게 프로그램들을 실행시킬 지에 대해 설명하고 있는 정보를 찾을 것이다. 플럭스박스가 이미 시작한 후에도 어떻게 프로그램들을 자동으로 실행할 지에 대해서도 나와 있고, 그리고 기타 다른 화제들도 찾을 수가 있다.</p>
+<p><a href="Category:Coreano / Korean howtos" title="wikilink">Category:Coreano / Korean howtos</a> <a href="Category:통합/시작법 howtos" title="wikilink">Category:통합/시작법 howtos</a></p>
+</body>
+</html>
