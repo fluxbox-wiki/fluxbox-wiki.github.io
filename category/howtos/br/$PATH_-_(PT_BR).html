@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>Em sistemas conhecidos como unix-like, $PATH é uma variável de ambiente que contém todos os caminhos que seu terminal vai procurar para executar os programas. Para descobrir o que tem no seu $PATH basta abrir um terminal e digitar:</p>
+<p><code>echo $PATH</code></p>
+<p>Você vai ver algo assim:</p>
+<p><code> /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games</code></p>
+<p>Isso pode ser muito longo. Para adicionar algo temporariamente para o seu $PATH digite:</p>
+<p><code>export $PATH=$PATH:/usr/local/games/bin</code></p>
+<p>E isso deve adicionar /usr/local/games/bin para o seu $PATH. Para uma solução permanente, você deve adicionar isso para o seu arquivo shellrc. Para usuários BASH vai ser algo como ~/.bashrc e ZSH vai ser ~/.zshrc ou algo parecido. Você ainda pode considerar adicionar essas coisas para ~/.profile</p>
+<p><a href="Category:PortuguÃªs-Br / Portuguese-Br howtos" title="wikilink">Category:PortuguÃªs-Br / Portuguese-Br howtos</a></p>
+</body>
+</html>
