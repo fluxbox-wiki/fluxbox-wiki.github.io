@@ -1,0 +1,117 @@
+__TOC__
+[[Category:German howtos]]
+[[Category:Deutsch / German howtos]]
+[[Category:Konfiguration]]
+
+Um die Auflösung anzupassen hat man zwei Möglichkeiten: 
+
+===Dynamisch mit Xrandr===
+
+Um die Auflösung dynamisch wärend des Betriebes zu verwenden
+kann die Xorg Erweiterung xrandr zusammen mit dem 
+gleichnamigen Programm verwendet werden. 
+
+Die meisten Distributionen sollte diese mitliefern. 
+
+Ein Ausführen von xrandr auf einer Konsole
+sollte eine solche Ausgabe geben:
+
+  SZ:    Pixels          Physical       Refresh
+ *0   1600 x 1200   ( 406mm x 305mm )  *75   70   65   60  
+  1   1280 x 1024   ( 406mm x 305mm )   85   75   60  
+  2   1024 x 768    ( 406mm x 305mm )   85   75   70   60   87  
+  3    800 x 600    ( 406mm x 305mm )   85   75   72   70   65   60   56  
+  4    640 x 480    ( 406mm x 305mm )   85   75   73   60  
+  5   1400 x 1050   ( 406mm x 305mm )   85   75   70   60  
+  6   1440 x 900    ( 406mm x 305mm )   60  
+  7   1280 x 960    ( 406mm x 305mm )   85   60  
+  8   1280 x 800    ( 406mm x 305mm )   60  
+  9   1152 x 864    ( 406mm x 305mm )   85   75  
+  10  1280 x 768    ( 406mm x 305mm )   60  
+  11  1152 x 768    ( 406mm x 305mm )   55  
+  12   960 x 720    ( 406mm x 305mm )   60  
+  13   928 x 696    ( 406mm x 305mm )   60  
+  14   896 x 672    ( 406mm x 305mm )   60  
+  15   960 x 600    ( 406mm x 305mm )   73   60  
+  16   832 x 624    ( 406mm x 305mm )   75  
+  17   840 x 525    ( 406mm x 305mm )   60  
+  18   700 x 525    ( 406mm x 305mm )   85   75   70   60  
+  19   640 x 512    ( 406mm x 305mm )   85   75   60  
+ Current rotation - normal
+ Current reflection - none
+ Rotations possible - normal 
+ Reflections possible - none
+
+In der Anleitung von xrandr (man xrandr) steht 
+sehr genau beschrieben wie das Programm funktioniert, 
+üblicherweise will man aber mit 
+
+'''xrandr -s <size>/<width>x<height>'''
+
+einfach nur die Auflösung ändern. 
+
+Also kann man zun Beispiel
+  xrandr -s 3
+verwenden, weil 3 ist die Zahl der SZ Kolonne in der Ausgabe oben. In dem Fall würde man auf 800x600. umschalten
+
+Oder man gibt die Auflösung direkt an, zum Beispiel so: 
+ xrandr -s 1024x768
+
+===Fixe Einstellung mit der Xorg.conf===
+
+Mit dieser Lösung wird die Auflösung dauerhaft eingestellt. 
+
+Als root oder mit sudo muss die Datei 
+'''/etc/X11/xorg.conf''' 
+oder, auf ganz alten Systemen
+'''/etc/X11/XF86Config'''
+angepasst werden. 
+
+Die Datei sollte einen Bereich "Screen" haben, der etwa so aussieht: 
+
+ Section "Screen"
+        Identifier      "Default Screen"
+        Device          "geforce256"
+        Monitor         "S/M 950p"
+        DefaultDepth    24
+        SubSection "Display"
+                Depth           8
+                Modes           "1600x1200" "1280x1024" "1024x768" "800x600" "640x480"
+        EndSubSection
+        SubSection "Display"
+                Depth           16
+                Modes           "1600x1200" "1280x1024" "1024x768" "800x600" "640x480"
+        EndSubSection
+        SubSection "Display"
+                Depth           24
+                Modes           "1600x1200" "1280x1024" "1024x768" "800x600" "640x480"
+        EndSubSection
+ EndSection
+
+Dabei werden für alle Farbtiefen die möglichen Auflösungen
+in Anführungszeichen angegeben. 
+
+Xorg verwendet standardmässig die höchstmögliche Auflösung 
+für die unter DefaultDepth angegebene Farbtiefe. 
+
+Die Datei solle an sich selbsterklärend und leicht zu editieren sein. 
+
+Die meisten Distributionen bieten zudem ein graphisches 
+Konfigurationswerkzeug. 
+
+
+===Dynamische Einstellung mit nvidia-config===
+
+Nutzer des Binärtreibers von nVidia haben zudem
+eine weitere Möglichkeit, die graphische
+nvidia-config. Diese listet alle möglichen
+Auflösungen für alle angeschlossenen Bildschirme
+und ermöglicht ein einfaches und komfortables
+Umschalten. 
+
+Wenn man nvidia-settings -l in den Autostart
+von fluxbox packt kann man zudem diese
+Anweundung auch zum festen Einstellen verwenden. 
+
+nvidia-config bietet auch an, direkt in die
+Xorg.conf zu schreiben. Davon sollte man aber noch absehen.

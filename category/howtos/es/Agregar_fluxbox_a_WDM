@@ -1,0 +1,77 @@
+[[Category:Español / Spanish howtos]]
+[[Category:Inicio]]
+
+[http://voins.program.ru/wdm/ WDM] es un pequeño y liviano reemplazo para XDM. Si estas buscando por un bonito y simple reemplazo para XDM es muy recomendable.  
+
+
+Es muy facil de agregar fluxbox (o cualquier otro window manager) a su lista en el momento de loguearse.
+
+Asumo que quie WDM está instalado y trabajando adecuadamente. Si no deberíamos hacer eso primero y luego volver.
+
+
+Primeramente se necesita editar dos de los archivos de configuración de WDM. El primero es '''Xclients''' y el segundo es '''wdm-config'''. En gentoo se encuentran localizados en '''/etc/X11/wdm'''.
+
+
+
+__TOC__
+
+==Editando el archivo '''Xclients'''==
+En el archivo '''Xclients''' necesitaremos agregar un pequeño script que verficará si existe el ejecutable de fluxbox y que sea ejecutable. 
+
+
+Abrimos '''Xclients''' con nuestro editor favorito. La parte del script que queremos cambiar empieza así:
+  # Primero chequea las preferencias del usuario
+  if [ -f $HOME/.wm_style ] ; then
+     WMSTYLE=`cat $HOME/.wm_style`
+     case "$WMSTYLE" in
+
+y está lleno de una cantidad de ítems que lucen mas o menos así
+  wmaker*|WindowMaker*)
+    # startup WindowMaker
+    WMAKER_PATH=/usr/bin/wmaker
+    if ! test -x $WMAKER_PATH ; then
+       FindInPath $WMAKER_PATH
+       if test -n "$result" -a -x "$result"; then
+           WMAKER_PATH="$result";
+       fi
+    fi
+    if test -x $WMAKER_PATH ; then
+       echo Starting WindowMaker >$HOME/.xwm.msgs
+       env > "$HOME"/Xrootenv.0
+       exec $WMAKER_PATH >>$HOME/.xwm.msgs 2>&1
+    fi
+    ;;
+    esac
+  fi
+
+necesitamos agregar una porción de código para decirle que chequee por el ejecutable de fluxbox, así antes del final del código anterior agregamos las siguientes líneas:
+  
+  fluxbox*|FluxBox)
+  # startup fluxbox
+  FLUXBOX_PATH=/usr/bin/startfluxbox
+  if ! test -x $FLUXBOX_PATH ; then
+    FindInPath $FLUXBOX_PATH
+    if test -n "$result" -a -x "$result"; then
+      $FLUXBOX_PATH="$result";
+    fi
+  fi
+  if [ -x $FLUXBOX_PATH ] ; then
+    echo Starting FluxBox >$HOME/.xwm.msgs
+    exec $FLUXBOX_PATH >>$HOME/.xwm.msgs 2>&1
+  fi
+  ;;
+
+==Editando el archivo '''wdm-config'''==
+Después de que hayamos hecho esto, necesitaremos agregar fluxbox a wdm-config.
+Abrimos este archivo con nuestro editor favorito y buscamos la siguiente línea:
+
+   DisplayManager*wdmWm:           WindowMaker:None
+
+y la cambiamos para que se vea así
+
+   DisplayManager*wdmWm:  WindowMaker:FluxBox
+
+Y eso es todo. Reiniciamos WDM y listo, FluxBox aparece en el menu.
+
+
+A disfrutarlo

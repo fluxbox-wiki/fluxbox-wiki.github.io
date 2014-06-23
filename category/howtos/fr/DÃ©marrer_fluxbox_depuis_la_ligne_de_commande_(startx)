@@ -1,0 +1,16 @@
+[[Category:Français / French howtos]]
+Comment démarrer Fluxbox depuis la ligne de commande en utilisant "startx" ?
+
+Question souvent posée sur #fluxbox. C'est super simple.
+
+Il faut editer le fichier .xinitrc qui se trouve dans son dossier HOME.
+
+Tapez ensuite:
+ echo "exec startfluxbox" > ~/.xinitrc
+
+ou alors utilisez un simple editeur de text:
+
+ #!/bin/sh
+ exec `which startfluxbox`
+
+Peu importe la méthode, du moment que "startfluxbox" est dans votre $PATH cela devrait fonctionner.

@@ -1,0 +1,97 @@
+[[Category:Español / Spanish howtos]]
+[[Category:Instalación]]
+
+==Compilando Fluxbox desde los fuentes==
+
+===¿Qué necesito?===
+Fluxbox puede compilarse teniendo solamente compiladores de uso común (gcc, gpp, make, etc) y las bibliotecas de desarrollo libx11.
+
+Si se obiente un error como éste
+  checking for X... no configure: error: Fluxbox requires the X Window System libraries and headers.
+enotonces debemos intentar instalar los siguientes paquetes (o similares)
+ xlibs-dev
+ x-window-system-dev
+
+==== Debian/Ubuntu ====
+Ya que debian e ubuntu tienen fluxbox en sus repositorios, se puede conseguir casi todo lo que necesitas para compilar fluxbox con un comando sencillo:
+ apt-get build-dep fluxbox
+Que instalará lo que necesitarías para instalar fluxbox de un tarball (*.tar.bz2) pero le faltan paquetes para subversion.
+
+===¿Dónde consigo los fuentes?===
+Siempre se pueden conseguir los más recientes de
+[http://fluxbox.org/version-0.9.php fluxbox.org] o de [http://sf.net/projects/fluxbox Sourceforge].
+
+=== Compilando Fluxbox (pequeña descripción)===
+ $ tar -zxvf fluxbox-*.tar.gz  O  tar -jxvf fluxbox-*.tar.bz2
+ $ cd fluxbox
+ $ ./configure
+ $ make
+ $ su
+ $ make install
+
+Notas: configure puede tomar otros argumentos. Se describen más abajo. Se puede usar sudo en vez de su. La ruta de instalación por defecto es '''/usr/local/share/fluxbox/'''
+
+===Ok, tengo todo. Ahora, cómo lo compilo?===
+Primero debemos descomprimir el archivo que bajamos (para .tar.gz hacemos '''tar -zxvf fluxbox-*.tar.gz''' (reemplazamos * con el número de versión) y para .tar.bz2 '''tar -jxvf fluxbox-*.tar.bz2'''. Por favor notar que se necesita gzip para tar.gz y bzip2 para tar.bz2).
+
+Luego 
+ $ cd fluxbox
+
+
+Ahora estamos en el mismo directorio que el código fuente. Debemos leer el archivo README e INSTALL que se encuentran dentro.
+
+Continuamos con
+ $ ./configure
+
+Si se quiere activar xinerama (monitores múltiples) se usa '''./configure --enable-xinerama''' y si se quieren usar íconos png (y se tiene los paquetes de desarrollo imlib2 instalados) se puede usar '''./configure --enable-imlib2'''. O incluso ambos, como '''./configure --enable-xinerama --enable-imlib2'''. Fácil, no?
+Ante la duda '''./configure --help''' para todas las opciones.
+
+
+Cuando eso ha concluído debemos construir el binario con
+ $ make
+
+
+Finalmente hacemos un
+ $ sudo make install
+O si eso no funciona
+ $ su
+ $ make install
+Fluxbox se instalará en '''/usr/local/share/fluxbox'''.
+
+==¿Qué es la versión svn y por qué debería usarla?==
+
+(SVN se refiere a subversion y es muy similar a CVS.)
+
+La versión svn de de Fluxbox es la última version de desarrollo disponible para prueba. Así que si se quiere tener las características más avanzadas, ayudar a descubrir bugs o crear parches personalizados esto es lo que se debería usar.
+
+===Descargando e instalando la versión svn===
+
+Se necesitan [http://subversion.tigris.org subversion], automake-tools y autoconf-tools instalados.
+
+
+Para obtener los fuentes para compilar hay que tipear:
+ $ svn checkout svn://svn.berlios.de/fluxbox/trunk fluxbox && cd fluxbox && ./autogen.sh
+
+Luego de esto seguimos de la manera tradicional
+ $ ./configure && make && sudo make install
+
+Notar que esto no activa las características adicionales. Así que si se quiere usar xinerama, se usa ./configure --enable-xinerama y para íconos png (imlib2) agregamos --enable-imlib2.
+
+Esto compilará los fuentes y los instalará en los directorios estándar
+ '''/usr/local/bin''' para el binario de fluxbox binary y '''/usr/local/share/fluxbox/''' para las configuraciones de sistema y estilos de sistema.
+
+
+Para una fácil actualización:
+ $ cd fluxbox && svn update && make && sudo make install
+
+===Obteniendo una revisión antigua de los repositorios de svn===
+
+Por qué querríamos hacer esto?
+
+* Probablemente tenemos algo roto en nuestro sistema y la última versión de svn no compila, pero recordamos haber compilado la versión X...
+* Tal vez encontramos un bug que no ha sido enviado aún.
+* Quizás queremos usar un parche que no anda con la versión más reciente.
+
+Cualesquiera sean las razones, ésta es la manera:
+  $ svn checkout -r X svn://svn.berlios.de/fluxbox/trunk fluxbox
+Por supuesto debemos reemplazar la X con el número de revisión que queremos.

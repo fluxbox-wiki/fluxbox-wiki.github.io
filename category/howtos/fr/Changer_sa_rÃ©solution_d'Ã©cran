@@ -1,0 +1,102 @@
+__TOC__
+[[Category:Français / French howtos]]
+===Xrandr : à la volée===
+
+Pour changer sa résolution d'écran à la volée, il existe un programme livrée avec le système X, quelque soit la distribution linux utilisée : xrandr.
+
+Tout d'abord, tapez dans une console:
+ xrandr
+
+Il va afficher ca:
+  SZ:    Pixels          Physical       Refresh
+ *0   1600 x 1200   ( 406mm x 305mm )  *75   70   65   60  
+  1   1280 x 1024   ( 406mm x 305mm )   85   75   60  
+  2   1024 x 768    ( 406mm x 305mm )   85   75   70   60   87  
+  3    800 x 600    ( 406mm x 305mm )   85   75   72   70   65   60   56  
+  4    640 x 480    ( 406mm x 305mm )   85   75   73   60  
+  5   1400 x 1050   ( 406mm x 305mm )   85   75   70   60  
+  6   1440 x 900    ( 406mm x 305mm )   60  
+  7   1280 x 960    ( 406mm x 305mm )   85   60  
+  8   1280 x 800    ( 406mm x 305mm )   60  
+  9   1152 x 864    ( 406mm x 305mm )   85   75  
+  10  1280 x 768    ( 406mm x 305mm )   60  
+  11  1152 x 768    ( 406mm x 305mm )   55  
+  12   960 x 720    ( 406mm x 305mm )   60  
+  13   928 x 696    ( 406mm x 305mm )   60  
+  14   896 x 672    ( 406mm x 305mm )   60  
+  15   960 x 600    ( 406mm x 305mm )   73   60  
+  16   832 x 624    ( 406mm x 305mm )   75  
+  17   840 x 525    ( 406mm x 305mm )   60  
+  18   700 x 525    ( 406mm x 305mm )   85   75   70   60  
+  19   640 x 512    ( 406mm x 305mm )   85   75   60  
+ Current rotation - normal
+ Current reflection - none
+ Rotations possible - normal 
+ Reflections possible - none
+
+Il s'agit de toutes les résolutions supportées par votre écran.
+
+Pour changer de résolution: '''xrandr -s <size>/<width>x<height>'''
+
+Exemple:
+  xrandr -s 3
+où 3 est le numéro correspondant à la colonne SZ du mode qui vous intéresse. Dans notre exemple du 800x600.
+
+Vous pouvez aussi utiliser: 
+ xrandr -s 1024x768
+Facile, c'est équivalent à '''xrandr -s 2''' et permet d'avoir, ho surprise!, un mode en 1024x768.
+
+Si vous voulez paramétrer le rafraichissement utilisez l'option '''-r <rate>'''.
+Exemple:
+ xrandr -s 800x600 -r 60
+Vous aurez un 800x600 bien moisi avec un taux de rafraichissement de 60 Hz (ca pique les yeux!).
+
+===Xorg.conf : la solution permanente===
+
+Si vous souhaitez que les changement soient permanent, cad à chaque démarrage de X, il faut éditer le fichier (en ROOT) : '''/etc/X11/xorg.conf''' ou '''/etc/X11/XF86Config'''
+
+Trouvez la section '''Section "Screen"''' qui ressemble à ca:
+ Section "Screen"
+        Identifier      "Default Screen"
+        Device          "geforce256"
+        Monitor         "S/M 950p"
+        DefaultDepth    24
+        SubSection "Display"
+                Depth           8
+                Modes           "1600x1200" "1280x1024" "1024x768" "800x600" "640x480"
+        EndSubSection
+        SubSection "Display"
+                Depth           16
+                Modes           "1600x1200" "1280x1024" "1024x768" "800x600" "640x480"
+        EndSubSection
+        SubSection "Display"
+                Depth           24
+                Modes           "1600x1200" "1280x1024" "1024x768" "800x600" "640x480"
+        EndSubSection
+ EndSection
+
+Maintenant il faut ajouter le mode désiré '''EN DEBUT'''.
+Par exemple si vous voulez du 1024x768 au lieu de 1600x1200, modifiez comme suit:
+
+ Section "Screen"
+        Identifier      "Default Screen"
+        Device          "geforce256"
+        Monitor         "S/M 950p"
+        DefaultDepth    24
+        SubSection "Display"
+                Depth           8
+                Modes           "1024x768" "1600x1200" "1280x1024" "800x600" "640x480"
+        EndSubSection
+        SubSection "Display"
+                Depth           16
+                Modes           "1024x768" "1600x1200" "1280x1024" "800x600" "640x480"
+        EndSubSection
+        SubSection "Display"
+                Depth           24
+                Modes           "1024x768" "1600x1200" "1280x1024" "800x600" "640x480"
+        EndSubSection
+ EndSection
+
+NOTES:
+Veillez à bien mettre les modes entre guillemets.
+Vous pouvez effacer les autres modes mais il vaut mieux les laisser car si X n'arrive pas à démarrer avec le premier mode il va essayer automatiquement le second. Si aucun autre mode ne fonctionne il ne démarrera pas.

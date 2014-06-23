@@ -1,0 +1,57 @@
+[[Category:Français / French howtos]]
+
+
+Fluxbox lui même ne gère pas le fond d'écran. Pour pouvoir en mettre un, lisez ce qui suit.
+
+
+===Qu'est ce que ''''fbsetbg'''' et pourquoi en ai-je besoin ?===
+
+''''fbsetbg'''' est un petit programme qui permet d'appeller n'importe quel outil capable de changer le fond d'écran. Il utilisera le premier outil qu'il trouvera.
+
+
+===Est ce que les outils sont bien installés ?===
+
+Nous devons nous assurer que ''''fbsetbg'''' trouve bien un programme à utiliser pour mettre le fond d'écran. Ouvrez une console et tapez:
+
+    fbsetbg -i
+
+Si il trouve un programme à utiliser, vous aurez ce message:
+    ''''Esetroot is a nice wallpapersetter. You won't have any problems''''.
+
+Sinon, vous aurez ce message:
+    ''''display doesn't set the wallpaper properly. Transparency for fluxbox
+    and apps like aterm and xchat won't work right with it. Consider 
+    installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and
+    I'll use them instead''''.
+
+
+
+===Paramétrer le fond d'écran !===
+
+
+'''1. Au démarrage : le dernier utilisé'''
+
+Ajoutez dans votre fichier ''''./fluxbox/init'''':
+ session.screen0.rootCommand:    fbsetbg -l
+
+Ensuite paramétrer le fond d'écran manuellement avec ''''fbsetbg''''. Ce fond d'écran sera noté dans ''''./fluxbox/lastwallpaper''''. L'option ''''-l'''' de ''''fbsetbg'''' permettra de rappeller ce fond d'écran au démarrage.
+
+
+
+'''2. Au démarrage : au dessus de tout les thèmes'''
+
+Depuis fluxbox 0.9.15 une nouvelle fonction a été introduite: '''Overlay'''.
+
+Pour l'utiliser il faut mettre dans ~/.fluxbox/init la ligne suivante :  
+   session.styleOverlay: ~/.fluxbox/overlay
+
+Il vous suffit maintenant d'éditer le fichier ''''~/.fluxbox/overlay'''' pour choisir quel fond d'écran sera utilisé au démarrage.
+
+NOTE: ce fond d'écran passera par dessus celui de votre thème !
+
+
+===La transparence ne fonctionne pas ? Que faire ?===
+
+''''Fbsetbg'''' peut utiliser plusieurs outils pour mettre le fond d'écran, mais parmis ces outiles, SEULEMENT ''''feh'''', ''''esetroot'''' et ''''wmsetbg'''' supportent la pseudo-transparence.
+
+ Je vous conseille d'installer '''Esetroot''' (''''apt-get install Eterm''') qui est livré avec ''''Eterm''''.

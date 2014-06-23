@@ -1,0 +1,79 @@
+[[Category:Español / Spanish howtos]]
+[[Category:Instalación]]
+
+
+==Introducción==
+El problema con Fluxbox es que la versión presente en los repositorios es muy vieja, por lo tanto no tiene soporte, es lenta y carece de todas las últimas funcionalidades que si tiene la última versión (1.0rc2 o superior).
+Manos a la obra. Voy a describir dos formas de instalar los sources. A partir del tarball oficial y a partir de subversion, éste último con soporte de lenguaje nativo (o sea que lo vamos a tener en español; tambien funciona con el tarball oficial, solo que  la traducción puede no estar completa). Luego voy a indicar como agregar fluxbox al gdm o kdm.
+
+Para instalar el tarball oficial hice un extracto del how-to que figura en esta dirección de ubuntuforums: http://www.ubuntuforums.org/showthread.php?t=116759
+
+==Preparando el ambiente de trabajo==
+Primero debemos preparar nuestro ambiente de trabajo. Abrimos una consola y tecleamos:
+
+  $ sudo apt-get install build-essential xlibs-dev libxft1 libxft-dev
+
+con eso ya tenemos las herramientas necesarias para compilar, ahora nos descargamos el tarball desde: 
+
+http://prdownloads.sourceforge.net/fluxbox
+
+==Compilando los fuentes==
+una vez descargado el archivo tecleamos en nuestra consola
+
+  $ tar - vxzf fluxbox-xxx.tar.gz
+  $ cd fluxbox-xxx
+
+y una vez dentro del directorio tecleamos lo siguiente:
+
+  $ ./configure --disable-kde --enable-gnome --disable-xmb --prefix=/usr
+  $ make
+  $ sudo make install
+
+nota: si estamos en kubuntu deberíamos poner --enable-kde y --disable-gnome, si usamos aplicaciones tanto de gnome como de kde (que se carguen en el systray), le ponemos el prefijo --enable a los dos. --disable-xmb es para acelerar el inicio de fluxbox en ubuntu y --prefix=/usr es para que lo instale en los directorios de ubuntu por defecto: /usr/bin, de otro modo se instalaría en /usr/local/bin
+
+y listo, ya tenemos fluxbox listo para usar.
+
+
+==Versión de subversion==
+Si nos gusta tener la última versión disponible podemos instalar directamente desde el repositorio de subversion, que no es otra cosa que el lugar donde los desarrolladores van agregando los cambios a medida que los hacen, de modo que siempre va a ser la versión más al día y la vamos a tener antes que los releases oficiales. Además podemos contribuir con los desarrolladores informándoles posibles errores. El único problema es que puede ser un poco inestable, pero tranquilos, casi nunca pasa.
+Para instalar desde subversion tenemos que instalar estos paquetes aparte de los mencionados más arriba:
+
+  $ sudo apt-get install subversion autoconf automake1.9 libtool
+
+luego nos resta descargar los fuentes del repositorio de subversion:
+
+  $ svn checkout svn://svn.berlios.de/fluxbox/trunk fluxbox
+
+este comando nos va a crear la carpeta fluxbox y pondrá ahi los fuentes descargados. Cuando haya terminado hacemos:
+
+  $ cd fluxbox
+  $ ./autogen.sh (solo la primera vez que descarguemos desde el repositorio)
+  $ ./configure --disable-kde --enable-gnome --disable-xmb --prefix=/usr --enable-nls
+  $ make
+  $ sudo make install
+
+nota: si estamos en kubuntu deberíamos poner --enable-kde y --disable-gnome, si usamos aplicaciones tanto de gnome como de kde (que se carguen en el systray), le ponemos el prefijo --enable a los dos. --disable-xmb es para acelerar el inicio de fluxbox en ubuntu y --prefix=/usr es para que lo instale en los directorios de binarios de ubuntu: /usr/bin, de otro modo se instalaría en /usr/local/bin. --enable-nls es para activar el soporte de lenguaje nativo.
+
+Para actualizar la versión (que puede ser una vez al día, a la semana o cuando queramos), entramos al directorio fluxbox y escribimos:
+
+  $ svn update
+  $ make
+  $ sudo make install
+
+Si nuestras locales son es_ES o es_AR serán detectadas automáticamente cuando inicie Fluxbox, si fueran otra variante del español tenemos que hacer un enlace simbólico de nuestra locale con es_ES:
+
+  $ cd /usr/share/fluxbox/nls
+  $ ln -s es_ES.UTF-8 nuestra_LOCAL.UTF-8 (si utf8 fuera nuestra codificación de caracteres, si no cambiamos por ISO-8859-15)
+<nowiki>Insert non-formatted text here</nowiki>
+
+==Display Manager==
+Fluxbox ya está listo para usar y en idioma español. Ahora tenemos que agregarlo a gdm o kdm siguiendo el how-to de esta página: 
+
+[[Agregar fluxbox a GDM]]
+
+[[Agregar fluxbox a KDM]]
+
+==IRC==
+Por consultas pueden visitar (están invitados a participar):
+
+<nowiki>#fluxbox-es en irc.freenode.net</nowiki>

@@ -1,0 +1,86 @@
+ [[Category:Integration / Startup]]
+[[Category:Deutsch / German howtos]]
+
+__TOC__
+==Crashhandling und Widerherstellung==
+[[Category:German howtos]]
+
+Die Datei ~/.fluxbox/startup wird ausgeführt, 
+wenn fluxbox über den Befehl "startfluxbox" 
+anstelle von "fluxbox" gestartet wird. 
+
+Sie kann verwendet werden um bei einem 
+Absturz von Fluxbox das Programm gleich
+neu zu starten, so, dass direkt
+weitergearbeitet werden kann. 
+
+Sie entspricht einer Art Autostart, enthält also
+Applikationen, welche zusammen mit oder nach
+fluxbox gestartet werden. 
+  
+==Warum brauche ich das?==
+Fluxbox ist ein sehr stabiles Programm. 
+Allerdings kann es sein, dass man eigenen Code 
+einbringt, Patches von Dritten verwendet
+oder die Entwicklerversion verwendet um die
+  neusten Funktionen verwenden zu können. 
+
+Die Fensterverwaltung ist etwas sehr zentrales
+in X11. Je nachdem wie man X startet
+wird man bei einem Absturz der Fensterverwaltung
+direkt zu dem graphischen Login zurückbefördert
+und alle Applikationen mitsammt den noch
+nicht gespeicherten Daten gehen verloren. 
+
+Das wollen wir verhindern. 
+
+==Wie richte ich das ein?==
+Mit Hilfe der Startup Datei. 
+Ein sehr gutes Beispiel kommt von markt, 
+einem der Fluxbox Entwickler. 
+
+Die Datei wurde von mir leicht angepasst 
+und kommentiert
+
+
+~/.fluxbox/startup
+
+  # Befehle die immer ausgeführt werden
+
+  xcompmgr &
+  
+  # Befehle, die nur beim ersten Start ausgeführt werden
+  run_commands()
+ {
+  # X-Settings 
+  xset b off 
+  xset s on 
+  xscreensaver -no-splash & 
+  nvidia-settings -l &
+  xmodmap .Xmodmap &
+
+  #Apps to start with fluxbox 
+  kmix &
+  gkrellm2 -w &
+  urxvt &
+  }
+
+  # fluxbox start mit log-Funktion
+  exec /usr/local/bin/fluxbox -log ~/.fluxbox/log &
+  fbpid=$!
+
+  case "x$1" in x) run_commands;; esac
+
+  # if fluxbox crashes, that's ok -- we'll restart another one
+  # if this loops, I can always use control-alt-backspace
+  wait $fbpid || exec $0 norun
+
+
+Ein normales beenden von Fluxbox mit dem Menu 
+oder einem Signal (nicht SIGKILL) ist weiterhin möglich. 
+
+Sollte fluxbox also abstürzen wird sofort eine
+neue Fluxbox-Instanz gestartet, welche die
+schon offenen Fenster wieder übernimmt. 
+Programme im Autostart werden dabei nicht
+noch einmal ausgeführt.

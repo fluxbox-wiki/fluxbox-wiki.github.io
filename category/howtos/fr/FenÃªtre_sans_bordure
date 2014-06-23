@@ -1,0 +1,34 @@
+[[Category:Français / French howtos]]
+= Comment supprimer les bordures aux fenêtres =
+Ajoutez l'entrée suivante au fichier '''~/.fluxbox/keys''':
+
+   Mod4 t :ToggleDecor
+
+Utiliser la configuration ci-dessus ou choisissez une autre combinaison de touche ( touche windows + t dans le cas présent).
+
+Vous devez désormais recharger votre nouvelle configuration depuis le menu fluxbox comme suit:
+
+   fluxbox menu -> reload config
+ou en utilisant un signal depuis votre terminal préféré:
+  kill -s usr2 `pgrep fluxbox`
+
+Aprés avoir recharger fluxbox, votre raccourci clavier est prêt à l'emploi. La prochaine étape consiste à ouvrir l'application que vous désirez exécuter sans bordures. Prenons aterm pour exemple.
+  aterm
+Un clic-droit sur le titre de la fenêtre fait apparaître le menu contextuel des fenetres. Dans la section 'Remember' activez les options 'Save on close' et 'Decorations'
+
+A la fermeture de la fenêtre, vos paramètres seront enregistrés dans le fichier '''~/.fluxbox/apps'''. A chaque fois que vous lancerez aterm à partir de maintenant il sera dépourvu de décorations de fenêtre. Vous pourrez utiliser la combinaison de touches configurée précédemment pour faire disparaître ou apparaitre les bordures d'une fenêtre.
+
+Ceci constitue un réglage global pour une application.
+
+Vous voulez, pour l'exemple suivant, faire tourner irssi dans une console aterm sans bordures MAIS également que toutes les autres instances d'aterm soient elles, pourvues de fenêtres.
+
+Vous devez alors donner un nom à cette fenêtre aterm spécifique. La plupart des terminaux utilisent pour cela l'option '''-name''':
+    $> aterm -name irssiterm -e irssi
+
+Si vous utilisez la combinaison de touche sur cette instance d'aterm crééra dans le fichier '''~/.fluxbox/apps''' une section similaire à celle-ci:
+
+    [app] (irssiterm)  # Pour appliquer à toutes les fenêtres utilisez l'expression régulière (.*) .
+       [Deco]	{NONE}
+    [end]   
+
+Ceci fonctionnera '''SEULEMENT''' pour une application nommée "irssiterm" que vous pouvez forcer via l'option "-name".

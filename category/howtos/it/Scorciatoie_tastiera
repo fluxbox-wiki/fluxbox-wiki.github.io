@@ -1,0 +1,222 @@
+Fluxbox integra un "keygrabber", un tool che nasce dall'evoluzione di bbkeys. Il keygrabber si occupa di riconoscere delle sequenze di caratteri preimpostate e di eseguire delle operazioni associate alla sequenza digitata. Anche se le mio parole possono sembrarvi un pò criptiche ve le chiarisco subito con un esempio. Avviate fluxbox e provate a digitare ALT + F1, quindi digitate ALT + F2. Avete visto cosa c'è scritto nella toolbar dopo aver digitato la seconda sequenza? Si, siete passati al secondo workspace.
+
+__TOC__
+
+=Dove sono memorizzate le "combinazioni" ?=
+
+Il file nel quale sono memorizzate tutte le associazioni [combinazione di caratteri] - [operazione] (aka Key Bindings) sono salvate nel file ~/.fluxbox/keys. Di default questo file contiene quasi unicamente i key bindings per lo switch fra le differenti aree di lavoro e l'aspetto che ha è approssimativamente il seguente:
+
+ OnDesktop Mouse1 :HideMenus 
+ OnDesktop Mouse2 :WorkspaceMenu
+ OnDesktop Mouse3 :RootMenu
+ OnDesktop Mouse4 :NextWorkspace
+ OnDesktop Mouse5 :PrevWorkspace
+ Mod1 Tab :NextWindow
+ Mod1 Shift Tab :PrevWindow
+ Mod1 F1 :Workspace 1
+ Mod1 F2 :Workspace 2
+ Mod1 F3 :Workspace 3
+ Mod1 F4 :Workspace 4
+ Mod1 F5 :Workspace 5
+ Mod1 F6 :Workspace 6
+ Mod1 F7 :Workspace 7
+ Mod1 F8 :Workspace 8
+ Mod1 F9 :Workspace 9
+ Mod1 F10 :Workspace 10
+ Mod1 F11 :Workspace 11
+ Mod1 F12 :Workspace 12
+
+Come si vede ogni riga contiene una "espressione" che ha una struttura molto semplice: la parte della riga dopo i ":" è il comando da eseguire mentre la parte prima dei ":" è la sequenza di caratteri associata al comando.
+
+
+
+=I nomi dei pulsanti=
+
+I nomi che X11 associa ai pulsanti si possono visualizzare utilizzando l'utility xev. Digitando xev nel terminale si apre una finestra bianca. Cliccando con il mouse sulla finestra e successivamente digitando un pulsante nel terminale vengono visualizzate una serie di informazioni tra le quali c'è anche il nome del pulsante. Ad esempio digitando il pulsante "g" nell'output di xev c'è un blocco che ha la seguente forma: (keysym 0x67, g). In questo blocco è racchiuso il nome del pulsante, che nell'esempio è "g". Nella tabella seguente sono riassunti i nomi associati ai "pulsanti speciali".
+
+{| border="1"
+|Key	
+|Nome
+|-
+|Control, CTRL, Strg	                           
+|Control
+|-
+|Alt	                                                           
+|Mod1
+|-
+|Super, Meta, Mela, Tasto windows	   
+|Mod4
+|-
+|Shift	                                                   
+|Shift
+|}
+
+
+
+=Azioni=
+
+Fluxbox mette a disposizione un numero elevato di azioni che possono essere eseguite da scorciatoie da tastiera. Le azioni non sono case-sensitive, tuttavia sarebbe buona regola rispettare l'ortografia riportata in tabella per semplificare la lettura e la modifica del file di configurazione.
+
+(Attenzione! L'ultimo carattere prima dell'azione deve essere ":". Non inserite spazi tra ":" e l'azione.)
+
+La sintassi delle azioni è riportata nelle seguenti tabelle.
+
+
+==Navigazione==
+
+{| border="1"
+|Azione
+|Risultato
+|-
+|Workspace #	
+|Passa al Workspace numero # (#è un intero !)
+|-
+|NextWindow	
+|Passa alla finestra successiva (Corrisponde all'operazione ALT+TAB !)
+|-
+|PrevWindow	
+|Passa alla finestra precedente (Corrisponde ad ALT+TAB "al contrario")
+|-
+|NextWorkspace
+|Passa al workspace successivo
+|-
+|PrevWorkspace	
+|Passa al workspace precedente
+|-
+|LeftWorkspace	
+|Equivale a PrevWorkspace
+|-
+|RightWorkspace	
+|Equivale a NextWorkspace
+|-
+|NexTab/PrevTab	
+|Passa alla Tab successiva/precedente del gruppo di finestre corrente
+|-
+|NextGroup/PrevGroup	
+|Passa al precedente/successivo gruppo di finestre
+|}
+
+
+==Operazioni sulle finestre==
+
+{|border="1"
+|Azione
+|Risultato
+|-
+|KillWindow	
+|Chiude la finestra corrente
+|-
+|Minimize	
+|Riduce la finestra corrente ad icona
+|-
+|ShadeWindow	
+|Riduce/ripristina la finestra attiva nello/dallo stato "sahde" (Ovvero"comprime" la finestra nella sua bassa del titolo)
+|-
+|StickWindow
+|Riduce/ripristina la finestra attiva nello/dallo stato "stick"
+|-
+|ToggleDecor	
+|Mostra/nasconde il bordo e la barra del titolo della finestra attiva
+|-
+|Raise/Lower	
+|Sposta la finestra sopra/sotto tutte le altre
+|}
+
+
+==Sizing delle Finestre==
+
+[[File:ArrangeWindows.png|thumb|Risultato dell'azione "ArrangeWindows"]] 
+{| border="1"
+|Azione
+|Risultato
+|-
+|MaximizeHorizontal	
+|Massimizza la dimensione orizzontale della finestra attiva
+|-
+|MaximizeVertical	
+|Massimizza la dimensione verticale della finestra attiva
+|-
+|MaximizeWindow	
+|Massimizza le dimensioni della finestra attiva
+|-
+|Resize Dx Dy	
+|Ridimensiona la finestra attiva di un assegnato Dx, Dy (Delta). Il comportamento di questa azione dipende dall'applicazione attiva
+|-
+|ResizeTo X Y	
+|Ridimensiona la finestra attiva alle dimensioni X e Y assegnate. Il comportamento di questa azione dipende dall'applicazione attiva
+|-
+|ResizeHorizontal Dx	
+|Come resize, solamente che agisce unicamente sulla dimensione orizzontale della finestra attiva
+|-
+|ResizeVertical Dy	
+|Come resize, solamente che agisce unicamente sulla dimensione verticale della finestra attiva
+|-
+|ShowDesktop	
+|Riduce ad icona tutte le finestre
+|-
+|ArrangeWindows	
+|Affianca tutte le finestre (Vedi l'immagine)
+|}
+
+
+
+==Spostamento Finestre==
+
+{| border="1"
+|Azione
+|Risultato
+|-
+|SendToWorkspace #	
+|Invia la finestra al workspace numero #
+|-
+|Move Dx Dy	
+|Sposta la finestra di Dx, Dy
+|-
+|MoveLeft D	
+|Sposta la finestra a sinistra di D
+|-
+|MoveRight D	
+|Sposta la finestra a destra di D
+|-
+|MoveUp D	
+|Sposta la finestra in alto di D
+|-
+|MoveDown D	
+|Sposta la finestra in basso di D
+|}
+
+
+==Misc==
+
+{| border="1"
+|Azione
+|Risultato
+|-
+|ExecCommand <cmd>	
+|Esegue il comando <cmd>
+|-
+|RootMenu	
+|Apre il menu principale di fluxbox
+|-
+|WorkSpaceMenu	
+|Apre il menu dei workspace
+|-
+|Restart	
+|Riavvia fluxbox
+|-
+|Reconfigure	
+|Ricarica i files di configurazione di fluxbox
+|-
+|SetStyle	
+|Carica il di stile specificato
+|-
+|Quit	
+|Chiude fluxbox
+|}
+
+
+
+=Collegamenti esterni=
+[http://fluxbox.sourceforge.net/docbook/en/html/fluxbox-man.html#lbAU man fluxbox]
+
+[[Category:Italiano / Italian howtos]]

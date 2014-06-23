@@ -1,0 +1,62 @@
+[[Category:Français / French howtos]]
+
+ Quelques trucs pour personnaliser la barre d'outils (toolbar)
+
+__TOC__
+
+==Comment supprimer les petites flêches dans ''''la toolbar'''' ?==
+
+Ouvrez le fichier ''''~/.fluxbox/init'''' et cherchez la ligne:
+  
+ session.screen0.toolbar.tools
+
+Supprimez les éléments suivants:
+
+ prevworkspace, nextworkspace, prevwindow, nextwindow
+
+Rechargez la configuration : et voilà, plus du tout de flêches dans la toolbar !
+
+
+==Quels éléments puis-je avoir dans la toolbar==
+
+Vous pouvez mettre, dans n'importe quel ordre, séparé par des virgules:
+ 
+ workspacename
+     Affiche le nom du bureau actuel
+
+ iconbar  
+     c'est ''''la barre des taches'''' : elle affiche les fenêtres minimisées des applications en cours
+
+ systemtray
+     l'endroit ou les applications iconifiées sont misent. Exemple: aMsn,gaim,...
+
+ clock
+     une horloge (vior ''man strftime'' pour les formats d'affichage)
+
+ prevworkspace  nextworkspace
+     boutons pour changer de bureau (précédent/suivant)
+
+ prevwindow  nextwindow
+     boutons pour changer de fenêtre active
+
+==Cacher automatiquement la barre d'outil==
+
+ session.screen0.toolbar.autoHide:       true
+
+==Changer la hauteur / largeur / ... de la toolbar==
+
+Changer la hauteur de la barre:
+ session.screen0.toolbar.height: 50
+
+Changer la largeur de la barre sur l'écran:
+ session.screen0.toolbar.widthPercent:   80
+
+Changer la transparence
+ session.screen0.toolbar.alpha:  150
+
+Faire en sorte que les applications se mettent au dessus de la toolbar quand on les maximise (plein écran)
+ session.screen0.toolbar.maxOver:        true
+
+
+
+ ''''La majoritée de ces réglages est accessible simplement via le menu de configuration de Fluxbox -> toolbar''''

@@ -1,0 +1,97 @@
+[[Category:Français / French howtos]]
+__TOC__
+==Modifier le fichier de démarrage pour lancer ses applications à l'ouverture de Fluxbox==
+
+Le fichier '''~/.fluxbox/startup''' utilisé par la commande'''startfluxbox''' est composé comme suit:
+(Si le fichier est inexistant, assurez-vous de démarrer Fluxbox avec la commande '''startfluxbox''')
+ 
+# fluxbox startup-script:
+ #
+ # Lines starting with a '#' are ignored.
+ 
+ # You can set your favourite wallpaper here if you don't want
+ # to do it from your style.
+ #
+ # fbsetbg -f ~/pictures/wallpaper.png
+ #
+ # This sets a black background
+ 
+ /usr/local/bin/fbsetroot -solid black
+ 
+ # This shows the fluxbox-splash-screen
+ # fbsetbg -C /usr/local/share/fluxbox/splash.jpg
+ 
+ # Other examples. Check man xset for details.
+ #
+ # Turn off beeps:
+ # xset -b
+ #
+ # Increase the keyboard repeat-rate:
+ # xset r rate 195 35
+ #
+ # Your own fonts-dir:
+ # xset +fp $HOME/.font
+ #
+ # Your favourite mouse cursor:
+ # xsetroot -cursor_name right_ptr
+ # 
+ # Change your keymap:
+ # xmodmap ~/.Xmodmap
+ 
+ 
+ 
+ # Applications you want to run with fluxbox.
+ # MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
+ #
+ # unclutter -idle 2 &
+ # wmnd &
+ # wmsmixer -w &
+ # idesk &
+ 
+ # And last but not least we start fluxbox.
+ # Because it is the last app you have to run it with ''exec'' before it.
+ 
+ exec /usr/local/bin/fluxbox
+ # or if you want to keep a log:
+ # exec /usr/local/bin/fluxbox -log ~/.fluxbox/log
+
+
+Pour lancer des applications au démarrage de Fluxbox, il suffit de les ajouter après ce bloc :
+ # Applications you want to run with fluxbox.
+ # MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
+
+et AVANT cette ligne :
+ exec /usr/local/bin/fluxbox
+
+Il faut mettre le symbole '''&''' après pour que cela fonctionne. Donc, par exemple, si vous voulez lancer gaim et firefox, ajoutez les lignes suivantes:
+ gaim &
+ firefox &
+Et voila !. (Rappel: les lignes qui commencent par # ne sont pas prisent en compte).
+
+==Comment démarrer une application '''APRES''' que Fluxbox ai lui-même démarré ?==
+C'est assez simple à faire, et pour certaines applications comme gdesklets c'est parfois obligatoire.
+ La meilleur chose à faire c'est de créer un fichier de démarrage personnalisé, en se basant sur une copie du fichier actuel. Dans cet exemple, nous allons utiliser un fichier que j'ai modifié et qui a été fait par [http://darkshed.net/ akira] à l'origine. 
+  #!/bin/sh
+  # fluxbox startup-script: 
+  #
+  
+  # repeat rate
+  xset r rate 195 35
+  xmodmap ~/.Xmodmap
+  # hides the mousepointer when not in use
+  unclutter -idle 2 -jitter 10 -root &
+  # keeps the different cut-buffers in sync
+  autocutsel  &
+  
+  exec fluxbox &
+  fbpid=$!
+  
+  sleep 1 
+  { 
+     xsetroot -cursor_name left_ptr -fg white -bg black &
+     ipager &
+     gkrellm2 &
+  } &
+  
+  wait $fbpid
+Remarquez l'utilisation de '''sleep 1''' pour forcer notre application d'attendre un peu avant de démarrer.

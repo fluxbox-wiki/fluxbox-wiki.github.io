@@ -1,0 +1,33 @@
+[[Category:Français / French howtos]]
+
+=== Forcer l'ordre des fenêtres ===
+
+Forcer l'ordre des fenêtres permet de dire que telle ou telle application (par exemple votre logiciel de chat ou votre navigateur internet) restera au dessus des autres fenêtres, quoi qu'il arrive.
+
+Fluxbox permet de paramétrer cela très finement car il possède x couches différentes (appelés layer) :
+
+* Above Dock   <--- le plus au-dessus de toutes les fenêtres
+* Dock
+* Top
+* Normal
+* Bottom
+* Desktop      <--- le plus en-dessous de toutes les fenêtres
+
+
+Exemple 1:
+
+En cliquant sur la barre de titre de n'importe quellel fenêtre, un menu va s'ouvrir et vous pourrez choisir dans le menu ''''layer'''' à quel niveau mettre la fenêtre.
+
+ Les informations de positionnement des fenêtres sont stockées dans le fichier ''''./fluxbox/apps''''.
+
+ Faire un ''''man fluxbox'''' et se rendre dans le paragraphe ''''APPLICATIONS'''' qui décrit toutes
+ les options possibles pour les fenêtres (forcer les dimensions, l'ordre,
+ la position sur l'écran, etc...)
+
+
+''''ASTUCE''''
+
+Certaines fenêtres n'ont pas de barre de titre (par exemple le lecteur vidéo VLC quand il est en mode plein écran). Pour connaitre le nom de la fenêtre et éditer vous-même le fichier ./fluxbox/apps, il suffit d'utiliser l'utilitaire ''''xprop''''.
+
+Ouvrez une console et tapez xprop|grep WM_NAME
+Votre souris change, il suffit maintenant de cliquer sur la fenêtre concernée et xprop va vous retourner le nom exact de la fenêtre : il ne reste plus qu'à éditer le fichier ''''apps''''.

@@ -1,0 +1,16 @@
+[[Category:Français / French howtos]]
+Les éléments de fluxbox qui peuvent avoir des bords arrondis sont : la toolbar, les fenêtres et les menus (ce dernier fonctionne avec les thèmes classiques et les pixmaps).
+
+Il suffit d'ouvrir le fichier de configuration du thème utilisé et d'ajouter ces lignes :
+
+  menu.roundCorners: TopRight TopLeft BottomRight BottomLeft
+  window.roundCorners: TopRight TopLeft BottomRight BottomLeft
+  toolbar.shaped: true|false
+
+Il est possible de rendre tous les bords arrondis ou bien seulement certains (exemple: seulement le bord 'haut gauche' et 'bas droite')
+
+Toolbar.shaped peut avoir comme valeur 'true' ou 'false'. Il permet de dire si la toolbar doit avoir des bords arrondis ou pas.
+
+Une autre chose à savoir est que les applications sans bords, mais avec l'option "window.roundCorners"  activée, restent rondes.
+
+La toolbar ne peut avoir des bords arrondis que sur le dessus.

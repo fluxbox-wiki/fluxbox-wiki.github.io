@@ -1,0 +1,36 @@
+[[Category:Coreano / Korean howtos]]
+[[Category:통합/시작법 howtos]]
+__TOC__
+
+kdm는 플럭스박스가 설치된 것을 자동으로 찾아내서 그것을 선택 사항에 표시할 것이다.
+
+
+== fluxbox startup script ==
+그런데 그렇게 하면 ''~/.fluxbox/startup'' 스크립트를 사용할 수가 없다. (적어도 ''Debian 3.1 Sarge''의 ''kdm''에서는).
+
+일단 '''/usr/share/xsessions/fluxbox.desktop'''를 수정하자:
+
+  [Desktop Entry]
+  Encoding=UTF-8
+  Name=Fluxbox
+  Comment=Highly configurable and low resource X11 Window manager
+  '''Exec=/usr/bin/startfluxbox'''
+  Terminal=False
+  '''TryExec=/usr/bin/startfluxbox'''
+  Type=Application
+  
+  [Window Manager]
+  SessionManaged=true
+
+굵은 글씨로 적힌 줄이 바뀐 곳이다: ''/usr/bin/startfluxbox'' 스크립트가 시작되지, 단순히 ''fluxbox''가 시작되는 것이 아니다.
+마지막으로 '''~/.fluxbox/startup''' 를 수정한다:
+
+  #!/bin/bash
+  
+  ## uncomment it to launch xscreensaver or idesk
+  ##xscreensaver &
+  ##idesk &
+  
+  exec /usr/bin/fluxbox
+
+이제 kdm에서 플럭스박스 세션을 시작할 수 있고, 알맞게 손본 ''~/.fluxbox/startup'' 시작 스크립트를 이용할 수 있다.

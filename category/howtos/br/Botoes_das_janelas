@@ -1,0 +1,37 @@
+[[Category:Português-Br / Portuguese-Br howtos]]
+[[Category:Configuração]]
+
+__TOC__
+
+===Como mudar os botões que ficam nas na barra de título das janelas?===
+
+Por padrão o Fluxbox tem quatro botões na barra de título, um fica do lado esquerdo ('''Stick''') e outros três ficam do lado direito ('''minimizar,maximizar,fechar''')
+
+Você pode muda-los editando '''~/.fluxbox/init'''.
+Encontre as seguintes linhas:
+ session.titlebar.left: Stick
+ session.titlebar.right: Minimize Maximize Close
+
+E então mude-os. Os botões são:
+
+ Stick
+
+Ao marcar esse botão a janela fica visível em todos os workspaces.
+
+ Shade
+
+Esse botão serve para deixar apenas a barra de título da janela visível.
+
+ Minimize
+
+Minimiza a janela.
+
+ Maximize
+
+Maximiza a janela.
+
+ Close
+
+Fecha a janela.
+
+Depois de editar, salve o arquivo e no menu do fluxbox escolha ''Config -> Reconfigure ou Reload config ou Restart''.

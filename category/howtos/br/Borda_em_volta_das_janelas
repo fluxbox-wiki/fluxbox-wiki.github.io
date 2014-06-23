@@ -1,0 +1,39 @@
+[[Category:Português-Br / Portuguese-Br howtos]]
+[[Category:Configuração]]
+
+__TOC__
+
+== Borda em volta das janelas ==
+
+Você precisa editar ~/.fluxbox/apps enquanto o fluxbox não estiver rodando. Então feche o fluxbox e abra esse arquivo. Adicione as seguintes linhas para o seu arquivo:
+
+  [app] (.*)
+     [Deco]	{BORDER}
+  [end]
+
+Agora salve e inicie o fluxbox novamente. Todas as aplicações irão mostrar APENAS uma borda (se o estilo usar uma). Você pode mudar a largura do pixel e a cor da borda.
+
+Faça isso ou globalmente usando o arquivo de overlay ou para cada arquivo separadamente.
+
+Em ambos os casos, você precisa adicionar duas linhas para o arquivo apropriado:
+
+
+   window.borderWidth:   <int>
+   window.borderColor:   color (e.g. #009900, black, rgb:00/64/00)
+
+O significado disso é bem óbvio, o valor inteiro define a largura da borda em pixel, a cor é a cor atual da borda.
+
+Se você colocar isso em um único arquivo de estilos (caso esteja colocando em cada arquivo separadamente), essas linhas são as últimas do arquivo de estilos. Dessa forma você pode ter certeza que a sua configuração será usada, você não precisa comentar (#) nada no arquivo, e você mantém a configuração do estilo original caso você queira usa-lo novamente.
+
+Como fazer as janelas mostrarem apenas uma borda e abas
+
+== Como fazer as janelas mostrarem apenas uma borda e abas ==
+
+Desde que as abas externas voltaram no fluxbox 1.0rc você pode usa-las do jeito comum (abas ficam em uma janela totalmente decorada) ou o jeito especial. Seguindo os passos dos comentários do seu arquivo ~/.fluxbox/apps algo assim:
+
+  [app] (.*)
+     [Deco]	{TAB}
+  [end] 
+
+
+Você vai ter uma janela com borda (como descrito acima) e com uma aba atrelada na seção "aba" ou "tab" do seu menu raiz.

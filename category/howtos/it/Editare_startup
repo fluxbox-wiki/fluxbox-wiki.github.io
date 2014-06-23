@@ -1,0 +1,106 @@
+__TOC__
+[[Category:Italiano / Italian howtos]]
+==Editare il file di startup per lanciare le applicazioni che vuoi==
+
+Il file di default ~/.fluxbox/startup è usato da startfluxbox ed ha una forma
+simile alla seguente: (se non ne possiedi uno, assicurati che fluxbox parta con
+startfluxbox).
+
+ #!/bin/sh 
+ #
+ # fluxbox startup-script:
+ #
+ # Lines starting with a '#' are ignored.
+ 
+ # Change your keymap:
+ xmodmap "$HOME/.Xmodmap"
+ 
+ # Applications you want to run with fluxbox.
+ # MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN & AT THE END.
+ #
+ # unclutter -idle 2 &
+ # wmnd &
+ # wmsmixer -w &
+ # idesk &
+ 
+ # And last but not least we start fluxbox.
+ # Because it is the last app you have to run it with exec before it.
+ 
+ exec fluxbox
+ # or if you want to keep a log:
+ # exec fluxbox -log "$fluxdir/log"
+
+Ora aggiungi tutte le applicazioni che vuoi lanciare dopo:
+
+ # And last but not least we start fluxbox.
+ # Because it is the last app you have to run it with exec before it.
+
+e prima di
+
+ exec fluxbox
+
+Tutte le applicazioni dovrebbero avere il carattere & dopo il loro nome,
+per esempio se volessimo lanciare firefox e emesene dovremmo aggiungere le
+righe seguenti:
+
+ firefox & 
+ emesene &
+
+e così quando fluxbox sarà avviato saranno avviati anche firefox e emesene.
+Ricorda, le linee che iniziano con # sono commenti e di conseguenza verrano
+ignorate.
+
+
+==Come lanciare un'applicazione '''dopo''' che fluxbox si è avviato==
+
+Questo è piuttosto facile da fare, e per alcune applicazioni come gdesklets è
+spesso necessario. La cosa migliore da fare è quella di modificare il proprio
+script di avvio esistente e rimuovere la riga:
+
+ exec fluxbox
+
+e modificarlo come segue:
+
+ fluxbox &
+ fbpid=$!
+
+ sleep 1
+ {
+    # Applications you want to run after fluxbox has started
+    # MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN & AT THE END.
+    # ipager &
+    # gkrellm2 &
+ } &
+ 
+ wait $fbpid
+
+Probabilmente il cambiamento che viene maggiormente trascurato è quello alla
+linea "fluxbox &", più esattamente il carattere &.
+Questo avvierà fluxbox in background, è necessario per gli altri 
+programmi che lanceremo!
+Notate come abbiamo salvato il pid di fluxbox nella variabile di shell 
+$fbpid per poi alla fine usare il comando wait per non uscire dallo script
+fino a quando fluxbox non sarà chiuso.
+
+Con "sleep 1" diciamo alle nostre applicazioni che lanciamo quanto tempo devono
+aspettare prima di eseguirsi.
+Se provi a mettere un attesa di 10 secondi (sleep 10) prima di far partire
+un'applicazione, fluxbox sarà già avviato e quindi non avremmo più l'effetto
+desiderato.
+È possibile avere più "sezioni di sleep" in modo da avere un blocco di
+applicazioni che saranno lanciate prima di fluxbox, ed un altro blocco dopo
+l'esecuzione di fluxbox.
+
+
+==Approfondimenti==
+
+Quando avvii X, con il comando "startx" o con il tuo gestore grafico di avvio,
+questo lancia il comando "startfluxbox" che andrà ad eseguire lo script
+~/.fluxbox/startup.
+Quando si arriverà alla fine di questo script, X sarà terminato oppure si
+ritornerà alla sessione di login. Questo è il motivo per cui è necessario
+avere "exec fluxbox" all'ultima riga nello script, oppure in altri casi,
+la linea wait $fbpid per sospendere l'esecuzione dello script fino alla 
+chiusura di fluxbox. Questo ci garantisce che il server X resterà in esecuzione
+per tutto il tempo in cui sarà in esecuzione fluxbox, che di solito è proprio
+quello che si vuole. Altrimenti la nostra sessione sarebbe veramente breve ;)

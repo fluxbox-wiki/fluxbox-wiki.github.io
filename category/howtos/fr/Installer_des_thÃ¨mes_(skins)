@@ -1,0 +1,27 @@
+[[Category:Français / French howtos]]
+
+Téléchargez un thème (les thèmes sont appelés "styles" sous fluxbox).
+
+Décompressez-le:
+ tar xjvf mon_style.tar.bz2
+
+(note: ne pas faire les manipulations en ROOT)
+
+Vous vous retrouvez avec un dossier /mon_style.
+Vérifiez que le dossier ~/.fluxbox/styles existe.
+Si ce dossier n'existe pas:
+ mkdir ~/.fluxbox/styles
+
+La dernière chose à faire et de déplacer votre thème dans le dossier ~/.fluxbox/styles/
+ mv mon_style/ ~/.fluxbox/styles
+
+Et voila ! plus qu'à le charger dans fluxbox en le sélectionant dans le menu adéquat (fluxbox menu).
+
+Si vous ne le trouvez pas, vérifiez que dans votre menu se trouve un truc du genre:
+
+    [submenu] (User Styles)
+    [stylesdir] (~/.fluxbox/styles)
+    [end]
+
+Note:
+Si vous utilisez fluxbox < 1.0 (pour savoir tapez ''fluxbox -version''): mettez votre fluxbox à jour  car sinon tous les thèmes ne fonctionneront pas :)

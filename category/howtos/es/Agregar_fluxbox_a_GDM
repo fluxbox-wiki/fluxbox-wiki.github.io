@@ -1,0 +1,55 @@
+[[Category:Español / Spanish howtos]]
+[[Category:Inicio]]
+
+==Como agregar Fluxbox a GDM==
+
+
+Nota: Esto fue copiado del sitio de Fluxbox. Alguien usando gdm debería chequearlo.
+
+Como agrego fluxbox a mi menú de sesiones de GDM.
+
+Creamos el archivo: /etc/gdm/Sessions/fluxbox con el siguiente contenido:
+
+ #!/bin/sh
+ #
+ # /etc/gdm/Sessions/fluxbox
+ #
+ # global fluxbox session file -- used by gdm
+ 
+ exec /etc/X11/Xsession /usr/bin/startfluxbox
+
+Por supuesto, cambiamos /usr/bin/startfluxbox por la ubicación donde tengamos el script de startup.
+
+Si el directorio /etc/gdm no existe puede estar /etc/X11/gdm/Sessions/fluxbox en nuestra computadora.
+
+
+__TOC__
+
+==La primera sección no funciona para mi, qué puedo hacer?==
+===Aquí hay otra manera===
+
+En algunas distros podemos necesitar hace algo un poquito diferente. Para Debian, Ubuntu y algunas otra distros tenemos que seguir esta pequeña guía en cambio.
+
+Si decidimos que necesitamos compilar Fluxbox-SVN en nuestro sistema Ubuntu, tal ves nos dimos cuenta que, después de instalado, no hubo forma de iniciar usando Fluxbox, incluso si intentamos 
+
+  startx `which fluxbox` -- :1
+
+obtenemos un "permission denied" y no es imposible conectarnos con el servidor X (Solamente probé esto en Hoary).
+Así que empecemos con el arreglo...
+
+
+  sudo gedit /usr/share/xsessions/fluxbox.desktop
+
+Agregamos a ese archivo la siguiente información:
+
+  [Desktop Entry]
+  Encoding=UTF-8
+  Name=Fluxbox
+  Comment=Highly configureable low resource X11 Window Manager
+  Exec=/usr/local/bin/startfluxbox
+  Terminal=False
+  TryExec=/usr/local/bin/startfluxbox
+  Type=Application
+
+Luego guardamos el archivo y reiniciamos nuestra sesión de GDM. Esto puede hacerse deslogueandonos de nuestra sesión actual de X presionando al mismo tiempo Ctrl+Alt+Backspace
+nota: NO Ctrl+Alt+Del (esto funcionará pero tambien reiniciará nuestra  computadora.

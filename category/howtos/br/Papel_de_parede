@@ -1,0 +1,94 @@
+[[Category: Português-Br_/_Portuguese-Br howtos]]
+[[Category: Integração/Inicialização]]
+
+== Configurando o papel de parede ==
+
+__TOC__
+
+
+== O que é fbsetbg e por que eu preciso disso? ==
+
+Fbsetbg é como um cobertor. Ele tenta encontrar o programa apropriado para configurar o papel de parede e então tenta botar o papel de parede usando esse programa. Você não tem que configurar o fbsetbg, ele usa o primeiro programa capaz de configurar o papel de parede que ele encontrar.
+
+Ele é útil pois mostra claramente as mensagens de erro, facilitando na eliminação dos erros.
+
+Se você quer colocar um papel de parede especial dependendo do estilo que estiver usando leia a parte mais abaixo, perto do fim desse artigo.
+
+== Verificando os utilitários certos ==
+
+Primeiro precisamos ter certeza que o fbset tem por perto o programa apropriado para usar. Abra um terminal e digite o seguinte comando como usuário comum:
+
+   fbsetbg -i
+
+Se você tiver instalado um dos programas suportados você receberá uma mensagem como essa:
+
+   Esetroot is a nice wallpapersetter. You won't have any problems.
+
+Se você não tiver instalado o programa apropriado você vai receber uma mensagem de erro como essa:
+
+   display doesn't set the wallpaper properly. Transparency for fluxbox
+   and apps like aterm and xchat won't work right with it. Consider 
+   installing feh, wmsetbg (from windowmaker) or Esetroot (from Eterm) and
+   I'll use them instead.
+
+== A transparência não funciona, o que eu devo fazer? ==
+
+Fbsetbg pode usar um dos seguintes configuradores de papel de parede dois quais apenas feh, esetroot and wmsetbg tem suporte para transparência:
+
+ Esetroot
+ wmsetbg
+ feh
+ hsetroot
+ chbg
+ display
+ qiv
+ xv
+ xsri
+ xli
+ xsetbg
+
+Estão ordenados em ordem de qualidade, então para ter certeza que vai funcionar você deve instalar algo do topo da lista.
+
+Muitas pessoas podem recomendar o feh por ser pequeno e eficiente, mas o Esetroot (que vem com o Eterm) também é uma boa escolha.
+
+== Dicas e truques úteis ==
+
+1. Carrecando o papel de parede na inicialização
+
+Desde o fluxbox 0.9.15 uma nova funcionalidade foi adicionada: Overlay.
+
+Para usar isso você precisa verificar no arquivo ~/.fluxbox/init para que arquivo ele está apontando em "session.styleOverlay", se não tiver nenhum, crie. Nós usamos ~/.fluxbox/overlay por padrão, mas você pode especificar um de sua preferência. Vai ficar mais ou menos assim:
+
+
+  session.styleOverlay: ~/.fluxbox/overlay
+
+No seu arquivo ~/.fluxbox/init.
+
+Dentro do arquivo ~/.fluxbox/overlay adicione as seguintes linhas(os "|" servem como "ou"):
+
+  background: aspect | tiled | centered
+  background.pixmap:  /diretorio/do/papel_deparede/exemplo.jpg
+
+Com isso o papel de parede será colocado toda vez que o fluxbox for iniciado, vai funcionar como um papel de prede global. Todo papel de parede que os styles tentarem colocar serão substituidos por esse, portando se quiser que cada style tenha seu papel de parede não faça essa configuração, continue lendo.
+
+Você ainda pode usar o rootCommand no arquivo ~/.fluxbox/init mas tenha certeza que você usa ou o rootCommand ou a configuração acima (overlay) e não ambos pois pode não funcionar como esperado.
+
+== Uma outra forma de colocar o papel de parede na inicialização ==
+
+Como já foi mencionado, o rootCommand no arquivo ~/.fluxbox/init ainda funciona, então para usar isso apenas adicione:
+
+ session.screen0.rootCommand:    fbsetbg -l
+
+Então configure o papel de parede manualmente com fbsetbg. O comando acima passa como parametro o "-l" querendo dizer que ele vai carregar o último que foi carregado, no caso esse que você acabou de configurar manualmente.
+
+== Configurando o papel de parede com o estilo (cada estilo tem seu papel de parede) ==
+
+Apenas coloque essas configurações acima no arquivo de estilos e tenha certeza que você não tem um overlay no ~/.fluxbox/init carregando um papel de parede global.
+
+== 4. Dicas usando o fbsetbg ==
+
+ fbsetbg -p
+
+Isso vai te mostrar muitas dicas úteis.
+
+'''CUIDADO: Você não pode ter mais de um RootCommand no seu arquivo ~/.fluxbox/init ou todos os outros RootCommand vão falhar.'''

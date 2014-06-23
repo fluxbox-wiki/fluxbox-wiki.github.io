@@ -1,0 +1,23 @@
+[[Category:Español / Spanish howtos]]
+[[Category:Inicio]]
+
+Abrimos /etc/rc.conf con nuestro editor favorito y localizamos la línea XSESSION="".
+
+ '''Ejemplo: la línea debería ser algo por el estilo...'''
+ #XSESSION="Gnome" 
+
+ '''Reemplazamos Gnome por Fluxbox'''
+ XSESSION="Fluxbox"
+
+''Guardamos los cambios y listo''
+
+
+
+===Otra Solución===
+
+Editamos o creamos un archivo llamado '''~/.xsession'''.
+Le agregamos la siguiente línea (dedemos comentar o remover las líneas que parecen ser de otros window managers):
+
+ exec startfluxbox
+
+La próxima vez que reiniciemos las X vamos a iniciar con Fluxbox.

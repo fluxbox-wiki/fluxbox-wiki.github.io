@@ -1,0 +1,144 @@
+[[Category:Français / French howtos]]
+Mettre de beaux icones sur votre bureau Fluxbox
+
+__TOC__
+
+==Introduction==
+Idesk est une application permettant d'afficher des icones sur le bureau qui peuvent être cliqué ou double cliqué pour lancer des commandes.
+Les icones peuvent être déplacées avec la souris, etc...
+
+==Pré-requis==
+Idesk a besoin de certains choses pour fonctionner:
+
+  pkg-config
+  librsvg-2.0.1
+  gdk-pixbuf-2
+  
+
+==Installer idesk==
+
+Vous pouvez soit intaller Idesk avec votre gestionnaire de paquet préféré (apt/rpm/...) soit compiler Idesk avec les sources [http://idesk.sourceforge.net/wiki/index.php/Main_Page disponible sur le site de Idesk].
+
+
+
+===Mandriva ou Red Hat/Fedora===
+
+Une fois le paquet récupéré, taper (en ROOT):
+
+ 
+  # rpm -i /path/to/file/idesk.rpm
+  (un double clic sur le fichier .rpm intallera aussi)
+  
+
+===Debian===
+ 
+  # apt-cache search idesk | sort - u | less 
+  # apt-get install idesk
+  
+
+===Autre===
+
+ Idem. 
+
+===Installer avec les Sources===
+
+L'installation avec les sources est aussi très facile.
+Décompresser le fichier .tar.gz dans un dossier. Se rendre
+dans ce dossier et taper:
+
+  $ make
+  $ su
+  # make install
+
+Et voila !
+
+
+==Configuration==
+
+Maintenant un peu de configuration pour rendre Idesk fonctionnel.
+Créer un fichier appellé .ideskrc dans votre dossier HOME.
+ 
+Dans ce fichier '''.ideskrc''' mettre ceci par exemple:
+
+  table Config
+    FontName: tahoma
+    FontSize: 8
+    FontColor: #ffffff
+    Locked: false
+    Transparency: 150
+    HighContrast: true
+    Shadow: true 
+    ShadowColor: #000000
+    ShadowX: 1
+    ShadowY: 2
+    Bold: false
+    ClickDelay: 300
+    IconSnap: true
+    SnapWidth: 55 
+    SnapHeight: 100
+    SnapOrigin: BottomRight
+    SnapShadow: true
+    SnapShadowTrans: 200
+    CaptionOnHover: false
+  end
+  table Actions
+    Lock: control right doubleClk
+    Reload: middle doubleClk
+    Drag: left hold
+    EndDrag: left singleClk
+    Execute[0]: left doubleClk
+    Execute[1]: right doubleClk
+  end
+  
+
+En regardant de près, on remarque plusieurs options possibles.
+* Réglage de la transparence (de 0 à 255)
+* Verrouillage des icones
+* Délai pour double clic
+* Effet sur le passage de la souris
+* ...
+Pour plus d'informations, lire le manuel (en anglais) dans '''/usr/share/doc/idesk'''.
+
+==Créer des icones et associer des programmes à ces icones==
+
+Il ne reste plus qu'une chose à faire, créer des icones et leur dire quoi lancer.
+Créer un dossier '''.idesktop''' dans votre dossier HOME
+
+  $ mkdir ~/.idesktop
+
+
+Dans ce dossier, créer un fichier '''.lnk'''
+ 
+
+  $ vi ~/.idesktop/nom_icone.lnk
+  
+
+Nous venons tout juste de créer notre premier icone !
+Si l'on veut qu'elle lance FIREFOX il suffit d'écrire cela dedans:
+ 
+  table Icon
+    Caption: Mozilla Firefox
+    Command: firefox
+    Icon: /chemin/vers/l'icone/firefox.png
+    X: 100
+    Y: 50
+  end
+  
+ 
+Caption: nom de l'icone tel qu'il apparaitra sur le bureau
+
+Command: commande à exécuter
+
+Icon: chemin vers l'image de l'icone
+
+X et Y indiquent la position initiale de l'icone sur le bureau. Il sera
+possible de le déplacer avec la souris plus tard.
+  
+
+Pour finir, ajoutez le démarrage de Idesk à votre fichier ('''~/.fluxbox/startup''')
+ 
+  idesk &
+
+
+Astuce:
+un truc sympa avec Idesk c'est que vous pouvez mettre deux commandes différentes par icone, selon avec quel bouton vous cliquez.

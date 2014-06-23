@@ -1,0 +1,59 @@
+__TOC__
+[[Category:Français / French howtos]]
+===Ne pas demander si vous pouvez demander===
+
+Ne vous pointez pas sur #fluxbox en demandant si vous pouvez poser une question ou si quelque'un peut vous aider.
+Posez simplement votre question et attendez. Les gens ne sont pas là 24/7 ils vous répondront quand ils reviendront derrière leur pc.
+Le canal #fluxbox est géré par la communauté, par le bon vouloir de chacun.
+
+
+===Donnez le plus de détails possible===
+
+* Expliquez clairement votre problème ("mon fluxbox s'affiche bizzarement" ne veut rien dire, c'est une mauvaise description de votre problème)
+* Indiquez votre version de fluxbox (pas "la dernière", donnez le numéro! vous pouvez le savoir en tapant 'fluxbox -v')
+* Indiquez votre distribution linux (Debian, Ubuntu, Fedora, ...)
+* Indiquez si vous avez compilé vous-même fluxbox ou si vous l'avez installé par le paquet livré avec votre distribution linux
+* Indiquez le message d'erreur COMPLET si vous en avez un
+* Donnez des infos sur votre environnement si vous pensez que ca peut aider(UTF-8, xinerama, etc)
+* Avez-vous changé un truc récement qui pourrais causer votre problème ?
+
+
+===Dites ce que vous avez fait===
+
+* Avez-vous changé un fichier ?
+* Avez-vous  mis à jour/supprimé/installé quelque chose ?
+
+
+===Soyez polit===
+
+Vous demandez de l'aide, des gens vont essayer de vous aider gratuitement. Ayez toujours ca à l'esprit.
+
+
+===Ne vous répétez pas===
+
+Si personne ne répond ce n'est pas forcément mauvais signe. Peut-être que ce n'est pas la bonne heure de la journée. Demandez et attendez. Quelqu'un lira et répondra. 
+
+
+===Répondez aux questions que l'on vous pose===
+
+Les gens qui vous aide peuvent avoir besoin de plus d'information et vous devez leur répondre donc écoutez attentivement.
+
+
+
+===LISEZ LE MANUEL ET LE WIKI===
+
+Les gens vous enverront peut-être lire le wiki ou le manuel si la réponse s'y trouve. Allez-y. Personne ne vous servira la réponse sur un plateau si elle est écrite quelque part.
+
+
+
+===Ne floodez pas le canal - utilisez un des sites ci-dessous===
+
+* http://fluxbox.pastebin.ca/
+* http://rafb.net/paste
+* http://pastebin.ca
+
+
+
+----
+
+si vous avez un peu plus de temps et si vous comprenez l'anglais, vous pouvez lire [http://workaround.org/moin/GettingHelpOnIrc comment avoir de l'aide sur IRC] et [http://www.catb.org/~esr/faqs/smart-questions.html la source :)]

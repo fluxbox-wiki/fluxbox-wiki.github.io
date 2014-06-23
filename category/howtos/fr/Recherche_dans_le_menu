@@ -1,0 +1,15 @@
+[[Category:Français / French howtos]]
+
+==Fonction de recherche d'éléments dans le menu au cours de la frappe au clavier, alias "typeahead"==
+La fonctionnalité "Typeahead" permet de rechercher des éléments dans le menu de fluxbox en tappant simplement au clavier les premières lettres. Vous devez connaitre cette fonction avec les navigateurs web (firefox ou autre), vous tappez le début d'un site et le logiciel complète automatiquement l'adresse.
+
+==Comment l'utiliser?==
+Dans fluxbox, cette fonctionnalité existe pour le menu.
+
+Ouvrez le menu et commencez à taper au clavier, par exemple "Applications". Les mots seront surlignés au fur et à mesure de la phrase. Si il existe plusieurs éléments du menu qui contiennent ce mot, vous pouvez vous déplacer avec la touche '''TAB''' et '''Shift + tab''' pour aller à l'envers.
+
+Si vous avez fait une faute en tappant le mot, la touche '''retour''' efface et revient an arrière.
+
+La touche '''Entrée''' ouvre le sous-menu ou éxécute l'application sélectionée.
+
+Pour fermer tous les menus, appuyez sur la touche '''echap'''.

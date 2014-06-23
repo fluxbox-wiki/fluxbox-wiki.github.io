@@ -1,0 +1,111 @@
+__TOC__
+[[Category:Italiano / Italian howtos]]
+==Xrandr==
+Xrandr dovrebbe esserci su qualunque distribuzione con 
+l'installazione del server X e può essere utilizzato per cambiare  
+risoluzione.
+Per prima cosa digitare in un terminale il seguente comando:
+ xrandr
+
+L'output dovrebbe simile a questo:
+<pre>
+Screen 0: minimum 320 x 200, current 1280 x 1024, maximum 4096 x 4096
+VGA-1 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 280mm x 210mm
+   1024x768       85.0     75.1     70.1     60.0     43.5  
+   800x600        85.1     72.2     75.0     60.3     56.2  
+   640x480        85.0     72.8     75.0     60.0  
+   720x400        70.1  
+   1280x1024_60.00   59.9* 
+DVI-I-1 disconnected (normal left inverted right x axis y axis)
+TV-1 disconnected (normal left inverted right x axis y axis)
+</pre>
+
+Per modificare la risoluzione digitate qualcosa di simile:
+ xrandr -s 1024x768
+
+Se si desidera impostare il framerate utilizzare il parametro '''-r <rate>''':
+ xrandr -s 800x600 -r 60
+Per settare la modalità 800x600 con 60 Hz di refresh rate.
+
+
+==Interfacce grafiche==
+Un'altra via è usare un frontend grafico come:
+*[http://christian.amsuess.com/tools/arandr/ arandr]
+*[http://albertomilone.com/urandr.html urandr]
+*[http://kde-apps.org/content/show.php/xramdr?content=70521 xramdr]
+
+
+=Soluzioni permanenti=
+Xrandr non salva alcuna configurazione, ciò significa che bisogna richiamarlo ogni volta che si avvia X. 
+
+==Il file startup==
+Inserire il comando "xrandr -s 1024x768" in ~/.fluxbox/startup
+
+==Xorg.conf==
+Modificare il file '''/etc/X11/xorg.conf''' come utente root (o creare il file <code>/usr/share/X11/xorg.conf.d/resolution</code> inserendo il blocco seguente).
+
+Cercate la sezione Screen e si dovrebbe avere un output del genere:
+
+ Section "Screen"
+        Identifier      "Default Screen"
+        Device          "geforce256"
+        Monitor         "S/M 950p"
+        DefaultDepth    24
+        SubSection "Display"
+                Depth           16
+                Modes           "1600x1200" "1280x1024" "1024x768" "800x600" "640x480"
+        EndSubSection
+        SubSection "Display"
+                Depth           24
+                Modes           "1600x1200" "1280x1024" "1024x768" "800x600" "640x480"
+        EndSubSection
+ EndSection
+
+(Su sistemi multi monitor controllare i campi ''Device'' e ''Monitor'' in modo da modificare le righe per quello corretto)
+
+Ora si deve aggiungere la risoluzione che si desidera avere all'avvio all''''inizio''' della lista dei Modes.
+Quindi, se si desidera utilizzare 1024x768 invece di 1600x1200, modificare così:
+
+ Section "Screen"
+        Identifier      "Default Screen"
+        Device          "geforce256"
+        Monitor         "S/M 950p"
+        DefaultDepth    24
+        SubSection "Display"
+                Depth           16
+                Modes           "1024x768" "1600x1200" "1280x1024" "800x600" "640x480"
+        EndSubSection
+        SubSection "Display"
+                Depth           24
+                Modes           "1024x768" "1600x1200" "1280x1024" "800x600" "640x480"
+        EndSubSection
+ EndSection
+
+Si noti che tutte le modalità devono essere tra virgolette. Si potrebbe anche eliminare tutte le altre modalità che non servono, ma è meglio averle nel caso in cui una non sia supportata; in questo caso verrà usata la successiva. Se non ci sono modalità di riserva, X non si avvierà.
+
+
+==Aggiungere una modeline==
+Come abbiamo visto all'inizio nell'output di xrand, c'è una riga che appare diversa dalle altre:
+ 1280x1024_60.00   59.9*
+
+Questa è la risoluzione massima del mio monitor ma Xorg non la riconosce automaticamente; per cui creo ed applico la modeline ogni volta che fluxbox parte. In ~/.fluxbox/startup ho:
+
+<pre>
+#screen resolution
+xrandr --newmode "1280x1024_60.00"  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
+xrandr --addmode VGA-1 1280x1024_60.00
+xrandr --output VGA-1 --mode 1280x1024_60.00
+</pre>
+
+La modeline si ottiene con
+ cvt 1280 1024
+
+La stessa cosa è ottenibile tramite <code>/etc/X11/xorg.conf</code> (o creando /usr/share/X11/xorg.conf.d/resolution con il seguente blocco):
+
+<pre>
+Section "Monitor"
+        Identifier      "529B"
+        Option          "DPMS"
+        Modeline        "1280x1024_60.00"  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
+        Option          "PreferredMode" "1280x1024_60.00"
+</pre>

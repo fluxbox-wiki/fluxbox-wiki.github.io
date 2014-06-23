@@ -1,0 +1,50 @@
+Comunemente può essere utile installare uno screensaver ed uno screenlocker anche se con la diffusione dei monitor LCD l'utilizzo di uno screensaver ha perso la sua utilità pratica ed ha mantenuto solamente dei connotati estetici. Diverso è il discorso per gli screen locker che sono sicuramente molto utili soprattutto per motivi legati alla privacy.
+
+__TOC__
+ 
+
+=Screensaver=
+
+I programmi che possono essere utilizzati come screensaver sono:
+
+*xscreensaver ([http://www.jwz.org/xscreensaver/])
+*xlockmore ([http://gwyn.tux.org/~bagleyd/xlockmore.html])
+*rss ([http://www.reallyslick.com/])
+*gnome-screensaver ([http://live.gnome.org/GnomeScreensaver])
+*electricsheep ([http://community.electricsheep.org/])
+
+Tra questi il più utilizzato e il più poplare è sicuramente xscreensaver. Questo programma deve essere avviato con fluxbox e viene eseguito in background. Lo screensaver viene lanciato dopo un determinato tempo di inattività. Electricsheep è una buona alternativa a xscreensaver. gnome-screensaver è poco utilizzato dagli utenti di fluxbox perchè richiede l'installazione di mezza gnome. rss è poco popolare.
+
+ 
+
+=Screenlocker (Blocco dello schermo)=
+
+I programmi che possono essere utilizzati come screen locker sono:
+
+*xlock/xlockmore ([http://gwyn.tux.org/~bagleyd/xlockmore.html])
+*xtrlock ([http://hpux.connect.org.uk/hppd/hpux/X11/Desktop/xtrlock-1.0/])
+
+Ciascun programma funziona approssimativamente allo stesso modo: una volta che viene avviato lo schermo viene bloccato e quando viene spinto un pulsante sulla tastiera o se viene mosso il mouse il programma chiede l'inserimento della password dell'utente per accedere alla sessione attiva. Per avviare uno di questi programmi senza dover continuamente ricorrere a fbrun o ad un terminale sarebbe opportuno avere un item nel menu di fluxbox o sul desktop.
+
+ 
+
+=Aggiungere xscreensaver a fluxbox=
+
+Per aggiungere xscreensaver a fluxbox non è sufficiente installarlo ma è necessario avviarlo insieme al window manager in quanto il processo rimane in background durante tutta la sessione. L'installazione di xscreensaver varia da sistema a sistema ma (quasi) tutte le distribuzioni hanno il pacchetto xscreensaver nei repo ufficiali quindi sarà sufficiente utilizzare il gestore dei pacchetti per installarlo (ad esempio per le distro debian-like come ubuntu sarà sufficiente il comando: #apt-get install xscreensaver, mentre per le distro gentoo-like: #emerge xscreensaver).
+[[File:Xscreensaver.png|thumb|Schermata di avvio di xscreensaver]]Per configurare il programma è sufficiente lanciare il comando xscreensaver e selezionare la voce "settings" nella schermata che appare.  Inoltre selezionando l'opzione "lock screen after" e impostando una durata è possibile utilizzare questo programma anche come screen locker. Tutte le impostazioni di xscreensaver vengono salvate nel file ~/.xscreensaver
+
+Per lanciare xscreensaver all'avvio di fluxbox è necessario aggiungere una riga alla fine del file di configurazione ~/.fluxbox/startup contenente il comando xscreensaver & attraverso un comando del tipo:
+
+$ echo "xscreensaver &" >> ~/.fluxbox/startup
+
+=Collegamenti esterni=
+*[http://www.jwz.org/xscreensaver/ xscreensaver]
+*[http://gwyn.tux.org/~bagleyd/xlockmore.html xlockmore]
+*[http://www.reallyslick.com/ rss]
+*[http://live.gnome.org/GnomeScreensaver gnome-screensaver]
+*[http://community.electricsheep.org/ electricsheep]
+*[http://hpux.connect.org.uk/hppd/hpux/X11/Desktop/xtrlock-1.0/ xrtlock]
+
+
+
+[[Category:Italiano / Italian howtos]]

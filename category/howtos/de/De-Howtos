@@ -1,0 +1,56 @@
+[[Category:Deutsch / German howtos]]
+
+==Integration / Startup==
+* [[howto binde Fluxbox in gdm ein|Binde Fluxbox in KDM / GDM ein]]
+* [[howto binde Fluxbox in xdm ein|Binde Fluxbox in XDM ein]]
+* [[howto Fluxbox aus der Kommandozeile starten|Fluxbox von der Kommandozeile starten]]
+* [[howto setzen eines Wallpapers|Richtiges setzen eines Wallpapers]]
+* [[howto Fluxbox crashhandler|Automatisches Crashhandling und Wiederherstellung]]
+* [[Computer herunterfahren|Den Computer ausschalten]]
+
+==Konfiguration==
+*[[das Menü bearbeiten]] (einschliesslich icons im Menü)
+* [[howto anpassen der keys file|keys Konfigurationsdatei (Tastenkürzel)]]
+* [[howto anpassen der init file|init Konfigurationsdatei (Einstellungen)]]
+* [[howto anpassen der apps file|apps Konfigurationsdatei (Fenstereinstellungen)]] 
+* [[howto anpassen der startup file|startup Konfigurationsdatei (Autostart)]] 
+* [[howto entfernen der Fensterdekoration|Wie bekommt man rahmenlose Fenster]]
+* [[howto nur rahmen anzeigen lassen|Wie kann man bei Fenstern nur den Rahmen anzeigen lassen (und Tabs)]]
+* [[howto mod4|Was ist die Mod4 Taste und wie wird sie benutzt]]
+* [[Howto keymodes|KeyMode Konfiguration (1.0rc+)]]
+* [[howto anpassen der Windowmenu|Anpassen des Fenster-Menüs (rechtsklick auf den Fenstertitel)]]
+* [[howto Auflösung|Anpassen der Auflösung]]
+* [[howto Fensterwechsel|Komfortabler Fensterwechsel]]
+
+==Farbschemata / Styles==
+* [[how Erstellen eines Style|Wie wird ein Style erstellt]]
+* [[howto install Styles|Wie werden Styles installiert]]
+* [[howto runde Ecken|Wie bekommt man runde Ecken]]
+* [[howto wechseln der Schriftart|Ändern der Schriftart vom Style der gerade benutzt wird]]
+* [[howto style overlay|Overlay - Wie man z.B in jedem Style die selbe Schriftart verwendet]]
+
+
+==Häufig gestellte Fragen==
+* [[howto GTK-Look|Anpassen des Aussehens von GTK Anwendungen]]
+* [[howto Desktopicons|Wie bekomme ich Icons auf den Desktop?]]
+* [[howto Lockscreen|Wie sperre ich den Bildschirm?]]
+* [[faq Beryl|Kann ich Fluxbox mit Beryl/Compiz verwenden?]]
+* [[faq Hilfe|Wo bekomme ich Hilfe?]]
+* [[faq About|Wer steckt hinter all dem?]]
+
+==Debugging==
+
+*[[howto coredumps erstellen|Mit Fluxbox Coredumps erstellen]]
+
+
+== International ==
+Howtos in anderen Sprachen
+
+===English===
+[[http://fluxbox-wiki.org/index.php/Category:English_howtos Howtos in English]]
+
+===Русский / Russian===
+[[:ru:Howtos|Howto по Русски]]
+
+===Español / Spanish===
+[[:es:Howtos|Howtos en Español]]

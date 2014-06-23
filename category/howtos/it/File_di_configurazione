@@ -1,0 +1,63 @@
+La personalizzazione di fluxbox viene fatta modificando dei file di testo che sono contenuti nella directory '''~/.fluxbox'''.
+
+Ad un primo approccio questa modalità di interazione può sembrare solamente un'inutile complicazione ma prendendo mano con questo modus operandi si può controllare il comportamento di Fluxbox fin nei minimi dettagli.
+
+__TOC__
+
+== I File ==
+
+Diamo uno sguardo al contenuto della directory ~/.fluxbox.
+<pre>
+ $ awk '{print $1,$9}' < <(ls -lAh --group-directories-first ~/.fluxbox/)
+
+ drwxr-xr-x backgrounds
+ drwxr-xr-x pixmaps
+ drwxr-xr-x styles
+ -rw-r--r-- apps
+ -rw-r--r-- fbrun_history
+ -rw-r--r-- init
+ -rw-r--r-- keys
+ -rw-r--r-- lastwallpaper
+ -rw-r--r-- menu
+ -rw-r--r-- overlay
+ -rw-r--r-- slitlist
+ -rw-r--r-- startup
+ -rw-r--r-- windowmenu
+</pre>
+
+Ciascuno dei file e directory elencati ha una funzione ben specifica.
+
+=== backgrounds, pixmaps e styles === 
+In queste tre directory vengono comunemente inserite le icone relative a ciascun elemento del rootmenu, i wallpaper e i temi di Fluxbox. Comunemente perché questa è solo una convenzione, purché correttamente configurato Fluxbox può "pescare" un tema, un'icona e uno sfondo da qualsiasi posizione sul disco.
+
+=== apps ===
+[http://fluxbox-wiki.org/index.php?title=Editing_the_apps_file Contiene] le configurazioni per singola applicazione o finestra quali decorazioni, dimensione, posizione, ecc; nonché il raggruppamento automatico ([[Tabs]]).
+
+=== fbrun_history === 
+È un file di testo contenente la cronologia dei comandi di fbrun, uno strumento messo a disposizione dell'utente di Fluxbox che su molti window manager corrisponde a "Esegui...". Utile per lanciare un programma con dei particolari parametri di avvio senza dover usare il terminale.
+
+=== init === 
+Questo [http://fluxbox-wiki.org/index.php?title=Editing_the_init_file file] è il più importante; in init sono definiti tutti i parametri di configurazione di Fluxbox. Quando il window manager parte, questo legge immediatamente il contenuto di init per determinare i parametri con cui deve essere avviato e i percorsi degli altri file di configurazione.
+
+=== keys ===
+Dove si associano azioni alla [http://fluxbox-wiki.org/index.php?title=Scorciatoie_tastiera tastiera], uno dei punti forti di Fluxbox è il poterlo gestire interamente senza mouse tramite una vasta e complessa gamma di comandi.
+
+=== lastwallpaper ===
+Memorizza l'ultima stringa usata per impostare lo sfondo del desktop tramite fbsetbg o fbsetroot e che verrà richiamata automaticamente all'avvio.
+
+=== menu ===
+È il file di configurazione del [http://fluxbox-wiki.org/index.php?title=Editare_il_menu RootMenu], quello che contiene i programmi avviabili e le voci per la configurazione di Fluxbox.
+
+=== overlay ===
+[http://fluxbox-wiki.org/index.php?title=Overlay Qui] si apportano cambiamenti ai temi in modo globale e senza dover toccare ogni singolo style.
+
+=== slitlist ===
+Salva l'ordine di posizionamento nella [http://fluxbox-wiki.org/index.php?title=FAQ#What_is_the_slit slit] delle varie applicazioni caricabili all'avvio di Fluxbox.
+ 
+=== startup === 
+Ogni riga di questo file contiene un comando che viene lanciato all'avvio di Fluxbox. Utile per eseguire comandi e applicazioni all'[http://fluxbox-wiki.org/index.php?title=Editare_startup avvio].
+
+=== windowmenu ===
+Il file di configurazione del [http://fluxbox-wiki.org/index.php?title=Editare_windowmenu windowmenu], quello che appare con il tasto destro sulla titlebar e contiene i vari comandi impartibili alla finestra, nonché il "Remember menu" per memorizzare nel file [http://fluxbox-wiki.org/index.php?title=Editing_the_apps_file apps] gli aspetti principali di una finestra.
+
+[[Category:Italiano / Italian howtos]]

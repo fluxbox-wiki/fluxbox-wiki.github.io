@@ -1,0 +1,66 @@
+[[Category:Русский / Russian howtos]]
+__TOC__
+
+== Благодарности ==
+Спасибо Mark Tiefenbruck (_markt/#fluxbox/Freenode), которого долго пинали, чтобы он наконец написал этот замечательный код. :)
+
+== Что такое KeyModes? ==
+KeyModes или "Пространства имен в файле keys" - это способ временно заменить бинды, нажав комбинацию клавиш. Смысл их - соответствие другим WM, имеющим несколько '''режимов''' для перемещения и изменения размеров окон. На данный момент возможно назначить таким образом:
+
+ Mod4 Shift Up        :ResizeVertical -2
+ Mod4 Shift Down      :ResizeVertical +2
+ Mod4 Shift Left      :ResizeHorizontal -2
+ Mod4 Shift Right     :ResizeHorizontal +2
+ Mod1 Shift Up        :ResizeVertical -10
+ Mod1 Shift Down      :ResizeVertical +10
+ Mod1 Shift Left      :ResizeHorizontal -10
+ Mod1 Shift Right     :ResizeHorizontal +10
+
+Как видно, при таком подходе кнопки бысто кончаются :)
+
+== Что нужно для KeyModes? ==
+KeyModes появились в '''svn версии 4298''' и в версии 1.0rc.
+
+== Как настроить KeyModes? ==
+Синтаксис следующий:
+ [NameSpace:] <mod> [<mod> <mod>] key [key key] :command <commanoptions>
+Если не указано NameSpace, то по умолчанию используется '''default'''.
+
+Новой командой является '''KeyMode'''.
+ :KeyMode <NameOfMode> [<mod> [mod mod ...] <key> [key key ...]]
+Последняя комбинация "<mod>...<key>" используется для возврата в "обычный" режим. Если не указана, то по умолчанию используется клавиша "Escape".
+
+== Пример ==
+Для лучшего понимания преводится пример.
+===== Различные комбинации для изменения размера окна, пока не нажат "Escape" =====
+ ## ResizeMode
+ Mod4 w Mod4 r               :KeyMode ResizeMode
+ ResizeMode: None Up         :ResizeVertical -2
+ ResizeMode: None Down       :ResizeVertical +2
+ ResizeMode: None Left       :ResizeHorizontal -2
+ ResizeMode: None Right      :ResizeHorizontal +2
+ ResizeMode: Shift Up        :ResizeVertical -10
+ ResizeMode: Shift Down      :ResizeVertical +10
+ ResizeMode: Shift Left      :ResizeHorizontal -10
+ ResizeMode: Shift Right     :ResizeHorizontal +10
+===== Различные комбинации для передвижения окон, пока не нажат  "Escape" =====
+ ## MoveMode 
+ Mod4 w Mod4 m               :KeyMode MoveMode
+ MoveMode: None Up           :MoveUp 2
+ MoveMode: None Down         :MoveDown 2
+ MoveMode: None Left         :MoveLeft 2
+ MoveMode: None Right        :MoveRight 2
+ MoveMode: Shift Up          :MoveUp 10
+ MoveMode: Shift Down        :MoveDown 10
+ MoveMode: Shift Left        :MoveLeft 10
+ MoveMode: Shift Right       :MoveRight 10
+===== Отмена всех назначеных комбинаций (для использования с Xnest) =====
+ ## XnestMode
+ Mod1 x                      :KeyMode XnestMode
+
+== Как визуализировать смену режимов? ==
+Для визуализации смены режима можно использовать следующую строку:
+ Mod4 w Mod4 r               :MacroCmd {Exec echo "Resize Mode" | osd_cat -d 1 -p bottom -A center } {KeyMode ResizeMode}
+
+
+[[Ru:Howtos|Вернуться на предыдущую страницу]]

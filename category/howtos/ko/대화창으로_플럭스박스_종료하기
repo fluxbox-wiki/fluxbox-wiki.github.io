@@ -1,0 +1,70 @@
+[[Category:Coreano / Korean howtos]]
+[[Category:통합/시작법 howtos]]
+==대화창으로 플럭스박스 종료하기==
+플럭스박스 종료 시 실수로 종료하는 것을 막아주는, 훌륭한 팝업 대화창을 갖는 게 아주 어렵거나 까다로운 작업은 아니다.
+
+기본적으로 해결해야 할 문제가 두 가지 있다:
+
+1. 어떤 종류의 대화창을 이용하기 원하는 지
+2. 올바른 프로세스를 죽이기 위해 fluxbox의 프로세스id를 찾아내는 것
+
+문제 1: 유명한 xmessage 외에도 사용 가능한 다른 여러 대화창 프로그램들이 있다: zenity, kdialog, gxmessage, gdialog 그리고 기타 등등. 각각은 버튼, 텍스트상자 등과 같은 여러 위젯들을 지원할 수 있다. 그것들은 표준 입력으로부터 정보를 읽어, 팝업창을 열고, 사용자가 위젯을 클릭하길 기다렸다가 피드백을 제공한다.
+
+예시:
+
+  $> xmessage -nearmouse -buttons no:1,yes:0 "really logout?"
+
+
+yes나 no를 클릭한다면 0 또는 1을 피드백으로 받는다.
+
+따라서 logout.sh의 예제 파일은 이런 식이 되겠다:
+
+  #!/bin/sh
+  pid=""
+  message="really logout?"
+  if xmessage -nearmouse -buttons no:1,yes:0 "$message"; then
+    echo "i would kill $pid if i would know it"
+  fi
+
+그렇다면, 이제 fluxbox의 현재 프로세스 id를 알아낼 차례다. 쉬운 일이다:
+
+  $> xprop -root _BLACKBOX_PID | awk '{print $3}'
+
+
+이렇게 하면 현재 사용 중인 fluxbox의 정확한 프로세스 id를 알려줄 것이다.
+
+  #!/bin/sh
+  pid=`xprop -root _BLACKBOX_PID | awk '{print $3}'`
+  message="really logout?"
+  if xmessage -nearmouse -buttons no:1,yes:0 "$message"; then
+    kill -TERM $pid
+  fi
+
+
+zenity를 쓰고 싶다면(더 화려하다), 가능하다:
+
+ #!/bin/sh
+ if  zenity --question --title "Alert" --text "really wanna loose all that  work?!"; then
+         kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')
+ fi
+--[[User:Curley sue|Curley sue]] 18:31, 7 November 2006 (CST)
+(kill line 교정과 zenity 추가)
+
+
+끝났다 :) logout.sh를 자신의 PATH에다 두어라. 실행권한을 더해 주고(chmod u+x logout.sh) ~/.fluxbox/menu의 [exit]를 [exec] (exit) {ExecCommand logout.sh}로 변경하라. 이 모든 게 귀찮은 이는 "fbcmd"라고 하는 조그마한 프로그램을 이용할 수 있다. 여기서 받을 수 있고
+
+http://darkshed.net/files/c_cpp/fbcmd/
+
+
+이렇게 사용하거나:
+
+  $> fbcmd logout zenity "really logout?"
+
+혹은 이렇게
+
+  $> fbcmd logout gdialog "really really logut?"
+
+아니면 어떤 식이로든 원하는 데로 사용하라. fbcmd이 약간 더 다른 일을 할 수 있지만 그것은 다른 주제다. ^^
+
+Last update: 2004-07-26 17:20
+글쓴이: [http://darkshed.net/ Mathias Gumz]

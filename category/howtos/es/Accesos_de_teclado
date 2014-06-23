@@ -1,0 +1,169 @@
+[[Category:Español / Spanish howtos]]
+[[Category:Configuración]]
+
+{{template:necesita trabajo}}
+
+__TOC__
+
+== Introducción ==
+
+El archivo que controla los accesos de teclado se especifica en el archivo "init" (~/.fluxbox/init) así:
+ session.keyFile:        ~/.fluxbox/keys
+Este archivo (~/.fluxbox/keys) será el que controla todo los accesos rápidos por teclado.  El sintaxis de cada acceso de teclado es el siguiente:
+ <modificador> [<modificador> <modificador>] tecla [tecla tecla] :comando <opciones> 
+
+
+== Básicos ==
+
+=== Modificadores ===
+
+Los modificadores generalmente son los siguientes:
+ None == ninguno
+ Mod1 == Alt
+ Mod4 == Tecla "Windows"
+ Control == ctrl
+ Shift == shift
+
+Para ver cuales son los suyos haced:
+ $ xmodmap -pm
+ xmodmap:  up to 2 keys per modifier, (keycodes in parentheses):
+
+ shift       Shift_L (0x32),  Shift_R (0x3e)
+ lock        Caps_Lock (0x42)
+ control     Control_L (0x25),  Control_R (0x69)
+ mod1        Alt_L (0x40)
+ mod2        Num_Lock (0x4d)
+ mod3      
+ mod4        Super_L (0x85)
+ mod5
+
+Se pueden comprobar con xev para ver que tecla es cual.  Si te hace falta alguno como la tecla "Windows" se puede añadir así:
+ xmodmap -e 'add Mod4 = Super_L'
+
+
+=== Combinaciones ===
+
+El archivo keys es muy potente.  Incluso se pueden hacer combinaciones como en emacs o vim así:
+ Control n Mod1 n :Close  #ctrl+n seguido por alt+n cerrará la ventana activa
+
+Si se quiere utilizar una combinación sin tener que utilizar modificadores (con None) sólo hace falta poner None una vez como en este ejemplo:
+ None F11 F12 :ExecCommand ssh example.com #F11 F12 ejecuta ssh
+
+
+== Comandos ==
+
+=== Window Manager ===
+  '''Restart <argumento>'''    ''#reinicia fluxbox, el argumento puede ser el binario de otro window manager''
+  '''Quit'''   ''#sale de fluxbox''
+  '''Exit'''   ''#sale de fluxbox''
+  '''Reconfigure'''   #vuelve a cargar lo configuración''
+  '''Reload Style'''   ''#vuelve a cargar el style si ha cambiado algún archivo''
+  '''SetStyle <argumento>''  ''#cambia el style al argumento''
+  '''ExecCommand <argumento>'''   ''#ejecuta un comando, el argumento es el binario/script''
+  '''Exec <argument>'''   ''#igual que ExecCommand''
+
+
+=== Ventana Activa ===
+   '''Fullscreen'''   ''#maximiza la venta cubriendo TODOS las otras aplicaciones (sin importar la capa)''
+   '''Minimize'''   ''#minimiza la ventana como el botón''
+   '''MinimizeWindow'''   ''#igual que Minimize''
+   '''Iconify'''   ''#igual que Minimize''
+   '''Maximize'''   ''#maximiza la ventana como el botón''
+   '''MaximizeWindow'''   ''#igual que Maximize''
+   '''MaximizeHorizontal'''   ''#maximiza la ventana horizontalmente''
+   '''MaximizeVertical'''   ''#maximiza la ventana verticalmente''
+   '''ResizeTo <ancho> <alto>'''   ''#cambia la mida de la aplicacion''
+   '''Resize <delta-width> <delta-height>'''   ''#mirad las notas''
+   '''ResizeHorizontal <delta-width>'''   ''#mirad las notas''
+   '''ResizeVertical <delta-height>'''   ''#mirad las notas''
+   '''MoveTo <x> <y> <ref corner>'''   ''#mirad las notas''
+   '''Move <delta-x> <delta-y>'''   ''#mirad las notas''
+   '''MoveRight <delta-x>'''  ''#mirad las notas''
+   '''MoveLeft <delta-x>'''   ''#mirad las notas''
+   '''MoveUp <delta-y>'''   ''#mirad las notas''
+   '''MoveDown <delta-y>'''   ''#mirad las notas''
+   '''Raise'''   ''#raises the focused window''
+   '''RaiseLayer'''   ''#raises the focused window one layer''
+   '''Lower'''   ''#lowers the focused window''
+   '''LowerLayer'''   ''#lowers the focused window one layer''
+   '''Close'''   ''#closes the focused window. same as the windowbutton''
+   '''Shade'''   ''#shades the focused window. same as the windowbutton''
+   '''ShadeWindow'''   ''#shades the focused window. same as the windowbutton''
+   '''Stick'''   ''#makes the focused window sticky/unsticky. same as the windowbutton''
+   '''StickWindow'''   ''#makes the focused window sticky/unsticky. same as the windowbutton''
+   '''ToggleDecor'''  '' #makes the focused window borderless''
+   '''SendToWorkspace <number>'''   ''#sends the focused  window to the workspace given by number''
+   '''SendToNextWorkspace <number>'''   ''#sends the focused window to the next workspace given by number''
+   '''SendToPrevWorkspace <number>'''   ''#sends the focused window to the previous workspace given by number''
+   '''TakeToWorkspace <number>'''   ''#sends the focused  window to the workspace given by number and switches the view to it''
+   '''TakeToNextWorkspace <number>'''   ''#sends the focused window to the next workspace given by number and switches the view to it''
+   '''TakeToPrevWorkspace <number>'''   ''#sends the focused window to the previous workspace given by number and switches the view to it''
+  ''' KillWindow'''   ''#kills the focused window''
+   '''NextTab'''   ''#switches to the next tab of the focused window''
+   '''PrevTab'''   ''#switches to the previous tab of the focused window''
+   '''MoveTabLeft'''   ''#moves the focused tab to the left''
+   '''MoveTabRight'''   ''#moves the focused tab to the right''
+   '''DetachClient'''   ''#detatches the focused tab from a group''
+   '''SetHead <int>'''   ''#sets the default head for a window --> xinerame''
+   '''FocusUp'''   ''#sets the focus to the window north of the focused one''
+   '''FocusDown'''   ''#sets the focus to the window south of the focused one''
+   '''FocusLeft'''   ''#sets the focus to the window west of the focused one''
+   '''FocusRight'''   ''#sets the focus to the window east of the focused one''
+
+
+=== Workspace ===
+   '''NextWorkspace'''   ''#switches to the next (right) workspace''
+   '''PrevWorkspace'''   ''#switches to the previous (left) workspace''
+   '''RightWorkspace <by-number>'''   ''#switches "number" workspaces to the right''
+   '''LeftWorkspace <by-number>'''   ''#switches "number" workspaces to the left''
+   '''Workspace <number>'''   ''#switches to the workspace geven by number''
+   '''NextWindow <bitmask>'''   ''#scroll down for further information''
+   '''PrevWindow <bitmask>'''   ''#scroll down for further information''
+   '''NextGroup <by-number>'''   ''#''
+   '''PrevGroup <by-number>'''   ''#''
+   '''ArrangeWindows'''   ''#arranges windows :)''
+   '''ShowDesktop'''   ''#iconifies all windows of the current workspace''
+   '''RootMenu'''   ''#pops up the right-click menu''
+   '''WorkspaceMenu'''   ''#pops up the middle-click menu''
+   '''WindowMenu'''   ''#pops up the windowtitle menu''
+   '''SetWorkspaceName <name>'''   ''#renames the current workspace''
+   '''Deiconify LastWorkspace'''   ''#uniconifies minimized windows''
+   '''Deiconify Last OriginQuiet'''   ''#uniconifies minimized windows''
+  ''' Deiconify All OriginQuiet'''   ''#uniconifies minimized windows''
+
+
+=== Comandos especiales ===
+   '''MacroCmd'''   ''#scroll down for further information''
+   '''ReloadStyle'''   ''#reloads the style''
+   '''SetResourceValue <resourcename> <resource> value'''   ''#to be done...no one will ever need this!''
+   '''BindKey <key><value>: <action>'''   ''#creates an "on the fly keycommand"''
+
+
+=== Notas ===
+'''Couple of things'''
+* TakeToWorkspace: Will send you along with the window to the selected workspace. SendToWorkspace just sends the window.
+* PrevWindow/NextWindow parameters take a bitmask:
+:* 0 or unspecified = Default/current behavior - no skipping
+:* 1 cycle groups
+:* 2 skip stuck windows
+:* 4 skip shaded windows
+:* 8 cycle linear (use the same order every time)
+for example:
+   Mod1 tab :NextWindow 6
+will skip any window that is either stuck or shaded, since 6 = 4 + 2.
+* Bindkey will append key string and action to your keys file and bind the key.
+* The delta value means the difference between the current setting and the requested setting. Assume your window 100 is pixels wide
+   Mod1 r :ResizeHorizontal 10
+when you use that key it would increase the size of your window to 110 pixels. If you had used
+   Mod1 R :ResizeHorizontal -10
+then it would have decreased the size by 10, setting it to 90 pixels.
+* La sintáxis del comando MoveTo es:
+   :MoveTo [int|*] [int|*] [reference corner]
+Donde * significa "use el valor actual" y la esquina de referencia es una de
+:* Left, Right
+:* Upper, UpperLeft, UpperRight
+:* Lower, LowerLeft, LowerRight
+Por ejemplo:
+   :MoveTo 0 * Left       -> snap to left workspace edge
+   :MoveTo * 0 Lower      -> snap to lower workspace edge
+   :MoveTo 0 0 UpperRight -> snap to upper right workspace corner

@@ -1,0 +1,26 @@
+__TOC__
+[[Category:Italiano / Italian howtos]]
+
+===Dove trovare i temi GTK===
+E' possibile ottenere i temi GTK nella sezione GTK di FreshMeat
+(http://themes.freshmeat.net/browse/58/)
+
+===Come faccio ad installare questi temi?===
+Hai solo bisogno di decomprimere questi file in ~/.themes, quindi prima:
+ mkdir ~/.themes
+e poi
+ cd ~/.themes
+ tar -zxvf theme-name-here.tar.gz      or
+ tar -jxvf theme-name-here.tar.bz2
+
+Assicurati di controllare il readme del tema, è probabile installare  
+il tema tramite il vostro gestore di pacchetti come
+ apt-get install gtk-engines-industrial    or
+ apt-get install gtk-engines-*         or
+ emerge gtk-engines-industrial
+Questo è un esempio
+
+===E per utilizzarli?===
+Ottenete gtk-theme-switch (http://www.muhri.net/nav.php3?node=gts)  
+(notate che esiste anche una versione per GTK2) o gtk-chtheme  
+(http://plasmasturm.org/code/gtk-chtheme/)

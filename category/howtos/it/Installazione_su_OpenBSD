@@ -1,0 +1,114 @@
+__TOC__
+[[Category:Italiano / Italian howtos]]
+
+Nei ports di openbsd c'è fluxbox però c'è una versione abbastanza vecchia, la 0.9.15.1. I mantenitori di OpenBSD hanno le loro ragioni per tenere ancora questa versione. Se si desidera installare l'ultima versione di fluxbox non bisogna avere paura di sporcarsi un po' le mani.
+Questa guida è stata scritta utilizzando OpenBSD 4.6 architettura i386/amd64. Su altre architetture la procedura può essere molto diversa.
+
+==Git specifiche== 
+Se desideriamo utilizzare la versione git di fluxbox bisogna fare alcuni passaggi aggiuntivi. In caso contrario l'installazione non differisce dalla versione stabile.
+Prima di tutto bisogna installare i pacchetti necessari:
+
+ # pkg_add automake
+ # pkg_add autoconf
+ # pkg_add GIT
+
+Scaricare il codice dai seguenti repository Git - usando le istruzioni.
+Poi bisogna definire alcune variabili d'ambiente:
+
+ export AUTOCONF_VERSION $ = 2.61
+ export AUTOMAKE_VERSION $ = 1.9
+
+Le versioni possono cambiare con il tempo quindi per sicurezza e meglio dare sempre un'occhiata per vedere la versione utilizata:
+
+ pkg_info autoconf 
+ pkg_info automake 
+
+Come da regola del thumb, solo per verifica, dare autoconf-$VERSIONE_AUTOCONF e automake-$VERSIONE_AUTOMAKE exist nel proprio $PATH.
+Ora siete pronti a partire con l'installazione
+
+ $ ./Autogen
+
+La parte di che riguarda il git finisce qui.
+
+==Costruzione e installazione==
+Se non volete la versione git basta scaricare il [http://fluxbox.org/download/ tarball stabile] e estrarlo come al solito:
+
+ tar -zxvf nomefile.tar.gz
+
+oppure per il pacchetto .tar.bz2
+
+ tar -jxvf nomefile.tar.bz2
+
+Ora possiamo partire con la configurazione:
+
+ $ ./configure --program-prefix="" --program-suffix="" --prefix=/usr/local
+
+Il prefisso deve essere impostato a /usr/local in parte per rispettare le convenzioni di OpenBSD e in parte per sovrascrivere fluxbox se è già installato.
+Ora modifichiamo il Makefile risultante, trovare SUBDIRS è impostarlo come segue:
+
+ SUBDIRS = scr util data
+
+NLS non si installa correttamente al momento della scrittura, i documenti non sono costruiti bene e quindi ci dobbiamo sbarazzare di loro. Triste ma vero.
+Ora lanciate:
+
+ $ make
+
+Se utilizzare fluxbox-1.1.1 dovrebbe compilare senza nessuno problema.
+Con fluxbox-git del 28/10/2009 la compilazione si blocca in src/FbTk/StringUtil.cc con il seguente errore:
+
+ StringUtil.cc:87: error: `::extractLongNumber' undeclared (first use here)
+
+Per risolvere basta modificare quella stringa e cancellare “::”, rendendola: 
+
+ if (extractLongNumber (in.c_str (), risultato) & & out> = 0) (
+
+ed eseguite di nuovo il comando make
+Adesso diventate root e date:
+
+ # Make install
+ 
+A questo punto è finita l'installazione di fluxbox.
+
+==Avvio di FluxBox==
+Se si esegue X utilizzando il comando startx è necessario aggiungere startfluxbox nel file .Xinitrc come segue:
+
+ $ echo “exec /usr/local/bin/startfluxbox” > ~/.xinitrc
+ $ chmod u+x ~/.xinitrc
+
+Attenzione se esiste già il file ~/.xinitrc il contenuto vera sovrascritto altrimenti vera creato il file.
+Oppure possiamo utilizzare:
+
+ $ startx startfluxbox
+
+Se usi xdm per avviare x è ancora più facile:
+
+ $ echo “exec /usr/local/bin/startfluxbox” > .xsession
+
+==Impostare lo sfondo==
+
+Nella versione 4.6 non c'è fornito un setter wallpaper di default quindi bisogna installarlo:
+
+ # pkg_add feh
+
+oppure 
+
+ # pkg_add chbg
+
+Anche alcune versioni di fbsetbg non funzionano correttamente su OpenBSD. 
+Se avete qualcosa di simile:
+
+ bash-4.0$ fbsetbg -f ~/.fluxbox/backgrounds/some_background.png 
+ ldd: Esetroot:: No such file or directory
+ ldd: Command: No such file or directory
+ ldd: not: No such file or directory
+ ldd: found.: No such file or directory
+ /usr/local/bin/fbsetbg[537]: wmsetbg: not found
+ /usr/local/bin/fbsetbg[542]: gxmessage: not found
+
+basta editare `which fbsetbg` con il vostro editor preferito, trovare la seguente stringa: 
+
+ [ -n "$1" ] && hash $1 2> /dev/null
+
+e sostituirla con:
+
+ which $1 2>&1 > /dev/null

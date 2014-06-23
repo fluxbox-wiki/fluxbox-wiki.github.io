@@ -1,0 +1,89 @@
+==Compiler fluxbox avec les sources==
+[[Category:Français / French howtos]]
+===De quoi avec-vous besoin ?===
+Fluxbox se compile facilement avec les outils standards disponibles sur la pluspart des distributions linux (gcc, gpp, make etc) et avec les bibliothèques de développement du système graphique X11 (en général libx11-devel ou libx11-dev ou x11proto-core-dev ou xorg-dev ou autre selon la distribution).
+
+Si lors de la compilation vous avez une erreur du type:
+  checking for X... no configure: error: Fluxbox requires the X Window System libraries and headers.
+Alors installez les bibliothèques manquantes du système graphique (citées ci-dessus).
+
+===Ou trouver les sources ?===
+Les sources se trouvent [http://fluxbox.org/version-0.9.php ici] ou [http://sf.net/projects/fluxbox sur la page Sourceforge].
+
+
+===Compiler Fluxbox (version courte)===
+ $ tar -zxvf fluxbox-*.tar.gz  OR  tar -jxvf fluxbox-*.tar.bz2
+ $ cd fluxbox
+ $ ./configure
+ $ make
+ $ su
+ $ make install
+
+Notes: "configure" supporte des arguments. Ils sont décrit ci-dessous. Vous pouvez utiliser SUDO au lieu de SU. Le chemin d'installation par défaut est '''/usr/local/share/fluxbox/'''
+
+
+===Compiler Fluxbox ? (version longue et détaillée)===
+Il faut décompresser l'archive contenant le code source que vous venez de télécharger (pour les fichiers de type .tar.gz faire '''tar -zxvf fluxbox-*.tar.gz''' (remplacer * par la version qui correspond à votre fichier) et pour les .tar.bz2 '''tar -jxvf fluxbox-*.tar.bz2'''. Vous devez bien sur posséder gzip pour pouvoir décompresser des tar.gz et bzip2 pour les tar.bz2).
+
+Ensuite faire: 
+ $ cd fluxbox
+
+
+Maintenant vous vous trouvez dans le dossier de la source. Lisez le fichier README et le fichier INSTALL si vous comprenez l'anglais :)
+
+Ensuite faire: 
+ $ ./configure
+
+Si vous voulez activer le support xinerama (multi-écrans) utiliser '''./configure --enable-xinerama''' et si vous voulez le support des icônes au format PNG (et que vous avez installé les bibliothèques de développement "imlib2" vous pouvez utiliser '''./configure --enable-imlib2'''.
+Ou même les deux !, par exemple : '''./configure --enable-xinerama --enable-imlib2'''. Fastoche hein ?
+
+En cas de doute vous pouvez voir toutes les options disponibles avec '''./configure --help'''.
+
+
+Une fois que "configure" a terminé son boulot, tapez simplement: 
+ $ make
+
+
+Fluxbox est maintenant compilé. Pour l'installer il suffit de taper:
+ $ sudo make install
+ou bien
+ $ su
+ $ make install
+Fluxbox s'installera (par défaut) dans '''/usr/local/share/fluxbox'''.
+
+==Qu'est ce que la version SVN et est-ce utile pour moi ?==
+
+(SVN signifie "subversion" est ressemble à "CVS". C'est un gestionnaire de version pour les développeurs de logiciel)
+
+La version "Svn" de Fluxbox est la dernière version disponible en cours de développement. Si vous voulez la tester vous pouvez, elle contient souvent de nouvelles fonctionnalitées ou des corrections de bug. Si vous voulez aider à chasser les bugs ou autre c'est la version qu'il vous faut.
+
+MAIS ATTENTION !! la version svn est par nature "instable" car le code source est manipulé constament par les développeurs. Il ne faudrait pas utiliser cette version dans votre vie de tous les jours car il peut y avoir des problèmes. Vous serez prévenu...
+
+===Récupérer la version SVN et l'installer===
+
+Vous aurez besoin de [http://subversion.tigris.org subversion], automake-tools et autoconf-tools.
+
+
+Pour avoir les sources SVN et préparer la compilation il faut taper:
+ $ svn checkout svn://svn.berlios.de/fluxbox/trunk fluxbox && cd fluxbox && ./autogen.sh
+
+Ensuite, c'est comme d'habitude:
+ $ ./configure
+ $ make
+ $ make install
+ 
+
+Pour simplement mettre à jour:
+ $ cd fluxbox && svn update && make && sudo make install
+
+===Récupérer une vieille version dans le SVN===
+
+Mais pourquoi faire ?
+
+* Peut-être que la dernière version ne compile pas et que vous vous souvenez que la révision X compile...
+* Peut-être que vous avez trouvé un bug pas encore rapporté.
+* Peut-être que vous voulez utiliser un patch qui ne fonctionne pas avec les dernières modifications faites à la source.
+
+Peu importe vos raisons, voici comment faire:
+  $ svn checkout -r X svn://svn.berlios.de/fluxbox/trunk fluxbox
+Bien sur il faut remplacer le X avec le numéro de la révision désirée.

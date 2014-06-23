@@ -1,0 +1,23 @@
+__TOC__
+[[Category:Suomeksi / Finnish howtos]]
+Teemat ovat Fluxboxin ulkonäön määritteleviä paketteja, jotka sisältävät tyylitiedoston ja usein myös muita pieniä kuvakkeita, ikoneita ja nappeja tai taustakuvan. Fluxbox käyttää teemoista nimitystä ''Style'', mutta myös teema-sanan englannin kielinen vastine ''theme'' on varsin yleisesti käytössä.
+
+== Mistä teemoja saa? ==
+Teemoja voi latailla vaikkapa [http://tenr.de/ Tennerin kotisivuilta.]
+
+Myös Googlella löytää hyvin, hakusanoilla ''fluxbox themes''.
+
+== Asennus ==
+Tarkista että kotihakemistostasi löytyy alihakemisto <code>~/.fluxbox/styles/</code>. Mikäli tätä ei löydy, luo se komennolla 
+  mkdir ~./fluxbox/styles/
+Tämän tehtyäsi lataa jokin teema. Käytän tässä esimerkissä satunnaisesti valittua Tennerin tekemää teemaa:
+  user@localhost:~$ wget http://tenr.de/styles/archives/summerday.tar.bz2
+Tämän jälkeen pura paketti:
+  user@localhost:~$ tar xjf summerday.tar.bz2
+Paketti puretaan hakemistoon <code>./summerday/</code>. Tämän jälkeen koko hakemisto sisältöineen voidaan siirtää fluxboxin teema-hakemistoon:
+  user@localhost:~$ mv ./summerday/ ~/.fluxbox/styles/
+Ja näin summerday -teema on asennettu ja se pitäisi löytyä Fluxboxin valikosta Styles -kohdan alta.
+
+Mikäli teemapaketti ei purkaudu hakemistoksi, tai jos se sisältää vain yksittäisen tyylitiedoston, tee hakemistoon <code>~/.fluxbox/styles/</code> jokin satunnainen alihakemisto, ja siirrä tiedostot sinne.
+
+Huomaa että teemaa asentaessa '''ei''' tarvitse olla root-käyttäjä, vaan koko prosessin voi tehdä normaalikäyttäjänä.
