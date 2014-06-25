@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="fluxbox-development">Fluxbox development</h2>
+<h3 id="who-are-the-developers">Who are the developers</h3>
+<p>The Fluxbox developers are:</p>
+<ul>
+<li>Henrik Kinnunen aka <strong>fluxgen</strong></li>
+<li>Simon Bowden aka <a href="http://www.linkedin.com/in/simonbowden">Rathnor</a></li>
+<li>Mathias Gumz aka <a href="http://darkshed.net/">akira (ak|ra in irc)</a></li>
+<li>Mark Tiefenbruck aka <a href="http://mark.tiefenbruck.org">mark-t</a></li>
+<li>Tomáš Janoušek aka <strong>Liskni_si</strong></li>
+</ul>
+<h3 id="which-version-of-fluxbox-should-i-run">Which version of Fluxbox should I run</h3>
+<p>The recommended fluxbox version is always the latest development version. It is the most stable available. Get it from <a href="http://fluxbox.org/download/"><a href="http://fluxbox.org/download">http://fluxbox.org/download</a></a>.</p>
+<p>You can learn how to <a href="build fluxbox from source" title="wikilink">build fluxbox from source</a> if you don't know how to do this.</p>
+<p>If you like to test new features or help hunting down some bugs you may think about the git version of fluxbox, which is the bleeding edge release. See <a href="build fluxbox from source #What_is_git_version_and_why_should_I_use_it.3F" title="wikilink">how to get and install git version</a></p>
+<h3 id="why-do-people-say-that-stable-isnt-stable">Why do people say that 'stable' isnt stable</h3>
+<p>People used to say this because for a very long time the only &quot;official&quot; stable version was 1.1 and it wasn't touched for over 2 years. Now this is not true. The latest offical stable is version 1.3.1 and it is considered very stable. The latest development version is also considered to be a very stable version. Go and get it from <a href="http://fluxbox.org/download/"><a href="http://fluxbox.org/download/">http://fluxbox.org/download/</a></a></p>
+<h3 id="what-are-the-main-differences-between-fluxbox-and-box">What are the main differences between Fluxbox and *box</h3>
+<p>All *boxen were forked from Blackbox. This is long time gone and both projects have developed in different ways, added different features, had other priorities. Thus, the current states of the *boxen differ significantly.</p>
+<h3 id="where-can-i-find-fluxbox-logo-and-graphics-icons-banners-etc">Where can I find Fluxbox logo (and graphics, icons, banners, etc)?</h3>
+<p>Check <a href="http://old.fluxbox.org/download/propaganda/">here</a>.</p>
+<h2 id="session-menu">Session menu</h2>
+<h3 id="how-do-i-add-fluxbox-to-my-sessions-menu-in-fedora">How do I add fluxbox to my sessions menu in Fedora?</h3>
+<p>The fedora distribution uses a different setup. Instead of the dm-specific locations, it requires session files to be in /etc/X11/dm/Sessions.</p>
+<p>So, to get Fluxbox into its session menu, create the file: /etc/X11/dm/Sessions/fluxbox.desktop with contents:</p>
+<p><code>[Desktop Entry]</code><br /><code>Encoding=UTF-8</code><br /><code>Name=Fluxbox</code><br /><code>Type=Application</code><br /><code>Icon=</code><br /><code>Exec=startfluxbox</code></p>
+<p>You may need to put the full path to fluxbox in the Exec line if it is in a non-standard location. It is also reported that the file needs execution right:</p>
+<p><code>chmod +x /etc/X11/dm/Sessions/fluxbox.desktop</code></p>
+<p>One might check other files attributes.</p>
+<p>This is a barebones entry. Hopefully one day we will be able to make a version with translations available in the main source distribution.</p>
+<h3 id="how-do-i-add-fluxbox-to-my-gdm-sessions-menu">How do I add fluxbox to my GDM sessions menu?</h3>
+<p>Create the file: /etc/gdm/Sessions/fluxbox with contents:</p>
+<p><code>#!/bin/sh</code><br /><code>#</code><br /><code># /etc/gdm/Sessions/fluxbox</code><br /><code>#</code><br /><code># global fluxbox session file -- used by gdm</code><br /><code>exec /etc/X11/Xsession /usr/bin/fluxbox</code></p>
+<p>Of course, change /usr/bin/fluxbox to wherever your fluxbox binary is. If the /etc/gdm directory doesn't exist, it may be /etc/X11/gdm/Sessions/fluxbox on your computer.</p>
+<h3 id="how-do-i-add-fluxbox-to-my-kdm-sessions-menu">How do I add fluxbox to my KDM sessions menu?</h3>
+<p>There are a couple of ways. You can either choose the &quot;default&quot; session, which should load your .xsession file and thus you'd put &quot;exec fluxbox&quot; at the end of that.</p>
+<p>Or, to get a fluxbox option, go into KDE Control Center and add a session type &quot;fluxbox&quot;.</p>
+<p>Or, edit your kdmrc file (probably /etc/kde2/kdm/kdmrc). Find the &quot;SessionTypes=&quot; line, and add fluxbox to the list.</p>
+<p>If you are running Debian (thanks Dave Selby), then after adding the fluxbox session edit /etc/kde2/kdm/kdm.options and delete the line:</p>
+<p><code>generate-sessiontypes</code></p>
+<p>If you don't delete this Debian will loose the entry in the KDM menu when you reboot.</p>
+<p>That should be enough. However, some older configurations require a little more effort - you may need to find your Xsession file (e.g. /etc/X11/Xsession, or /usr/X11R6/lib/X11/xdm/Xsession) and add an option in the case statement containing other WMs, i.e.:</p>
+<p><code>fluxbox)</code><br /><code>  exec fluxbox</code><br /><code>  ;;</code></p>
+<h2 id="apps-window-managers-desktop-managers">Apps, Window Managers, Desktop Managers</h2>
+<h3 id="can-i-use-fluxbox-or-parts-of-it-with-xglcompizberyl">Can I use fluxbox or parts of it with XGL/Compiz/Beryl?</h3>
+<p>No, you can't. Fluxbox is a windowmanager, compiz and beryl are window managers (combined with a composite manager). So you can only replace fluxbox with one of them. KDE, GNOME and XFCE are desktop environments, which bring a windowmanager (kwin, metacity and xfwm) along. That's why you can use them with compiz, only the windowmanager is replaced.</p>
+<p>Fluxbox is not modular, so you can't use the fluxbox menu, toolbar, slit or anything else with compiz. You can read the eyecandy section for some nice effects with fluxbox or switch completely to compiz/beryl and miss all the great features fluxbox has.</p>
+<h3 id="which-terminal-should-i-run-in-fluxbox">Which terminal should I run in fluxbox</h3>
+<p>This question is beat to death with a huge hammer in #fluxbox IRC chat. The end answer really is: <strong>Which ever one you want</strong>.</p>
+<p>With that said there are several to choose from; you can try:</p>
+<ul>
+<li><a href="http://software.schmorp.de/pkg/rxvt-unicode.html">URxvt (rxvt-unicode)</a></li>
+<li><a href="http://invisible-island.net/xterm/">Xterm</a></li>
+<li><a href="http://www.eterm.org/">Eterm</a></li>
+<li><a href="http://roxterm.sourceforge.net/">ROXTerm</a></li>
+<li><a href="http://www.os-cillation.de/en/open-source-projekte/xfce-terminal/">Xfce Terminal</a></li>
+<li><a href="http://www.tenshu.net/p/terminator.html">Terminator</a></li>
+<li><a href="http://library.gnome.org/users/gnome-terminal/">GNOME Terminal</a></li>
+</ul>
+<p>And <a href="http://en.wikipedia.org/wiki/List_of_terminal_emulators">many many others</a>, so take your pick and find what works best for you.</p>
+<p>Those have no UTF-8 support:</p>
+<ul>
+<li>aterm</li>
+<li>rxvt</li>
+<li>mlterm</li>
+<li>multi-aterm (mrxvt)</li>
+</ul>
+<h3 id="which-irc-client-should-i-use-in-fluxbox">Which IRC client should I use in fluxbox</h3>
+<p>You have many choices when it comes to this. Many of the people in the fluxbox IRC room are using <a href="http://irssi.org/">Irssi</a> while still many of them use <a href="http://xchat.org/">Xchat</a>. You are by all means not even limited to just these two. You can also use:</p>
+<ul>
+<li><a href="http://www.bitchx.org/">BitchX</a></li>
+<li><a href="http://www.epicsol.org/">epic4</a></li>
+<li><a href="http://pidgin.im/">Pidgin</a></li>
+<li><a href="http://www.kvirc.net/">kvirc</a></li>
+</ul>
+<p>And many others; so find the one that works best for you and use it.</p>
+<h3 id="which-file-manager-should-i-use-in-fluxbox">Which file manager should I use in fluxbox</h3>
+<ul>
+<li><a href="http://thunar.xfce.org/index.html">thunar</a></li>
+<li><a href="http://live.gnome.org/Nautilus">Nautilus</a> (Run this with <strong>nautilus --no-desktop --browser</strong> if you don't want to have gnome's background and icons, and it may break fluxbox's menu)</li>
+<li><a href="http://roscidus.com/desktop/ROX-Filer">ROX-Filer</a></li>
+<li><a href="http://emelfm.sourceforge.net/">emelfm</a></li>
+<li><a href="http://www.emelfm2.net/">emelfm2</a></li>
+<li><a href="http://ostatic.com/endeavour2">Endeavour2</a></li>
+<li><a href="http://www.obsession.se/gentoo/">gentoo</a></li>
+<li><a href="http://www.konqueror.org/">konqueror</a></li>
+<li><a href="http://www.midnight-commander.org/">mc</a></li>
+<li><a href="http://www.fox-toolkit.org/">pathfinder</a></li>
+<li><a href="http://pcmanfm.sourceforge.net/">PCMan File Manager</a></li>
+<li><a href="http://tuxcmd.sourceforge.net/">tux commander</a></li>
+<li><a href="http://roland65.free.fr/xfe/">xfe</a></li>
+<li><a href="http://www.musikwissenschaft.uni-mainz.de/~ag/xfm/">xfm</a></li>
+<li><a href="http://www.musikwissenschaft.uni-mainz.de/~ag/xplore/">xplore</a></li>
+<li><a href="http://xffm.org/">xffm</a></li>
+<li><a href="http://xnc.jinr.ru/">xnc</a></li>
+<li><a href="http://www.boomerangsworld.de/worker/">worker</a></li>
+</ul>
+<p>And many others, take your pick and choose what works best for you.</p>
+<h3 id="will-kde-apps-work-in-fluxbox">Will KDE apps work in fluxbox</h3>
+<p>Yes. Do <code>./configure --enable-kde</code>. This makes it so that the KDE tray icons will appear in the slit.</p>
+<h3 id="will-gnome-apps-work-in-fluxbox">Will GNOME apps work in fluxbox</h3>
+<p>Yes, by default. You can also add &quot;xscreensaver &amp;&quot; to your ~/.fluxbox/startup file so you can lock the screen or use xscreensavers.</p>
+<h3 id="can-i-use-fluxbox-as-the-window-manager-in-gnome">Can I use fluxbox as the window manager in GNOME</h3>
+<p>Yes you can. To do this simply run this command:</p>
+<p><code> gnome-session-remove metacity</code></p>
+<p>followed by:</p>
+<p><code> fluxbox &amp;</code></p>
+<p>next you need to run:</p>
+<p><code> gnome-session-properties</code></p>
+<p>click the <strong>Startup Programs</strong> tab and add <strong>fluxbox</strong> click close and finally save your gnome session:</p>
+<p><code> gnome-session-save</code></p>
+<h3 id="can-i-use-fluxbox-as-the-window-manager-in-kde">Can I use fluxbox as the window manager in KDE</h3>
+<p>yes, just start fluxbox and then &quot;kicker&quot; and &quot;kdesktop&quot; or export KDEWM=startfluxbox in your login shell rc file (usually ~/.bashrc).</p>
+<h2 id="menu">Menu</h2>
+<h3 id="how-do-i-add-icons-to-my-menu">How do I add icons to my menu</h3>
+<p>To add pixmaps to your menu you need to make sure your fluxbox has been compiled with xpm support at the very least, and imlib2 support for png icons. Run the following command</p>
+<p><code> fluxbox -i</code></p>
+<p>and look for <strong>XPM</strong> for xpm icon support and <strong>IMLIB2</strong> for png support. The syntax is simple, for example:</p>
+<p><code> [exec] (firefox) {firefox} </code></usr/share/pixmaps/firefox.xpm></p>
+<p>If you have an icon named <strong>firefox.xpm</strong> in your /usr/share/pixmaps dir then that will put the icon in the menu. For more help with your menu see the <a href="editing the menu" title="wikilink">menu edition howto</a>.</p>
+<h3 id="how-do-i-make-menu-icons-bigger">How do I make menu icons bigger</h3>
+<p>Take a look at the style you are currently using</p>
+<p><code> grep -i stylef ~/.fluxbox/init</code></p>
+<p>from there open it and add or edit the following value:</p>
+<p><code> menu.itemHeight: </code><int></p>
+<p>where <int> is some number try 20 and go up or down from there. Be sure to reload the config before changes will apply.</p>
+<h3 id="how-do-i-generate-a-menu">How do I generate a menu</h3>
+<p>If you have started fluxbox but have an empty menu, try using the command</p>
+<p><code> fluxbox-generate_menu -h</code></p>
+<p>Also see <a href="Editing the menu" title="wikilink">this howto</a>.</p>
+<h3 id="on-fedora-my-menu-is-overwritten-on-every-startup-how-do-i-fix-it">On Fedora My menu is overwritten on every Startup, How do I fix it</h3>
+<p>For some reason the Fedora guys decided to make the default <a href="editing the startup file" title="wikilink">startup file</a> run their custom menu generator command. To prevent your changes from being over ridden open your startup file and look for</p>
+<p><code> if [ -x /usr/bin/fluxbox-xdg-menu ]; then</code><br /><code>      /usr/bin/fluxbox-xdg-menu --with-icons &amp;</code><br /><code> fi</code></p>
+<p>Just remove this from the startup file and your menu changes will no longer get lost on each startup.</p>
+<h2 id="transparency">Transparency</h2>
+<h3 id="how-do-i-make-my-menus-transparent">How do I make my menus transparent?</h3>
+<p>You can make your menus transparent if you are running a recent version of fluxbox (0.9.2 or above) by changing the &quot;Menu Alpha&quot; value in the configure menu. 255 = Opaque, 0 = Invisible (completely transparent). A value around 160 seems to satisfy most people. You should probably also read the next question for other things you need...</p>
+<h3 id="ive-set-a-transparency-value-but-nothing-is-transparent">I've set a transparency value, but nothing is transparent?!</h3>
+<p>Here are some things to check:</p>
+<p>You must be running a Fluxbox version 0.9.2 or newer. 0.1.x does not contain transparency support.</p>
+<p>Fluxbox must be restarted for changes in the alpha value to take effect (just choose restart in the menu).</p>
+<p>You need to have the XRender extension enabled in X, and compiled into fluxbox. Running fluxbox -i and xdpyinfo | grep RENDER should both say &quot;RENDER&quot;.</p>
+<p>You must have set the background with an XRender-compatible tool. fbsetbg comes with fluxbox and tries to make this easy for you, try it (the web page also has list of transparency supporting background tools). Run fbsetbg -i to see if it can find a suitable tool.</p>
+<h2 id="other-questions">Other questions</h2>
+<h3 id="what-are-the-little-boxes-above-my-window">What are the little boxes above my window</h3>
+<p>These are tabs. If you have upgraded from .9.x fluxbox to a 1.0rcx or newer version of fluxbox these tabs will be enabled by default. To configure them just right click your your desktop to get the root menu, then scroll down to Fluxbox Menu -&gt; configure -&gt; tab options. If you want them off select tabs in titlebar and they will act like the tabs in the .9.x releases.</p>
+<h3 id="why-doesnt-fluxbox-have-any-icons-on-the-desktop">Why doesn't fluxbox have any icons on the desktop</h3>
+<p>Because fluxbox is &quot;only&quot; a windowmanager and natively doesn't provide icons.</p>
+<p>Some applications are considered to be useful for desktop-icons:</p>
+<ul>
+<li><a href="http://fluxbox.sourceforge.net/fbdesk/">fbdesk</a></li>
+<li><a href="http://sourceforge.net/projects/idesk/">idesk</a></li>
+<li><a href="http://www.oroborus.org/">DeskLaunch</a></li>
+</ul>
+<p>See the howto for <a href="idesk" title="wikilink">idesk</a> and for <a href="fbdesk" title="wikilink">fbdesk</a> for info on getting these setup.</p>
+<p>You could also use a file manager like rox-filer or pcmafm for the icons, but they are not as flexible as the ones above and may cause some problems.</p>
+<h3 id="i-upgraded-to-fluxbox-0.9.14-or-newer-from-0.9.13-or-older-and-now-my-fonts-dont-look-right.-why">I upgraded to fluxbox 0.9.14 or newer from 0.9.13 or older and now my fonts dont look right. Why?</h3>
+<p>Since the 0.9.14 release the use of fonts changed a bit. Check the <a href="Change font" title="wikilink">font howto</a>.</p>
+<h3 id="i-keep-hearing-about-these-artwiz-fonts-what-gives">I keep hearing about these Artwiz fonts! What gives?</h3>
+<p>Try reading the Artwiz/Fluxbox Guide.</p>
+<p>If you like the Artwiz fonts, but don't like the way they look in terminals, consider checking out the 'LFP' Fontpack. There are two sets of fonts there, the LFP-Fixed width (good for terminals), and LFP Variable-width (good for other things).</p>
+<h3 id="what-is-the-slit">What is the slit</h3>
+<p>The first thing to know about the slit is that it is NOT the fluxbox toolbar -- it is completely separate from the toolbar. If you see anyone telling anyone else that is, whack them with something painful and point them here. :)</p>
+<p>The slit is one of the many parts of Fluxbox that has been inherited from Blackbox. It is essentially a dock: a place where dockable applications can be grouped together separately from your other windows. It is designed to hold WindowMaker Dockapps (and anything that runs in that mode which is called 'withdrawn' or occasionally 'swallowed'). Such applications often have a -w option to run in the slit, but some start automatically in withdrawn mode.</p>
+<p>Keep in mind: The slit is invisible if nothing is in it!</p>
+<p>In order to see it, run your dockapp and the slit will show up.</p>
+<h3 id="is-there-a-way-to-have-slit-dockapps-be-in-a-certain-order">Is there a way to have slit dockapps be in a certain order?</h3>
+<p>As of 0.1.10, YES!</p>
+<h3 id="how-do-i-set-my-background">How do I set my background</h3>
+<p>The command to use is <strong>fbsetbg</strong> To find out how to use it either consult its man page, or take a look at this <a href="Howto_set_the_background" title="wikilink">howto</a>.</p>
+<h3 id="how-do-i-change-the-resolution">How do I change the resolution</h3>
+<p>Run the command:</p>
+<p><code> xrandr -s </code><size><code>x</code><size></p>
+<p>where <size> would be a value like 1280x1024. For this to work, it must be a valid value in your X config.</p>
+<p>You should also read <a href="change resolution" title="wikilink">the detailed page</a>.</p>
+<h3 id="how-can-i-group-apps">How can I group apps</h3>
+<p>Look at <a href="Editing the apps file#Grouping_apps_via_the_apps_file" title="wikilink">the grouping howTo</a> to learn about it.</p>
+<h3 id="is-there-a-list-of-supported-platforms-platform-success-reports">Is there a list of supported platforms / platform success reports</h3>
+<p>Yes there is. Please see <a href="supported platform success reports" title="wikilink">supported platform success reports</a>.</p>
+<h3 id="how-do-i-change-the-height-of-my-toolbar">How do I change the height of my toolbar</h3>
+<p>Open your ~/.fluxbox/init and search for the line</p>
+<p><code>session.screen0.toolbar.height</code></p>
+<p>If this value is 0 then the style controls the toolbar height. if you set the value to something bigger than 0 then you will override ALL style-files with this &quot;global height&quot;.</p>
+<h3 id="how-do-i-change-the-height-of-my-window-title">How do I change the height of my window title</h3>
+<p>Open your style-file and search for the line</p>
+<p><code>window.title.height</code></p>
+<p>Simply change this value to your likings.</p>
+<h3 id="how-to-prevent-windows-from-maximizing-overunder-the-toolbarslit">How to prevent windows from maximizing over/under the toolbar/slit</h3>
+<p>Open the your root-menu, go to the configure-Menu and <strong>DISABLE</strong> &quot;Full Maximization&quot;, which will turn off the global switch. Then make sure you also disable &quot;Maximize over&quot; in the toolbar-menu and the slit-menu (also in the configure-Menu). Set the toolbar layer to Desktop, and maximize a window to check the effect.</p>
+<h3 id="how-do-i-change-the-toolbar-time-format">How do I change the toolbar time format?</h3>
+<p>Change this line in your init:</p>
+<p><code>session.screen0.strftimeFormat: %a %d %H:%M</code></p>
+<h3 id="where-can-i-find-a-list-of-all-format-options-of-the-toolbar-clockcalendar">Where can I find a list of all format options of the toolbar-clock/calendar</h3>
+<p>Two very good sources are these man pages:</p>
+<p><code>man strftime</code><br /><code>man date</code></p>
+<h3 id="why-are-maximized-windows-placed-a-few-pixels-away-from-the-right-edge-of-the-screen-making-it-difficult-to-use-the-scrollbar">Why are maximized windows placed a few pixels away from the right edge of the screen, making it difficult to use the scrollbar?</h3>
+<p>You probably have an empty slit at the right edge, and the window won't maximize over it. To fix it, simply enable Menu -&gt; Configuration -&gt; Slit -&gt; Maximize Over.</p>
+<h3 id="why-does-my-application-e.g.-xmms-mplayer-pause-when-i-move-a-window">Why does my application (e.g. XMMS, mplayer) pause when I move a window?</h3>
+<p>This behaviour is not a bug. It occurs because of the nature of outline window moving. With opaque window moving the application does not freeze (you can set it in the menu or set <strong>session.screen0.opaqueMove: true</strong> in <strong>~/.fluxbox/init</strong>).</p>
+<p>Long version: Outline moving works by drawing a rectangle of inverted pixels around a window. When you move the mouse, the old rectange is erased (by inverting the pixels again) and a new one drawn. Fluxbox grabs the display to freeze all the applications display windows. If it doesn't to this, then window changes can occur which change bits of the rectangles, ultimately leaving sections of rectangle randomly around the screen.</p>
+<p>All window managers that offer outline moving need to enforce the same rule so that the display doesn't become messy with rectange fragments during or after the move operation. If you find one that doesn't, let us know :)</p>
+<p>The author believes that applications such as XMMS whose primary function is not graphical ought to be able to continue to operate without the display updating (mplayer has a good excuse to pause). However, this behaviour is not under the control of the Fluxbox developers - you should talk to XMMS people to see if they can make it continue playing even without display updates (though I imagine this may also be a difficult problem).</p>
+<h3 id="how-do-i-launch-apps-automatically-on-fluxbox-startup">How do I launch apps automatically on Fluxbox startup?</h3>
+<p>You can either use the <a href="Editing the startup file" title="wikilink">startup file</a>, or set up your <a href=".xinitrc" title="wikilink">.xinitrc</a> file.</p>
+<h3 id="i-make-changes-to-my-.fluxboxinit-but-they-are-getting-overwritten.">I make changes to my ~/.fluxbox/init, but they are getting overwritten.</h3>
+<p>This is a bug in versions of fluxbox prior to 0.1.8-bugfix2. Please upgrade to the latest version/bugfix before reporting this as a bug.</p>
+<h3 id="can-i-use-my-existing-.blackboxrc-for-fluxbox">Can I use my existing .blackboxrc for Fluxbox?</h3>
+<p>You may certainly, be sure to add some lines for titlebar and keygrabbing, though. It may also be wise to symlink your blackboxrc and ~/.fluxbox/init together somehow.</p>
+<h3 id="can-i-use-blackbox-styles-themes-with-fluxbox">Can I use blackbox styles (themes) with Fluxbox?</h3>
+<p>Yes. The tarballs for both packages should be 100% interchangeable...as long as the style was written for blackbox &lt;=0.65.</p>
+<p>This might be true for the Waimea and Openbox projects, although there is no guarantee. I've not seen such a promise from either of the two projects, no one can keep them from handling styles differently.</p>
+<h3 id="how-about-waimea-and-openbox-themes">How about Waimea and Openbox themes?</h3>
+<p>These are two more Blackbox code forks. To be perfectly precise, the only BB code Waimea uses is the Styles and Rendering engines, but that means that stylefiles should be compatible, at least.</p>
+<h3 id="bbtools-wont-copy-my-current-style-settings-even-after-restart">BBtools won't copy my current style settings, even after restart!</h3>
+<p>Just link your ~/.blackboxrc -&gt; ~/.fluxbox/init</p>
+<h3 id="gtk2gnome2-applications-look-weird-under-fluxbox-but-they-look-ok-when-gnome-is-started">Gtk2/Gnome2 applications look weird under Fluxbox, but they look ok when gnome is started</h3>
+<p>Create ~/.gtkrc-2.0, or it probably exist, and it will look like this</p>
+<p><code># -- THEME AUTO-WRITTEN DO NOT EDIT</code><br /><code>include &quot;/home/yourname/.themes/Murrina-Olive/gtk-2.0/gtkrc&quot;</code><br /><code>include &quot;/home/yourname/.gtkrc-2.0.mine&quot;</code><br /><code># -- THEME AUTO-WRITTEN DO NOT EDIT</code></p>
+<p>Create ~/.gtkrc-2.0.mine:</p>
+<p><code>gtk-icon-theme-name = &quot;Tango&quot;</code><br /><code>gtk-font-name = &quot;sans 8&quot;</code><br /><code>gtk-toolbar-icon-size = GTK_ICON_SIZE_SMALL_TOOLBAR</code><br /><code>gtk-toolbar-style = GTK_TOOLBAR_ICONS</code></p>
+<p>See the <a href="http://fluxbox-wiki.org/index.php/Howto_gtk_themes">GTK howto</a>.</p>
+<p>Alternatively, if you have GNOME installed run gnome-settings-daemon when Fluxbox starts, eg. put this into your ~/.xinitrc</p>
+<p><code># load this to have gtk2 apps look ok</code><br /><code>GSDPID=`pidof gnome-settings-daemon`</code><br /><code>if [  &quot;x$GSDPID&quot; == &quot;x&quot; ]; then</code><br /><code>  gnome-settings-daemon &amp;</code><br /><code>fi</code></p>
+<p>If the above code fails to work, try switching the line</p>
+<p><code>gnome-settings-daemon &amp;</code></p>
+<p>with</p>
+<p><code>/usr/libexec/gnome-settings-daemon &amp;</code></p>
+<p>or with the explicit path to wherever it's located on your system.</p>
+<h3 id="how-to-make-cool-terminal">How to make cool terminal?</h3>
+<p>Check man page for given terminal you use. Read quick hints on aterm and xterm.</p>
+<h3 id="how-to-display-logs-on-root-window">How to display logs on root window?</h3>
+<p>Use, eg.root-tail. For example:</p>
+<p><code>root-tail -f -fn 'glisp' -g 220x10+20+50 /var/log/messages,gray,MESSAGES</code></p>
+<h3 id="where-can-see-examples-of-dotfiles-configuration-files">Where can see examples of dotfiles (configuration files)?</h3>
+<p>Look <a href="http://old.fluxbox.org/download/dotfiles/">here</a>.</p>
+<h3 id="fluxbox-0.9.6-is-slow...">Fluxbox 0.9.6 is slow...</h3>
+<p>Add the following line to your .xinitrc before you exec fluxbox:</p>
+<p><code>export LC_ALL=C</code></p>
+<p>This should help on newer Redhats.</p>
+<h3 id="how-do-i-change-it-so-that-the-clock-is-on-the-right-instead-of-the-left">How do I change it so that the clock is on the right instead of the left?</h3>
+<p>If your session.screen0.toolbar.tools: in ./fluxbox/init looks like this:</p>
+<p><code>session.screen0.toolbar.tools: prevworkspace, workspacename, nextworkspace, clock, iconbar, systemtray, prevwindow, nextwindow, </code></p>
+<p>move the “clock” parameter from the left end to the right end:</p>
+<p><code>session.screen0.toolbar.tools: prevworkspace, workspacename, nextworkspace, iconbar, systemtray,  prevwindow, nextwindow, clock</code></p>
+<h3 id="why-are-my-styles-and-themes-missing">Why are my styles and themes missing?</h3>
+<p>There should be an entry your your .fluxbox/menu file that looks like this:</p>
+<p><code>[submenu] (Styles)</code><br /><code>     [include] (/usr/share/fluxbox/menu.d/styles/)</code></p>
+<p>Change this entry to:</p>
+<p><code>   [stylesdir] (/usr/share/fluxbox/styles)</code><br /><code>   [stylesdir] (~/.fluxbox/styles)</code></p>
+<h3 id="how-do-i-set-it-so-that-scrolling-the-mouse-wheel-cycles-through-windows-instead-of-workspaces">How do I set it so that scrolling the mouse wheel cycles through windows instead of workspaces?</h3>
+<p>Change the following entry in your ~/.fluxbox/keys from this:</p>
+<p><code># scroll on the toolbar to change workspaces</code><br /><code>OnToolbar Mouse4 :PrevWorkspace</code><br /><code>OnToolbar Mouse5 :NextWorkspace</code></p>
+<p>To this:</p>
+<p><code># scroll on the toolbar to change windows</code><br /><code>OnToolbar Mouse4 :PrevWindow</code><br /><code>OnToolbar Mouse5 :NextWindow</code></p>
+<h3 id="how-do-i-make-it-so-that-double-clicking-the-title-bar-maximizes-the-window-to-fullscreen-instead-of-shading">How do I make it so that double clicking the title bar maximizes the window to fullscreen instead of shading?</h3>
+<p>Find this entry in your ~/.fluxbox/keys:</p>
+<p><code># double click on the titlebar to shade</code><br /><code>OnTitlebar Double Mouse1 :Shade</code></p>
+<p>And change it to this:</p>
+<p><code># double click on the titlebar to mazimize</code><br /><code>OnTitlebar Double Mouse1  :Maximize</code></p>
+<h2 id="fluxbox-wiki-faq">Fluxbox-wiki FAQ</h2>
+<h3 id="who-runs-this-website">Who runs this website?</h3>
+<p>This site is hosted by <a href="http://errr-online.com/">errr</a>. The admin of the site is <a href="http://errr-online.com/">errr</a>. The content is provided by many many fluxbox users from all over the world. Thank you all for your hard work making this site a great source for sharing information about our favorite window manager, <a href="http://fluxbox.org/">fluxbox</a>.</p>
+<h3 id="why-cant-i-edit-the-wiki">Why can't I edit the wiki</h3>
+<p>You can!! Sicne this web site is powered directly by the content of a github repository all you need to do is fork the project, make your changes then send us a pull request</p>
+<h3 id="why-cant-i-create-a-new-account">Why can't I create a new account</h3>
+<p>Because of spam we disabled new account creation. If you would like an account on this wiki please join the IRC chat room and request one. To find out who to ask join the room and type: <strong>,wiki account?</strong> and fbot will tell you</p>
+<h2 id="irc-faq">IRC FAQ</h2>
+<h3 id="where-can-i-meet-and-talk-to-all-the-nice-fluxbox-people-and-how-can-i-chat-with-them">Where can I meet and talk to all the nice fluxbox people and how can I chat with them</h3>
+<p>The IRC channel is <a href="irc://irc.freenode.net/fluxbox">#fluxbox</a> on the <a href="http://freenode.net">freenode network</a>.</p>
+<h3 id="how-do-i-chat-if-i-only-have-a-browser-handy">How do I chat if I only have a browser handy</h3>
+<p>Go to <a href="http://webchat.freenode.net"><a href="http://webchat.freenode.net">http://webchat.freenode.net</a></a> and use freenode's own web interface.</p>
+<h3 id="how-do-i-work-the-bots-in-the-fluxbox-chatroom">How do I work the bots in the fluxbox chatroom</h3>
+<p>The main bot in the room is <em>fbot</em>. When he is on holiday or what ever, <em>computer</em> is there as a backup. Both bots have very similar syntax. To ask them a question address them:</p>
+<p><code> fbot: styles?</code></p>
+<p>For more information please see <a href="how to work the bots" title="wikilink">how to work the bots</a>.</p>
+<h3 id="why-arent-there-any-ops-in-the-fluxbox-chatroom">Why arent there any OP's in the fluxbox chatroom</h3>
+<p>We have a very mature room and almost never need to have someone in the room to moderate it. Keep in mind there are several OPs in the room, they just dont wear their badges.</p>
+<h3 id="what-is-this-fluxbox-chitchat-room-for-and-why-am-i-being-told-to-go-there">What is this fluxbox-chitchat room for and why am I being told to go there</h3>
+<p>The #fluxbox channel is the official chat room for fluxbox support. As with any chat room there will be some off-topic discussion from time to time. This is ok, it is a chat room, and so it will happen. However, it is best to keep off-topic discussions out of #fluxbox, even if nobody else is talking, in order to avoid distracting people who are there to help. If you are being asked (or told) to go to #fluxbox-chitchat, it is because you have gone too far with an off-topic discussion. For your own safety, you should move your off-topic discussion to #fluxbox-chitchat.</p>
+<h3 id="why-do-people-in-fluxbox-irc-keep-telling-me-to-turn-off-my-public-away-message">Why do people in fluxbox IRC keep telling me to turn off my public away message</h3>
+<p>The simple answer is: We dont care if you are here or there, we dont care if you are at home or school or work or where ever. We are in the room for supporting fluxbox . So disable your public away. Changing your nick is also just as bad; for example: someNick|away someNick-Away someNick|school someNick|eating the same rule applys, <strong>WE DONT CARE</strong>.</p>
+</body>
+</html>
