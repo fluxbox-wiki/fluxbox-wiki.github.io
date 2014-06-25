@@ -1,21 +1,18 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+<title>Italian</title>
 </head>
 <body>
-<p>__TOC__</p>
+<H1>Italian Howtos</H1>
+<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
+<hr>
+<h2>Cambiare risoluzione</hs>
+
 <h2 id="xrandr">Xrandr</h2>
-<p>Xrandr dovrebbe esserci su qualunque distribuzione con l'installazione del server X e può essere utilizzato per cambiare risoluzione. Per prima cosa digitare in un terminale il seguente comando:</p>
+<p>Xrandr dovrebbe esserci su qualunque distribuzione con l'installazione del server X e pu essere utilizzato per cambiare risoluzione. Per prima cosa digitare in un terminale il seguente comando:</p>
 <p><code>xrandr</code></p>
-<p>L'output dovrebbe simile a questo:</p>
+<p>L'output dovrebbe essere simile a questo:</p>
 <pre><code>Screen 0: minimum 320 x 200, current 1280 x 1024, maximum 4096 x 4096
 VGA-1 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 280mm x 210mm
    1024x768       85.0     75.1     70.1     60.0     43.5  
@@ -26,45 +23,45 @@ VGA-1 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 280mm x
 DVI-I-1 disconnected (normal left inverted right x axis y axis)
 TV-1 disconnected (normal left inverted right x axis y axis)</code></pre>
 <p>Per modificare la risoluzione digitate qualcosa di simile:</p>
-<p><code>xrandr -s 1024x768</code></p>
+<p><code>xrandr-s1024x768</code></p>
 <p>Se si desidera impostare il framerate utilizzare il parametro <strong>-r <rate></strong>:</p>
-<p><code>xrandr -s 800x600 -r 60</code></p>
-<p>Per settare la modalità 800x600 con 60 Hz di refresh rate.</p>
+<p><code>xrandr-s800x600-r60</code></p>
+<p>Per settare la modalit 800x600 con 60 Hz di refresh rate.</p>
 <h2 id="interfacce-grafiche">Interfacce grafiche</h2>
-<p>Un'altra via è usare un frontend grafico come:</p>
+<p>Un'altra via consiste nell'usare un frontend grafico come:</p>
 <ul>
 <li><a href="http://christian.amsuess.com/tools/arandr/">arandr</a></li>
 <li><a href="http://albertomilone.com/urandr.html">urandr</a></li>
 <li><a href="http://kde-apps.org/content/show.php/xramdr?content=70521">xramdr</a></li>
 </ul>
 <h1 id="soluzioni-permanenti">Soluzioni permanenti</h1>
-<p>Xrandr non salva alcuna configurazione, ciò significa che bisogna richiamarlo ogni volta che si avvia X.</p>
+<p>Xrandr non salva alcuna configurazione, ci significa che bisogna richiamarlo ogni volta che si avvia X.</p>
 <h2 id="il-file-startup">Il file startup</h2>
 <p>Inserire il comando &quot;xrandr -s 1024x768&quot; in ~/.fluxbox/startup</p>
 <h2 id="xorg.conf">Xorg.conf</h2>
 <p>Modificare il file <strong>/etc/X11/xorg.conf</strong> come utente root (o creare il file <code>/usr/share/X11/xorg.conf.d/resolution</code> inserendo il blocco seguente).</p>
 <p>Cercate la sezione Screen e si dovrebbe avere un output del genere:</p>
-<p><code>Section &quot;Screen&quot;</code><br /><code>       Identifier      &quot;Default Screen&quot;</code><br /><code>       Device          &quot;geforce256&quot;</code><br /><code>       Monitor         &quot;S/M 950p&quot;</code><br /><code>       DefaultDepth    24</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           16</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           24</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>EndSection</code></p>
+<p><code>Section&quot;Screen&quot;</code><br /><code>Identifier&quot;DefaultScreen&quot;</code><br /><code>Device&quot;geforce256&quot;</code><br /><code>Monitor&quot;S/M950p&quot;</code><br /><code>DefaultDepth24</code><br /><code>SubSection&quot;Display&quot;</code><br /><code>Depth16</code><br /><code>Modes&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;1024x768&quot;&quot;800x600&quot;&quot;640x480&quot;</code><br /><code>EndSubSection</code><br /><code>SubSection&quot;Display&quot;</code><br /><code>Depth24</code><br /><code>Modes&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;1024x768&quot;&quot;800x600&quot;&quot;640x480&quot;</code><br /><code>EndSubSection</code><br /><code>EndSection</code></p>
 <p>(Su sistemi multi monitor controllare i campi <em>Device</em> e <em>Monitor</em> in modo da modificare le righe per quello corretto)</p>
-<p>Ora si deve aggiungere la risoluzione che si desidera avere all'avvio all<strong>'inizio</strong> della lista dei Modes. Quindi, se si desidera utilizzare 1024x768 invece di 1600x1200, modificare così:</p>
-<p><code>Section &quot;Screen&quot;</code><br /><code>       Identifier      &quot;Default Screen&quot;</code><br /><code>       Device          &quot;geforce256&quot;</code><br /><code>       Monitor         &quot;S/M 950p&quot;</code><br /><code>       DefaultDepth    24</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           16</code><br /><code>               Modes           &quot;1024x768&quot; &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           24</code><br /><code>               Modes           &quot;1024x768&quot; &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>EndSection</code></p>
-<p>Si noti che tutte le modalità devono essere tra virgolette. Si potrebbe anche eliminare tutte le altre modalità che non servono, ma è meglio averle nel caso in cui una non sia supportata; in questo caso verrà usata la successiva. Se non ci sono modalità di riserva, X non si avvierà.</p>
+<p>Ora si deve aggiungere la risoluzione che si desidera avere all'avvio all<strong>'inizio</strong> della lista dei Modes. Quindi, se si desidera utilizzare 1024x768 invece di 1600x1200, modificare cos:</p>
+<p><code>Section&quot;Screen&quot;</code><br /><code>Identifier&quot;DefaultScreen&quot;</code><br /><code>Device&quot;geforce256&quot;</code><br /><code>Monitor&quot;S/M950p&quot;</code><br /><code>DefaultDepth24</code><br /><code>SubSection&quot;Display&quot;</code><br /><code>Depth16</code><br /><code>Modes&quot;1024x768&quot;&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;800x600&quot;&quot;640x480&quot;</code><br /><code>EndSubSection</code><br /><code>SubSection&quot;Display&quot;</code><br /><code>Depth24</code><br /><code>Modes&quot;1024x768&quot;&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;800x600&quot;&quot;640x480&quot;</code><br /><code>EndSubSection</code><br /><code>EndSection</code></p>
+<p>Si noti che tutte le modalita' devono essere tra virgolette. Si potrebbe anche eliminare tutte le altre modalit che non servono, ma  meglio averle nel caso in cui una non sia supportata; in questo caso verra' usata la successiva. Se non ci sono modalita' di riserva, X non si avvier.</p>
 <h2 id="aggiungere-una-modeline">Aggiungere una modeline</h2>
-<p>Come abbiamo visto all'inizio nell'output di xrand, c'è una riga che appare diversa dalle altre:</p>
-<p><code>1280x1024_60.00   59.9*</code></p>
-<p>Questa è la risoluzione massima del mio monitor ma Xorg non la riconosce automaticamente; per cui creo ed applico la modeline ogni volta che fluxbox parte. In ~/.fluxbox/startup ho:</p>
+<p>Come abbiamo visto all'inizio nell'output di xrand, c'e' una riga che appare diversa dalle altre:</p>
+<p><code>1280x1024_60.0059.9*</code></p>
+<p>Questa e' la risoluzione massima del mio monitor ma Xorg non la riconosce automaticamente; per cui creo ed applico la modeline ogni volta che fluxbox parte. In ~/.fluxbox/startup ho:</p>
 <pre><code>#screen resolution
 xrandr --newmode &quot;1280x1024_60.00&quot;  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
 xrandr --addmode VGA-1 1280x1024_60.00
 xrandr --output VGA-1 --mode 1280x1024_60.00</code></pre>
 <p>La modeline si ottiene con</p>
-<p><code>cvt 1280 1024</code></p>
-<p>La stessa cosa è ottenibile tramite <code>/etc/X11/xorg.conf</code> (o creando /usr/share/X11/xorg.conf.d/resolution con il seguente blocco):</p>
+<p><code>cvt12801024</code></p>
+<p>La stessa cosa  ottenibile tramite <code>/etc/X11/xorg.conf</code> (o creando /usr/share/X11/xorg.conf.d/resolution con il seguente blocco):</p>
 <pre><code>Section &quot;Monitor&quot;
         Identifier      &quot;529B&quot;
         Option          &quot;DPMS&quot;
         Modeline        &quot;1280x1024_60.00&quot;  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
         Option          &quot;PreferredMode&quot; &quot;1280x1024_60.00&quot;</code></pre>
-<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+
 </body>
 </html>
