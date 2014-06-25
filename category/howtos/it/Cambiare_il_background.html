@@ -1,25 +1,22 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+<title>Italian</title>
 </head>
 <body>
+<H1>Italian Howtos</H1>
+<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
+<hr>
+<h2>Cambiare il background</h2>
 <p>Per cambiare lo sfondo in fluxbox viene utilizzata l'utility fbsetbg.</p>
-<h2 id="cosè-fbsetbg">Cos'è fbsetbg?</h2>
-<p>fbsetbg è un wrapper (con questo termine in informatica si indica oggetto che incapsula e delega ad un altro oggetto il compito di modificare in qualche modo la sua interfaccia o il suo comportamento) che prova a trovare un'applicazione per impostare lo sfondo. fbsetbg non deve essere configurato, per prima cosa bisogna accertarsi che abbia a disposizione un'applicazione per poter gestire lo sfondo; eseguire il comando:</p>
-<p><code>fbsetbg -i</code></p>
-<p>se non è disponibile alcun programma adatto verrà consigliato di installare Esetroot. Questo però fa parte di Eterm, in caso si usi un altro emulatore di terminale, il visualizzatore di immagini feh è un'ottima alternativa.</p>
+<h2 id="cos-fbsetbg">Cos'e' fbsetbg?</h2>
+<p>fbsetbg e' un wrapper (con questo termine in informatica si indica oggetto che incapsula e delega ad un altro oggetto il compito di modificare in qualche modo la sua interfaccia o il suo comportamento) che prova a trovare un'applicazione per impostare lo sfondo. fbsetbg non deve essere configurato, per prima cosa bisogna accertarsi che abbia a disposizione un'applicazione per poter gestire lo sfondo; eseguire il comando:</p>
+<p><code>fbsetbg -i</code></p>
+<p>se non  disponibile alcun programma adatto verra' consigliato di installare Esetroot. Questo per fa parte di Eterm, in caso si usi un altro emulatore di terminale, il visualizzatore di immagini feh  un'ottima alternativa.</p>
 <h2 id="come-si-usa-fbsetbg">Come si usa fbsetbg?</h2>
-<p>Il modo più semplice di usarlo consiste nell'eseguire in un terminale il seguente comando:</p>
-<p><code>fbsetbg nome_file</code></p>
-<p>dove nome_file è il file selezionato per lo sfondo. Il comando può essere usato anche con dei parametri:</p>
+<p>Il modo piu' semplice di usarlo consiste nell'eseguire in un terminale il seguente comando:</p>
+<p><code>fbsetbgnome_file</code></p>
+<p>dove nome_file  il file selezionato per lo sfondo. Il comando pu essere usato anche con dei parametri:</p>
 <ul>
 <li>-f : wallpaper a tutto schermo</li>
 </ul>
@@ -50,22 +47,21 @@
 <p>Si tenga presente che di questi solamente esetroot, feh e wmsetbg supportano la trasparenza; di questi i due migliori sono sicuramente feh e esetroot.</p>
 <h2 id="impostare-lo-sfondo-in-un-tema">Impostare lo sfondo in un tema</h2>
 <p>Per cambiare lo sfondo in un tema sono necessarie le seguenti righe di codice:</p>
-<p><code>background: centered|aspect|tiled|fullscreen|random|solid|gradient </code><texture><code>|mod|none</code><br /><code>background.pixmap: </code><file o directory><br /><code>background.color: </code><colore><br /><code>background.colorTo: </code><colore><br /><code>background.modX: </code><valore numerico><br /><code>background.modY: </code><valore numerico></p>
-<p>Quando viene utilizzata una tra le opzioni centered|aspect|tiled|fullscreen, &quot;background.pixmap&quot; deve puntare al file che verrà impostato come sfondo; qualora venisse utilizzata l'ozione random, &quot;background.pixmap&quot; deve puntare ad una directory dalla quale ad ogni avvio di fluxbox viene selezionato uno sfondo a caso. Per uno sfondo a colore pieno è necessario usare il parametro &quot;background.color&quot;; le texture con gradienti (descritte più dettagliatamente nella pagina di manuale di fbsetroot) richiedono sia &quot;background.color&quot; sia &quot;background.colorTo&quot;. &quot;background.modX&quot; e &quot;background.modY&quot; sono specifici per il tipo di background &quot;mod&quot; (descritto più dettagliatamente nella pagina di manuale di fbsetroot) che richiede anche &quot;background.color&quot; e &quot;background.colorTo&quot;.</p>
+<p><code>background:centered|aspect|tiled|fullscreen|random|solid|gradient</code><texture><code>|mod|none</code><br /><code>background.pixmap:</code><file o directory><br /><code>background.color:</code><colore><br /><code>background.colorTo:</code><colore><br /><code>background.modX:</code><valore numerico><br /><code>background.modY:</code><valore numerico></p>
+<p>Quando viene utilizzata una tra le opzioni centered|aspect|tiled|fullscreen, &quot;background.pixmap&quot; deve puntare al file che verr impostato come sfondo; qualora venisse utilizzata l'ozione random, &quot;background.pixmap&quot; deve puntare ad una directory dalla quale ad ogni avvio di fluxbox viene selezionato uno sfondo a caso. Per uno sfondo a colore pieno  necessario usare il parametro &quot;background.color&quot;; le texture con gradienti (descritte pi dettagliatamente nella pagina di manuale di fbsetroot) richiedono sia &quot;background.color&quot; sia &quot;background.colorTo&quot;. &quot;background.modX&quot; e &quot;background.modY&quot; sono specifici per il tipo di background &quot;mod&quot; (descritto pi dettagliatamente nella pagina di manuale di fbsetroot) che richiede anche &quot;background.color&quot; e &quot;background.colorTo&quot;.</p>
 <h2 id="impostare-un-wallpaper-allavvio">Impostare un wallpaper all'avvio</h2>
-<p>A partire da fluxbox 0.9.15 è stata introdotto l'uso del file <strong><a href="http://fluxbox-wiki.org/index.php?title=Style_overlay">overlay</a>]</strong>.</p>
+<p>A partire da fluxbox 0.9.15  stata introdotto l'uso del file <strong><a href="http://fluxbox-wiki.org/index.php?title=Style_overlay">overlay</a>]</strong>.</p>
 <p>Assicurarsi di avere la seguente riga nel file <code>~/.fluxbox/init</code>:</p>
-<p><code>  session.styleOverlay: ~/.fluxbox/overlay</code></p>
-<p>Questo file può essere utilizzato per impostare qualsiasi attributo del tema; configurando il background in questo modo verrà sovrascritto qualsiasi background si usi nei propri temi.</p>
-<p>Il vecchio metodo è deprecato e consisteva nell'utilizzare</p>
-<p><code>session.screen0.rootCommand:    fbsetbg -l</code></p>
-<p>in <code>~/.fluxbox/init</code>. Con le nuove versioni, fluxbox richiama fbsetbg automaticamente ogni volta che si avvia; se si vuole ottenere lo stesso risultato rimuovere il commento iniziale (o inserire la stringa se non c'è) alla voce</p>
-<p><code> background: none</code></p>
+<p><code>session.styleOverlay:~/.fluxbox/overlay</code></p>
+<p>Questo file pu essere utilizzato per impostare qualsiasi attributo del tema; configurando il background in questo modo verr sovrascritto qualsiasi background si usi nei propri temi.</p>
+<p>Il vecchio metodo e' deprecato e consisteva nell'utilizzare</p>
+<p><code>session.screen0.rootCommand:fbsetbg-l</code></p>
+<p>in <code>~/.fluxbox/init</code>. Con le nuove versioni, fluxbox richiama fbsetbg automaticamente ogni volta che si avvia; se si vuole ottenere lo stesso risultato rimuovere il commento iniziale (o inserire la stringa se non c') alla voce</p>
+<p><code>background:none</code></p>
 <p>nel file <code>~/.fluxbox/overlay</code>.</p>
 <h2 id="collegamenti-esterni">Collegamenti esterni</h2>
 <ul>
 <li><a href="http://fluxbox.org/help/man-fbsetbg.php">manuale di fbsetbg</a></li>
 </ul>
-<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
 </body>
 </html>
