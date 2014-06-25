@@ -1,88 +1,84 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+<title>Italian</title>
 </head>
 <body>
-<h2 id="quale-è-il-file-di-configurazione-per-personalizzare-il-menu">Quale è il file di configurazione per personalizzare il menu?</h2>
-<p>Il file di configurazione predefinito del menu di fluxbox è <code>~/.fluxbox/menu</code>, tuttavia può essere modificato cambiando il valore della voce session.menuFile nel file di configurazione <code>~/.fluxbox/init</code>.</p>
+<H1>Italian Howtos</H1>
+<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
+<hr>
+<h2>Editare il menu</hs>
+<h2 id="quale--il-file-di-configurazione-per-personalizzare-il-menu">Quale e'il file di configurazione per personalizzare il menu?</h2>
+<p>Il file di configurazione predefinito del menu di fluxbox e' <code>~/.fluxbox/menu</code>, tuttavia puo' essere modificato cambiando il valore della voce session.menuFile nel file di configurazione <code>~/.fluxbox/init</code>.</p>
 <h2 id="uno-sguardo-alla-struttura-del-file">Uno sguardo alla struttura del file</h2>
-<p>Il file ha una struttura molto elementare. Di seguito è riportato uno stralcio del file di configurazione del menu di Debian (/etc/X11/fluxbox/fluxbox-menu):</p>
-<p><code>[ begin] (Fluxbox)</code><br /><code># Automatically generated file. Do not edit (see /usr/share/doc/menu/html/index.html)</code><br /><code>[submenu] (Aiuto) {}</code><br /><code>  [exec] (Debian Reference) {/usr/bin/debian-reference} </code><br /><code>  [exec] (Info) { x-terminal-emulator -T &quot;Info&quot; -e info} </code><br /><code>  [exec] (Xman) {xman} </code><br /><code>[end]</code><br /><code>[submenu] (Applicazioni) {}</code><br /><code>  [submenu] (Editor) {}</code><br /><code>   [exec] (Nano) { x-terminal-emulator -T &quot;Nano&quot; -e /bin/nano} </code><br /><code>  [end]</code><br /><code>  [submenu] (Emulatori di terminale) {}</code><br /><code>   [exec] (XTerm) {xterm} </code><br /><code>   [exec] (XTerm (Unicode\)) {uxterm} </code><br /><code>  [end]</code><br /><code>  [submenu] (Grafica) {}</code><br /><code>   [exec] (X Window Snapshot) {xwd | xwud} </code><br /><code>   [end]</code><br /><code>  [submenu] (Navigazione web) {}</code><br /><code>   [exec] (w3m) { x-terminal-emulator -T &quot;w3m&quot; -e /usr/bin/w3m /usr/share/doc/w3m/MANUAL.html} </code><br /><code>  [end]</code><br /><code>[end]  </code></p>
+<p>Il file ha una struttura molto elementare. Di seguito e' riportato uno stralcio del file di configurazione del menu di Debian (/etc/X11/fluxbox/fluxbox-menu):</p>
+<p><code>[begin](Fluxbox)</code><br /><code>#Automaticallygeneratedfile.Donotedit(see/usr/share/doc/menu/html/index.html)</code><br /><code>[submenu](Aiuto){}</code><br /><code>[exec](DebianReference){/usr/bin/debian-reference}</code><br /><code>[exec](Info){x-terminal-emulator-T&quot;Info&quot;-einfo}</code><br /><code>[exec](Xman){xman}</code><br /><code>[end]</code><br /><code>[submenu](Applicazioni){}</code><br /><code>[submenu](Editor){}</code><br /><code>[exec](Nano){x-terminal-emulator-T&quot;Nano&quot;-e/bin/nano}</code><br /><code>[end]</code><br /><code>[submenu](Emulatoriditerminale){}</code><br /><code>[exec](XTerm){xterm}</code><br /><code>[exec](XTerm(Unicode\)){uxterm}</code><br /><code>[end]</code><br /><code>[submenu](Grafica){}</code><br /><code>[exec](XWindowSnapshot){xwd|xwud}</code><br /><code>[end]</code><br /><code>[submenu](Navigazioneweb){}</code><br /><code>[exec](w3m){x-terminal-emulator-T&quot;w3m&quot;-e/usr/bin/w3m/usr/share/doc/w3m/MANUAL.html}</code><br /><code>[end]</code><br /><code>[end]</code></p>
 <p>Le due principali caratteristiche di questo file di testo sono:</p>
 <p>1) Ogni riga ha una sintassi molto intuitiva e semplice; 2) L'indentatura del codice permette di &quot;immaginarsi&quot; il risultato finale. 3) Ogni riga ha una sintassi di questo tipo:</p>
-<p><code>[tag] (label o nome del file) {comando o nomefile}</code></p>
-<p>L'indentatura del file è una caratteristica molto importante che semplfica l'operazione di generazione del menu e della sua successiva modifica, perciò è bene mantenere questa struttura gerarchica ogni volta che si mette mano al menu.</p>
+<p><code>[tag](labelonomedelfile){comandoonomefile}</code></p>
+<p>L'indentatura del file e' una caratteristica molto importante che semplfica l'operazione di generazione del menu e della sua successiva modifica, percio' e' bene mantenere questa struttura gerarchica ogni volta che si mette mano al menu.</p>
 <h2 id="la-sintassi-del-file-base">La sintassi del file (base)</h2>
 <h3 id="sintassi-generica-delle-righe-del-file">Sintassi generica delle righe del file</h3>
 <p>Ciascuna riga del file di configurazione del menu di fluxbox ha una struttura di questo tipo:</p>
-<p><code>[tag] (label o nome del file) {comando o nomefile}</code></p>
-<p>Perciò a ciascuna coppia di parentesi corrisponde un significato ben preciso e questo aiuta molto a far risparmiare tempo in fase di modifica del dile.</p>
+<p><code>[tag](labelonomedelfile){comandoonomefile}</code></p>
+<p>Percio' a ciascuna coppia di parentesi corrisponde un significato ben preciso e questo aiuta molto a far risparmiare tempo in fase di modifica del file.</p>
 <h3 id="inizio-del-menu">Inizio del menu</h3>
 <p>Il menu inizia sempre con una riga di codice simile alla seguente:</p>
-<p><code>[begin] (Titolo_Menu)</code></p>
-<p>la tag [begin] deve essere presente nel file, altrimenti fluxbox cerca il file di configurazione di default del sistema, mentre (Titolo_Menu) può essere omesso. Titolo_Menu è il testo che verrà visualizzato in cima al menu di fluxbox</p>
+<p><code>[begin](Titolo_Menu)</code></p>
+<p>la tag [begin] deve essere presente nel file, altrimenti fluxbox cerca il file di configurazione di default del sistema, mentre (Titolo_Menu) pu essere omesso. Titolo_Menu  il testo che verr visualizzato in cima al menu di fluxbox</p>
 <h3 id="chiusura-del-menu">Chiusura del menu</h3>
-<p>viene utilizzata la tag [end]. Questa tag può essere utilizzata sia per chiudere un menu che un sottimenu. In ogni menu deve essere presente una tag [end] per ogni tag [submenu] più una che comunque è presente e che corrisponde alla tag [begin]. Quindi un menu ha la seguente struttura:</p>
-<p><code>[begin] (Titolo Menu)</code><br /><code>...</code><br /><code>...</code><br /><code>...</code><br /><code>[end]</code></p>
+<p>viene utilizzata la tag [end]. Questo tag puo' essere utilizzato sia per chiudere un menu che un sottimenu. In ogni menu deve essere presente una tag [end] per ogni tag [submenu] piu' una che comunque  presente e che corrisponde alla tag [begin]. Quindi un menu ha la seguente struttura:</p>
+<p><code>[begin](TitoloMenu)</code><br /><code>...</code><br /><code>...</code><br /><code>...</code><br /><code>[end]</code></p>
 <h3 id="sottomenu">Sottomenu</h3>
-<p>Per creare un sottomenu nel menu principale si usa il tag [submenu]. Ogni Sottomenu viene chiuso dal tag [end]. Il tag [submenu] deve essere seguito dagli attributi (label) e . Il secondo attributo è opzionale e se omesso viene assunto uguale a (label). Riassumendo un sottomenu avrà il seguente aspetto.</p>
-<p><code>[submenu] (label) </code><br /><code>...</code><br /><code>...</code><br /><code>...</code><br /><code>[end]</code></p>
+<p>Per creare un sottomenu nel menu principale si usa il tag [submenu]. Ogni Sottomenu viene chiuso dal tag [end]. Il tag [submenu] deve essere seguito dagli attributi (label) e . Il secondo attributo  opzionale e se omesso viene assunto uguale a (label). Riassumendo un sottomenu avra' il seguente aspetto.</p>
+<p><code>[submenu](label)</code><br /><code>...</code><br /><code>...</code><br /><code>...</code><br /><code>[end]</code></p>
 <p>tra [submenu] e [end] vengono incluse tutte le voci del menu.</p>
-<p>Dal momento che flubxbox legge i menu in maniera ricorsiva non c'è limite al numero di sottomenu che possono essere annidati, praticamente vi consiglio di non esagerare per non complicare troppo la ricerca di una applicazione.</p>
+<p>Dal momento che flubxbox legge i menu in maniera ricorsiva non c'e' limite al numero di sottomenu che possono essere annidati, praticamente vi consiglio di non esagerare per non complicare troppo la ricerca di una applicazione.</p>
 <h3 id="elementi-del-menu-eseguibili">Elementi del menu (eseguibili)</h3>
 <p>Per popolare ciascun menu di voci che corrispondono all'esecuzione di un programma si utilizza il seguente statement:</p>
-<p><code>[exec] (label) {command}</code></p>
+<p><code>[exec](label){command}</code></p>
 <p>A questa riga viene associata nel menu una voce che viene chiamata &quot;label&quot; e che esegue il comando &quot;command&quot;.</p>
 <h3 id="elementi-del-menu-file-e-directory">Elementi del menu (file e directory)</h3>
 <p>Per inserire il collegamento ad un file o ad una directory all'interno del menu di fluxbox si usa la seguente riga:</p>
-<p><code>[include] (nome_file_o_dir)</code></p>
+<p><code>[include](nome_file_o_dir)</code></p>
 <h3 id="separatore">Separatore</h3>
-<p>A volte, per aumentare la chiarezza del menu può essere utile inserire un separatore. Questo può essere aggiunto inserendo una riga contenente lo statement [separator].</p>
+<p>A volte, per aumentare la chiarezza del menu pu essere utile inserire un separatore. Questo puo' essere aggiunto inserendo una riga contenente lo statement [separator].</p>
 <p><code>[separator]</code></p>
 <h2 id="la-sintassi-del-file-istruzioni-aggiuntive">La sintassi del file (istruzioni aggiuntive)</h2>
-<p>Fluxbox mette a disposizione una serie di istruzioni addizionali per personalizzare ulteriormente il menu. I principali sono:</p>
+<p>Fluxbox mette a disposizione una serie di istruzioni addizionali per personalizzare ulteriormente il menu. Le principali sono:</p>
 <h3 id="inserimento-di-una-voce-che-permette-la-chiusura-e-luscita-da-fluxbox">Inserimento di una voce che permette la chiusura e l'uscita da fluxbox</h3>
-<p>La sintassi è:</p>
-<p><code>[exit] (label)</code></p>
+<p>La sintassi :</p>
+<p><code>[exit](label)</code></p>
 <h3 id="inserimento-di-una-voce-estetica-nel-menu">Inserimento di una voce &quot;estetica nel menu&quot;</h3>
-<p>In altre parole: inserimento di una voce che se selezionata non comporta l'esecuzione di nessun comando. La sintassi è:</p>
-<p><code>[nop] (label)</code></p>
+<p>In altre parole: inserimento di una voce che se selezionata non comporta l'esecuzione di nessun comando. La sintassi :</p>
+<p><code>[nop](label)</code></p>
 <p>se label viene omessa di default viene inserita una voce vuota.</p>
 <h3 id="reload-del-menu-e-di-tutti-i-file-di-configurazione-e-di-stile-di-fluxbox">Reload del menu e di tutti i file di configurazione e di stile di fluxbox</h3>
-<p>La sintassi è:</p>
-<p><code>[reconfig] (label)</code></p>
-<p>Questa voce è utile per creare nuovi temi e stili e non dover rilanciare fluxbox tutte le volte che è necessario testare il tema.</p>
+<p>La sintassi :</p>
+<p><code>[reconfig](label)</code></p>
+<p>Questa voce e' utile per creare nuovi temi e stili e non dover rilanciare fluxbox tutte le volte che  necessario testare il tema.</p>
 <h3 id="riavvio-di-fluxbox">Riavvio di fluxbox</h3>
-<p>La sintassi è:</p>
-<p><code>[restart] (label) {command}</code></p>
-<p>Verrà creata una voce nel menu con il nome &quot;label&quot; e quando verrà selezionata fluxbox verrà arrestato e all'uscita da fluxbox verrà eseguito il comando &quot;command&quot;. Comunemente il comando fornito è quello necessario ad avviare un altro windows manager. Il parametro &quot;command&quot; è opzionale.</p>
+<p>La sintassi e':</p>
+<p><code>[restart](label){command}</code></p>
+<p>Verr creata una voce nel menu con il nome &quot;label&quot; e quando verra' selezionata fluxbox verra' arrestato e all'uscita da fluxbox verra' eseguito il comando &quot;command&quot;. Comunemente il comando fornito  quello necessario ad avviare un altro windows manager. Il parametro &quot;command&quot; e' opzionale.</p>
 <h3 id="voce-per-la-configurazione-di-fluxbox">Voce per la configurazione di fluxbox</h3>
-<p>La sintassi è:</p>
-<p><code>[config] (label)</code></p>
+<p>La sintassi :</p>
+<p><code>[config](label)</code></p>
 <p>Viene inserita una voce nel menu chiamata &quot;label&quot; che permette di accedere a numerose opzioni di configurazione riguardanti il comportamento delle finestre.</p>
 <h3 id="directory-dei-wallpaper">Directory dei wallpaper</h3>
-<p>È possibile inserire una voce all'interno del menu permetta di cambiare rapidamente lo sfondo di fluxbox attraverso la seguente riga:</p>
-<p><code>[wallpapers] (directory) {command}</code></p>
-<p>Cliccando su una immagine questa viene immediatamente settata come sfondo. Ovviamente directory è la directory contenente le immagini. Questa voce utilizza fbsetbg per cambiare lo sfondo.</p>
+<p>E' possibile inserire una voce all'interno del menu permetta di cambiare rapidamente lo sfondo di fluxbox attraverso la seguente riga:</p>
+<p><code>[wallpapers](directory){command}</code></p>
+<p>Cliccando su una immagine questa viene immediatamente settata come sfondo. Ovviamente directory  la directory contenente le immagini. Questa voce utilizza fbsetbg per cambiare lo sfondo.</p>
 <h3 id="inserimento-di-una-voce-che-permetta-di-accedere-ai-workspace">Inserimento di una voce che permetta di accedere ai workspace</h3>
-<p>La sintassi è:</p>
-<p><code>[workspaces] (label)</code></p>
+<p>La sintassi e':</p>
+<p><code>[workspaces](label)</code></p>
 <h3 id="inserimento-di-un-collegamento-a-files-di-stile">Inserimento di un collegamento a files di stile</h3>
-<p>Ci sono due possibilità.</p>
-<p>La prima consiste nell'inserire una collegamento direttamente ad un file di stile. La sintassi è:</p>
-<p><code>[style] (label) {filename}</code></p>
-<p>Dove label è l'etichetta che verrà assegnata al file nel menu e filename è il nome del file (usate la sua posizione assoluta)</p>
-<p>La seconda consiste nell'inserire un collegamento ad ogni file contenuto in una specifica directory che è la directory degli stili attraverso la seguente riga:</p>
-<p><code>[stylesmenu] (label) {directory}</code></p>
-<p>Label è l'etichetta che verrà associata al sottomenu all'interno del menu di fluxbox e directory è la cartella contenente tutti i files di stile.</p>
-<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+<p>Ci sono due possibilita'.</p>
+<p>La prima consiste nell'inserire una collegamento direttamente ad un file di stile. La sintassi :</p>
+<p><code>[style](label){filename}</code></p>
+<p>Dove label  l'etichetta che verr assegnata al file nel menu e filename  il nome del file (usate la sua posizione assoluta)</p>
+<p>La seconda consiste nell'inserire un collegamento ad ogni file contenuto in una specifica directory che  la directory degli stili attraverso la seguente riga:</p>
+<p><code>[stylesmenu](label){directory}</code></p>
+<p>Label  l'etichetta che verra' associata al sottomenu all'interno del menu di fluxbox e directory  la cartella contenente tutti i files di stile.</p>
 </body>
 </html>
