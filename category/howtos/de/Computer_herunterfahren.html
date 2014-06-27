@@ -29,12 +29,12 @@
 <p>Das ganze geht wie folgt: Zuerst kreieren wir eine neue Gruppe</p>
 <p><code>Bsp.:</code><br /><code> sudo addgroup shutdown</code></p>
 <p>nun noch den eigenen user der Gruppe zuordnen</p>
-<p><code>sudo adduser </code><Dein_Username><code> shutdown</code></p>
-<p>danch editieren wir die Datei /etc/sudoers mit folgendem Befehl</p>
+<p><code>sudo adduser &lt;Dein_Username&gt; shutdown</code></p>
+<p>danach editieren wir die Datei /etc/sudoers mit folgendem Befehl</p>
 <p><code>visudo</code></p>
 <p>dieser Datei fügen wir einfach am Ende folgendes hinzu</p>
 <p><code>%shutdown ALL=(root) NOPASSWD: /sbin/shutdown</code><br /><code>%shutdown ALL=(root) NOPASSWD: /sbin/halt</code><br /><code>%shutdown ALL=(root) NOPASSWD: /sbin/reboot</code></p>
-<p>nachdem das geschehen ist kann man einfach in der Datei ./fluxbox/menu folgende Zeilen, an der Stelle einfügen an der man gerne den Button hätte</p>
+<p>nachdem das geschehen ist kann man einfach in der Datei ./fluxbox/menu folgende Zeilen an der Stelle einfügen, an der man gerne den Button hätte</p>
 <p><code> [exec] (reboot) {sudo reboot}</code><br /><code> [exec] (shutdown) {sudo halt}</code></p>
 <p><a href="Category:German howtos" title="wikilink">Category:German howtos</a> <a href="Category:Integration / Startup" title="wikilink">Category:Integration / Startup</a> <a href="Category:Deutsch / German howtos" title="wikilink">Category:Deutsch / German howtos</a></p>
 </body>
