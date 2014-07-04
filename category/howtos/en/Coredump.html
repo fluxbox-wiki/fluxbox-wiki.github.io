@@ -11,10 +11,13 @@
   <![endif]-->
 </head>
 <body>
-<h2 id="compiling-with-the-appropriate-options">Compiling with the Appropriate Options</h2>
+<h2 id="coredump">Coredump</h2>
+<h3 id="compiling-with-the-appropriate-options">Compiling with the Appropriate Options</h3>
 <p>Enabling debug output when compiling fluxbox will print a lot of messages to your stderr about what fluxbox is doing while it runs. This is not required to get a core dump, but you and/or the developers may find it useful if you provide it.</p>
-<p>If you have used a package to install fluxbox with instead of the source you will need to use the source, follow <a href="how to build fluxbox from source" title="wikilink">this</a> guide.</p>
-<p>Now what we need to do is move to the directory where our fluxbox source is. I use <a href="how to build fluxbox from source" title="wikilink">Git</a> fluxbox so what I will do is:</p>
+<p>If you have used a package to install fluxbox with instead of the source you
+will need to use the source, follow <a href="Build_fluxbox_from_source.html" title="wikilink">this</a> guide.</p>
+<p>Now what we need to do is move to the directory where our fluxbox source is.
+I use <a href="Build_fluxbox_from_source.html#what-is-git-version-and-why-should-i-use-it" title="wikilink">Git</a> fluxbox so what I will do is:</p>
 <p><code> $ cd ~/fluxbox</code></p>
 <p>Now that I am in my directory where the fluxbox src is I will issue the following command:</p>
 <p><code> CXXFLAGS=&quot;-g&quot; LDFLAGS=&quot;-g&quot; ./configure  --enable-debug --enable-imlib2 --enable-xinerama</code></p>
@@ -24,7 +27,7 @@
 <p><code> $ sudo make install</code></p>
 <p>Make sure you do not run `strip' on the created executable file, as this will remove all useful information from the core dump. Running the following command should show you the size of the fluxbox executable installed in your system. It should be about 10MB instead of about 1MB.</p>
 <p><code> $ ls -l `command -v fluxbox`</code></p>
-<h2 id="wrapping-up">Wrapping Up</h2>
+<h3 id="wrapping-up">Wrapping Up</h3>
 <p>All we need to do now is run this command before we start fluxbox:</p>
 <p><code> $ ulimit -c unlimited</code></p>
 <p>This command allows your shell environment to create the core dump and will allow it to be as large as it needs to be.</p>
@@ -34,7 +37,7 @@
 <p>It may be more convenient to run fluxbox on a second x server. You can do this by running the following command</p>
 <p><code> $ startx /path/to/fluxbox -- :1</code></p>
 <p>When your fluxbox crashes, this will return you to your desktop instead of a tty.</p>
-<h2 id="getting-a-backtrace">Getting a Backtrace</h2>
+<h3 id="getting-a-backtrace">Getting a Backtrace</h3>
 <p>If you're reading this, you've almost certainly been told to get a backtrace from a crash. Once you have a core file, you're almost ready to get the backtrace. If you don't have it, you will need to install `gdb'. Then, run the following command:</p>
 <p><code> $ gdb /path/to/fluxbox /path/to/core</code></p>
 <p>You will see a lot of output, followed by a prompt that looks like this:</p>
