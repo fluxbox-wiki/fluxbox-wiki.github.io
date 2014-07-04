@@ -1,22 +1,19 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+<title>Italian</title>
 </head>
 <body>
+<H1>Italian Howtos</H1>
+<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
+<hr>
+<h2>F.A.Q.  - DEPRECATED</h2>
 <h2 id="ad-ogni-avvio-la-mia-fedora-sovrascrive-il-menu-come-fixare"><strong>Ad ogni avvio la mia Fedora sovrascrive il menu, come fixare</strong></h2>
 <p>Per varie ragioni i ragazzi di Fedora hanno deciso di inserire un proprio file di startup, che lavora con un proprio comando per la generazione del menu. Per prevenire che le modifiche vengano ignorate cercate la sezione contenente il seguente testo:</p>
 <hr />
 <p>if [ -x /usr/bin/fluxbox-xdg-menu ]; then /usr/bin/fluxbox-xdg-menu --with-icons &amp; fi</p>
 <hr />
-<p>Rimuovete queste stringhe ed al seguente reboot il vostro menu non perderà le modifiche che avrete apportato precedentemente.</p>
+<p>Rimuovete queste stringhe ed al seguente reboot il vostro menu non perder le modifiche che avrete apportato precedentemente.</p>
 <p><strong>Aggiungere Fluxbox ad una sessione di GDM</strong> Crea il file: /etc/gdm/Sessions/fluxbox, che contiene il seguente testo:</p>
 <hr />
 <ol>
@@ -28,9 +25,9 @@
 </ol>
 <p>exec /etc/X11/Xsession /usr/bin/fluxbox</p>
 <hr />
-<p>Sicuramente dovrete cambiare la path /usr/bin/fluxbox nella path corretta, ovvero dove si trova il file binario. Se /etc/gdm non esiste nel tuo sistema, la path sarà sicuramente /etc/X11/gdm/Sessions/fluxbox</p>
+<p>Sicuramente dovrete cambiare la path /usr/bin/fluxbox nella path corretta, ovvero dove si trova il file binario. Se /etc/gdm non esiste nel tuo sistema, la path sara' sicuramente /etc/X11/gdm/Sessions/fluxbox</p>
 <h2 id="aggiungere-fluxbox-ad-una-sessione-di-kdm"><strong>Aggiungere Fluxbox ad una sessione di KDM</strong></h2>
-<p>In questo caso ci sono un paio di strade, una potrebbe essere quella di scegliere la sessione di default, tramite il caricamento del file .xsession dove basta inserire &quot;exec fluxbox&quot; alla fine del file stesso. Oppure per avere un' opzione, una scelta, basta andare nel Centro di Controllo di KDE ed aggiungere alle sessioni &quot;fluxbox&quot; - (session type &quot;fluxbox&quot;) Ancora un' altra strada potrebbe essere quella di editare il file kdmrc, (solitamente in /etc/kde2/kdm/kdmrc), cercare la linea contenente &quot;SessionTypes=&quot;, quindi aggiungere alla lista fluxbox. Grazie a Dave Selby sappiamo che se si è in Debian, dopo aver aggiunto la &quot;session fluxbox&quot;, bisogna editare /etc/kde2/kdm/kdm.options , cancellando la linea: generate-sessiontypes. Se non si cancella questa linea, Debian perderà i dati per la scelta della sessione fluxbox dopo il primo riavvio. Ok, tutto questo dovrebbe essere abbastanza, tutavia, anche se un pò &quot;passate&quot;, ci sono altre configurazioni che si possono usare, ma richiedono qualche piccolo sforzo in più. Nel caso ci siano altri WM installati nel sistema si potrebbe avere la necessità di trovare ed editare il proprio xsession, (ad esempio / etc/X11/Xsession, o / usr/X11R6/lib/X11/xdm/Xsession), per poi aggiungere l' opzione per l' avvio di Fluxbox, come nelle righe sotto:</p>
+<p>In questo caso ci sono un paio di strade, una potrebbe essere quella di scegliere la sessione di default, tramite il caricamento del file .xsession dove basta inserire &quot;exec fluxbox&quot; alla fine del file stesso. Oppure per avere un' opzione, una scelta, basta andare nel Centro di Controllo di KDE ed aggiungere alle sessioni &quot;fluxbox&quot; - (session type &quot;fluxbox&quot;) Ancora un' altra strada potrebbe essere quella di editare il file kdmrc, (solitamente in /etc/kde2/kdm/kdmrc), cercare la linea contenente &quot;SessionTypes=&quot;, quindi aggiungere alla lista fluxbox. Grazie a Dave Selby sappiamo che se si  in Debian, dopo aver aggiunto la &quot;session fluxbox&quot;, bisogna editare /etc/kde2/kdm/kdm.options , cancellando la linea: generate-sessiontypes. Se non si cancella questa linea, Debian perder i dati per la scelta della sessione fluxbox dopo il primo riavvio. Ok, tutto questo dovrebbe essere abbastanza, tutavia, anche se un p &quot;passate&quot;, ci sono altre configurazioni che si possono usare, ma richiedono qualche piccolo sforzo in piu'. Nel caso ci siano altri WM installati nel sistema si potrebbe avere la necessita' di trovare ed editare il proprio xsession, (ad esempio / etc/X11/Xsession, o / usr/X11R6/lib/X11/xdm/Xsession), per poi aggiungere l' opzione per l' avvio di Fluxbox, come nelle righe sotto:</p>
 <hr />
 <p>fluxbox) exec fluxbox</p>
 <dl>
@@ -39,25 +36,25 @@
 </dl>
 <hr />
 <h2 id="aggiungere-le-icone-al-menu"><strong>Aggiungere le Icone al Menu</strong></h2>
-<p>Per aggiungere le icone in pixmaps al vostro menu di Fluxbox dovrete aver compilato Fluxbox con il supporto a xpm, mentre per averle in png bisogna averlo compilato con il supporto a imlib2. Per vedere le opzioni con cui Fluxbox è stato compilato basta dare il seguente comando:</p>
+<p>Per aggiungere le icone in pixmaps al vostro menu di Fluxbox dovrete aver compilato Fluxbox con il supporto a xpm, mentre per averle in png bisogna averlo compilato con il supporto a imlib2. Per vedere le opzioni con cui Fluxbox e' stato compilato basta lanciare il seguente comando:</p>
 <hr />
 <p>fluxbox -i</p>
 <hr />
-<p>Da quì guardate se avete il supporto a xpm per le icone XPM e a IMLIB2 per le png. La sintassi da inserire nel vostro menu per avere le icone è semplice:</p>
+<p>Da qui' guardate se avete il supporto a xpm per le icone XPM e a IMLIB2 per le png. La sintassi da inserire nel vostro menu per avere le icone  semplice:</p>
 <hr />
 <p>[exec] (firefox) {firefox} </usr/share/pixmaps/firefox.xpm></p>
 <hr />
-<p>Se avete ad esempio un' icona chiamata firefox.xpm nella path /usr/share/pixmaps, questa verrà inserita nel vostro menu. Per maggiori esempi sul come editare il vostro menu, guardate l' apposito How-To</p>
+<p>Se avete ad esempio un' icona chiamata firefox.xpm nella path /usr/share/pixmaps, questa verra' inserita nel vostro menu. Per maggiori esempi sul come editare il vostro menu, guardate l' apposito How-To</p>
 <h2 id="applicazioni-gnome-in-fluxbox"><strong>Applicazioni GNOME in Fluxbox</strong></h2>
-<p>Come per KDE anche per GNOME è possibile usufruire di un comando per l' abilitazione delle applicazioni dedicate al DE Gnome, il comando è: ./configure --enable-gnome. In aggiunta si può usufruire del lock/unlock del desktop con gli screensaver tramite l' aggiunta allo script di avvio di Fluxbox, (~/.fluxbox/startup), della stringa:</p>
+<p>Come per KDE anche per GNOME e' possibile usufruire di un comando per l' abilitazione delle applicazioni dedicate al DE Gnome, il comando : ./configure --enable-gnome. In aggiunta si pu usufruire del lock/unlock del desktop con gli screensaver tramite l' aggiunta allo script di avvio di Fluxbox, (~/.fluxbox/startup), della stringa:</p>
 <hr />
 <p>xscreensaver &amp;</p>
 <hr />
-<p>oppure in alternativa si può usare: xscreensavers</p>
+<p>oppure in alternativa si puo' usare: xscreensavers</p>
 <h2 id="applicazioni-kde-in-fluxbox"><strong>Applicazioni KDE in Fluxbox</strong></h2>
-<p>Per l' abilitazione delle applicazioni KDE in Fluxbox è possibile, usufruire del comando: ./configure --enable-kde, si vedranno anche le applicazioni della tray di KDE nella slit.</p>
+<p>Per l' abilitazione delle applicazioni KDE in Fluxbox e' possibile, usufruire del comando: ./configure --enable-kde, si vedranno anche le applicazioni della tray di KDE nella slit.</p>
 <h2 id="bbtools-non-copia-lo-style-attuale-nemmeno-dopo-il-reboot"><strong>BBtools non copia lo style attuale nemmeno dopo il reboot</strong></h2>
-<p>per sopperire a ciò basta creare un link...</p>
+<p>per sopperire a ci basta creare un link...</p>
 <hr />
 <p>~/.blackboxrc -&gt; ~/.fluxbox/init</p>
 <hr />
@@ -73,7 +70,7 @@
 <p>man strftime man date</p>
 <hr />
 <h2 id="che-client-irc-usare-in-fluxbox"><strong>Che client IRC usare in Fluxbox</strong></h2>
-<p>La scelta è varia anche quì, molti utenti in #fluxbox usano irssi, altri usano XChat ma la vostra scelta non deve per forza ricadere su uno dei due, potete scegliere anche tra i seguenti:</p>
+<p>La scelta  varia anche qui', molti utenti in #fluxbox usano irssi, altri usano XChat ma la vostra scelta non deve per forza ricadere su uno dei due, potete scegliere anche tra i seguenti:</p>
 <hr />
 <ul>
 <li>BitchX</li>
@@ -87,7 +84,7 @@
 <h2 id="che-filemanager-usare-in-fluxbox"><strong>Che Filemanager usare in Fluxbox</strong></h2>
 <ul>
 <li>thunar</li>
-<li>Nautilus (eseguitelo con il comando nautilus --no-desktop --browser altrimenti vi verrà restituito nautilus insieme al menu, al background e al desktop Gnome, interrompendo così l' esecuzione di Fluxbox)</li>
+<li>Nautilus (eseguitelo con il comando nautilus --no-desktop --browser altrimenti vi verr restituito nautilus insieme al menu, al background e al desktop Gnome, interrompendo cos l' esecuzione di Fluxbox)</li>
 <li>rox</li>
 <li>emelfm</li>
 <li>emelfm2</li>
@@ -105,9 +102,9 @@
 <li>xnc</li>
 <li>worker</li>
 </ul>
-<p>E molti, molti altri, anche quì: fate la vostra scelta secondo le vostre necesità.</p>
+<p>E molti, molti altri, anche qui': fate la vostra scelta secondo le vostre necesita'.</p>
 <h2 id="che-terminali-usare-in-fluxbox"><strong>Che Terminali usare in Fluxbox</strong></h2>
-<p>La questione del terminale adatto ad un uso con Fluxbox è stata discussa ampiamente, anche in IRC, ma la risposta è: quello che si desidera. Da questo si deduce che si possono fare variue scelte:</p>
+<p>La questione del terminale adatto ad un uso con Fluxbox e' stata discussa ampiamente, anche in IRC, ma la risposta : quello che si desidera. Da questo si deduce che si possono fare variue scelte:</p>
 <hr />
 <ul>
 <li>aterm</li>
@@ -122,7 +119,7 @@
 <li>Terminal (term using xfce libs)</li>
 </ul>
 <hr />
-<p>E molti, molti altri. Scegliete quindi il vostro terminale in base alle vostre necessità.</p>
+<p>E molti, molti altri. Scegliete quindi il vostro terminale in base alle vostre necessita'.</p>
 <h2 id="chi-sono-gli-sviluppatori"><strong>Chi sono gli sviluppatori</strong></h2>
 <p>Gli sviluppatori di Fluxbox sono:</p>
 <ul>
@@ -130,18 +127,18 @@
 <li>Simon Bowden aka Rathnor</li>
 <li>Mathias Gumz aka akira (ak|ra in irc)</li>
 <li>Mark Tiefenbruck aka mark-t</li>
-<li>Tomá¨ Janou¨ek aka Liskni_si</li>
+<li>Tom Janouek aka Liskni_si</li>
 </ul>
 <h2 id="come-aggiungere-fluxbox-nel-session-menu-in-fedora"><strong>Come aggiungere Fluxbox nel Session Menu in Fedora</strong></h2>
 <p>Fedora usa, invece del classico dm-location, un setup differente, ovvero l' aggiunta di un Sessions file in /etc/X11/dm/Sessions. Per avere quindi Fluxbox in questo Sessions file, create il file /etc/X11/dm/Sessions/fluxbox.desktop - che all' interno contiene il seguente testo:</p>
 <hr />
 <p>[Desktop Entry] Encoding=UTF-8 Name=Fluxbox Type=Application Icon= Exec=fluxbox</p>
 <hr />
-<p>Potrebbe essere necessario mettere il percorso completo della path di Fluxbox nell' Exec se lo stesso è in una posizione non standard. E ' stato anche segnalato che il file necessita del permesso di esecuzione, quindi:</p>
+<p>Potrebbe essere necessario mettere il percorso completo della path di Fluxbox nell' Exec se lo stesso  in una posizione non standard. E ' stato anche segnalato che il file necessita del permesso di esecuzione, quindi:</p>
 <hr />
 <p>chmod +x /etc/X11/dm/Sessions/fluxbox.desktop</p>
 <hr />
-<p>Questa però è una modifica &quot;barebone&quot; o per dirla nella nostra lingua temporanea, speriamo un giorno di poter fare una versione, con tanto di traduzioni, che contenga la giusta soluzione direttamente nella main source distribuzione.</p>
+<p>Questa per  una modifica &quot;barebone&quot; o per dirla nella nostra lingua temporanea, speriamo un giorno di poter fare una versione, con tanto di traduzioni, che contenga la giusta soluzione direttamente nella main source distribuzione.</p>
 <h2 id="come-cambiare-l-altezza-della-finestra-di-titolo"><strong>Come cambiare l' altezza della finestra di titolo</strong></h2>
 <p>Con altezza della finestra di titolo si intende l' altezza della parte superiore della finestra, che appunto cotiene il titolo della stessa. Per cambiare l' altezza quindi vi basta aprire il file del vostro style e cercare al suo interno la stringa:</p>
 <hr />
@@ -153,9 +150,9 @@
 <hr />
 <p>session.screen0.toolbar.height</p>
 <hr />
-<p>se questo valore è a 0, a controllare l'altezza della vostra toolbar sarà il vostro style, altrimenti, se cambierete con un valore diverso da 0 la toolbar sarà controllata da questa &quot;global height&quot; - altezza globale.</p>
+<p>se questo valore  a 0, a controllare l'altezza della vostra toolbar sara' il vostro style, altrimenti, se cambierete con un valore diverso da 0 la toolbar sar controllata da questa &quot;global height&quot; - altezza globale.</p>
 <h2 id="come-cambiare-la-risoluzione"><strong>Come cambiare la risoluzione</strong></h2>
-<p>Per cambiare la vostra risoluzione usate il comando: xrandr -s &lt; size&gt; x &lt; size&gt; , dove &lt; size&gt; è un valore tipo: 1280x1024, risoluzione che per fare in modo di essere giusta e abilitata deve essere specificata nel vostro xorg.conf. Per maggiori informazioni date uno sguardo quì.</p>
+<p>Per cambiare la vostra risoluzione usate il comando: xrandr -s &lt; size&gt; x &lt; size&gt; , dove &lt; size&gt;  un valore tipo: 1280x1024, risoluzione che per fare in modo di essere giusta e abilitata deve essere specificata nel vostro xorg.conf. Per maggiori informazioni date uno sguardo qui'.</p>
 <h2 id="come-generare-il-menu"><strong>Come generare il menu</strong></h2>
 <p>Se avete avviato Fluxbox ma avete un menu vuoto, provate il seguente comando:</p>
 <hr />
@@ -167,71 +164,71 @@
 <h2 id="come-lanciare-applicazioni-all-avvio-di-fluxbox"><strong>Come lanciare applicazioni all' avvio di Fluxbox</strong></h2>
 <p>Per lanciare applicazioni all' avvio di Fluxbox basta agire sui files startup, oppure fare una configurazione del file .xinitrc</p>
 <h2 id="come-prevenire-la-sovrascrittura-del-file-.fluxboxinit"><strong>Come prevenire la sovrascrittura del file ~/.fluxbox/init</strong></h2>
-<p>Se avete fatto dei cambiamenti nel file init ma vi vedete il file sovrascritto, che quindi non accetta i cambiamenti che avete impostato nel file stesso, molto probabilmente è un bug, (versioni &lt;=0.1.8-bugfix2). Per sopperire a ciò vi basta fare l' upgrade alla versione più recente.</p>
+<p>Se avete fatto dei cambiamenti nel file init ma vi vedete il file sovrascritto, che quindi non accetta i cambiamenti che avete impostato nel file stesso, molto probabilmente  un bug, (versioni &lt;=0.1.8-bugfix2). Per sopperire a cio' vi basta fare l' upgrade alla versione piu' recente.</p>
 <h2 id="come-raggruppare-le-applicazioni"><strong>Come raggruppare le applicazioni</strong></h2>
 <p>Per sapere come fare leggete questa pagina.</p>
 <h2 id="configurare-il-sovrastamento-delle-vostre-finestre-con-la-toolbarslit"><strong>Configurare il sovrastamento delle vostre finestre con la toolbar/slit</strong></h2>
 <p>Per prevenire questo comportamento dove navigare nel vostro menu e andare ricorsivamente in Menu -&gt; Configure -&gt; da qui cercare e de/selezionare la voce: DISABLE &quot;Full Maximization&quot;. Per testare la riuscita di quest' operazione potete provare a settare la vostra toolbar a Layer: &quot;Desktop&quot; e provare a massimizzare una delle finestre.</p>
-<h2 id="cosè-la-slit"><strong>Cos'è la Slit</strong></h2>
-<p>La prima cosa che si deve sapere della slit è che non è una toolbar, la slit e la toolbar sono due cose totalmente separate. Se sapete che qualcuno dice il contrario colpitelo in modo violento :) La Slit è parte di Fluxbox ed è stata portata direttamente da Backbox, è una specie di Piazza/posto dove inserire le applicazione &quot;dockable&quot;, che potete mantenere separatamente dalle altre finestre. È stata studiata appositamente per permettere a tutte le applicazioni, (in pieno stile WindowMaker), di essere o &quot;minimizzate&quot; senza essere chiuse. Possono contenere delle dockapp, (applicazioni studiate per essere messe nella slit). Ricordate che se la Slit non contiene applicazioni resta invisibile.</p>
+<h2 id="cos-la-slit"><strong>Cos' la Slit</strong></h2>
+<p>La prima cosa che si deve sapere della slit  che non  una toolbar, la slit e la toolbar sono due cose totalmente separate. La Slit  parte di Fluxbox ed  stata portata direttamente da Backbox,  una specie di Piazza/posto dove inserire le applicazione &quot;dockable&quot;, che potete mantenere separatamente dalle altre finestre.  stata studiata appositamente per permettere a tutte le applicazioni, (in pieno stile WindowMaker), di essere o &quot;minimizzate&quot; senza essere chiuse. Possono contenere delle dockapp, (applicazioni studiate per essere messe nella slit). Ricordate che se la Slit non contiene applicazioni resta invisibile.</p>
 <h2 id="cosa-sono-le-piccole-box-sulle-finestre"><strong>Cosa sono le piccole box sulle finestre</strong></h2>
-<p>Se vedete sopra le finestre della vostra applicazione dei piccoli box, bene quelle sono le cosiddette TAB. Se avete fatto un upgrade da una versione .9.x di Fluxbox a una 1.0rcx, queste Tabs sono abilitate di default, mentre per poterle configurare vi basta andare nel vostro menu e ricorsivamente in fluxbox menu-&gt;configure-&gt;tab options. Per poterle disattivare vi basta selezionare la voce tabs in titlebar e vi verrà restituita la stessa configurazione che avevate nella release .9.x.</p>
+<p>Se vedete sopra le finestre della vostra applicazione dei piccoli box, bene quelle sono le cosiddette TAB. Se avete fatto un upgrade da una versione .9.x di Fluxbox a una 1.0rcx, queste Tabs sono abilitate di default, mentre per poterle configurare vi basta andare nel vostro menu e ricorsivamente in fluxbox menu-&gt;configure-&gt;tab options. Per poterle disattivare vi basta selezionare la voce tabs in titlebar e vi verra' restituita la stessa configurazione che avevate nella release .9.x.</p>
 <h2 id="dove-trovare-loghi---icone-e-banners-per-fluxbox"><strong>Dove trovare loghi - icone e banners per Fluxbox</strong></h2>
 <p>Tenete d' occhio questa pagina.</p>
-<h2 id="è-possibile-inserire-in-modo-ordinato-le-applicazioni-nella-slit"><strong>È possibile inserire in modo ordinato le applicazioni nella Slit?</strong></h2>
+<h2 id="-possibile-inserire-in-modo-ordinato-le-applicazioni-nella-slit"><strong> possibile inserire in modo ordinato le applicazioni nella Slit?</strong></h2>
 <p>Si, dalla release 0.1.10. '''</p>
 <h2 id="ho-configurato-la-trasparenza-ma-non-ci-sono-cambiamenti"><strong>Ho configurato la Trasparenza ma non ci sono cambiamenti</strong></h2>
 <p>Queste possono essere alcune delle ragioni:</p>
 <ul>
-<li>È necessario una versione di Fluxbox adeguata, la 0.9.2 o successive, la versione 0.1.x non contiene il supporto della trasparenza.</li>
+<li> necessario una versione di Fluxbox adeguata, la 0.9.2 o successive, la versione 0.1.x non contiene il supporto della trasparenza.</li>
 <li>Fluxbox deve essere riavviato per le variazioni del valore alpha, (basta scegliere il &quot;reload config&quot; nel menu).</li>
-<li>È necessario avere l'estensione XRender attivata in X, e compilata in Fluxbox. Eseguire:</li>
+<li> necessario avere l'estensione XRender attivata in X, e compilata in Fluxbox. Eseguire:</li>
 </ul>
 <p>fluxbox-I e xdpyinfo|grep RENDER dovrebbero restituire entambe &quot;RENDER&quot;.</p>
 <ul>
-<li>Dovete aver settato il vostro background con un tool XRender-compatible, fbsetbg è in Fluxbox ed è stato proggettato appositamente per rendere la vita più semplice, (La pagina web ci indica quali sono itools che più si addicono a Fluxbox per il setting del background con supporto per le trasparenze), per vedere la vostra attuale selezione vi basta eseguire:</li>
+<li>Dovete aver settato il vostro background con un tool XRender-compatible, fbsetbg  in Fluxbox ed  stato proggettato appositamente per rendere la vita pi semplice, (La pagina web ci indica quali sono itools che pi si addicono a Fluxbox per il setting del background con supporto per le trasparenze), per vedere la vostra attuale selezione vi basta eseguire:</li>
 </ul>
 <hr />
 <p>fbsetbg -i</p>
 <hr />
-<p>e vi verrà restituita.</p>
+<p>e vi verra' restituita.</p>
 <h2 id="i-fonts-sembrano-avere-problemi-dopo-l-upgrade-alla-versione-0.9.14-o-successive-dalla-versione-0.9.13"><strong>I Fonts sembrano avere problemi dopo l' upgrade alla versione 0.9.14 o successive dalla versione 0.9.13</strong></h2>
-<p>Dalla release 0.9.14 di Fluxbox il setup dei fonts è in parte cambiato, seguite quest' how-to.</p>
+<p>Dalla release 0.9.14 di Fluxbox il setup dei fonts  in parte cambiato, seguite quest' how-to.</p>
 <h2 id="icone-grandi-per-il-menu"><strong>Icone Grandi per il menu</strong></h2>
-<p>Per avere le iconi più grandi nel vostro menu guardate nello style che state usando:</p>
+<p>Per avere le icone piu' grandi nel vostro menu guardate nello style che state usando:</p>
 <hr />
 <p>grep -i stylef ~/.fluxbox/init</p>
 <hr />
-<p>Da quì, aggiungete, oppure editate, il seguente valore:</p>
+<p>Da qui', aggiungete, oppure editate, il seguente valore:</p>
 <hr />
 <p>menu.itemHeight: &lt; int&gt;</p>
 <hr />
-<p>Dove &lt; int&gt; è un qualsiasi valore, provate ad esempio ad inserirci 20 e poi diminuite oppure aumentate a vostro piacimento la dimensione. Siate sicuri di fare il &quot;reload config&quot;, (il ricaricamento della configurazione di Fluxbox), per accertarvi della dimensione dell' icona.</p>
+<p>Dove &lt; int&gt;  un qualsiasi valore, provate ad esempio ad inserirci 20 e poi diminuite oppure aumentate a vostro piacimento la dimensione. Siate sicuri di fare il &quot;reload config&quot;, (il ricaricamento della configurazione di Fluxbox), per accertarvi della dimensione dell' icona.</p>
 <h2 id="la-trasparenza-nel-proprio-menu"><strong>La Trasparenza nel proprio menu</strong></h2>
-<p>Puoi configurare il tuo menu con trasparenze se stai usando una versione di Fluxbox recente, (0.9.2 e seguenti) Tramite il valore &quot;Menu Alpha&quot; si possono settare le trasparenze di vario livello, basta sapere che 0 è uguale ad Invisibile,(completamente trasparente), mentre 255 è uguale a Opaco. Un valore intorno a 160 sembra che soddisfi la maggiorparte delle esigenze, probabilmente vorrete leggere la successiva FAQ per rendervi conto di alcune cose di cui si ha bisogno.</p>
+<p>Puoi configurare il tuo menu con trasparenze se stai usando una versione di Fluxbox recente, (0.9.2 e seguenti) Tramite il valore &quot;Menu Alpha&quot; si possono settare le trasparenze di vario livello, basta sapere che 0  uguale ad Invisibile,(completamente trasparente), mentre 255  uguale a Opaco. Un valore intorno a 160 sembra che soddisfi la maggiorparte delle esigenze, probabilmente vorrete leggere la successiva FAQ per rendervi conto di alcune cose di cui si ha bisogno.</p>
 <h2 id="le-differenze-tra-fluxbox-e-box"><strong>Le differenze tra Fluxbox e *box</strong></h2>
-<p>Tutti i WM *box sono fork di Blackbox. Per lungo tempo sia Fluxbox che Blackbox hanno avuto un proprio sviluppo, l' uno differente dall' altro, ognuno con le proprie richieste e le proprie priorità. Per questo lo stato di tutti i *box è differente, per una lista dettagliata tenete d' occhio questa pagina.</p>
-<h2 id="perché-a-volte-le-finestre-massimizzate-escono-dallo-schermo-rendendo-difficile-l-uso-della-scrollbar"><strong>Perché a volte le finestre massimizzate escono dallo schermo rendendo difficile l' uso della scrollbar</strong></h2>
-<p>Questo spesso succede se c'é una slit vuota piazzata nella parte di estrema destra del vostro schermo. Per sopperire a quest' effetto vi basta andare in: Menu -&gt; Configuration -&gt; Slit -&gt; Maximize Over. Quindi selezionare la vostra scelta.</p>
-<h2 id="perché-alcune-applicazioni-multimediali-xmms-mplayer...-vanno-in-pausa-quando-cambio-desktop"><strong>Perché alcune applicazioni multimediali, (XMMS, MPlayer...), vanno in pausa quando cambio Desktop</strong></h2>
-<p>Questo non è un bug, è proprio nella natura dell' applicazione, se selezionate comunque nel vostro file ~/.fluxbox/init - true - le vostre applicazioni non andranno ne in crash ne in pausa.:</p>
+<p>Tutti i WM *box sono fork di Blackbox. Per lungo tempo sia Fluxbox che Blackbox hanno avuto un proprio sviluppo, l' uno differente dall' altro, ognuno con le proprie richieste e le proprie priorita'. Per questo lo stato di tutti i *box  differente, per una lista dettagliata tenete d' occhio questa pagina.</p>
+<h2 id="perch-a-volte-le-finestre-massimizzate-escono-dallo-schermo-rendendo-difficile-l-uso-della-scrollbar"><strong>Perche' a volte le finestre massimizzate escono dallo schermo rendendo difficile l' uso della scrollbar</strong></h2>
+<p>Questo spesso succede se c'e' una slit vuota piazzata nella parte di estrema destra del vostro schermo. Per sopperire a quest' effetto vi basta andare in: Menu -&gt; Configuration -&gt; Slit -&gt; Maximize Over. Quindi selezionare la vostra scelta.</p>
+<h2 id="perch-alcune-applicazioni-multimediali-xmms-mplayer...-vanno-in-pausa-quando-cambio-desktop"><strong>Perche' alcune applicazioni multimediali, (XMMS, MPlayer...), vanno in pausa quando cambio Desktop</strong></h2>
+<p>Questo non e' un bug, e' proprio nella natura dell' applicazione, se selezionate comunque nel vostro file ~/.fluxbox/init - true - le vostre applicazioni non andranno ne in crash ne in pausa.:</p>
 <hr />
 <p>session.screen0.opaqueMove: true</p>
 <hr />
-<p>Per dirla tutta: Lo spostamento delle finestre tra i vari Desktop avviene tramite la definizione di un rettangolo con pixel invertiti intorno ad una finestra, quando si muove quindi il mouse il vecchio rettangolo viene cancellato, sempre attraverso dei pixel invertiti, mentre un altro nuovo viene creato, quindi Fluxbox acquisendo il display freeza tutte le applicazioni, se questo non avvenisse ci si ritroverebbe con dei rettangoli sullo schermo anche dopo che si è lasciati il &quot;grab&quot; della finestra con il mouse.</p>
-<p>Tutti i Windows Manager che hanno questa caratteristica, devo applicare le stesse regole per fare in modo da non lasciare frammenti di rettangoli in giro per il vostro Desktop, se ne trovate uno che non si comporta così, fatecelo sapere :)</p>
-<p>I developper credono che applicazioni il cui scopo primario non è la visualizzazione grafica debbanop continuare a funzionare correttamente senza aggiornare lavisualizzazione dell' applicazione stessa, (MPlayer ad esempio ha un seting per questa caratteristica/particolarità), ma queste sono cose che comunque riguardano lo sviluppo delle varie applicazioni, sarebbe meglio quindi mettere a conoscenza di ciò gli sviluppatori delle applicazioni stesse per fare in modo che le applicazioni continuino a funzioinare senza l' aggiornamento visuale, ma non è cosa facile.</p>
-<h2 id="perché-fluxbox-non-ha-icone-sul-desktop"><strong>Perché Fluxbox non ha icone sul Desktop</strong></h2>
-<p>La risposta è semplice, Fluxbox è un Windows Manager e non ha la possibilità/facoltà di inserire icone nel vostro Desktop. Per sopperire a ciò, senza alcuna perdita in ambito performance per Fluxbox, ci sono due applicazioni per gestire le icone sul vostro Desktop.</p>
+<p>Per dirla tutta: Lo spostamento delle finestre tra i vari Desktop avviene tramite la definizione di un rettangolo con pixel invertiti intorno ad una finestra, quando si muove quindi il mouse il vecchio rettangolo viene cancellato, sempre attraverso dei pixel invertiti, mentre un altro nuovo viene creato, quindi Fluxbox acquisendo il display freeza tutte le applicazioni, se questo non avvenisse ci si ritroverebbe con dei rettangoli sullo schermo anche dopo che si  lasciati il &quot;grab&quot; della finestra con il mouse.</p>
+<p>Tutti i Windows Manager che hanno questa caratteristica, devo applicare le stesse regole per fare in modo da non lasciare frammenti di rettangoli in giro per il vostro Desktop.</p>
+<p>I developper credono che applicazioni il cui scopo primario non e' la visualizzazione grafica debbano continuare a funzionare correttamente senza aggiornare la visualizzazione dell' applicazione stessa, (MPlayer ad esempio ha un seting per questa caratteristica/particolarit), ma queste sono cose che comunque riguardano lo sviluppo delle varie applicazioni, sarebbe meglio quindi mettere a conoscenza di ci gli sviluppatori delle applicazioni stesse per fare in modo che le applicazioni continuino a funzioinare senza l' aggiornamento visuale, ma non e' cosa facile.</p>
+<h2 id="perch-fluxbox-non-ha-icone-sul-desktop"><strong>Perch Fluxbox non ha icone sul Desktop</strong></h2>
+<p>La risposta  semplice, Fluxbox  un Windows Manager e non ha la possibilita'/facolta' di inserire icone nel vostro Desktop. Per sopperire a cio', senza alcuna perdita in ambito performance per Fluxbox, ci sono due applicazioni per gestire le icone sul vostro Desktop.</p>
 <ul>
 <li>fbdesk</li>
 <li>idesk.</li>
 </ul>
 <p>Guardate i rispettivi setup di fbdesk e idesk per il loro setup. Volendo si potrebbe usufruire anche di rox-filer o di nautilus per le icone, ma sono stati spesso causa di problemi e non sono comunque flessibili come le due applicazioni precedenti.</p>
-<h2 id="perché-molta-gente-parla-di-stabilità-e-instabilità"><strong>Perché molta gente parla di stabilità e instabilità</strong></h2>
-<p>Molti utenti parlano erroneamente di stabilità e instabilità di una determinata versione di Fluxbox perché per più di 4 anni la versione stabile è stata la 0.1.14 ma oggi non è più così, l' ultima release stabile di Fluxbox è la 1.0 ed è considerata davvero molto stabile. Anche la versione attualmente in sviluppo, (1.1.1), è considerata molto stabile, quindi niente paura nell' usare la più recente.</p>
-<h2 id="qual-è-la-migliore-release-da-usare"><strong>Qual' è la migliore release da usare</strong></h2>
-<p>La versione/release di Fluxbox consigliata all' utilizzo è sempre l' ultima versione sviluppata, è sempre la più stabile, puoi scaricarla direttamente da: <a href="http://fluxbox.org/download/">http://fluxbox.org/download/</a> Se non sai come installare Fluxbox da sorgenti puoi imparare come da quì. Se invece ti piace testare nuove versioni, sotomettere all' attenzione degli sviluppatori bugs ed eventuali imperfezioni puoi benissimo usare la versione di Fluxbox che è nei repository Git, quì una descrizione sul come fare.</p>
+<h2 id="perch-molta-gente-parla-di-stabilit-e-instabilit"><strong>Perche' molta gente parla di stabilita' e instabilita'</strong></h2>
+<p>Molti utenti parlano erroneamente di stabilita' e instabilita' di una determinata versione di Fluxbox perche' per piu' di 4 anni la versione stabile  stata la 0.1.14 ma oggi non e' piu' cosi', l' ultima release stabile di Fluxbox  la 1.0 ed  considerata davvero molto stabile. Anche la versione attualmente in sviluppo, (1.1.1),  considerata molto stabile, quindi niente paura nell' usare la piu' recente.</p>
+<h2 id="qual--la-migliore-release-da-usare"><strong>Qual'e'  la migliore release da usare</strong></h2>
+<p>La versione/release di Fluxbox consigliata all' utilizzo e' sempre l' ultima versione sviluppata,  sempre la piu' stabile, puoi scaricarla direttamente da: <a href="http://fluxbox.org/download/">http://fluxbox.org/download/</a> Se non sai come installare Fluxbox da sorgenti puoi imparare come da qu. Se invece ti piace testare nuove versioni, sotomettere all' attenzione degli sviluppatori bugs ed eventuali imperfezioni puoi benissimo usare la versione di Fluxbox che  nei repository Git, qui' una descrizione sul come fare.</p>
 <h2 id="quando-si-parla-dei-fonts-artwiz"><strong>Quando si parla dei fonts Artwiz</strong></h2>
 <p>Se avete sentito parlare dei fonts Artwiz e volete provarli potete leggere la guida Artwiz per Fluxbox. Se invece vi piacciono i fonts Artwiz ma non li considerate utili per lavorare nel terminale potreste invece provare ad usare il pacchetto LPF, che contiene due tipi di fonts, uno adatto al terminale ed un altro adatto al resto delle applicazione.</p>
 <h2 id="report-delle-piattaforme-correttamente-supportate"><strong>Report delle piattaforme correttamente supportate</strong></h2>
@@ -256,13 +253,12 @@
 <p>gnome-session-save</p>
 <hr />
 <h2 id="usare-fluxbox-come-windows-manager-in-kde"><strong>Usare Fluxbox come Windows Manager in KDE</strong></h2>
-<p>Anche per KDE è possibile rimpiazzare KWin con Fluxbox, in questo caso potete o avviare Fluxbox e poi avviare &quot;kicker&quot; e &quot;kdesktop&quot;, oppure ancora fare un export con il comando KDEWM=startfluxbox nel proprio file dilogin rc, (di solito in ~/.bashrc).</p>
+<p>Anche per KDE  possibile rimpiazzare KWin con Fluxbox, in questo caso potete o avviare Fluxbox e poi avviare &quot;kicker&quot; e &quot;kdesktop&quot;, oppure ancora fare un export con il comando KDEWM=startfluxbox nel proprio file dilogin rc, (di solito in ~/.bashrc).</p>
 <h2 id="usare-il-proprio-.blackboxrc-per-fluxbox"><strong>Usare il proprio .blackboxrc per Fluxbox</strong></h2>
-<p>Quest' operazione è certamente possibile, siate sicuri però di settare alcune particolarità nel file, come la barra del titolo ed il keygrabbing</p>
+<p>Quest' operazione e' certamente possibile, siate sicuri pero' di settare alcune particolarita' nel file, come la barra del titolo ed il keygrabbing</p>
 <h2 id="uso-dei-temistyles-per-blackbox-in-fluxbox"><strong>Uso dei Temi/Styles per Blackbox in Fluxbox</strong></h2>
-<p>L' uso dei temi per Blackbox in Fluxbox è compatinile al 100%, l' importante è ricordare che si descrivano temi per versioni &lt;=0.65 di Blackbox. Quanto detto potrebbe essere vero anche per i progetti Openbox e Wimea, ma a riguardo non c'é nessuna garanzia di funzionamento. Non c'é stata alcuna discussione a riguardo, di conseguenza non si può escludere che i due progetti prendano strade diverse nrlla definizione dei temi/styles.</p>
+<p>L' uso dei temi per Blackbox in Fluxbox e' compatinile al 100%, l' importante  ricordare che si descrivano temi per versioni &lt;=0.65 di Blackbox. Quanto detto potrebbe essere vero anche per i progetti Openbox e Wimea, ma a riguardo non c' nessuna garanzia di funzionamento. Non c'e' stata alcuna discussione a riguardo, di conseguenza non si puo' escludere che i due progetti prendano strade diverse nella definizione dei temi/styles.</p>
 <h2 id="uso-di-fluxbox-o-parte-di-esso-in-xglcompizberyl"><strong>Uso di Fluxbox o parte di esso in XGL/Compiz/Beryl</strong></h2>
-<p>Quest' operazione non è possibile. Fluxbox è un Windows Manager, Compiz anche, (seppur combinato con composite manager), di conseguenza si può solo rimpiazzare Fluxbox con uno di essi. Kde, Gnome, Xfce, sono dei Desktop Managers che a loro volta usano, di default, altri Windows Manager, KWindows, Metacity e Xfwm, quando si usa ad esempio Compiz solo uno di questi Windows Manager viene rimpiazzato. Fluxbox non è modulare, di conseguenza non si può usare una parte di esso in Compiz. Per vedere lepossibili features di Fluxbox potete leggere la sezione che parla delle &quot;eyecandy&quot;, così potrete decidere se rimpiazzare Fluxbox e tute lesue features con compiz oppure tenere il vostro Fluxbox. ;)</p>
-<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
+<p>Quest' operazione non  possibile. Fluxbox  un Windows Manager, Compiz anche, (seppur combinato con composite manager), di conseguenza si puo' solo rimpiazzare Fluxbox con uno di essi. Kde, Gnome, Xfce, sono dei Desktop Managers che a loro volta usano, di default, altri Windows Manager, KWindows, Metacity e Xfwm, quando si usa ad esempio Compiz solo uno di questi Windows Manager viene rimpiazzato. Fluxbox non e' modulare, di conseguenza non si puo' usare una parte di esso in Compiz. Per vedere le possibili features di Fluxbox potete leggere la sezione che parla delle &quot;eyecandy&quot;, cos potrete decidere se rimpiazzare Fluxbox e tute lesue features con compiz oppure tenere il vostro Fluxbox. </p>
 </body>
 </html>
