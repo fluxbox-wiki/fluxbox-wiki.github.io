@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="wie-bekomme-ich-icons-auf-den-desktop">Wie bekomme ich Icons auf den Desktop</h2>
+<p>Fluxbox bietet standardmässig keine Icons auf dem Desktop an. Die Applikationen werden bequem über das Menü oder mit Tastenkürzeln gestartet. Wer dennoch Icons haben will kann auf zwei Programme zurückgreiffen:</p>
+<p>(Wichtig: diese Programme gehören _nicht_ zu Fluxbox, Fehlermeldungen bitte an die jeweiligen Entwickler)</p>
+<h2 id="idesk">idesk</h2>
+<p>Idesk zeichnet Icons auf den Desktop und kann bei Einzel- oder Doppelklick einen Befehl ausführen.</p>
+<p>Die Konfiguation von idesk ist relativ simpel. Mit einem Texteditor öffnet man die</p>
+<p><code>~/.ideskrc</code><br /><code> </code></p>
+<p>Datei, welche wie folgt aussieht:</p>
+<p><code> table Config</code><br /><code>   FontName: tahoma</code><br /><code>   FontSize: 8</code><br /><code>   FontColor: #ffffff</code><br /><code>   Locked: false</code><br /><code>   Transparency: 150</code><br /><code>   HighContrast: true</code><br /><code>   Shadow: true </code><br /><code>   ShadowColor: #000000</code><br /><code>   ShadowX: 1</code><br /><code>   ShadowY: 2</code><br /><code>   Bold: false</code><br /><code>   ClickDelay: 300</code><br /><code>   IconSnap: true</code><br /><code>   SnapWidth: 55 </code><br /><code>   SnapHeight: 100</code><br /><code>   SnapOrigin: BottomRight</code><br /><code>   SnapShadow: true</code><br /><code>   SnapShadowTrans: 200</code><br /><code>   CaptionOnHover: false</code><br /><code> end</code><br /><code> table Actions</code><br /><code>   Lock: control right doubleClk</code><br /><code>   Reload: middle doubleClk</code><br /><code>   Drag: left hold</code><br /><code>   EndDrag: left singleClk</code><br /><code>   Execute[0]: left doubleClk</code><br /><code>   Execute[1]: right doubleClk</code><br /><code> end</code><br /><code> </code></p>
+<p>Die meisten Werte sollten selbsterklärend sein, ansonsten sind sie in der Dokumentation von idesk beschrieben.</p>
+<p>Icons werden auch sehr einfach erstellt:</p>
+<p><code> $ mkdir ~/.idesktop</code></p>
+<p>In diesem Verzeichniss kann man Textdateien (mit Endung .lnk) erstellen.</p>
+<p>Der Inhalt sollte wie folgt aussehen:</p>
+<p><code> table Icon</code><br /><code>   Caption: Name der Anwendung</code><br /><code>   Command: Befehl der ausgeführt wird</code><br /><code>   Icon: /pfad/zu/einem/bild.png</code><br /><code>   X: 100</code><br /><code>   Y: 50</code><br /><code> end</code><br /><code> </code></p>
+<p>Nun muss idesk nur noch gestartet werden.</p>
+<p><code> $ idesk</code><br /><code> </code></p>
+<p>Es empfiehlt sich, idesk in den Fluxbox Autostart zu übernehmen (<strong>~/.fluxbox/startup</strong>)</p>
+<p><code> idesk &amp;</code><br /><code> </code></p>
+<h2 id="fbdesk">fbdesk</h2>
+<p>FBDesk erstellt Symbole auf dem Desktop, welche direkt mit einem Kontextmenü bearbeitet werden können. Dieses Menü erscheint bei einem Rechtsklick auf das Icon und sieht etwa so aus:</p>
+<p><code> Icon menu</code><br /><code> Set command</code><br /><code> Set label</code><br /><code> _________</code><br /><code> New icon</code><br /><code> Delete icon</code><br /><code> _________</code><br /><code> Text alpha:  0</code><br /><code> Icon alpha:  255</code><br /><code> Reload config</code><br /><code> _________</code><br /><code> Exit FbDesk</code></p>
+<p>Dabei greifft es noch auf folgende Zeilen in der Datei ~/.fluxbox/init zu:</p>
+<p><code> fbdesk.iconFile:  </code><Dateiname der Iconsdatei><code> </code><br /><code> fbdesk.font: </code><icon Schriftart><code> </code><br /><code> fbdesk.textColor:  </code><Textfarbe><br /><code> fbdesk.snapX: </code><x snap size><code> (default: 5)</code><br /><code> fbdesk.snapY: </code><y snap size><code> (default: 5)</code><br /><code> fbdesk.doubleClickInterval: </code><Zeitintervall für Doppelklick><code> </code><br /><code> fbdesk.textPlacement: </code><Textplatzierung><code> </code><br /><code> fbdesk.iconAlpha: </code><Transparenz zwischen 0 und 255><br /><code> fbdesk.textAlpha: </code><Transparenz zwischen 0 und 255><br /><code> # Mögliche Werte für die Textplatzierung: Left, Right, Top and Bottom</code></p>
+<p>Ein Eintrag in die ~/.fluxbox/fbdesk.icons sieht so aus:</p>
+<p><code> [Deskop Entry]</code><br /><code> Icon=Dateiname des Bildes</code><br /><code> Name=Text</code><br /><code> Exec=Befehl</code><br /><code> Pos= horiz vert  # Position</code><br /><code> [end]</code></p>
+<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+</body>
+</html>

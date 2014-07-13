@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h3 id="wie-installiere-ich-gtk-themes">Wie installiere ich GTK themes</h3>
+<p>Am einfachsten installiert man GTK Themes indem man sie lokal in den Ordner ~/.themes packt. Mauszeiger und Symbole gehören nach ~/.icons.</p>
+<p>Dieses Vorgehen ist allerdings nur für Einzelnutzer sinnvoll, um die Themes Systemweit zu installieren müssen sie in den Systemweiten GTK Themes Ordner kopiert werden. Dieser befindet sich bei jeder Distribution woanders, in der Regel aber unter /usr/share/ oder /usr/local/.</p>
+<p>Wichtig ist, dass GTK Themes sogenannte engines benötigen. Diese installiert man am einfachsten über dier Paketverwaltung der jeweiligen Distribution.</p>
+<p>Zum Beispiel via</p>
+<p><code>apt-get install gtk-engines-industrial    </code><br /><code>apt-get install gtk-engines-*       </code></p>
+<p>(Debianbasierte Systeme)</p>
+<p>oder</p>
+<p><code>emerge gtk-engines-industrial</code></p>
+<h3 id="wie-verwende-ich-diese">Wie verwende ich diese?</h3>
+<p>Entweder mit einem graphischen Themeswitcher wie <a href="http://www.muhri.net/nav.php3?node=gts">gtk-theme-switch</a> (mit Versionen für GTK und GTK2) oder <a href="http://plasmasturm.org/code/gtk-chtheme/">gtk-chtheme</a>. Alternativ kann man die eher schlecht dokumentierte gtkrc-2.0 verwenden. Diese sieht zum Beispiel so aus:</p>
+<p><code>  style &quot;user-font&quot;</code><br /><code>  {</code><br /><code>  font_name=&quot;Arial 9&quot;</code><br /><code>  }</code><br /><code>  widget_class &quot;*&quot; style &quot;user-font&quot;</code></p>
+<p><code>  gtk-theme-name=&quot;Qt&quot;</code><br /><code>  gtk-font-name=&quot;Arial 9&quot;</code><br /><code>  gtk-icon-theme-name=&quot;gnomecrystal&quot;</code></p>
+<p>Wichtig ist, dass dabei die User- und Systemweiten Verzeichnisse nach themes und Symbolen durchsucht werden. Als name wird dabei immer der Name des Ordners, in dem sich das Theme befindet, verwendet.</p>
+<h3 id="wie-lasse-ich-die-gtk-applikationen-wie-qtkde-applikationen-aussehen">Wie lasse ich die GTK Applikationen wie Qt/KDE Applikationen aussehen</h3>
+<p>Um einen Einheitlichen Stil zu haben empfiehlt es sich für Nutzer, die sowohl Qt (u.a. KDE) wie auch GTK Applikationen verwenden, gtk-engines-qt zu installieren. Diese Engine kann über das KDE Kontrollzentrum kcontrol eingerichtet werden und sorgt dafür, dass GTK Applikationen die Einstellungen von Qt Applikationen verwenden.</p>
+</body>
+</html>

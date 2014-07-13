@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="nur-rahmen-anzeigen-lassen">Nur Rahmen anzeigen lassen</h2>
+<p>Da die Datei ~/.fluxbox/apps nicht in einem laufenden Fluxbox bearbeitet werden sollte muss man Fluxbox beenden und sie in einem beliebigen Texteditor öffnen.</p>
+<p>Anschliessend fügt man folgende Zeilen ein:</p>
+<p><code>  [app] (.*)</code><br /><code>     [Deco]    {BORDER}</code><br /><code>  [end]</code></p>
+<p>Nach einem Neustart zeigt Fluxbox nur noch einen Rahmen um die Fenster an (wenn das gewählte Farbschema einen anzeigt) Farbe und Breite des Rahmens können angepasst werden,</p>
+<p>Entweder Global (unabhängig vom Farbschema) <a href="http://fluxbox-wiki.org/index.php/Howto_style_overlay">overlay file</a> oder separat in jedem Farbschema.</p>
+<p>Folgende Zeilen passen den Rahmen an:</p>
+<p><code>  window.borderWidth:   </code><int><br /><code>  window.borderColor:   color (Bsp. #009900, black, rgb:00/64/00)</code></p>
+<h2 id="rahmen-und-externe-tabs-anzeigen-lassen">Rahmen und externe Tabs anzeigen lassen</h2>
+<p>Seit Fluxbox 1.0rc gibt es wieder externe Tabs (Reiter), ergo können diese zusätzlich zum Rahmen verwendet werden. Die Zeilen in der apps Datei sehen dazu wie folgt aus:</p>
+<p><code>  [app] (.*)</code><br /><code>     [Deco]    {TAB}</code><br /><code>  [end] </code></p>
+<p>Dazu müssen allerdings die externen Tabs aktiviert werden, entweder über das Fluxbox-Menü oder in der init Datei.</p>
+<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+</body>
+</html>

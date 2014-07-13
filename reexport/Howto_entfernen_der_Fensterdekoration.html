@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="entfernen-der-fensterdekoration-fenster-ohne-rahmen">Entfernen der Fensterdekoration (Fenster ohne Rahmen)</h2>
+<p>Es gibg mehrere Möglichkeiten den Rahmen um die Fenster zu entfernen. Am einfachsten ist folgende Methode:</p>
+<p>In der <strong>~/.fluxbox/keys</strong> Datei setzt man eine Zeile:</p>
+<p><code>  Mod4 t :ToggleDecor</code></p>
+<p>(Mod4 t ist Windows+t, man kann natürlich eine andere Tastenkombination wählen)</p>
+<p>Jetzt muss man Fluxbox nur die neue Konfiguration einlesen lassen,</p>
+<p><code>  fluxbox menu -&gt; reload config</code></p>
+<p>Oder mit SIGUSR2 von der Kommandozeile:</p>
+<p><code> kill -s usr2 `pgrep fluxbox`</code></p>
+<p>Jetzt kann man das gewünschte Programm starten, nehmen wir mal aterm als Beispiel:</p>
+<p>Ein Rechtsklick auf den Fenstertitel öffnet das Fenstermenü. Unter &quot;Einstellungen merken&quot; (Remember) muss nun &quot;beim Schliessen speichern&quot; (save on close) und &quot;Dekoration&quot; aktiviert werden.</p>
+<p>Wenn das Fenster nun geschlossen wird schreibt Fluxbox die Einstellungen in die apps Datei und alle Aterms werden von nun an ohne Rahmen / Dekoration gestartet.</p>
+<p>Mit der gesetzten Tastenkombination kann man auch Fenster temporär Rahmenlos machen.</p>
+<p>Die zweite Möglichkeit ist ein klein wenig komplizierter und sollte nicht unter laufendem Fluxbox durchgeführt werden.</p>
+<p>Mittels xprop kann man Fensterklasse oder Fenstername der gewünchten Applikation ermitteln.</p>
+<p>Anschliessend öffnet man mit einem Texteditor die Datei ~/.fluxbox/apps und fügt folgende Zeilen hinzu:</p>
+<p><code>  [app] (Fenstername / Fensterklasse)</code><br /><code>     [Deco]    {NONE}</code><br /><code>  [end]</code></p>
+<p>Nach dem Speichern der Datei kann Fluxbox gestartet werden und die Einstellungen sind aktiv.</p>
+<p>Die apps Datei sollte nicht bei laufendem Fluxbox von Hand editiert werden, da die Änderungen ansonsten bei einem Neustart verloren gehen.</p>
+<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+</body>
+</html>

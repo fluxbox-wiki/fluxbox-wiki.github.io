@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="editieren-der-startup-datei">Editieren der Startup Datei</h2>
+<p>Die Datei ~/.fluxbox/startup wird ausgeführt, wenn fluxbox über den Befehl &quot;startfluxbox&quot; anstelle von &quot;fluxbox&quot; gestartet wird.</p>
+<p>Sie entspricht einer Art Autostart, enthält also Applikationen, welche zusammen mit oder nach fluxbox gestartet werden.</p>
+<p>Die Datei kann mit jedem beliebigen Texteditor bearbeitet werden.</p>
+<p>Zu beachten ist dabei folgendes:</p>
+<p>Zeilen, die mit einem # beginnen sind Kommentare und werden ignoriert.</p>
+<p>Applikationen, welche kontinuierlich laufen, müssen mit einem &amp; am Schluss gestartet werden.</p>
+<p>Beispiel:</p>
+<p><code># Applications you want to run with fluxbox.</code><br /><code># MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN </code><em><code>&amp;</code></em><code> AT THE END.</code><br /><code>#</code><br /><code># unclutter -idle 2 &amp;</code><br /><code># wmnd &amp;</code><br /><code># wmsmixer -w &amp;</code><br /><code># idesk &amp;</code><br /></p>
+<p>Ganz am Schluss der Datei wird fluxbox selber gestartet, wobei man noch einmal explizit Parameter, zum Beispiel den zum erstellen einer Logdatei, angeben kann.</p>
+<p>Dies ist der einzige Befehl dem &quot;exec&quot; vorangestellt werden muss.</p>
+<p>Beispiel:</p>
+<p><code>exec /usr/local/bin/fluxbox</code><br /><code># Oder mit einem Logfile: </code><br /><code># exec /usr/local/bin/fluxbox -log ~/.fluxbox/log</code></p>
+<p>Der Pfad muss dabei natürlich angepasst werden, sollte fluxbox nicht in /usr/local/bin/ liegen.</p>
+<h2 id="applikationen-nach-fluxbox-starten">Applikationen nach Fluxbox starten</h2>
+<p>Anwendungen lassen sich ziemlich einfach nach Fluxbox starten. Das sollte zwar nur in ein paar wenigen Fällen nötig sein, hier dennoch die Anleitung: Am besten erstellt man eine Startup Datei ähnlich dieser hier, welche aus dem englischen HowTo Artikel stammt und im Original von <a href="http://darkshed.net/">akira</a> erstellt wurde:</p>
+<p><code> #!/bin/sh</code><br /><code> # fluxbox startup-script: </code><br /><code> #</code><br /><code> </code><br /><code> # Wiederholungsrate</code><br /><code> xset r rate 195 35</code><br /><code> xmodmap ~/.Xmodmap</code><br /><code> </code><br /><code> exec fluxbox &amp;</code><br /><code> fbpid=$!</code><br /><code> </code><br /><code> sleep 1 </code><br /><code> { </code><br /><code>    xsetroot -cursor_name left_ptr -fg white -bg black &amp;</code><br /><code>    ipager &amp;</code><br /><code>    gkrellm2 &amp;</code><br /><code> } &amp;</code><br /><code> </code><br /><code> wait $fbpid</code></p>
+<p>Der Wert nach sleep kann dabei angepasst werden. Er entspricht der Zeit zwischen dem Start von Fluxbox (welcher dadurch nicht verzögert wird) und dem Starten der in den Klammern angegebenen Applikationen.</p>
+<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+</body>
+</html>
