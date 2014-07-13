@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="was-ist-ein-windowmenu">Was ist ein Windowmenu</h2>
+<p>Das Windowmenu ist das Kontextmenu eines Fensters, welches entweder durch einen Rechtsklick auf den Fenstertitel oder mit der :WindowMenu Tastenzuweisung oder über das Arbeitsflächenmenü eingeblendet werden kann.</p>
+<p>Standardmässig beinhaltet es die Möglichkeit Fenster zu minimieren, maximieren, aufrollen oder sie auf eine andere Arbeitsfläche zu verschieben.</p>
+<h2 id="vorbereitungen">Vorbereitungen</h2>
+<p>Zuerst muss Fluxbox wissen, dass es ein angepasstes Fenstermenu vewenden soll. In der Datei <strong>~/.fluxbox/init</strong> muss die Zeile</p>
+<p><code>session.screen0.windowMenu:</code></p>
+<p>so angepasst werden:</p>
+<p><code>session.screen0.windowMenu: ~/.fluxbox/windowmenu</code></p>
+<p>Nach einem neu Laden der Fluxbox-Konfiguration sollte das persönliche Menu zur Verfügung stehen.</p>
+<h2 id="das-menu-anpassen">Das Menu anpassen</h2>
+<p>Die Syntax ist ähnlich der des normalen Fluxbox Menus, es gibt allerdings ein paar zusätzliche Einträge.</p>
+<p>Die Datei sollte mit <strong>[begin]</strong> anfangen und mit <strong>[end]</strong> enden.</p>
+<p>Folgende Einträge können verwenendet werden: (label ist dabei optional, es wird, wenn nichts anderes angegeben, einfach der Standard verwendet)</p>
+<p><code>[shade] (label)</code><br /><code>   Rollt das Fenster auf oder ab</code></p>
+<p><code>[close] (label)</code><br /><code>   Schliesst das Fenster</code></p>
+<p><code>[kill] (label)</code><br /><code>[killwindow] (label)</code><br /><code>   Forciert das Beenden der Anwendung</code></p>
+<p><code>[stick] (label)</code><br /><code>   Setzt das Fenster klebend (auf allen Arbeitsflächen sichtbar)</code></p>
+<p><code>[maximize] (label)</code><br /><code>   Maximiert das Fenster</code></p>
+<p><code>[iconify] (label)</code><br /><code>   Minimiert das Fenster</code></p>
+<p><code>[raise] (label)</code><br /><code>   Setzt das Fenster eine Ebene nach oben</code></p>
+<p><code>[lower] (label)</code><br /><code>   Setzt das Fenster eine Ebene nach unten</code></p>
+<p><code>[sendto] (label)</code><br /><code>   Ermöglicht das Verschieben auf eine andere Arbeitsfläche</code></p>
+<p><code>[layer] (label)</code><br /><code>   Ermöglicht das Verschieben auf eine andere Ebene</code></p>
+<p><code>[extramenus] (label)</code><br /><code>   Zeigt das Einstellungen merken Menü</code></p>
+<p>Nach dem Speichern der Datei muss die Fluxbox-Konfiguration neu eingelesen werden.</p>
+<h2 id="beispiele">Beispiele</h2>
+<p>Erstellt ein Menü das dem Original sehr ähnlich ist</p>
+<p><code># ~/.fluxbox/windowmenu  -  a 'custom' windowmenu</code><br /><code>[begin]</code><br /><code>  [shade] (Shade)</code><br /><code>  [stick] (Stick)</code><br /><code>  [maximize]</code><br /><code>  [iconify] (Iconify)</code><br /><code>  [raise]</code><br /><code>  [lower]</code><br /><code>  [sendto]</code><br /><code>  [layer]</code><br /><code>  [extramenus]</code><br /><code>  [separator]</code><br /><code>  [close] (Close)</code><br /><code>[end]</code></p>
+<p>Ein wenig angepasst, mit der Möglichkeit ein Terminal zu starten</p>
+<p><code>[begin]</code><br /><code>  [exec] (terminal) {xterm}</code><br /><code>  [maximize] (maximize)</code><br /><code>  [iconify] (minimize)</code><br /><code>  [submenu] (advanced)</code><br /><code>    [layer] (layer)</code><br /><code>    [extramenus] (remember)</code><br /><code>    [sendto] (send to)</code><br /><code>  [end]</code><br /><code>  [separator]</code><br /><code>  [close] (close)</code><br /><code>[end]</code></p>
+<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+</body>
+</html>

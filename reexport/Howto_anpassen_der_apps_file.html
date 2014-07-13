@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<p>__TOC__</p>
+<h2 id="editieren-der-apps-datei">Editieren der apps Datei</h2>
+<p>Ein paar wichtige Dinge zuerst: Bei älteren Fluxbox Versionen kann diese Datei nicht editiert werden wärend fluxbox läuft. Die Einstellungen werden sonst früher oder später überschrieben.</p>
+<p>Zudem muss diese Datei nur in den wenigsten Fällen wirklich direkt bearbeitet werden. Normalerweise sollte man &quot;Einstellungen Merken&quot; (remember settings) in dem Fenstermenü (Rechtsklick auf den Fenstertitel) zusammen mit der Option &quot;Beim Schliessen speichern&quot; verwenden.</p>
+<h2 id="einträge">Einträge</h2>
+<p>Das Format für Einträge in der apps Datei sieht wie folgt aus:</p>
+<p><code>  [app] (Name der Anwendung) </code><br /><code>          [Einstellung1]  {Wert1}</code><br /><code>          [Einstellung2]  {Wert2}</code><br /><code>          ...</code><br /><code>  [end]</code></p>
+<p>Der Name kann dabei ein String oder ein regulärer Ausdruck (RegExp) sein. Dabei können diverse Dinge als Name verwendet werden, unter anderem der im Fenstertitel erscheinende Name oder auch die &quot;Rolle&quot; des Fensters. Diese Werte können sehr gut mit dem Programm xprop ausgelesen werden.</p>
+<p>Ein paar Beispiele::</p>
+<p><code>  # Ein Standard XTerm ohne speziell gesetzten Titel:</code><br /><code>  [app] (xterm)</code><br /><code>      ... Einstellungen ...</code><br /><code>  [end]</code></p>
+<p><code>  # Ein XTerm mit speziell gesetztem Titel: (xterm -name myshell)</code><br /><code>  [app] (myshell)</code><br /><code>      ... Einstellungen ...</code><br /><code>  [end]</code></p>
+<p><code>  # Ein beliebiges Firefox Fenster (auch Einstellungen etc.) (Der instance name ist &quot;Gecko&quot;) </code><br /><code>  [app] (class=Firefox-bin) {1}</code><br /><code>      ... Einstellungen ...</code><br /><code>  [end]</code></p>
+<p><code>  # Die Kontaktliste von GAIM (allerdings nicht das Chatfenster)</code><br /><code>  [app] (role=buddy_list)</code><br /><code>      ... Einstellungen ...</code><br /><code>  [end]</code></p>
+<p><code>  #Ein RDesktop Fenster zu einem bestimmten Host:</code><br /><code>  [app] (title=rdesktop - hostname.*)</code><br /><code>      ... Einstellungen ...</code><br /><code>  [end]</code></p>
+<h2 id="einstellungen">Einstellungen</h2>
+<p>Folgende Einstellungen können pro [app] Eintrag gemacht werden: (Die Bezeichnung ist dabei in eckigen, der wert in geschweiften Klammern zu schreiben)</p>
+<ul>
+<li>[Workspace] {0-N}: Öffnet die Anwendung auf der angegeben Arbeitsfläche. Die Arbeitsflächen werden von 0 hochgezählt.</li>
+<li>[Dimensions] {Width Height}: Setzt die Grösse einer Anwendung (Breite Höhe)</li>
+<li>[Position] (refspot)) {X Y}: Position der Anwendung, relativ zu::</li>
+</ul>
+<p>:* WINCENTER Fenstermitte</p>
+<p>:* CENTER Bildschirmmitte</p>
+<p>:* UPPERLEFT Obere linke Ecke</p>
+<p>:* UPPERRIGHT Obere rechte Ecke</p>
+<p>:* LOWERLEFT Untere linke Ecke</p>
+<p>:* LOWERRIGHT Untere rechte Ecke Wird kein Referenzpunkt angegeben geht Fluxbox von der linken oberen Ecke aus.</p>
+<ul>
+<li>Die Ebene in der die Anwendung gestartet wird. Von den verfügbaren 12 haben nur 6 einen Namen (in Klammern die Originalnamen):</li>
+</ul>
+<p>:* 2 - Über Dock (AboveDock)</p>
+<p>:* 4 - Dock</p>
+<p>:* 6 - Oben (Top)</p>
+<p>:* 8 - Normal</p>
+<p>:* 10 - Unten (Bottom)</p>
+<p>:* 12 - Desktop</p>
+<ul>
+<li>[Shaded] {yes|no}: Soll das Fenster aufgerollt gestartet werden</li>
+<li>[Tab] {yes|no}: Kann dieses Fenster als Reiter (tab) in ein anderes gesetzt werden</li>
+<li>[IconHidden] {yes|no}: Soll das Fenster in der Fensterleiste angezeigt werden</li>
+<li>[FocusHidden] {yes|no}: Soll das Fenster von Prev / NextWindow ausgenommen werden</li>
+<li>[Hidden] {yes|no}: Aktiviert sowohl [IconHidden] als auch [FocusHidden]</li>
+<li>[Deco] {NONE|NORMAL|TOOL|TINY|BORDER|TAB}: Definiert welche Fensterdekos aktiv sind</li>
+</ul>
+<p>:* NORMAL - Standarddekoration</p>
+<p>:* NONE - Ohne Dekoration (Ohne Fenstertitel, ohne Rahmen)</p>
+<p>:* BORDER - Nur einen Fensterrahmen aber ohne Titel</p>
+<p>:* TINY - Fenstertitel nur mit Minimieren-Knopf</p>
+<p>:* TOOL - Nur ein Fenstertitel</p>
+<p>:* TAB - Wie NONE, allerdings werden externe Reiter (tabs) angezeigt Eine Bitmask kann für die Einstellung verwendet werden, die bits sind (von &quot;1&quot; bis 1&lt;&lt;10): Fenstertitel, handle/grips, Rahmen, minimieren, maximieren, schliessen, Menü aktiviert, Klebezustandsknopf, Aufrollknopf, Reiter aktiviert, Fokus aktiviert.</p>
+<ul>
+<li>[Sticky] {yes|no}: Wird das Fenster auf allen Arbeitsflächen angezeigt (klebend)</li>
+<li>[Close] {yes|no}: Sollen die (neuen) Einstellungen beim Schliessen gespeichert werden</li>
+</ul>
+<p>Die apps Datei kann auch als Autostart verwendet werden, allerdings ist dies noch nicht direkt über das Menü konfigurierbar und die startup Datei sollte ausreichen.</p>
+<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+</body>
+</html>

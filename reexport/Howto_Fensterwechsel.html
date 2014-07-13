@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="problem">Problem</h2>
+<p>Bei einem großen Monitor kann man zwar viele (kleine) Fenster nebeneinander anordnen, möchte man jedoch in einem der Fenster arbeiten, bleibt der Griff zur Maus nicht aus, um das Fenster in die Mitte zu ziehen und zu vergrößern. Es gibt zwar die Möglichkeit, es per Tastendruck zu maximieren, jedoch ist es oft so, dass ein maximiertes Fenster (Editor oder Terminal zum Beispiel) zu groß ist. Schön wäre daher eine Möglichkeit, ein Fenster zu wechseln, es dabei zu vergrößern und in die Mitte zu rücken. Beim erneuten Wechsel soll es wieder an den alten Platz gerückt werden und das nächste in die Mitte gezogen werden. Dabei bleibt stets die Übersicht gewahrt.</p>
+<h2 id="winresize-skript">winresize-Skript</h2>
+<p>Eine Lösung bietet zum Beispiel <a href="http://www.philipp-bender.de/winresize">dieses Skript</a>. Es befindet sich im Anfangsstadium und setzt die y-Position der Fenster etwas zu tief, es lässt sich jedoch ansonsten gut damit arbeiten. Wie es aussieht, zeigt <a href="http://philipp-bender.de/winresize.ogg">dieses kurze Video</a></p>
+<p>Benötigte Programme:</p>
+<p><code> wmctrl</code><br /><code> xprop</code></p>
+<p>Skript installieren:</p>
+<p><code> $ wget </code><a href="http://www.philipp-bender.de/winresize"><code>http://www.philipp-bender.de/winresize</code></a><code>  </code><br /><code> $ mv winresize ~/bin/winresize</code><br /><code> $ chmod +x ~/bin/winresize</code><br /><code> $ wget </code><a href="http://www.philipp-bender.de/wincycle"><code>http://www.philipp-bender.de/wincycle</code></a><code>  </code><br /><code> $ mv winresize ~/bin/wincycle</code><br /><code> $ chmod +x ~/bin/wincycle</code></p>
+<p>Danach ein Terminal aufmachen und Skript testen:</p>
+<p><code> $ winresize help</code><br /><code> $ winresize restart</code><br /><code> $ winresize front</code><br /><code> $ winresize back</code></p>
+<p>Um wincycle ausführen zu können, muss man noch in</p>
+<p><code> $ gedit ~/.fluxbox/init</code></p>
+<p>eine Zeile abändern:</p>
+<p><code> session.screen0.allowRemoteActions:   true</code></p>
+<p>... nun muss man nur noch die Tastenkürzel anpassen:</p>
+<p><code> $ gedit ~/.fluxbox/keys</code></p>
+<p>Hinzufügen:</p>
+<p><code> Mod1 r :execCommand winresize restart</code><br /><code> Mod1 b :execCommand winresize back</code><br /><code> Mod1 c :execCommand wincycle</code></p>
+<p>Nun hat man es geschafft: Bei Beginn der Arbeit dückt man Alt+r, macht viele kleine Fenster auf und wechselt mit Alt+c. Möchte man die &quot;alte&quot; Anordnung wie zu Beginn der Arbeit zurückhaben, einfach Alt+b. Ist die Geometrie, auf die die Größe verändert wird, nicht passend, kann man sie im Skript ändern. Einfach</p>
+<p><code> $ gedit ~/bin/winresize</code></p>
+<p>und in der Zeile</p>
+<p><code> frontgeom = (0,260,180,1150,760)</code></p>
+<p>die Werte abändern:</p>
+<p><code> frontgeom = (0,</code><x-Position><code>,</code><y-Position><code>,</code><Breite><code>,</code><Höhe><code>)</code></p>
+</body>
+</html>

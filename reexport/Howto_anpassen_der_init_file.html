@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="bearbeiten-der-init-datei">Bearbeiten der init Datei</h2>
+<p>Sämtliche Einstellungen von Fluxbox können in der Datei <strong>~/.fluxbox/init</strong> bearbeitet werden. Nach dem Bearbeiten und Speichern mit einem beliebigen Texteditor können die neuen Einstellungen mit <strong>reconfigure</strong> (<strong>reload config</strong>) oder <strong>restart</strong> aus dem Fluxboxmenü geladen werden.</p>
+<p>Alle möglichen Einstellungen mit Beschreibung:</p>
+<p>(Aus der neuen man page): screen0 am Anfang bedeutet, dass diese Einstellungen nur für den ersten Bildschirm (Xinerama) angewendet werden. Für weitere Bildschirme kann screen1, screen2 etc. verwendet werden.</p>
+<h3 id="transparenz-alpha">transparenz (alpha)</h3>
+<p><code>session.screen0.menu.alpha: </code><integer><br /><code>session.screen0.slit.alpha: </code><integer><br /><code>session.screen0.toolbar.alpha: </code><integer><br /><code>session.screen0.window.focus.alpha: </code><integer><br /><code>session.screen0.window.unfocus.alpha: </code><integer><br /><code>     Mit diesen Zeilen kann die Transparenz der einzelnen </code><br /><code>     Fluxboxkomponenten angepasst werden. Der Wert ist dabei</code><br /><code>     eine Ganzzahl zwischen 0 und 255, wobei 0 vollständig</code><br /><code>     transparent und 255 deaktivierte Transparenz bedeutet. </code><br /><code>     Standardwert: 255</code></p>
+<h3 id="automatisches-ausblenden-autohide">automatisches ausblenden (autohide)</h3>
+<p><code>session.screen0.slit.autoHide: </code><boolean><br /><code>session.screen0.toolbar.autoHide: </code><boolean><br /><code>  Mit diesen Einstellungen kann man bewirken, dass</code><br /><code>  toolbar oder slit bei Nichtgebrauch automatisch ausgeblendet werden.</code><br /><code>  Der Wert ist dabei true (aktiviert) oder false (ständig sichtbar)   </code><br /><code>     Standardwert: false</code></p>
+<h3 id="mausrad-wheeling">mausrad (wheeling)</h3>
+<p><code>session.screen0.desktopwheeling: </code><boolean><br /><code>session.screen0.toolbar.wheeling: </code><boolean><br /><code>   Sind diese Einstellungen aktiviert (true) kann mit dem </code><br /><code>   Mausrad zwischen den Arbeitsflächen umgeschaltet werden, </code><br /><code>   entweder wenn sich die Maus über einem freien Desktopbereich</code><br /><code>   (desktopwheeling) oder über der toolbar (toolbar.wheeling) befindet. </code><br /><code>     Standardwert: true</code></p>
+<h3 id="ebenen-layer">ebenen (layer)</h3>
+<p><code>session.screen0.slit.layer: </code><layer><br /><code>session.screen0.toolbar.layer: </code><layer><br /><code>    Ebene auf der sich Slit und Toolbar befinden</code><br /><code>     Standardwert: Desktop</code></p>
+<h3 id="ontop-einstellungen">onTop Einstellungen</h3>
+<p><code>session.screen0.slit.onTop: </code><boolean><br /><code>session.screen0.toolbar.onTop: </code><boolean><br /><code>    Werden diese Einstellungen aktiviert befinden sich </code><br /><code>    toolbar/slit immer oberhalb aller anderer Fenster</code><br /><code>    Standardwert: False</code></p>
+<h3 id="standort-placement">standort (placement)</h3>
+<p><code>session.screen0.slit.placement: </code><placement><br /><code>session.screen0.toolbar.placement: </code><placement><br /><code>     Standort von Toolbar und Slit. Mögliche Optionen sind: </code><br /><code>     -   BottomCenter    Unten zentriert</code><br /><code>     -   BottomLeft      Unten links</code><br /><code>     -   BottomRight     Unten rechts</code><br /><code>     -   LeftCenter      Links zentriert</code><br /><code>     -   RightCenter     Rechts zentriert</code><br /><code>     -   TopCenter       Oben zentriert</code><br /><code>     -   TopLeft         Oben links</code><br /><code>     -   TopRight        Oben rechts</code></p>
+<h3 id="maxover">maxOver</h3>
+<p><code>session.screen0.slit.maxOver: </code><boolean><br /><code>session.screen0.toolbar.maxOver: </code><boolean><br /><code>     Sind diese Einstellungen aktiviert überdecken</code><br /><code>     maximierte Fenster die Toolbar / den Slit.  </code><br /><code>     Standardwert: false</code></p>
+<h3 id="toolbar">toolbar</h3>
+<p><code>session.screen0.toolbar.height: </code><integer><br /><code>     Hier kann die Höhe der Toolbar eingestellt werden. </code><br /><code>     Wird sie auf 0 gesetzt bestimmt der verwendete</code><br /><code>     Stil wie hoch sie ist</code><br /><code>     Standardwert: 0</code></p>
+<p><code>session.screen0.toolbar.visible: </code><boolean><br /><code>     Wird diese Option deaktiviert (false) ist die</code><br /><code>     toolbar komplett ausgeblendet</code><br /><code>     Standardwert: true</code></p>
+<p><code>session.screen0.toolbar.widthPercent: </code><integer><br /><code>     Die Breite der Toolbar, angegeben in Prozent der Bildschirmbreite</code><br /><code>     Standardwert: 100</code></p>
+<p><code>session.screen0.toolbar.tools: </code><tools><br /><code>     Definiert welche Werkzeuge die Toolbar zur Verfügung stellen soll.</code><br /><code>     Mehr dazu steht im Abschnitt Toolbar in der manpage. </code><br /><code>     Mögliche Auswahl:</code><br /><code>     -   clock   (uhr)</code><br /><code>     -   iconbar  (Fensterleiste)</code><br /><code>     -   nextwindow  (nächstes Fenster)</code><br /><code>     -   prevwindow  (vorheriges Fenster)</code><br /><code>     -   nextworkspace  (nächste Arbeitsfläche)</code><br /><code>     -   prevworkspace (vorherige Arbeitsfläche)</code><br /><code>     -   systemtray  (Systemabschnitt)</code><br /><code>     -   workspacename  (Name der Arbeitsfläche)</code></p>
+<h3 id="slit">slit</h3>
+<p><code>session.screen0.slit.onhead: </code><integer><br /><code>session.screen0.toolbar.onhead: </code><integer><br /><code>     Bestimmt bei Systemen mit mehreren Monitoren auf welchem </code><br /><code>     sich die Toolbar / der Slit befinden</code><br /><code>     Standardwert: 0</code><br /><code>session.screen0.slit.direction: Vertical</code><br /><code>     Ausrichtung des Slits, Horizontal oder Vertikal</code></p>
+<h3 id="iconbar">iconbar</h3>
+<p><code>session.screen0.iconbar.iconWidth: 70</code><br /><code>session.screen0.iconbar.mode: </code><mode><br /><code>     Welche Fenster sollen in der Fensterleiste angezeigt werden?</code><br /><code>     -   All Windows  (alle)</code><br /><code>     -   Icons  (minimierte)</code><br /><code>     -   None  (keine)</code><br /><code>     -   Workspace  (alle der aktuellen Arbeitsfläche)</code><br /><code>     -   WorkspaceIcons  (alle minimierten der aktuellen Arbeitsfläche)</code></p>
+<p><code>session.screen0.iconbar.usePixmap: </code><boolean><br /><code>     Sollen Icons in der Fensterleiste angezeigt werden?</code><br /><code>     Ja (true) oder nein (false)</code><br /><code>     Standardwert: true</code></p>
+<p><code>session.screen0.iconbar.iconTextPadding: 10l</code><br /><code>session.screen0.iconbar.deiconifyMode: Current</code><br /><code>session.screen0.iconbar.wheelMode: Screen</code><br /><code>session.screen0.iconbar.alignment: </code><position><br /><code>     Anordnung der Einträge in der Fensterleiste</code><br /><code>     Available options:</code><br /><code>      -   Left: Feste Breite, linksbündig</code><br /><code>      -   Relative: flexible Breite</code><br /><code>      -   Right: Feste Breite, rechtsbündig</code><br /><code>     Standardwert: Relative</code></p>
+<h3 id="overlay-settings">overlay settings</h3>
+<p><code>session.screen0.overlay.lineWidth: 1</code><br /><code>session.screen0.overlay.lineStyle: LineSolid</code><br /><code>session.screen0.overlay.joinStyle: JoinMiter</code><br /><code>session.screen0.overlay.capStyle: CapNotLast</code></p>
+<h3 id="reiter-tabs">reiter (tabs)</h3>
+<p><code>session.screen0.tab.alignment: Left</code><br /><code>     Anordnung der Reiter (tabs)</code><br /><code>session.screen0.tab.height: 16</code><br /><code>     Höhe der Reiter (tabs)</code><br /><code>session.screen0.tab.placement: Top</code><br /><code>session.screen0.tab.rotatevertical: True</code><br /><code>session.screen0.tab.width: 64</code><br /><code>     Breite der Reiter (tabs)</code></p>
+<h3 id="magneteffekt">magneteffekt</h3>
+<p><code>session.screen0.edgeSnapThreshold: </code><integer><br /><code>     Magneteffekt, damit Fenster sich an anderen oder an </code><br /><code>     den Seitenrändern festkleben. Die Zahl gibt den Abstand</code><br /><code>     an ab dem dieser Effekt aktiviert wird</code><br /><code>     Standardwert: 0</code></p>
+<h3 id="diverses">diverses</h3>
+<p><code>session.screen0.followModel: Ignore</code><br /><code>session.screen0.rowPlacementDirection: LeftToRight</code><br /><code>session.screen0.colPlacementDirection: TopToBottom</code><br /><code>session.screen0.resizeMode: Bottom</code><br /><code>session.screen0.focusModel: ClickToFocus</code><br /><code>session.screen0.autoRaise: </code><boolean><br /><code>session.screen0.clickRaises: </code><boolean><br /><code>session.screen0.workspacewarping: </code><boolean><br /><code>     Ist diese Option aktiviert können Fenster auf eine</code><br /><code>     andere Arbeitsfläche gezogen werden. </code><br /><code>     Standardwert: true</code><br /><code>session.screen0.showwindowposition: </code><boolean><br /><code>     Ist diese Option aktiviert wird beim Verschieben / Vergrössern</code><br /><code>     eines Fensters die momentane Position / Grösse in Form </code><br /><code>     von  x / y eingeblendet</code><br /><code>     Standardwert: true</code></p>
+<p><code>session.screen0.decorateTransient: </code><boolean><br /><code>session.screen0.showposinsidewindow: </code><boolean><br /><code>session.screen0.menuMode: Delay</code><br /><code>session.screen0.focusNewWindows: </code><boolean><br /><code>session.screen0.workspaceNames: workspace1, workspaceN</code><br /><code>     Standardwert: one, two, three, four</code></p>
+<p><code>session.screen0.menuDelayClose: 0</code><br /><code>session.screen0.strftimeFormat: </code><date><br /><code>     Format der Uhr in der Toolbar. Näheres dazu in der manpage von strftime(3)</code><br /><code>     Standardwert: %I:%M %p    </code></p>
+<p><code>session.screen0.windowPlacement: </code><Strategie><br /><code>     Diese Option gibt an wie Fluxbox neue Fenster automatisch platzieren soll</code><br /><code>     RowSmartPlacement reiht die Fenster ueberlappend auf,</code><br /><code>     ColSmartPlacement reiht sie ohne Ueberlappung nebeneinander,</code><br /><code>     CascadePlacement setzt es unter den Fenstertitel des letzten Fensters, </code><br /><code>     UnderMousePlacement setzt sie unter die aktuelle Mausposition</code><br /><code>     Standardwert: RowSmartPlacement</code></p>
+<p><code>session.screen0.rowPlacementDirection: LeftToRight|RightToLeft</code><br /><code>session.screen0.colPlacementDirection: TopToBottom|BottomToTop</code><br /><code>     Setzt die Richtung in der Fluxbox neue Fenster bei </code><br /><code>     RowSmartPlacement respektive ColSmartPlacement setzen soll.</code></p>
+<p><code>session.screen0.fullMaximization: </code><boolean><br /><code>session.screen0.sloppywindowgrouping: </code><boolean><br /><code>session.screen0.rootCommand: </code><command></p>
+<p><code>session.screen0.imageDither: </code><boolean></p>
+<p><code>session.screen0.menuDelay: </code><msec><br /><code>session.screen0.workspaces: </code><integer><br /><code>     Anzahl Arbeitsflächen</code><br /><code>     Standardwert: 4</code></p>
+<p><code>session.screen0.focusLastWindow: </code><boolean><br /><code>session.screen0.windowMenu:</code></p>
+<p><code>session.appsFile: </code><location><br /><code>session.groupFile: </code><location><br /><code>session.keyFile: </code><location><br /><code>session.menuFile: </code><location><br /><code>session.slitlistFile: </code><location><br /><code>session.styleFile: </code><location><br /><code>     Standort der Konfigurationsdateien. Normalerweise werden</code><br /><code>     die Dateien im ~/.fluxbox Verzeichnis abgelegt / verwendet </code></p>
+<p><code>session.autoRaiseDelay: </code><integer></p>
+<p><code>session.cacheLife: </code><integer></p>
+<p><code>session.cacheMax: </code><integer><br /><code>     </code></p>
+<p><code>session.colorsPerChannel: </code><integer><br /><code>   </code><br /><code>session.doubleClickInterval: </code><integer><br /><code>     Abstand (in Millisekunden) zwischen zwei Mausklicks damit</code><br /><code>     diese noch als Doppelklick gewertet werden</code><br /><code>     Standardwert: 250</code></p>
+<p><code>session.forcePseudoTransparency: </code><boolean><br /><code>session.focusTabMinWidth: 0</code><br /><code>session.iconbar: </code><boolean></p>
+<p><code>session.ignoreBorder: </code><boolean><br /><code>session.imageDither: </code><boolean></p>
+<p><code>session.numLayers: 13</code><br /><code>session.opaqueMove: </code><boolean><br /><code>     Anzeigen des Inhalts beim Verschieben eines Fensters. </code><br /><code>     Sollte auf langsamen Systemen deaktiviert (false) werden</code><br /><code>     Standardwert: true</code></p>
+<p><code>session.tabs: </code><boolean><br /><code>session.tabPadding: 0</code><br /><code>session.tabsAttachArea: Window</code></p>
+<p><code>session.titlebar.left: Stick</code><br /><code>session.titlebar.right: Minimize Maximize Close</code><br /><code>     Welche Knöpfe sollen im Fenstertitel angezeigt werden, </code><br /><code>     in welcher Reihenfolge und auf welcher Seite. </code><br /><code>     Auswahl: </code><br /><code>     Stick  Klebezustand</code><br /><code>     Menu  Fenstermenü</code><br /><code>     Shade  Auf/Abrollen</code><br /><code>     Minimize  Minimieren</code><br /><code>     Maximize  Maximieren</code><br /><code>     Close.  Schliessen</code></p>
+<p><code>session.updateDelayTime: 0</code><br /><code>session.useMod1: </code><boolean></p>
+<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+</body>
+</html>
