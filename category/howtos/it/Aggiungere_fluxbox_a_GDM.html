@@ -1,32 +1,127 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-<title>Italian</title>
-</head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="Emanuele Casali - ecasali@ternilug.org" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fluxbox Wiki</title>
+	<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+	<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+	<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+	<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
+  </head>
+
+
+
 <body>
-<H1>Italian Howtos</H1>
-<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
-<hr>
-<H2>Agguingere fluxbox a GDM</H2>
+
+<div class="container theme-showcase" role="main">
+ 
+ <!-- BEGINNING: NAV MENU -->
+      <div class="header">
+          <ul class="nav nav-pills pull-right" style="font-size:15px">
+            <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+            <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+            <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+            <li><a href="#searchfield">Search</a></li>
+            <li class="dropdown, active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+              </ul>
+
+            </li>
+            <li> 
+           
+            </li>
+        </ul>
+        <p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+
+      </div>
+      
+<!-- END: NAV MENU -->   
+
+
+
+
+<div class="page-header">
+<h1>Agguingere fluxbox a GDM</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+  
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+ 
+ 
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>1. Introduzione</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
 
 <p>Quando viene installato fluxbox da sorgenti, nel caso in cui utilizziate un Desktop Manager come GDM, e' necessario aggiungere una voce nel menu di GDM che permetta di selezionare fluxbox al login.</p>
 <p>Per fare cio' e' necessario creare un file chiamato <code>fluxbox.desktop</code> nella directory <code>/usr/share/xsessions/</code> e inserire al suo interno delle istruzioni che variano a seconda del tipo di distribuzione utilizzata.</p>
-<h3 id="debian">Debian</h3>
-<pre><code>[Desktop Entry]
-Name=Fluxbox
-Comment=Highly configurable and low resource X11 Window manager
-Exec=/usr/local/bin/startfluxbox
-Terminal=false
-TryExec=/usr/local/bin/startfluxbox
-Type=Application
+      
+       
 
-[X-Window Manager]
-SessionManaged=true</code></pre>
+<h3>1.1 Debian</h3>
+
+<pre>
+	[Desktop Entry]
+	Name=Fluxbox
+	Comment=Highly configurable and low resource X11 Window manager
+	Exec=/usr/local/bin/startfluxbox
+	Terminal=false
+	TryExec=/usr/local/bin/startfluxbox
+	Type=Application
+
+	[X-Window Manager]
+	SessionManaged=true
+</pre>
 <p>Nota: <code>/usr/local/bin/startfluxbox</code> e' il percorso predefinito usato compilando da sorgenti.</p>
-<h3 id="slackware">Slackware</h3>
-<p><code>[DesktopEntry]</code><br /><code>Encoding=UTF-8</code><br /><code>Type=XSession</code><br /><code>Name=Fluxbox</code><br /><code>Exec=/etc/X11/xinit/xinitrc.fluxbox</code></p>
+       
+       
+       
+
+<h3>1.2 Slackware</h3>
+
+<pre>
+	[DesktopEntry]
+	Encoding=UTF-8
+	Type=XSession
+	Name=Fluxbox
+	Exec=/etc/X11/xinit/xinitrc.fluxbox
+</pre>
+
 <p>Salvate il file e cambiate i suoi permessi attraverso il seguente comando:</p>
 <p><code>chmoda+x/usr/share/xsession/fluxbox.desktop</code></p>
 <p>Al riavvio di GDM nel menu che vi permette di scegliere il window manager dovrebbe apparire una voce in piu' relativa a fluxbox.</p>
-</body>
+
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+      
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+    <div class="footer">
+    	<br>
+    	<a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      	<br>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
 </html>
