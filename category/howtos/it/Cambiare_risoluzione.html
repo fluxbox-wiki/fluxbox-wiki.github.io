@@ -1,19 +1,81 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-<title>Italian</title>
-</head>
-<body>
-<H1>Italian Howtos</H1>
-<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
-<hr>
-<h2>Cambiare risoluzione</hs>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="Emanuele Casali - ecasali@ternilug.org" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-<h2 id="xrandr">Xrandr</h2>
+    <title>Fluxbox Wiki</title>
+	<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+	<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+	<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+	<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
+  </head>
+
+
+
+<body>
+
+<div class="container theme-showcase" role="main">
+ 
+ <!-- BEGINNING: NAV MENU -->
+      <div class="header">
+          <ul class="nav nav-pills pull-right" style="font-size:15px">
+            <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+            <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+            <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+            <li><a href="#searchfield">Search</a></li>
+            <li class="dropdown, active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+              </ul>
+
+            </li>
+            <li> 
+           
+            </li>
+        </ul>
+        <p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+
+      </div>
+      
+<!-- END: NAV MENU -->   
+
+
+
+
+<div class="page-header">
+<h1>Cambiare risoluzione</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+  
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+ 
+ 
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>1. Xrandr</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
+
 <p>Xrandr dovrebbe esserci su qualunque distribuzione con l'installazione del server X e pu essere utilizzato per cambiare risoluzione. Per prima cosa digitare in un terminale il seguente comando:</p>
-<p><code>xrandr</code></p>
+<pre>
+	$ xrandr
+</pre>
 <p>L'output dovrebbe essere simile a questo:</p>
-<pre><code>Screen 0: minimum 320 x 200, current 1280 x 1024, maximum 4096 x 4096
+<pre>
+Screen 0: minimum 320 x 200, current 1280 x 1024, maximum 4096 x 4096
 VGA-1 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 280mm x 210mm
    1024x768       85.0     75.1     70.1     60.0     43.5  
    800x600        85.1     72.2     75.0     60.3     56.2  
@@ -21,47 +83,111 @@ VGA-1 connected 1280x1024+0+0 (normal left inverted right x axis y axis) 280mm x
    720x400        70.1  
    1280x1024_60.00   59.9* 
 DVI-I-1 disconnected (normal left inverted right x axis y axis)
-TV-1 disconnected (normal left inverted right x axis y axis)</code></pre>
+TV-1 disconnected (normal left inverted right x axis y axis)
+</pre>
 <p>Per modificare la risoluzione digitate qualcosa di simile:</p>
-<p><code>xrandr-s1024x768</code></p>
-<p>Se si desidera impostare il framerate utilizzare il parametro <strong>-r <rate></strong>:</p>
-<p><code>xrandr-s800x600-r60</code></p>
+<pre>
+	xrandr-s1024x768
+</pre>
+<p>Se si desidera impostare il framerate utilizzare il parametro <strong>-r rate</strong>:</p>
+<pre>
+	xrandr-s800x600-r60
+</pre>
 <p>Per settare la modalit 800x600 con 60 Hz di refresh rate.</p>
-<h2 id="interfacce-grafiche">Interfacce grafiche</h2>
+<p>Xrandr non salva alcuna configurazione, ci significa che bisogna richiamarlo ogni volta che si avvia X.</p>      
+       
+
+<h2>2. Interfacce grafiche</h2>
+
 <p>Un'altra via consiste nell'usare un frontend grafico come:</p>
 <ul>
 <li><a href="http://christian.amsuess.com/tools/arandr/">arandr</a></li>
 <li><a href="http://albertomilone.com/urandr.html">urandr</a></li>
 <li><a href="http://kde-apps.org/content/show.php/xramdr?content=70521">xramdr</a></li>
 </ul>
-<h1 id="soluzioni-permanenti">Soluzioni permanenti</h1>
-<p>Xrandr non salva alcuna configurazione, ci significa che bisogna richiamarlo ogni volta che si avvia X.</p>
-<h2 id="il-file-startup">Il file startup</h2>
-<p>Inserire il comando &quot;xrandr -s 1024x768&quot; in ~/.fluxbox/startup</p>
-<h2 id="xorg.conf">Xorg.conf</h2>
-<p>Modificare il file <strong>/etc/X11/xorg.conf</strong> come utente root (o creare il file <code>/usr/share/X11/xorg.conf.d/resolution</code> inserendo il blocco seguente).</p>
+       
+
+<h2>3. Soluzioni per rendere permanente la configurazione</h2>
+
+<h3>3.1 File di startup </h3>
+<p>Inserire il comando &quot;xrandr -s 1024x768&quot; in <code>~/.fluxbox/startup</code></p>
+
+<h3>3.2 Xorg.conf</h3>
+<p>Modificare il file <code>/etc/X11/xorg.conf</code> come utente root (o creare il file <code>/usr/share/X11/xorg.conf.d/resolution</code> inserendo il blocco seguente).</p>
 <p>Cercate la sezione Screen e si dovrebbe avere un output del genere:</p>
-<p><code>Section&quot;Screen&quot;</code><br /><code>Identifier&quot;DefaultScreen&quot;</code><br /><code>Device&quot;geforce256&quot;</code><br /><code>Monitor&quot;S/M950p&quot;</code><br /><code>DefaultDepth24</code><br /><code>SubSection&quot;Display&quot;</code><br /><code>Depth16</code><br /><code>Modes&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;1024x768&quot;&quot;800x600&quot;&quot;640x480&quot;</code><br /><code>EndSubSection</code><br /><code>SubSection&quot;Display&quot;</code><br /><code>Depth24</code><br /><code>Modes&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;1024x768&quot;&quot;800x600&quot;&quot;640x480&quot;</code><br /><code>EndSubSection</code><br /><code>EndSection</code></p>
+<pre>
+
+	Section&quot;Screen&quot;
+	Identifier&quot;DefaultScreen&quot;
+	Device&quot;geforce256&quot;
+	Monitor&quot;S/M950p&quot;
+	DefaultDepth24
+	SubSection&quot;Display&quot;
+	Depth16
+		Modes&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;1024x768&quot;&quot;800x600&quot;&quot;640x480&quot;
+	EndSubSection
+	SubSection&quot;Display&quot;
+	Depth24
+	Modes&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;1024x768&quot;&quot;800x600&quot;&quot;640x480&quot;
+	EndSubSection
+	EndSection
+</pre>
 <p>(Su sistemi multi monitor controllare i campi <em>Device</em> e <em>Monitor</em> in modo da modificare le righe per quello corretto)</p>
-<p>Ora si deve aggiungere la risoluzione che si desidera avere all'avvio all<strong>'inizio</strong> della lista dei Modes. Quindi, se si desidera utilizzare 1024x768 invece di 1600x1200, modificare cos:</p>
-<p><code>Section&quot;Screen&quot;</code><br /><code>Identifier&quot;DefaultScreen&quot;</code><br /><code>Device&quot;geforce256&quot;</code><br /><code>Monitor&quot;S/M950p&quot;</code><br /><code>DefaultDepth24</code><br /><code>SubSection&quot;Display&quot;</code><br /><code>Depth16</code><br /><code>Modes&quot;1024x768&quot;&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;800x600&quot;&quot;640x480&quot;</code><br /><code>EndSubSection</code><br /><code>SubSection&quot;Display&quot;</code><br /><code>Depth24</code><br /><code>Modes&quot;1024x768&quot;&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;800x600&quot;&quot;640x480&quot;</code><br /><code>EndSubSection</code><br /><code>EndSection</code></p>
+<p>Ora si deve aggiungere la risoluzione che si desidera avere all'avvio all'<strong>inizio</strong> della lista dei Modes. Quindi, se si desidera utilizzare 1024x768 invece di 1600x1200, modificare cosi':</p>
+<pre>
+	Section&quot;Screen&quot;
+	Identifier&quot;DefaultScreen&quot;
+	Device&quot;geforce256&quot;
+	Monitor&quot;S/M950p&quot;
+	DefaultDepth24
+	SubSection&quot;Display&quot;
+	Depth16
+	Modes&quot;1024x768&quot;&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;800x600&quot;&quot;640x480&quot;
+	EndSubSection
+	SubSection&quot;Display&quot;
+	Depth24
+	Modes&quot;1024x768&quot;&quot;1600x1200&quot;&quot;1280x1024&quot;&quot;800x600&quot;&quot;640x480&quot;
+	EndSubSection
+	EndSection
+</pre>
 <p>Si noti che tutte le modalita' devono essere tra virgolette. Si potrebbe anche eliminare tutte le altre modalit che non servono, ma  meglio averle nel caso in cui una non sia supportata; in questo caso verra' usata la successiva. Se non ci sono modalita' di riserva, X non si avvier.</p>
-<h2 id="aggiungere-una-modeline">Aggiungere una modeline</h2>
+
+<h2>4. Aggiungere una modeline</h2>
+
+
 <p>Come abbiamo visto all'inizio nell'output di xrand, c'e' una riga che appare diversa dalle altre:</p>
-<p><code>1280x1024_60.0059.9*</code></p>
-<p>Questa e' la risoluzione massima del mio monitor ma Xorg non la riconosce automaticamente; per cui creo ed applico la modeline ogni volta che fluxbox parte. In ~/.fluxbox/startup ho:</p>
-<pre><code>#screen resolution
-xrandr --newmode &quot;1280x1024_60.00&quot;  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
-xrandr --addmode VGA-1 1280x1024_60.00
-xrandr --output VGA-1 --mode 1280x1024_60.00</code></pre>
-<p>La modeline si ottiene con</p>
-<p><code>cvt12801024</code></p>
+<pre>1280x1024_60.0059.9*</pre>
+<p>Questa e' la risoluzione massima del mio monitor ma Xorg non la riconosce automaticamente; per cui creo ed applico la modeline ogni volta che fluxbox parte. In <code>~/.fluxbox/startup</code> ho:</p>
+<pre>
+	#screen resolution
+	xrandr --newmode &quot;1280x1024_60.00&quot;  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
+	xrandr --addmode VGA-1 1280x1024_60.00
+	xrandr --output VGA-1 --mode 1280x1024_60.00
+</pre>
+<p>La modeline si ottiene con: <code>cvt12801024</code></p>
 <p>La stessa cosa  ottenibile tramite <code>/etc/X11/xorg.conf</code> (o creando /usr/share/X11/xorg.conf.d/resolution con il seguente blocco):</p>
-<pre><code>Section &quot;Monitor&quot;
+<pre>
+	Section &quot;Monitor&quot;
         Identifier      &quot;529B&quot;
         Option          &quot;DPMS&quot;
         Modeline        &quot;1280x1024_60.00&quot;  109.00  1280 1368 1496 1712  1024 1027 1034 1063 -hsync +vsync
-        Option          &quot;PreferredMode&quot; &quot;1280x1024_60.00&quot;</code></pre>
+        Option          &quot;PreferredMode&quot; &quot;1280x1024_60.00&quot;
+</pre>
 
-</body>
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+      
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+    <div class="footer">
+    	<br>
+    	<a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      	<br>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
 </html>

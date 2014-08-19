@@ -1,42 +1,188 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-<title>Italian</title>
-</head>
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="Emanuele Casali - ecasali@ternilug.org" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fluxbox Wiki</title>
+	<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+	<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+	<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+	<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
+  </head>
+
+
+
 <body>
-<H1>Italian Howtos</H1>
-<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
-<hr>
-<h2>Cambiare i font</h2>
+
+<div class="container theme-showcase" role="main">
+ 
+ <!-- BEGINNING: NAV MENU -->
+      <div class="header">
+          <ul class="nav nav-pills pull-right" style="font-size:15px">
+            <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+            <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+            <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+            <li><a href="#searchfield">Search</a></li>
+            <li class="dropdown, active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+              </ul>
+
+            </li>
+            <li> 
+           
+            </li>
+        </ul>
+        <p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+
+      </div>
+      
+<!-- END: NAV MENU -->   
+
+
+
+
+<div class="page-header">
+<h1>Cambiare i font</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+  
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+ 
+ 
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>1. Introduzione</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
+
 <p>E' importante sapere che per le applicazioni esterne come firefox o k3b fluxbox non gestisce i font; questi sono invece gestiti dai rispettivi toolkit (gtk, qt, ecc.). I font di fluxbox sono soltanto per la toolbar, il titolo delle finestre e i menu (rootmenu, windowmenu, toolbarmenu, ecc.).</p>
-<h3 id="fluxbox-0.9.15-e-successivi">Fluxbox 0.9.15 e successivi</h3>
-<p>Per modificare l'aspetto dei caratteri e' consigliabile utilizzare il file <a href="http://fluxbox-wiki.org/index.php?title=Style_overlay">overlay</a>,  molto piu' semplice che modificare i temi singolarmente.</p>
-<h3 id="fluxbox-prima-del-0.9.15">Fluxbox prima del 0.9.15</h3>
-<p>E' possibile modificare facilmente il file del tema cercando la stringa: <code>*font: &lt;nome_font&gt;</code>. Se non si sa dove sia il tema copiare questo script in un file e renderlo eseguibile:</p>
-<p><code>#!/bin/bash</code><br /><code>THEME=$(grep-i&quot;^.*\.stylefile:.*$&quot;~/.fluxbox/init|cut-d:-f2)</code><br /><code>if[-d$THEME]</code><br /><code>then</code><br /><code>execvi$THEME/theme.cfg</code><br /><code>else</code><br /><code>execvi$THEME</code><br /><code>fi</code></p>
-<p>Le voci possibili nel tema sono:</p>
-<p><code>menu-title(iltitolodelmenudelleapplicazioni,chiamatorootmenu)</code><br /><code></code><strong><code>menu.title.font:</code> <nome_font></strong></p>
-<p><code>frame(le voci nel rootmenu)</code><br /><code></code><strong><code>menu.frame.font:</code> <nome_font></strong></p>
-<p><code>window(il font del titolo delle finestre)</code><br /><code></code><strong><code>window.font:</code> <nome_font></strong></p>
-<p><code>clock(l'orologio nella tool bar)</code><br /><code></code><strong><code>toolbar.clock.font:</code> <nome_font></strong></p>
-<p><code>workspace(il font dell'etichetta dell'area di lavoro)</code><br /><code></code><strong><code>toolbar.workspace.font:</code> <nome_font></strong></p>
-<p><code>iconbar(l'etichetta dell'applicazione nella toolbar)</code><br /><code></code><strong><code>toolbar.iconbar.focused.font:</code> <fontname></strong><code></code><br /><code></code><strong><code>toolbar.iconbar.unfocused.font:</code> <nome_font></strong></p>
-<h3 id="nomi-dei-font">Nomi dei font</h3>
+      
+       
+
+<h2>2. Fluxbox 0.9.15 e successivi</h2>
+
+
+<p>Per modificare l'aspetto dei caratteri e' consigliabile utilizzare il file overlay,  molto piu' semplice che modificare i temi singolarmente.</p>
+     
+       
+       
+       
+
+<h2>3. Fluxbox prima del 0.9.15</h2>
+
+E' possibile modificare facilmente il file del tema cercando la stringa: <code>*font: &lt;nome_font&gt;</code>. Se non si sa dove sia il tema copiare questo script in un file e renderlo eseguibile:</p>
+<pre>
+	#!/bin/bash
+	THEME=$(grep-i&quot;^.*\.stylefile:.*$&quot;~/.fluxbox/init|cut-d:-f2)
+	if[-d$THEME]
+		then
+		execvi$THEME/theme.cfg
+	else
+		execvi$THEME
+	fi
+</pre>
+
+Le voci possibili nel tema sono:
+<pre>
+	menu-title(il titolo del menu delle applicazioni,chiamato rootmenu)
+	menu.title.font:
+
+	frame(le voci nel rootmenu)
+	menu.frame.font:
+
+	window(il font del titolo delle finestre)
+	window.font:
+
+	clock(l'orologio nella tool bar)
+	toolbar.clock.font:
+
+	workspace(il font dell'etichetta dell'area di lavoro)
+	toolbar.workspace.font:
+
+	iconbar(l'etichetta dell'applicazione nella toolbar)
+	toolbar.iconbar.focused.font:
+	toolbar.iconbar.unfocused.font:
+	toolbar.iconbar.unfocused.font:
+</pre>
+
+
+<h2>4. Nomi dei font </h2>
+
+
 <p>Utilizzando font xtf (ttf) la sintassi : <code>&lt;nome_font&gt;-dimensione</code>.  necessario avere libxft installata. E' possibile impostare il grassetto con l'aggiunta di <code>&quot;:bold&quot;</code>, ecco un esempio:</p>
-<p><code>Zekton-8:bold</code></p>
+<pre>
+	Zekton-8:bold
+</pre>
 <p>Utilizzando i font di X (xfont) eseguire o qualsiasi altra applicazione simile per ottenere la stringa corretta, ad esempio:</p>
-<p><code>-*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*</code></p>
+<pre>
+	-*-lucida-medium-r-*-*-12-*-*-*-*-*-*-*
+</pre>
 <p>Inoltre e' possibile specificare piu' font:</p>
-<p><code>arial-10|-artwiz-snap-*-</code></p>
+<pre>
+	arial-10|-artwiz-snap-*-
+</pre>
 <p>in questo modo fluxbox carica (se compilato con xft) arial-10, altrimenti caricher un font xft di fallback (solitamente sans); se invece non  presente il supporto xft user il font artwiz (fixed come fallback). In questo modo verra' comunque utilizzato un font, anche se non  quello impostato nel tema.</p>
-<h2 id="effetti">Effetti</h2>
-<p>Dopo il rilascio di fluxbox 0.9.14, la gestione degli effetti dei font  leggermente cambiata. E' necessario specificarli in una linea separata e non come un attributo come prima.</p>
+
+
+
+<h2>5. Effetti </h2>
+
+<p>Dopo il rilascio di fluxbox 0.9.14, la gestione degli effetti dei font e' leggermente cambiata. E' necessario specificarli in una linea separata e non come un attributo come prima.</p>
 <p>Queste opzioni sono disponibili solo per i caratteri xft.</p>
+
 <p><strong>Shadow:</strong></p>
-<p><code>*.font.effect:shadow</code><br /><code>*.font.shadow.color:</code><color><br /><code>*.font.shadow.x:</code><int></p>
+<pre>
+	*.font.effect:shadow
+	*.font.shadow.color:
+	*.font.shadow.x:
+</pre>
+
 <p><strong>Halo:</strong></p>
-<p><code>*.font.effect:halo</code><br /><code>*.font.halo.color:</code><color></p>
-<p>E' possibile impostare un effetto, un ombra o un alone; ecco un esempio di come pu essere configurato:</p>
-<p><code>menu.title.font:sans-8:bold</code><br /><code>menu.title.font.effect:shadow</code><br /><code>menu.title.font.shadow.color:#ffffff</code><br /><code>menu.title.font.shadow.x:2</code><br /><code>menu.title.font.shadow.y:5</code><br /><code>----</code><br /><code></code><a href="http://tenr.de/howto/style_fluxbox/rootmenu2.png"><code>menu</code> <code>di</code> <code>esempio</code></a></p>
-</body>
+<pre>
+	*.font.effect:halo
+	*.font.halo.color:
+</pre>
+
+<p>E' possibile impostare un effetto, un ombra o un alone; ecco un esempio di come puo' essere configurato:</p>
+<pre>
+	menu.title.font:sans-8:bold
+	menu.title.font.effect:shadow
+	menu.title.font.shadow.color:#ffffff
+	menu.title.font.shadow.x:2
+	menu.title.font.shadow.y:5
+</pre>
+<p><a href="http://tenr.de/howto/style_fluxbox/rootmenu2.png">menu di esempio</a></p>
+
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+      
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+    <div class="footer">
+    	<br>
+    	<a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      	<br>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
 </html>

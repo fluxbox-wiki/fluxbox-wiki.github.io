@@ -1,67 +1,178 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-<title>Italian</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="Emanuele Casali - ecasali@ternilug.org" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fluxbox Wiki</title>
+	<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+	<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+	<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+	<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
+  </head>
+
+
+
 <body>
-<H1>Italian Howtos</H1>
-<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
-<hr>
-<h2>Cambiare il background</h2>
+
+<div class="container theme-showcase" role="main">
+ 
+ <!-- BEGINNING: NAV MENU -->
+      <div class="header">
+          <ul class="nav nav-pills pull-right" style="font-size:15px">
+            <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+            <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+            <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+            <li><a href="#searchfield">Search</a></li>
+            <li class="dropdown, active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+              </ul>
+
+            </li>
+            <li> 
+           
+            </li>
+        </ul>
+        <p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+
+      </div>
+      
+<!-- END: NAV MENU -->   
+
+
+
+
+<div class="page-header">
+<h1>Cambiare il background</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+  
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+ 
+ 
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>1. Introduzione</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
+
 <p>Per cambiare lo sfondo in fluxbox viene utilizzata l'utility fbsetbg.</p>
-<h2 id="cos-fbsetbg">Cos'e' fbsetbg?</h2>
+<p>Pre ulteriori informazioni: <a href="http://fluxbox.org/help/man-fbsetbg.php">manuale di fbsetbg</a></p>
+      
+       
+
+<h2>2. Cos'e' fbsetbg?</h2>
+
+
 <p>fbsetbg e' un wrapper (con questo termine in informatica si indica oggetto che incapsula e delega ad un altro oggetto il compito di modificare in qualche modo la sua interfaccia o il suo comportamento) che prova a trovare un'applicazione per impostare lo sfondo. fbsetbg non deve essere configurato, per prima cosa bisogna accertarsi che abbia a disposizione un'applicazione per poter gestire lo sfondo; eseguire il comando:</p>
-<p><code>fbsetbg -i</code></p>
+<pre>fbsetbg -i</pre>
 <p>se non  disponibile alcun programma adatto verra' consigliato di installare Esetroot. Questo per fa parte di Eterm, in caso si usi un altro emulatore di terminale, il visualizzatore di immagini feh  un'ottima alternativa.</p>
-<h2 id="come-si-usa-fbsetbg">Come si usa fbsetbg?</h2>
+       
+       
+       
+
+<h2>3. Come si usa fbsetbg?</h2>
+
 <p>Il modo piu' semplice di usarlo consiste nell'eseguire in un terminale il seguente comando:</p>
-<p><code>fbsetbgnome_file</code></p>
+<pre>
+	$fbsetbg nome_file
+</pre>
 <p>dove nome_file  il file selezionato per lo sfondo. Il comando pu essere usato anche con dei parametri:</p>
 <ul>
-<li>-f : wallpaper a tutto schermo</li>
-</ul>
-<ul>
-<li>-c : wallpaper centrato</li>
-</ul>
-<ul>
-<li>-t : wallpaper affiancato</li>
-</ul>
-<ul>
-<li>-r : in questo caso l'argomento nome_file deve essere una directory; seleziona in modo casuale un wallpaper dalla directory specificata.</li>
+	<li>-f : wallpaper a tutto schermo</li>
+
+	<li>-c : wallpaper centrato</li>
+
+	<li>-t : wallpaper affiancato</li>
+
+	<li>-r : in questo caso l'argomento nome_file deve essere una directory; seleziona in modo casuale un wallpaper dalla directory specificata.</li>
+	
 </ul>
 <p>Il programma registra in automatico l'ultimo wallpaper usato e i parametri relativi nel file <code>~/.fluxbox/lastwallpaper</code>.</p>
-<h2 id="quali-programmi-possono-essere-utilizzati-da-fbsetbg">Quali programmi possono essere utilizzati da fbsetbg?</h2>
+
+
+
+<h2>4. Quali programmi possono essere utilizzati da fbsetbg?</h2>
+
+
 <ul>
-<li>Esetroot</li>
-<li>wmsetbg</li>
-<li>feh</li>
-<li>hsetroot</li>
-<li>chbg</li>
-<li>display</li>
-<li>qiv</li>
-<li>xv</li>
-<li>xsri</li>
-<li>xli</li>
-<li>xsetbg</li>
+	<li>Esetroot</li>
+	<li>wmsetbg</li>
+	<li>feh</li>
+	<li>hsetroot</li>
+	<li>chbg</li>
+	<li>display</li>
+	<li>qiv</li>
+	<li>xv</li>
+	<li>xsri</li>
+	<li>xli</li>
+	<li>xsetbg</li>
 </ul>
 <p>Si tenga presente che di questi solamente esetroot, feh e wmsetbg supportano la trasparenza; di questi i due migliori sono sicuramente feh e esetroot.</p>
-<h2 id="impostare-lo-sfondo-in-un-tema">Impostare lo sfondo in un tema</h2>
+
+<h2>5. Impostare lo sfondo in un tema</h2>
+
 <p>Per cambiare lo sfondo in un tema sono necessarie le seguenti righe di codice:</p>
-<p><code>background:centered|aspect|tiled|fullscreen|random|solid|gradient</code><texture><code>|mod|none</code><br /><code>background.pixmap:</code><file o directory><br /><code>background.color:</code><colore><br /><code>background.colorTo:</code><colore><br /><code>background.modX:</code><valore numerico><br /><code>background.modY:</code><valore numerico></p>
+<pre>
+	background:centered|aspect|tiled|fullscreen|random|solid|gradient|mod|none
+	background.pixmap: -file o directory-
+	background.color: -colore-
+	background.colorTo: -colore- 
+	background.modX: -valore numerico- 
+	background.modY: -valore numerico-
+</pre>
 <p>Quando viene utilizzata una tra le opzioni centered|aspect|tiled|fullscreen, &quot;background.pixmap&quot; deve puntare al file che verr impostato come sfondo; qualora venisse utilizzata l'ozione random, &quot;background.pixmap&quot; deve puntare ad una directory dalla quale ad ogni avvio di fluxbox viene selezionato uno sfondo a caso. Per uno sfondo a colore pieno  necessario usare il parametro &quot;background.color&quot;; le texture con gradienti (descritte pi dettagliatamente nella pagina di manuale di fbsetroot) richiedono sia &quot;background.color&quot; sia &quot;background.colorTo&quot;. &quot;background.modX&quot; e &quot;background.modY&quot; sono specifici per il tipo di background &quot;mod&quot; (descritto pi dettagliatamente nella pagina di manuale di fbsetroot) che richiede anche &quot;background.color&quot; e &quot;background.colorTo&quot;.</p>
-<h2 id="impostare-un-wallpaper-allavvio">Impostare un wallpaper all'avvio</h2>
-<p>A partire da fluxbox 0.9.15  stata introdotto l'uso del file <strong><a href="http://fluxbox-wiki.org/index.php?title=Style_overlay">overlay</a>]</strong>.</p>
+
+
+<h2>6. Impostare un wallpaper all'avvio</h2>
+
+<p>A partire da fluxbox 0.9.15  stata introdotto l'uso del file <strong>overlay</strong>.</p>
 <p>Assicurarsi di avere la seguente riga nel file <code>~/.fluxbox/init</code>:</p>
-<p><code>session.styleOverlay:~/.fluxbox/overlay</code></p>
-<p>Questo file pu essere utilizzato per impostare qualsiasi attributo del tema; configurando il background in questo modo verr sovrascritto qualsiasi background si usi nei propri temi.</p>
+<pre>
+	session.styleOverlay:~/.fluxbox/overlay
+</pre>
+<p>Questo file puo' essere utilizzato per impostare qualsiasi attributo del tema; configurando il background in questo modo verra' sovrascritto qualsiasi background si usi nei propri temi.</p>
 <p>Il vecchio metodo e' deprecato e consisteva nell'utilizzare</p>
-<p><code>session.screen0.rootCommand:fbsetbg-l</code></p>
-<p>in <code>~/.fluxbox/init</code>. Con le nuove versioni, fluxbox richiama fbsetbg automaticamente ogni volta che si avvia; se si vuole ottenere lo stesso risultato rimuovere il commento iniziale (o inserire la stringa se non c') alla voce</p>
-<p><code>background:none</code></p>
+
+<pre>
+	ession.screen0.rootCommand:fbsetbg-l
+</pre>
+
+<p>in <code>~/.fluxbox/init</code>. Con le nuove versioni, fluxbox richiama fbsetbg automaticamente ogni volta che si avvia; se si vuole ottenere lo stesso risultato rimuovere il commento iniziale (o inserire la stringa se non c'e') alla voce</p>
+
+<pre>
+	background:none
+</pre>
+
 <p>nel file <code>~/.fluxbox/overlay</code>.</p>
-<h2 id="collegamenti-esterni">Collegamenti esterni</h2>
-<ul>
-<li><a href="http://fluxbox.org/help/man-fbsetbg.php">manuale di fbsetbg</a></li>
-</ul>
-</body>
+
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+      
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+    <div class="footer">
+    	<br>
+    	<a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      	<br>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
 </html>
