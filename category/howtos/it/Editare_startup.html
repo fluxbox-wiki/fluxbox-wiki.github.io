@@ -1,32 +1,166 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-<title>Italian</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="EC" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fluxbox Wiki</title>
+	<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+	<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+	<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+	<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
+  </head>
+
+
+
 <body>
-<H1>Italian Howtos</H1>
-<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
-<hr>
-<h2>Editare il file di startup</hs>
-<h2 id="editare-il-file-di-startup-per-lanciare-le-applicazioni-che-vuoi">Editare il file di startup per lanciare le applicazioni che vuoi</h2>
-<p>Il file di default  ~/.fluxbox/startup e' usato da startfluxbox ed ha una forma simile alla seguente: (se non ne possiedi uno, assicurati che fluxbox parta con startfluxbox).</p>
-<p><code>#!/bin/sh</code><br /><code>#</code><br /><code>#fluxbox startup-script:</code><br /><code>#</code><br /><code>#Lines starting with a'#'are ignored.</code><br /><br /><code>#Changeyourkeymap:</code><br /><code>xmodmap&quot;$HOME/.Xmodmap&quot;</code><br /><br /><code>#Applications you want to run with fluxbox.</code><br /><code>#MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN&amp;AT THE END.</code><br /><code>#</code><br /><code>#unclutter-idle2&amp;</code><br /><code>#wmnd&amp;</code><br /><code>#wmsmixer-w&amp;</code><br /><code>#idesk&amp;</code><br /><br /><code>#And last but not least we start fluxbox.</code><br /><code>#Because it is the last app you have to run it with exec before it.</code><br /><br /><code>execfluxbox</code><br /><code>#or if you want to keep a log:</code><br /><code>#exec fluxbox-log&quot;$fluxdir/log&quot;</code></p>
+
+<div class="container theme-showcase" role="main">
+ 
+ <!-- BEGINNING: NAV MENU -->
+      <div class="header">
+          <ul class="nav nav-pills pull-right" style="font-size:15px">
+            <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+            <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+            <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+            <li><a href="#searchfield">Search</a></li>
+            <li class="dropdown, active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+              </ul>
+
+            </li>
+            <li> 
+           
+            </li>
+        </ul>
+        <p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+
+      </div>
+      
+<!-- END: NAV MENU -->   
+
+
+
+
+<div class="page-header">
+<h1>Editare il file di startup</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+  
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+ 
+ 
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>1. Lancio delle applicazioni</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
+<p>Il file di default  <code>~/.fluxbox/startup</code> e' usato da startfluxbox ed ha una forma simile alla seguente: (se non ne possiedi uno, assicurati che fluxbox parta con startfluxbox)</p>
+
+<pre>
+	#!/bin/sh
+	#
+	#fluxbox startup-script:
+	#
+	#Lines starting with a'#'are ignored.
+	#Changeyourkeymap:
+	xmodmap&quot;$HOME/.Xmodmap&quot;
+	#Applications you want to run with fluxbox.
+	#MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN&amp;AT THE END.
+	#
+	#unclutter-idle2&amp;
+	#wmnd&amp;
+	#wmsmixer-w&amp;
+	#idesk&amp;
+	#And last but not least we start fluxbox.
+	#Because it is the last app you have to run it with exec before it.
+	execfluxbox
+	#or if you want to keep a log:
+	#exec fluxbox-log&quot;$fluxdir/log&quot;
+</pre>
 <p>Ora aggiungi tutte le applicazioni che vuoi lanciare dopo:</p>
-<p><code>#And last but not least we start fluxbox.</code><br /><code>#Because it is the last app you have to run it with exec before it.</code></p>
-<p>e prima di</p>
-<p><code>execfluxbox</code></p>
+
+<pre>
+	#And last but not least we start fluxbox.
+	#Because it is the last app you have to run it with exec before it.
+</pre>
+
+<p>e prima di <code>execfluxbox</code>.</p>
 <p>Tutte le applicazioni dovrebbero avere il carattere &amp; dopo il loro nome, per esempio se volessimo lanciare firefox e emesene dovremmo aggiungere le righe seguenti:</p>
-<p><code>firefox&amp;</code><br /><code>emesene&amp;</code></p>
-<p>e cosi' quando fluxbox sara' avviato saranno avviati anche firefox e emesene. Ricorda, le linee che iniziano con # sono commenti e di conseguenza verrano ignorate.</p>
-<h2 id="come-lanciare-unapplicazione-dopo-che-fluxbox-si--avviato">Come lanciare un'applicazione <strong>dopo</strong> che fluxbox si sara' avviato</h2>
+<pre>
+firefox&amp;
+emesene&amp;
+</pre>
+<p>E cosi' quando fluxbox sara' avviato saranno avviati anche firefox e emesene. Ricorda, le linee che iniziano con # sono commenti e di conseguenza verrano ignorate.</p>
+
+
+
+<p>The aim of this page is to provide a template to easily create all the pages of the website fluxbox-wiki.org with a consistent style.
+The code of this page contains all the structures that may be needed in order to write all the pages. Should that template won't be enough for your needs just post on the github project and we will endeavor to overcome every limit.
+For further help please refer to the code of this page that contains all the structures and all the comments that you may need.</p>
+      
+       
+
+<h2>2. Come lanciare un'applicazione <strong>dopo</strong> che fluxbox si e' avviato</h2>
+
+
 <p>Questo e' piuttosto facile da fare, e per alcune applicazioni come gdesklets e' spesso necessario. La cosa migliore da fare e' quella di modificare il proprio script di avvio esistente e rimuovere la riga:</p>
-<p><code>execfluxbox</code></p>
+<pre>
+	execfluxbox
+</pre>
 <p>e modificarlo come segue:</p>
-<p><code>fluxbox&amp;</code><br /><code>fbpid=$!</code></p>
-<p><code>sleep1</code><br /><code>{</code><br /><code>#Applications you want to run after fluxbox has started</code><br /><code>#MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN&amp;AT THE END.</code><br /><code>#ipager&amp;</code><br /><code>#gkrellm2&amp;</code><br /><code>}&amp;</code><br /><br /><code>wait$fbpid</code></p>
+<pre>
+	fluxbox&amp;
+	fbpid=$!
+	sleep1
+	{
+		#Applications you want to run after fluxbox has started
+		#MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN&amp;AT THE END.
+		#ipager&amp;
+	#gkrellm2&amp;
+	}&amp;
+	wait$fbpid
+</pre>
 <p>Probabilmente il cambiamento che viene maggiormente trascurato e' quello alla linea &quot;fluxbox &amp;&quot;, piu' esattamente il carattere &amp;. Questo avviera' fluxbox in background, e' necessario per gli altri programmi che lanceremo! Notate come abbiamo salvato il pid di fluxbox nella variabile di shell $fbpid per poi alla fine usare il comando wait per non uscire dallo script fino a quando fluxbox non sar chiuso.</p>
 <p>Con &quot;sleep 1&quot; diciamo alle nostre applicazioni che lanciamo quanto tempo devono aspettare prima di eseguirsi. Se provi a mettere un attesa di 10 secondi (sleep 10) prima di far partire un'applicazione, fluxbox sara' gi avviato e quindi non avremmo piu' l'effetto desiderato. E' possibile avere piu' &quot;sezioni di sleep&quot; in modo da avere un blocco di applicazioni che saranno lanciate prima di fluxbox, ed un altro blocco dopo l'esecuzione di fluxbox.</p>
-<h2 id="approfondimenti">Approfondimenti</h2>
-<p>Quando avvii X, con il comando &quot;startx&quot; o con il tuo gestore grafico di avvio, questo lancia il comando &quot;startfluxbox&quot; che andra' ad eseguire lo script ~/.fluxbox/startup. Quando si arrivera' alla fine di questo script, X sara' terminato oppure si ritornera' alla sessione di login. Questo e' il motivo per cui e' necessario avere &quot;exec fluxbox&quot; all'ultima riga nello script, oppure in altri casi, la linea wait $fbpid per sospendere l'esecuzione dello script fino alla chiusura di fluxbox. Questo ci garantisce che il server X rester in esecuzione per tutto il tempo in cui sar in esecuzione fluxbox, che di solito  proprio quello che si vuole. Altrimenti la nostra sessione sarebbe veramente breve ;)</p>
-</body>
+     
+       
+       
+       
+
+<h2>2. Approfondimenti</h2>
+
+<p>Quando avvii X, con il comando &quot;startx&quot; o con il tuo gestore grafico di avvio, questo lancia il comando &quot;startfluxbox&quot; che andra' ad eseguire lo script <code>~/.fluxbox/startup</code>. Quando si arrivera' alla fine di questo script, X sara' terminato oppure si ritornera' alla sessione di login. Questo e' il motivo per cui e' necessario avere &quot;exec fluxbox&quot; all'ultima riga nello script, oppure in altri casi, la linea wait $fbpid per sospendere l'esecuzione dello script fino alla chiusura di fluxbox. Questo ci garantisce che il server X restera' in esecuzione per tutto il tempo in cui sar in esecuzione fluxbox, che di solito  proprio quello che si vuole.</p>
+
+
+
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+      
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+    <div class="footer">
+    	<br>
+    	<a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      	<br>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
 </html>

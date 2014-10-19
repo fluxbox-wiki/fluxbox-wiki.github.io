@@ -1,18 +1,89 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-<title>Italian</title>
-</head>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="EC" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fluxbox Wiki</title>
+	<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+	<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+	<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+	<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
+  </head>
+
+
+
 <body>
-<H1>Italian Howtos</H1>
-<p align="left">Torna alla <a href="../../../index.html">home</a> - Torna all'indice degli <a href="index.html">howto in italiano</a></p>
-<hr>Files di configurazione</h2>
+
+<div class="container theme-showcase" role="main">
+ 
+ <!-- BEGINNING: NAV MENU -->
+      <div class="header">
+          <ul class="nav nav-pills pull-right" style="font-size:15px">
+            <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+            <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+            <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+            <li><a href="#searchfield">Search</a></li>
+            <li class="dropdown, active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+              </ul>
+
+            </li>
+            <li> 
+           
+            </li>
+        </ul>
+        <p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+
+      </div>
+      
+<!-- END: NAV MENU -->   
+
+
+
+
+<div class="page-header">
+<h1>Files di configurazione</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+  
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+ 
+ 
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>0. Introduzione </h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
 
 <p>La personalizzazione di fluxbox viene fatta modificando dei file di testo che sono contenuti nella directory <strong>~/.fluxbox</strong>.</p>
 <p>Ad un primo approccio questa modalita' di interazione puo' sembrare solamente un'inutile complicazione ma prendendo mano con questo modus operandi si puo' controllare il comportamento di Fluxbox fin nei minimi dettagli.</p>
-<h2 id="i-file">I File</h2>
+      
+       
+
+<h2>1. I File</h2>
+
+
 <p>Diamo uno sguardo al contenuto della directory ~/.fluxbox.</p>
-<pre><code> $ awk &#39;{print $1,$9}&#39; &lt; &lt;(ls -lAh --group-directories-first ~/.fluxbox/)
+<pre>
+ $ awk &#39;{print $1,$9}&#39; &lt; &lt;(ls -lAh --group-directories-first ~/.fluxbox/)
 
  drwxr-xr-x backgrounds
  drwxr-xr-x pixmaps
@@ -26,29 +97,81 @@
  -rw-r--r-- overlay
  -rw-r--r-- slitlist
  -rw-r--r-- startup
- -rw-r--r-- windowmenu</code></pre>
+ -rw-r--r-- windowmenu
+</pre>
 <p>Ciascuno dei file e directory elencati ha una funzione ben specifica.</p>
-<h3 id="backgrounds-pixmaps-e-styles">backgrounds, pixmaps e styles</h3>
+     
+       
+       
+       
+
+<h2>2. Backgrounds, pixmaps e styles</h2>
+
 <p>In queste tre directory vengono comunemente inserite le icone relative a ciascun elemento del rootmenu, i wallpaper e i temi di Fluxbox. Comunemente perche' questa e' solo una convenzione, purche' correttamente configurato Fluxbox puo' &quot;pescare&quot; un tema, un'icona e uno sfondo da qualsiasi posizione sul disco.</p>
-<h3 id="apps">apps</h3>
-<p>Contiene le configurazioni per singola applicazione o finestra quali decorazioni, dimensione, posizione, ecc; nonch il raggruppamento automatico (Tabs<).</p>
-<h3 id="fbrun_history">fbrun_history</h3>
+
+
+<h2>3. Apps</h2>
+
+<p>Contiene le configurazioni per singola applicazione o finestra quali decorazioni, dimensione, posizione, ecc; nonch il raggruppamento automatico (Tabs<).</p>    
+
+
+<h2>4. fbrun_history</h2>
+
 <p> un file di testo contenente la cronologia dei comandi di fbrun, uno strumento messo a disposizione dell'utente di Fluxbox che su molti window manager corrisponde a &quot;Esegui...&quot;. Utile per lanciare un programma con dei particolari parametri di avvio senza dover usare il terminale.</p>
-<h3 id="init">init</h3>
+
+
+<h2>5. Init</h2>
+
 <p>Questo file il piu' importante; in init sono definiti tutti i parametri di configurazione di Fluxbox. Quando il window manager parte, questo legge immediatamente il contenuto di init per determinare i parametri con cui deve essere avviato e i percorsi degli altri file di configurazione.</p>
-<h3 id="keys">keys</h3>
+
+
+
+<h2>6. Keys</h2>
+
 <p>Dove si associano azioni alla tastiera, uno dei punti forti di Fluxbox e' il poterlo gestire interamente senza mouse tramite una vasta e complessa gamma di comandi.</p>
-<h3 id="lastwallpaper">lastwallpaper</h3>
+
+
+
+<h2>7. Lastwallpaper</h2>
+
 <p>Memorizza l'ultima stringa usata per impostare lo sfondo del desktop tramite fbsetbg o fbsetroot e che verr richiamata automaticamente all'avvio.</p>
-<h3 id="menu">menu</h3>
+
+
+<h2>8. Menu</h2>
+
 <p> il file di configurazione del RootMenu, quello che contiene i programmi avviabili e le voci per la configurazione di Fluxbox.</p>
-<h3 id="overlay">overlay</h3>
+
+
+<h2>9. Overlay</h2>
+
 <p>Qui si apportano cambiamenti ai temi in modo globale e senza dover toccare ogni singolo style.</p>
-<h3 id="slitlist">slitlist</h3>
+
+<h2>10. Slitlist</h2>
+
 <p>Salva l'ordine di posizionamento nella slit delle varie applicazioni caricabili all'avvio di Fluxbox.</p>
-<h3 id="startup">startup</h3>
+
+<h2>11. Startup</h2>
+
 <p>Ogni riga di questo file contiene un comando che viene lanciato all'avvio di Fluxbox. Utile per eseguire comandi e applicazioni all'avvio.</p>
-<h3 id="windowmenu">windowmenu</h3>
+
+<h2>12. Windowmenu</h2>
+
 <p>Il file di configurazione del windowmenu, quello che appare con il tasto destro sulla titlebar e contiene i vari comandi impartibili alla finestra, nonch il &quot;Remember menu&quot; per memorizzare nel file apps gli aspetti principali di una finestra.</p>
-</body>
+
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+      
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+    <div class="footer">
+    	<br>
+    	<a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      	<br>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
 </html>
