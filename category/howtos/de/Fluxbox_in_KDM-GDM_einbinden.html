@@ -1,32 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="EC" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Fluxbox Wiki</title>
+<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
 </head>
+
 <body>
-<p>__TOC__</p>
-<h2 id="fluxbox-in-kdmgdm-einbinden">Fluxbox in KDM/GDM einbinden</h2>
+
+<div class="container theme-showcase" role="main">
+
+<!-- BEGINNING: NAV MENU -->
+<div class="header">
+  <ul class="nav nav-pills pull-right" style="font-size:15px">
+    <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+    <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+    <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+    <li><a href="#searchfield">Search</a></li>
+    <li class="dropdown, active">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+        </ul>
+    </li>
+    <li> 
+    </li>
+  </ul>
+<p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+</div>
+    
+<!-- END: NAV MENU -->   
+
+
+<div class="page-header">
+<h1>Fluxbox in KDM/GDM einbinden</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+
+
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>0. Einleitung</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
 <p>Sollte das Paket, mit dem Fluxbox installiert wurde, nicht automatisch einen Eintrag in KDM/GDM (den graphischen Loginscreens von KDE/Gnome) eingerichtet haben muss man dies von Hand erledigen</p>
-<h2 id="der-normale-weg">Der normale Weg</h2>
-<p>Die meisten Distributionen verwenden heute ein gemeinsames Verzeichnis mit .desktop Dateien für die verschiedenen X Sitzungen.</p>
+<h2>1. Der normale Weg</h2> <!-- TODO: Gibt es denn einen "unnormalen" Weg? -->
+<p>Die meisten Distributionen verwenden heute ein gemeinsames Verzeichnis mit <code>.desktop</code> Dateien für die verschiedenen X Sitzungen.</p>
 <p>Diese Dateien entsprechen einem freedesktop Standard und sollten inzwischen von GDM und KDM problemlos interpretiert werden können.</p>
-<p>Dieser Ordner befindet sich nicht immer an der selben Stelle, bei vielen Distributionen ist es jedoch</p>
-<p>/usr/share/xsessions/</p>
-<p>In diesem Ordner erstellen wir die Textdatei fluxbox.desktop</p>
-<p>Mit folgendem Inhalt:</p>
-<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configureable low resource X11 Window Manager</code><br /><code> Exec=</code><strong><code>/usr/local/bin/startfluxbox</code></strong><br /><code> Terminal=False</code><br /><code> TryExec=</code><strong><code>/usr/local/bin/startfluxbox</code></strong><br /><code> Type=Application</code></p>
-<p>Wichtig: Der Pfad /usr/local/bin wird eigentlich nur von einem git-Fluxbox verwendet, die meisten Distributionen installieren fluxbox nach /usr/bin. Ergo muss man das anpassen.</p>
-<p>Die genaue Position von startfluxbox liefern die Befehle</p>
+<p>Dieser Ordner befindet sich nicht immer an der selben Stelle, bei vielen Distributionen ist es jedoch <code>/usr/share/xsessions/</code></p>
+<p>In diesem Ordner erstellen wir die Textdatei <code>fluxbox.desktop</code> mit folgendem Inhalt:</p>
+<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configureable low resource X11 Window Manager</code><br /><code> Exec=</code><code>/usr/local/bin/startfluxbox</code><br /><code> Terminal=False</code><br /><code> TryExec=</code><code>/usr/local/bin/startfluxbox</code><br /><code> Type=Application</code></p>
+<p>Wichtig: Der Pfad <code>/usr/local/bin</code> wird eigentlich nur von einem git-Fluxbox verwendet, die meisten Distributionen installieren fluxbox nach <code>/usr/bin</code>. Ergo muss man das anpassen.</p>
+<p>Die genaue Position von <code>startfluxbox</code> liefern die Befehle</p>
 <p><code>which startfluxbox </code></p>
 <p>respektive</p>
 <p><code>whereis startfluxbox</code></p>
-<p><a href="Category:Deutsch / German howtos" title="wikilink">Category:Deutsch / German howtos</a> <a href="Category:Integration / Startup" title="wikilink">Category:Integration / Startup</a></p>
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+    
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+  <div class="footer">
+    <br>
+    <a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      <br>
+  </div>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>

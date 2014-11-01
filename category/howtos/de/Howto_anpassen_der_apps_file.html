@@ -1,21 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="EC" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Fluxbox Wiki</title>
+<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
 </head>
+
 <body>
-<p>__TOC__</p>
-<h2 id="editieren-der-apps-datei">Editieren der apps Datei</h2>
-<p>Ein paar wichtige Dinge zuerst: Bei älteren Fluxbox Versionen kann diese Datei nicht editiert werden wärend fluxbox läuft. Die Einstellungen werden sonst früher oder später überschrieben.</p>
+
+<div class="container theme-showcase" role="main">
+
+<!-- BEGINNING: NAV MENU -->
+<div class="header">
+  <ul class="nav nav-pills pull-right" style="font-size:15px">
+    <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+    <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+    <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+    <li><a href="#searchfield">Search</a></li>
+    <li class="dropdown, active">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+        </ul>
+    </li>
+    <li> 
+    </li>
+  </ul>
+<p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+</div>
+    
+<!-- END: NAV MENU -->   
+
+
+<div class="page-header">
+<h1>Editieren der apps Datei</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+
+
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>0. Einleitung</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
+<p>Ein paar wichtige Dinge zuerst: Bei älteren Fluxbox Versionen kann diese Datei nicht editiert werden, während fluxbox läuft. Die Einstellungen werden sonst früher oder später überschrieben.</p>
 <p>Zudem muss diese Datei nur in den wenigsten Fällen wirklich direkt bearbeitet werden. Normalerweise sollte man &quot;Einstellungen Merken&quot; (remember settings) in dem Fenstermenü (Rechtsklick auf den Fenstertitel) zusammen mit der Option &quot;Beim Schliessen speichern&quot; verwenden.</p>
-<h2 id="einträge">Einträge</h2>
+<h2>1. Einträge</h2>
 <p>Das Format für Einträge in der apps Datei sieht wie folgt aus:</p>
 <p><code>  [app] (Name der Anwendung) </code><br /><code>          [Einstellung1]  {Wert1}</code><br /><code>          [Einstellung2]  {Wert2}</code><br /><code>          ...</code><br /><code>  [end]</code></p>
 <p>Der Name kann dabei ein String oder ein regulärer Ausdruck (RegExp) sein. Dabei können diverse Dinge als Name verwendet werden, unter anderem der im Fenstertitel erscheinende Name oder auch die &quot;Rolle&quot; des Fensters. Diese Werte können sehr gut mit dem Programm xprop ausgelesen werden.</p>
@@ -25,12 +73,12 @@
 <p><code>  # Ein beliebiges Firefox Fenster (auch Einstellungen etc.) (Der instance name ist &quot;Gecko&quot;) </code><br /><code>  [app] (class=Firefox-bin) {1}</code><br /><code>      ... Einstellungen ...</code><br /><code>  [end]</code></p>
 <p><code>  # Die Kontaktliste von GAIM (allerdings nicht das Chatfenster)</code><br /><code>  [app] (role=buddy_list)</code><br /><code>      ... Einstellungen ...</code><br /><code>  [end]</code></p>
 <p><code>  #Ein RDesktop Fenster zu einem bestimmten Host:</code><br /><code>  [app] (title=rdesktop - hostname.*)</code><br /><code>      ... Einstellungen ...</code><br /><code>  [end]</code></p>
-<h2 id="einstellungen">Einstellungen</h2>
-<p>Folgende Einstellungen können pro [app] Eintrag gemacht werden: (Die Bezeichnung ist dabei in eckigen, der wert in geschweiften Klammern zu schreiben)</p>
+<h2>2. Einstellungen</h2>
+<p>Folgende Einstellungen können pro <code>[app]</code> Eintrag gemacht werden: (Die Bezeichnung ist dabei in eckigen, der wert in geschweiften Klammern zu schreiben)</p>
 <ul>
-<li>[Workspace] {0-N}: Öffnet die Anwendung auf der angegeben Arbeitsfläche. Die Arbeitsflächen werden von 0 hochgezählt.</li>
-<li>[Dimensions] {Width Height}: Setzt die Grösse einer Anwendung (Breite Höhe)</li>
-<li>[Position] (refspot)) {X Y}: Position der Anwendung, relativ zu::</li>
+<li><code>[Workspace] {0-N}</code>: Öffnet die Anwendung auf der angegeben Arbeitsfläche. Die Arbeitsflächen werden von 0 hochgezählt.</li>
+<li><code>[Dimensions] {Width Height}</code>: Setzt die Grösse einer Anwendung (Breite Höhe)</li>
+<li><code>[Position] (refspot)) {X Y}</code>: Position der Anwendung, relativ zu::</li> <!-- TODO: Im alten Wiki nachschauen, wie das sein sollte -->
 </ul>
 <p>:* WINCENTER Fenstermitte</p>
 <p>:* CENTER Bildschirmmitte</p>
@@ -48,12 +96,12 @@
 <p>:* 10 - Unten (Bottom)</p>
 <p>:* 12 - Desktop</p>
 <ul>
-<li>[Shaded] {yes|no}: Soll das Fenster aufgerollt gestartet werden</li>
-<li>[Tab] {yes|no}: Kann dieses Fenster als Reiter (tab) in ein anderes gesetzt werden</li>
-<li>[IconHidden] {yes|no}: Soll das Fenster in der Fensterleiste angezeigt werden</li>
-<li>[FocusHidden] {yes|no}: Soll das Fenster von Prev / NextWindow ausgenommen werden</li>
-<li>[Hidden] {yes|no}: Aktiviert sowohl [IconHidden] als auch [FocusHidden]</li>
-<li>[Deco] {NONE|NORMAL|TOOL|TINY|BORDER|TAB}: Definiert welche Fensterdekos aktiv sind</li>
+<li><code>[Shaded] {yes|no}</code>: Soll das Fenster aufgerollt gestartet werden</li>
+<li><code>[Tab] {yes|no}</code>: Kann dieses Fenster als Reiter (tab) in ein anderes gesetzt werden</li>
+<li><code>[IconHidden] {yes|no}</code>: Soll das Fenster in der Fensterleiste angezeigt werden</li>
+<li><code>[FocusHidden] {yes|no}</code>: Soll das Fenster von Prev / NextWindow ausgenommen werden</li>
+<li><code>[Hidden] {yes|no}</code>: Aktiviert sowohl [IconHidden] als auch [FocusHidden]</li>
+<li><code>[Deco] {NONE|NORMAL|TOOL|TINY|BORDER|TAB}</code>: Definiert welche Fensterdekos aktiv sind</li>
 </ul>
 <p>:* NORMAL - Standarddekoration</p>
 <p>:* NONE - Ohne Dekoration (Ohne Fenstertitel, ohne Rahmen)</p>
@@ -62,10 +110,24 @@
 <p>:* TOOL - Nur ein Fenstertitel</p>
 <p>:* TAB - Wie NONE, allerdings werden externe Reiter (tabs) angezeigt Eine Bitmask kann für die Einstellung verwendet werden, die bits sind (von &quot;1&quot; bis 1&lt;&lt;10): Fenstertitel, handle/grips, Rahmen, minimieren, maximieren, schliessen, Menü aktiviert, Klebezustandsknopf, Aufrollknopf, Reiter aktiviert, Fokus aktiviert.</p>
 <ul>
-<li>[Sticky] {yes|no}: Wird das Fenster auf allen Arbeitsflächen angezeigt (klebend)</li>
-<li>[Close] {yes|no}: Sollen die (neuen) Einstellungen beim Schliessen gespeichert werden</li>
+<li><code>[Sticky] {yes|no}</code>: Wird das Fenster auf allen Arbeitsflächen angezeigt (klebend)</li>
+<li><code>[Close] {yes|no}</code>: Sollen die (neuen) Einstellungen beim Schliessen gespeichert werden</li>
 </ul>
-<p>Die apps Datei kann auch als Autostart verwendet werden, allerdings ist dies noch nicht direkt über das Menü konfigurierbar und die startup Datei sollte ausreichen.</p>
-<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+<p>Die <code>apps</code> Datei kann auch als Autostart verwendet werden, allerdings ist dies noch nicht direkt über das Menü konfigurierbar und die <code>startup</code> Datei sollte ausreichen.</p>
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+    
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+  <div class="footer">
+    <br>
+    <a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      <br>
+  </div>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
