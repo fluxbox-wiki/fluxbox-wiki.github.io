@@ -74,43 +74,58 @@
 <p>Um die Auflösung dynamisch wärend des Betriebes zu verwenden kann die Xorg Erweiterung <code>xrandr</code> zusammen mit dem gleichnamigen Programm verwendet werden.</p>
 <p>Die meisten Distributionen sollte diese mitliefern.</p>
 <p>Ein Ausführen von <code>xrandr</code> auf einer Konsole sollte eine solche Ausgabe geben:</p> <!-- TODO stimmt nicht mehr -->
-<p><code> SZ:    Pixels          Physical       Refresh <br>
-*0   1600 x 1200   ( 406mm x 305mm )  *75   70   65   60 <br>
- 1   1280 x 1024   ( 406mm x 305mm )   85   75   60 <br>
- 2   1024 x 768    ( 406mm x 305mm )   85   75   70   60   87 <br>
- 3    800 x 600    ( 406mm x 305mm )   85   75   72   70   65   60   56 <br>
- 4    640 x 480    ( 406mm x 305mm )   85   75   73   60 <br>
- 5   1400 x 1050   ( 406mm x 305mm )   85   75   70   60 <br>
- 6   1440 x 900    ( 406mm x 305mm )   60 <br>
- 7   1280 x 960    ( 406mm x 305mm )   85   60 <br>
- 8   1280 x 800    ( 406mm x 305mm )   60 <br>
- 9   1152 x 864    ( 406mm x 305mm )   85   75 <br>
- 10  1280 x 768    ( 406mm x 305mm )   60 <br>
- 11  1152 x 768    ( 406mm x 305mm )   55 <br>
- 12   960 x 720    ( 406mm x 305mm )   60 <br>
- 13   928 x 696    ( 406mm x 305mm )   60 <br>
- 14   896 x 672    ( 406mm x 305mm )   60 <br>
- 15   960 x 600    ( 406mm x 305mm )   73   60 <br>
- 16   832 x 624    ( 406mm x 305mm )   75 <br>
- 17   840 x 525    ( 406mm x 305mm )   60 <br>
- 18   700 x 525    ( 406mm x 305mm )   85   75   70   60 <br>
- 19   640 x 512    ( 406mm x 305mm )   85   75   60 <br>
-Current rotation - normal <br>
-Current reflection - none <br>
-Rotations possible - normal <br>
-Reflections possible - none</code></p>
+<pre> SZ:    Pixels          Physical       Refresh
+*0   1600 x 1200   ( 406mm x 305mm )  *75   70   65   60
+ 1   1280 x 1024   ( 406mm x 305mm )   85   75   60
+ 2   1024 x 768    ( 406mm x 305mm )   85   75   70   60   87
+ 3    800 x 600    ( 406mm x 305mm )   85   75   72   70   65   60   56
+ 4    640 x 480    ( 406mm x 305mm )   85   75   73   60
+ 5   1400 x 1050   ( 406mm x 305mm )   85   75   70   60
+ 6   1440 x 900    ( 406mm x 305mm )   60
+ 7   1280 x 960    ( 406mm x 305mm )   85   60
+ 8   1280 x 800    ( 406mm x 305mm )   60
+ 9   1152 x 864    ( 406mm x 305mm )   85   75
+ 10  1280 x 768    ( 406mm x 305mm )   60
+ 11  1152 x 768    ( 406mm x 305mm )   55
+ 12   960 x 720    ( 406mm x 305mm )   60
+ 13   928 x 696    ( 406mm x 305mm )   60
+ 14   896 x 672    ( 406mm x 305mm )   60
+ 15   960 x 600    ( 406mm x 305mm )   73   60
+ 16   832 x 624    ( 406mm x 305mm )   75
+ 17   840 x 525    ( 406mm x 305mm )   60
+ 18   700 x 525    ( 406mm x 305mm )   85   75   70   60
+ 19   640 x 512    ( 406mm x 305mm )   85   75   60
+Current rotation - normal
+Current reflection - none
+Rotations possible - normal
+Reflections possible - none</pre>
 <p>In der Anleitung von <code>xrandr</code> (<code>man xrandr</code>) steht sehr genau beschrieben wie das Programm funktioniert, üblicherweise will man aber mit</p>
-<p><code>xrandr -s &lt;size&gt;/&lt;width&gt;x&lt;height&gt;</code></p>
+<pre>xrandr -s &lt;size&gt;/&lt;width&gt;x&lt;height&gt;</pre>
 <p>einfach nur die Auflösung ändern. Also kann man zum Beispiel</p>
-<p><code> xrandr -s 3</code></p>
+<pre> xrandr -s 3</pre>
 <p>verwenden, weil 3 die Zahl der SZ Kolonne in der Ausgabe oben ist. In dem Fall würde man auf 800x600 umschalten</p>
 <p>Oder man gibt die Auflösung direkt an, zum Beispiel so:</p>
-<p><code>xrandr -s 1024x768</code></p>
+<pre>xrandr -s 1024x768</pre>
 <h2>1. Fixe Einstellung mit der Xorg.conf</h2>
 <p>Mit dieser Lösung wird die Auflösung dauerhaft eingestellt.</p>
 <p>Als root oder mit sudo muss die Datei <code>/etc/X11/xorg.conf</code> oder, auf ganz alten Systemen <code>/etc/X11/XF86Config</code> angepasst werden.</p>
 <p>Die Datei sollte einen Bereich &quot;Screen&quot; haben, der etwa so aussieht:</p>
-<p><code>Section &quot;Screen&quot;</code><br /><code>       Identifier      &quot;Default Screen&quot;</code><br /><code>       Device          &quot;geforce256&quot;</code><br /><code>       Monitor         &quot;S/M 950p&quot;</code><br /><code>       DefaultDepth    24</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           8</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           16</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>       SubSection &quot;Display&quot;</code><br /><code>               Depth           24</code><br /><code>               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;</code><br /><code>       EndSubSection</code><br /><code>EndSection</code></p>
+<pre>Section &quot;Screen&quot;
+       Identifier      &quot;Default Screen&quot;
+       Monitor         &quot;S/M 950p&quot;
+       DefaultDepth    24
+       SubSection &quot;Display&quot;
+               Depth           8
+               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;
+       EndSubSection
+       SubSection &quot;Display&quot;
+               Depth           16
+       EndSubSection
+       SubSection &quot;Display&quot;
+               Depth           24
+               Modes           &quot;1600x1200&quot; &quot;1280x1024&quot; &quot;1024x768&quot; &quot;800x600&quot; &quot;640x480&quot;
+       EndSubSection
+EndSection</pre>
 <p>Dabei werden für alle Farbtiefen die möglichen Auflösungen in Anführungszeichen angegeben.</p>
 <p>Xorg verwendet standardmässig die höchstmögliche Auflösung für die unter DefaultDepth angegebene Farbtiefe.</p>
 <p>Die Datei solle an sich selbsterklärend und leicht zu editieren sein.</p>

@@ -65,26 +65,36 @@
 <h2>1. Benutzt man GDM zum Login</h2>
 <p>Benutzt man <a href="GDM" title="wikilink">GDM</a> zum Login, kann man diesen aber auch dazu heranziehen, den Computer auszuschalten. Damit dabei nicht zu leicht etwas daneben geht, macht eine Rückfrage Sinn.</p> <!-- TODO: Link setzen -->
 <p>Ein einfaches Fragefenster kann man mit <code>xmessage</code> erzeugen:</p>
-<p><code> xmessage -nearmouse -buttons Nein:1,Ja:0 &quot;Wirklich herunterfahren?&quot;</code></p>
+<pre> xmessage -nearmouse -buttons Nein:1,Ja:0 &quot;Wirklich herunterfahren?&quot;</pre>
 <p>Klickt der Benutzer auf &quot;nein&quot; haben wir weiter nichts mehr zu tun, können ihm höchstens noch etwas nettes zum Abschied sagen. Klickt er auf &quot;ja&quot; schalten wir den Computer aus.</p>
 <p>Dazu sagen wir als erstes GDM, dass er den Computer herunterfahren soll, wenn Fluxbox beendet ist:</p>
-<p><code> gdmflexiserver -a -c 'SET_LOGOUT_ACTION HALT'</code></p>
+<pre> gdmflexiserver -a -c 'SET_LOGOUT_ACTION HALT'</pre>
 <p>Danach schießen wir Fluxbox ab:</p>
-<p><code> kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')</code></p>
+<pre>kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')</pre>
 <p>Dieser Umweg ist nötig, da man GDM nicht auf so einfachem Weg dazu auffordern kann, den Computer direkt auszuschalten. Es ist nur möglich, ihm diese Aufgabe für den Fall zu geben, dass der Benutzer sich auslogt.</p>
 <p>Ein bisschen Drumrum ergänzt das Ganze dann zu einem kleinen Script, das man in sein Menü einbauen kann:</p>
-<p><code> #!/bin/sh</code><br /><code> if xmessage -nearmouse -buttons Nein:1,Ja:0 &quot;Wirklich herunterfahren?&quot;; then</code><br /><code>   gdmflexiserver -a -c 'SET_LOGOUT_ACTION HALT'</code><br /><code>   kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')</code><br /><code> else</code><br /><code>   xmessage -nearmouse &quot;Warum hast du es dann versucht?&quot;</code><br /><code> fi</code></p>
+<pre> #!/bin/sh
+ if xmessage -nearmouse -buttons Nein:1,Ja:0 &quot;Wirklich herunterfahren?&quot;; then
+   gdmflexiserver -a -c 'SET_LOGOUT_ACTION HALT'
+   kill -TERM $(xprop -root _BLACKBOX_PID | awk '{print $3}')
+ else
+   xmessage -nearmouse &quot;Warum hast du es dann versucht?&quot;
+ fi</pre>
 <h2>1. Einen kleinen Button im fluxbox Menü hinzufügen</h2>
 <p>Das ganze geht wie folgt: Zuerst kreieren wir eine neue Gruppe</p>
-<p><code>Bsp.:</code><br /><code> sudo addgroup shutdown</code></p>
+<p>Bsp.:
+<pre> sudo addgroup shutdown</pre>
 <p>nun noch den eigenen user der Gruppe zuordnen</p>
-<p><code>sudo adduser &lt;Dein_Username&gt; shutdown</code></p>
+<pre>sudo adduser &lt;Dein_Username&gt; shutdown</pre>
 <p>danach editieren wir die Datei /etc/sudoers mit folgendem Befehl</p>
-<p><code>visudo</code></p>
+<pre>visudo</pre><!-- TODO hier reinschreiben, dass dafür vi-Kenntnisse erforderlich sind! -->
 <p>dieser Datei fügen wir einfach am Ende folgendes hinzu</p>
-<p><code>%shutdown ALL=(root) NOPASSWD: /sbin/shutdown</code><br /><code>%shutdown ALL=(root) NOPASSWD: /sbin/halt</code><br /><code>%shutdown ALL=(root) NOPASSWD: /sbin/reboot</code></p>
+<pre>%shutdown ALL=(root) NOPASSWD: /sbin/shutdown
+%shutdown ALL=(root) NOPASSWD: /sbin/halt
+%shutdown ALL=(root) NOPASSWD: /sbin/reboot</pre>
 <p>nachdem das geschehen ist kann man einfach in der Datei ./fluxbox/menu folgende Zeilen an der Stelle einfügen, an der man gerne den Button hätte</p>
-<p><code> [exec] (reboot) {sudo reboot}</code><br /><code> [exec] (shutdown) {sudo halt}</code></p>
+<pre> [exec] (reboot) {sudo reboot}
+ [exec] (shutdown) {sudo halt}</pre>
 
 
 <!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
