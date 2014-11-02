@@ -1,99 +1,258 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="EC" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Fluxbox Wiki</title>
+<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
 </head>
+
 <body>
-<p>__TOC__</p>
-<h2 id="anpassen-der-keys-datei">Anpassen der keys Datei</h2>
-<p>Die keys Datei ist normalerweise ~/.fluxbox/keys. Da sie eine normale Textdatei ist kann sie mit einem beliebigen Texteditor angepasst werden.</p>
-<p>In der Datei ~/.fluxbox/init kann auch eine andere Datei, zum Beispiel eine Systemweite, angegeben werden.</p>
+
+<div class="container theme-showcase" role="main">
+
+<!-- BEGINNING: NAV MENU -->
+<div class="header">
+  <ul class="nav nav-pills pull-right" style="font-size:15px">
+    <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+    <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+    <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+    <li><a href="#searchfield">Search</a></li>
+    <li class="dropdown, active">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+        </ul>
+    </li>
+    <li> 
+    </li>
+  </ul>
+<p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+</div>
+    
+<!-- END: NAV MENU -->   
+
+
+<div class="page-header">
+<h1>Anpassen der keys Datei</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+
+
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>0. Grundlagen</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
+<p>Die <code>keys</code> Datei ist normalerweise <code>~/.fluxbox/keys</code>. Da sie eine normale Textdatei ist, kann sie mit einem beliebigen Texteditor angepasst werden.</p>
+<p>In der Datei ~/.fluxbox/init kann auch eine andere Datei, zum Beispiel eine systemweite, angegeben werden.</p>
 <p>Das Zuweisen einer Taste ist ziemlich einfach, ein Eintrag sieht wie folgt aus:</p>
-<p><code>  </code><mod><code> [</code><mod><code> </code><mod><code>] key [key key] :Befehl </code><Argumente></p>
-<p>Was ist ein Mod <mod>? Das ist die Kurzform für &quot;modifier&quot;. Der Befehl 'xmodmap -pm', in einer Konsole ausgeführt, listet die verfügbaren modifiers auf. Die gängigsten davon sind:</p>
-<p><code>  Mod1 == Alt</code><br /><code>  Mod4 == Windowstaste</code><br /><code>  Control == Ctrl / Strg (Deutschland) </code><br /><code>  Shift == shift</code></p>
-<p>Um die korrekte Bezeichnung einer Taste herauszufinden kann man das Programm <strong>xev</strong> verwenden, welches einen Tastendruck abfängt und unter anderem die Bezeichnung dieser Taste ausgibt.</p>
-<p>Sollte die Taste keine Bezeichnung haben kann auch der jeweilige keycode, den xev ebenfalls ausgibt, verwendet werden.</p>
+<p><code> &lt;mod&gt; [&lt;mod&gt; &lt;mod&gt;] key [key key] :Befehl &lt;Argumente&gt;</code></p>
+<p>Was ist ein Mod <code>&lt;mod&gt;</code>? Das ist die Kurzform für &quot;modifier&quot;. Der Befehl <code>xmodmap -pm</code>, in einer Konsole ausgeführt, listet die verfügbaren modifiers auf. Die gängigsten davon sind:</p>
+<pre>Mod1 == Alt
+Mod4 == Windowstaste
+Control == Ctrl / Strg (Deutschland) 
+Shift == shift</pre>
+<p>Um die korrekte Bezeichnung einer Taste herauszufinden kann man das Programm <code>xev</code> verwenden, welches einen Tastendruck abfängt und unter anderem die Bezeichnung dieser Taste ausgibt.</p>
+<p>Sollte die Taste keine Bezeichnung haben kann auch der jeweilige keycode, den <code>xev</code> ebenfalls ausgibt, verwendet werden.</p>
 <p>Hier noch ein paar Beispiele:</p>
-<p><code>  Control i :ExecCommand xterm  #</code><em><code>CTRL</code> <code>+</code> <code>i</code> <code>startet</code> <code>XTerm</code></em><br /><code>  Mod4 4 :Workspace 4  #</code><em><code>Windowstaste+4</code> <code>schaltet</code> <code>zur</code> <code>4en</code> <code>Arbeitsfläche</code></em><br /><code>  None F12 :ExecCommand firefox  #</code><em><code>F12</code> <code>startet</code> <code>mozilla-firefox</code></em></p>
-<p><code>  Mod1 113 :exec xterm  #</code><em><code>Kleines</code> <code>Beispiel</code> <code>mit</code> <code>einem</code> <code>Keycode</code> <code>anstelle</code> <code>der</code> <code>Bezeichnung</code></em></p>
-<p>Um Befehle auszuführen wird <strong>ExecCommand</strong> oder <strong>Exec</strong> verwendet. So kann man Anwendungen, Skripte (Aufpassen: das Skript muss ausführbar sein und in $PATH liegen) oder Variablen und Optionen setzen.</p>
-<p><strong>Wichtig zu wissen:</strong></p>
+<pre>Control i :ExecCommand xterm  #CTRL + i startet XTerm
+Mod4 4 :Workspace 4  #Windowstaste + 4 schaltet zur 4en Arbeitsfläche
+None F12 :ExecCommand firefox  #F12 startet mozilla-firefox</pre>
+<pre>Mod1 113 :exec xterm  #Kleines Beispiel mit einem Keycode anstelle der Bezeichnung</pre>
+<p>Um Befehle auszuführen wird <code>ExecCommand</code> oder <code>Exec</code> verwendet. So kann man Anwendungen, Skripte (Aufpassen: das Skript muss ausführbar sein und in <code>$PATH</code> liegen) oder Variablen und Optionen setzen.</p>
+<p>Wichtig zu wissen:</p>
 <ul>
 <li>Befehle sind case-insensitive, will heissen: Gross- und Kleinschreibung spielt keine Rolle.</li>
 <li>Die Arbeitsflächen beginnen bei &quot;1&quot;</li>
 <li>Für diverse Befehle gibt es Synonyme.</li>
-<li>Der Abstand zwischen der letzten Taste und dem &quot;:&quot; <strong>ist zwingend</strong>.</li>
+<li>Der Abstand zwischen der letzten Taste und dem &quot;:&quot; ist zwingend.</li>
 </ul>
-<h2 id="maustasten">Maustasten</h2>
-<p>In neuen Fluxboxversionen kann man auch den Maustasten Aktionen zuweisen. Im Moment unterscheidet Fluxbox zwischen den Maustasten und zwischen der Mausplatzierung. Bei der Platzierunng gibt es OnDesktop (auf dem leeren Desktop, nicht auf einem Fenster) und OnToolbar (ab SVN 1.1).</p>
+<h2>1. Maustasten</h2>
+<p>In neuen Fluxbox-Versionen kann man auch den Maustasten Aktionen zuweisen. Im Moment unterscheidet Fluxbox zwischen den Maustasten und zwischen der Mausplatzierung. Bei der Platzierung gibt es <code>OnDesktop</code> (auf dem leeren Desktop, nicht auf einem Fenster) und <code>OnToolbar</code> (ab SVN 1.1).</p>
 <p>Beispiele:</p>
-<p><code>  OnDesktop Mouse1 :hideMenus</code><br /><code>  OnDesktop Mouse2 :workspaceMenu</code><br /><code>  OnDesktop Mouse3 :rootMenu</code><br /><code>  OnDesktop Mouse4 :nextWorkspace</code><br /><code>  OnDesktop Mouse5 :prevWorkspace</code><br /><code>  OnToolbar Mouse4 :nextWorkspace</code><br /><code>  OnToolbar Mouse5 :prevWorkspace</code></p>
-<p>Wichtig: OnToolbar Mouse<rad> ersetzt ab svn 1.1 das alte Toolbar wheeling</p>
-<h2 id="befehlsfolgen-keychains">Befehlsfolgen (Keychains)</h2>
-<p>Fluxbox kann mit Befehlsfolgen umgehen, wie man sie z.B. aus EMACS kennt:</p>
-<p><code>  Control n Mod1 n :Close  #</code><em><code>ctrl+n</code> <code>alt+n</code> <code>schliesst</code> <code>das</code> <code>fokussierte</code> <code>Fenster</code></em><br /><code>  None F11 F12 :ExecCommand ssh example.com #</code><em><code>F11</code> <code>F12</code> <code>startet</code> <code>ssh</code></em></p>
+<pre>OnDesktop Mouse1 :hideMenus
+OnDesktop Mouse2 :workspaceMenu
+OnDesktop Mouse3 :rootMenu
+OnDesktop Mouse4 :nextWorkspace
+OnDesktop Mouse5 :prevWorkspace
+OnToolbar Mouse4 :nextWorkspace
+OnToolbar Mouse5 :prevWorkspace</pre>
+<p>Wichtig: <code>OnToolbar Mouse&lt;rad&gt;</code> ersetzt ab svn 1.1 das alte <code>Toolbar wheeling</code></p>
+<h2>2. Befehlsfolgen (Keychains)</h2>
+<p>Fluxbox kann mit Befehlsfolgen umgehen, wie man sie z.B. aus EMACS kennt:
+<pre>Control n Mod1 n :Close  #Ctrl+n Alt+n schliesst das fokussierte Fenster
+None F11 F12 :ExecCommand ssh example.com #F11 F12 startet ssh</pre>
 <p>Achtung bei Befehlsfolgen ohne modifier: &quot;None&quot; darf nur einmal verwendet werden. &quot;None F11 None F12&quot; funktioniert nicht. Man muss wie oben gezeigt &quot;None F11 F12&quot; verwenden.</p>
-<h2 id="fluxboxbefehle">Fluxboxbefehle</h2>
-<p>Fluxbox selber hat tonnenweise eingebaute Befehle, die einem das Leben einfacher machen. Anstelle von exec <befehl> kann man direkt den Fluxboxbefehl schreiben.</p>
-<p><strong>Window-Manager-Befehle</strong></p>
-<p><code>  '''Restart </code><argument><code> '''   </code><em><code>#Startet</code> <code>Fluxbox</code> <code>neu,</code> <code>als</code> <code>Argument</code> <code>kann</code> <code>ein</code> <code>anderer</code> <code>Windowmanager,</code> <code>zu</code> <code>dem</code> <code>umgeschaltet</code> <code>wird,</code> <code>angegeben</code> <code>werden</code></em><br /><code>  </code><strong><code>Quit</code></strong><code>   </code><em><code>#Beendet</code> <code>fluxbox</code></em><br /><code>  </code><strong><code>Exit</code></strong><code>   </code><em><code>#Beendet</code> <code>fluxbox</code></em><br /><code>  </code><strong><code>Reconfigure</code></strong><code>   </code><em><code>#Liest</code> <code>die</code> <code>Konfiguration</code> <code>neu</code> <code>ein</code></em><br /><code>  </code><strong><code>Reload</code> <code>Style</code></strong><code>   </code><em><code>#Lädt</code> <code>den</code> <code>verwendeten</code> <code>Stil</code> <code>neu,</code> <code>wenn</code> <code>eine</code> <code>Datei</code> <code>verändert</code> <code>wurde</code></em><br /><code>  </code><strong><code>SetStyle</code> <argument></strong><code>   </code><em><code>#Schaltet</code> <code>zu</code> <code>dem</code> <code>gewählten</code> <code>Stil</code> <code>um</code></em><br /><code>  </code><strong><code>ExecCommand</code> <argument></strong><code>   </code><em><code>#Führt</code> <code>einen</code> <code>Befehl</code> <code>aus.</code> <code>Siehe</code> <code>Beschreibung</code> <code>oben</code></em><br /><code>  </code><strong><code>Exec</code> <argument></strong><code>   </code><em><code>#Führt</code> <code>einen</code> <code>Befehl</code> <code>aus.</code> <code>Siehe</code> <code>Beschreibung</code> <code>oben</code></em></p>
-<p><strong>Befehle für das fokussierte Fenster</strong></p>
-<p><code>  </code><strong><code>Fullscreen</code></strong><code>   </code><em><code>#Schaltet</code> <code>das</code> <code>fokussierte</code> <code>Fenster</code> <code>auf</code> <code>Vollbild,</code> <code>wodurch</code> <code>alle</code> <code>anderen,</code> <code>auch</code> <code>höher</code> <code>gelegene,</code> <code>Fenster</code> <code>überdeckt</code> <code>werden</code></em><br /><code>  </code><strong><code>Minimize</code></strong><code>   </code><em><code>#Minimiert</code> <code>das</code> <code>Fenster,</code> <code>genau</code> <code>wie</code> <code>der</code> <code>_</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>MinimizeWindow</code></strong><code>   </code><em><code>#Minimiert</code> <code>das</code> <code>Fenster,</code> <code>genau</code> <code>wie</code> <code>der</code> <code>_</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>Iconify</code></strong><code>   </code><em><code>#Minimiert</code> <code>das</code> <code>Fenster,</code> <code>genau</code> <code>wie</code> <code>der</code> <code>_</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>Maximize</code></strong><code>   </code><em><code>#Maximiert</code> <code>das</code> <code>Fenster,</code> <code>genau</code> <code>wie</code> <code>der</code> <code>[]</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>MaximizeWindow</code></strong><code>   </code><em><code>#Maximiert</code> <code>das</code> <code>Fenster,</code> <code>genau</code> <code>wie</code> <code>der</code> <code>[]</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>MaximizeHorizontal</code></strong><code>   </code><em><code>#Maximiert</code> <code>das</code> <code>Fenster</code> <code>horizontal</code></em><br /><code>  </code><strong><code>MaximizeVertical</code></strong><code>   </code><em><code>#Maximiert</code> <code>das</code> <code>Fenster</code> <code>vertikal</code></em><br /><code>  </code><strong><code>ResizeTo</code> <breite> <höhe></strong><code>   </code><em><code>#Ändert</code> <code>die</code> <code>Fenstergrösse</code></em><br /><code>  </code><strong><code>Resize</code> <delta-breite> <delta-höhe></strong><code>   </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>ResizeHorizontal</code> <delta-breite></strong><code>   </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>ResizeVertical</code> <delta-höhe></strong><code>   </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>MoveTo</code> <x> <y> <Ecke></strong><code>   </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>Move</code> <delta-x> <delta-y></strong><code>   </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>MoveRight</code> <delta-x></strong><code>  </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>MoveLeft</code> <delta-x></strong><code>   </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>MoveUp</code> <delta-y></strong><code>   </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>MoveDown</code> <delta-y></strong><code>   </code><em><code>#Siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>Raise</code></strong><code>   </code><em><code>#Bringt</code> <code>das</code> <code>Fenster</code> <code>in</code> <code>den</code> <code>Vordergrund</code></em><br /><code>  </code><strong><code>RaiseLayer</code></strong><code>   </code><em><code>#Bringt</code> <code>das</code> <code>Fenster</code> <code>eine</code> <code>Ebene</code> <code>nach</code> <code>vorne</code></em><br /><code>  </code><strong><code>Lower</code></strong><code>   </code><em><code>#Bringt</code> <code>das</code> <code>Fenster</code> <code>in</code> <code>den</code> <code>Hintergrund</code></em><br /><code>  </code><strong><code>LowerLayer</code></strong><code>   </code><em><code>#Bringt</code> <code>das</code> <code>Fenster</code> <code>eine</code> <code>Ebene</code> <code>nach</code> <code>hinten</code></em><br /><code>  </code><strong><code>Close</code></strong><code>   </code><em><code>#Schliesst</code> <code>das</code> <code>Fenster,</code> <code>genau</code> <code>wie</code> <code>der</code> <code>X</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>Shade</code></strong><code>   </code><em><code>#Schliesst</code> <code>das</code> <code>Fenster,</code> <code>genau</code> <code>wie</code> <code>der</code> <code>X</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>ShadeWindow</code></strong><code>   </code><em><code>#Rollt</code> <code>das</code> <code>Fenster</code> <code>auf/ab,</code> <code>wie</code> <code>der</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>Stick</code></strong><code>   </code><em><code>#Schaltet</code> <code>den</code> <code>Klebezustand</code> <code>(auf</code> <code>allen</code> <code>Arbeitsflächen</code> <code>sichtbar)</code> <code>ein/aus,</code> <code>wie</code> <code>der</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>StickWindow</code></strong><code>   </code><em><code>#Schaltet</code> <code>den</code> <code>Klebezustand</code> <code>(auf</code> <code>allen</code> <code>Arbeitsflächen</code> <code>sichtbar)</code> <code>ein/aus,</code> <code>wie</code> <code>der</code> <code>Knopf</code> <code>im</code> <code>Fenstertitel</code></em><br /><code>  </code><strong><code>ToggleDecor</code></strong><code>  '' #Deaktiviert den Fensterrahmen''</code><br /><code>  </code><strong><code>SendToWorkspace</code> <nummer></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>auf</code> <code>die</code> <code>angegebene</code> <code>Arbeitsfläche</code></em><br /><code>  </code><strong><code>SendToNextWorkspace</code> <nummer></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>auf</code> <code>die</code> <code>Arbeitsfläche</code> <code>+</code> <code>Nummer</code></em><br /><code>  </code><strong><code>SendToPrevWorkspace</code> <number></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>auf</code> <code>die</code> <code>Arbeitsfläche</code> <code>-</code> <code>Nummer</code></em><br /><code>  </code><strong><code>TakeToWorkspace</code> <number></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>auf</code> <code>die</code> <code>angegebene</code> <code>Arbeitsfläche</code> <code>und</code> <code>zeigt</code> <code>diese</code> <code>an</code></em><br /><code>  </code><strong><code>TakeToNextWorkspace</code> <number></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>auf</code> <code>die</code> <code>Arbeitsfläche</code> <code>+</code> <code>Nummer</code> <code>und</code> <code>zeigt</code> <code>diese</code> <code>an</code></em><br /><code>  </code><strong><code>TakeToPrevWorkspace</code> <number></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>auf</code> <code>die</code> <code>Arbeitsfläche</code> <code>-</code> <code>Nummer</code> <code>und</code> <code>zeigt</code> <code>diese</code> <code>an</code></em><br /><code> </code><em><code>'</code> <code>KillWindow</code></em><code>'   </code><em><code>#Forciert</code> <code>das</code> <code>Schliessen</code> <code>des</code> <code>Fensters</code> <code>(kill)</code></em><br /><code>  </code><strong><code>NextTab</code></strong><code>   </code><em><code>#Schaltet</code> <code>zum</code> <code>nächsten</code> <code>Reiter</code> <code>(Tab)</code> <code>um</code></em><br /><code>  </code><strong><code>PrevTab</code></strong><code>   </code><em><code>#Schaltet</code> <code>zum</code> <code>vorherigen</code> <code>Reiter</code> <code>(Tab)</code> <code>um</code></em><br /><code>  </code><strong><code>MoveTabLeft</code></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>nach</code> <code>links</code></em><br /><code>  </code><strong><code>MoveTabRight</code></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>nach</code> <code>rechts</code></em><br /><code>  </code><strong><code>DetachClient</code></strong><code>   </code><em><code>#Löst</code> <code>das</code> <code>Fenster</code> <code>von</code> <code>einer</code> <code>Gruppe</code></em><br /><code>  </code><strong><code>SetHead</code> <int></strong><code>   </code><em><code>#Verschiebt</code> <code>das</code> <code>Fenster</code> <code>auf</code> <code>den</code> <code>angegebenen</code> <code>Bildschirm</code> <code>--&gt;</code> <code>xinerama</code></em><br /><code>  </code><strong><code>FocusUp</code></strong><code>   </code><em><code>#Fokussiert</code> <code>das</code> <code>nördlich</code> <code>liegende</code> <code>Fenster</code></em><br /><code>  </code><strong><code>FocusDown</code></strong><code>   </code><em><code>#Fokussiert</code> <code>das</code> <code>südlich</code> <code>liegende</code> <code>Fenster</code></em><br /><code>  </code><strong><code>FocusLeft</code></strong><code>   </code><em><code>#Fokussiert</code> <code>das</code> <code>westlich</code> <code>liegende</code> <code>Fenster</code></em><br /><code>  </code><strong><code>FocusRight</code></strong><code>   </code><em><code>#Fokussiert</code> <code>das</code> <code>östlich</code> <code>liegende</code> <code>Fenster</code></em><br /><code>  </code></p>
-<p><strong>Befehle für die Arbeitsfläche</strong></p>
-<p><code>  </code><strong><code>NextWorkspace</code></strong><code>   </code><em><code>#Schaltet</code> <code>zur</code> <code>nächsten</code> <code>(rechts</code> <code>von</code> <code>der</code> <code>aktuellen)</code> <code>Arbeitsfläche</code></em><br /><code>  </code><strong><code>PrevWorkspace</code></strong><code>   </code><em><code>#Schaltet</code> <code>zur</code> <code>vorherigen</code> <code>(links</code> <code>von</code> <code>der</code> <code>aktuellen)</code> <code>Arbeitsfläche</code></em><br /><code>  </code><strong><code>RightWorkspace</code> <anzahl></strong><code>   </code><em><code>#Schaltet</code> <code>um</code> <code>&quot;anzahl&quot;</code> <code>Arbeitsflächen</code> <code>nach</code> <code>rechts</code></em><br /><code>  </code><strong><code>LeftWorkspace</code> <anzahl></strong><code>   </code><em><code>#Schaltet</code> <code>um</code> <code>&quot;anzahl&quot;</code> <code>Arbeitsflächen</code> <code>nach</code> <code>links</code></em><br /><code>  </code><strong><code>Workspace</code> <n></strong><code>   </code><em><code>#Schaltet</code> <code>zur</code> <code>Arbeitsfläche</code> <code>n</code></em><br /><code>  </code><strong><code>NextWindow</code> <bitmask></strong><code>   </code><em><code>#siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>PrevWindow</code> <bitmask></strong><code>   </code><em><code>#siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>ArrangeWindows</code></strong><code>   </code><em><code>#Ordnet</code> <code>die</code> <code>Fenster</code> <code>nebeneinander</code> <code>an</code></em><br /><code>  </code><strong><code>ShowDesktop</code></strong><code>   </code><em><code>#Minimiert</code> <code>alle</code> <code>Fenster</code> <code>der</code> <code>aktuellen</code> <code>Arbeitsfläche</code></em><br /><code>  </code><strong><code>RootMenu</code></strong><code>   </code><em><code>#Zeigt</code> <code>das</code> <code>Fluxboxmenu</code> <code>(Rechtsklick)</code> <code>an</code></em><br /><code>  </code><strong><code>WorkspaceMenu</code></strong><code>   </code><em><code>#Zeigt</code> <code>das</code> <code>Arbeitsflächenmenu</code> <code>(Mittelklick)</code> <code>an</code></em><br /><code>  </code><strong><code>WindowMenu</code></strong><code>   </code><em><code>#Zeigt</code> <code>das</code> <code>Fenstermenü</code> <code>an</code></em><br /><code>  </code><strong><code>SetWorkspaceName</code> <name></strong><code>   </code><em><code>#Bennennt</code> <code>die</code> <code>aktuelle</code> <code>Arbeitsläche</code> <code>um</code></em><br /><code>  </code><strong><code>Deiconify</code> <code>LastWorkspace</code></strong><code>   </code><em><code>#Zeigt</code> <code>die</code> <code>minimierten</code> <code>Fenster</code> <code>wieder</code> <code>an</code></em><br /><code>  </code><strong><code>Deiconify</code> <code>Last</code> <code>OriginQuiet</code></strong><code>   </code><em><code>#Bennennt</code> <code>die</code> <code>aktuelle</code> <code>Arbeitsläche</code> <code>um</code></em><br /><code> </code><em><code>'</code> <code>Deiconify</code> <code>All</code> <code>OriginQuiet</code></em><code>'   </code><em><code>#Bennennt</code> <code>die</code> <code>aktuelle</code> <code>Arbeitsläche</code> <code>um</code></em></p>
-<p><strong>Spezielle Befehle</strong></p>
-<p><code>  </code><strong><code>MacroCmd</code></strong><code>   </code><em><code>#siehe</code> <code>weiter</code> <code>unten</code></em><br /><code>  </code><strong><code>ReloadStyle</code></strong><code>   </code><em><code>#Der</code> <code>Stil</code> <code>wird</code> <code>neu</code> <code>geladen</code></em><br /><code>  </code><strong><code>BindKey</code> <key><value><code>:</code> <action></strong><code>   </code><em><code>#Weist</code> <code>eine</code> <code>Taste</code> <code>einem</code> <code>Befehl</code> <code>zu</code></em></p>
-<p><strong>Diverses</strong></p>
+<h2>3. Fluxboxbefehle</h2>
+<p>Fluxbox selber hat tonnenweise eingebaute Befehle, die einem das Leben einfacher machen. Anstelle von <code>exec &lt;befehl&gt;</code> kann man direkt den Fluxboxbefehl schreiben.</p>
+<h3>3.1 Window-Manager-Befehle</h3>
+
+<pre>Restart &lt;argument&gt;   #Startet Fluxbox neu, als Argument kann ein anderer Windowmanager, zu dem umgeschaltet wird, angegeben werden
+Quit   #Beendet fluxbox
+Exit   #Beendet fluxbox
+Reconfigure   #Liest die Konfiguration neu ein
+Reload Style   #Lädt den verwendeten Stil neu, wenn eine Datei verändert wurde
+SetStyle &lt;argument&gt;   #Schaltet zu dem gewählten Stil um
+ExecCommand &lt;argument&gt;   #Führt einen Befehl aus. Siehe Beschreibung oben
+Exec &lt;argument&gt;   #Führt einen Befehl aus. Siehe Beschreibung oben</pre>
+
+<h3>3.2 Befehle für das fokussierte Fenster</h3>
+
+<pre>Fullscreen   #Schaltet das fokussierte Fenster auf Vollbild, wodurch alle anderen, auch höher gelegene, Fenster überdeckt werden
+Minimize   #Minimiert das Fenster, genau wie der _ Knopf im Fenstertitel
+MinimizeWindow   #Minimiert das Fenster, genau wie der _ Knopf im Fenstertitel
+Iconify   #Minimiert das Fenster, genau wie der _ Knopf im Fenstertitel
+Maximize   #Maximiert das Fenster, genau wie der [] Knopf im Fenstertitel
+MaximizeWindow   #Maximiert das Fenster, genau wie der [] Knopf im Fenstertitel
+MaximizeHorizontal   #Maximiert das Fenster horizontal
+MaximizeVertical   #Maximiert das Fenster vertikal
+ResizeTo &lt;breite&gt; &lt;höhe&gt;   #Ändert die Fenstergrösse
+Resize &lt;delta-breite&gt; &lt;delta-höhe&gt;   #Siehe weiter unten
+ResizeHorizontal &lt;delta-breite&gt;   #Siehe weiter unten
+ResizeVertical &lt;delta-höhe&gt;   #Siehe weiter unten
+MoveTo &lt;x&gt; &lt;y&gt; &lt;Ecke&gt;   #Siehe weiter unten
+Move &lt;delta-x&gt; &lt;delta-y&gt;   #Siehe weiter unten
+MoveRight &lt;delta-x&gt;  #Siehe weiter unten
+MoveLeft &lt;delta-x&gt;   #Siehe weiter unten
+MoveUp &lt;delta-y&gt;   #Siehe weiter unten
+MoveDown &lt;delta-y&gt;   #Siehe weiter unten
+Raise   #Bringt das Fenster in den Vordergrund
+RaiseLayer   #Bringt das Fenster eine Ebene nach vorne
+Lower   #Bringt das Fenster in den Hintergrund
+LowerLayer   #Bringt das Fenster eine Ebene nach hinten
+Close   #Schliesst das Fenster, genau wie der X Knopf im Fenstertitel
+Shade   #Schliesst das Fenster, genau wie der X Knopf im Fenstertitel
+ShadeWindow   #Rollt das Fenster auf/ab, wie der Knopf im Fenstertitel
+Stick   #Schaltet den Klebezustand (auf allen Arbeitsflächen sichtbar) ein/aus, wie der Knopf im Fenstertitel
+StickWindow   #Schaltet den Klebezustand (auf allen Arbeitsflächen sichtbar) ein/aus, wie der Knopf im Fenstertitel
+ToggleDecor  '' #Deaktiviert den Fensterrahmen''
+SendToWorkspace &lt;nummer&gt;   #Verschiebt das Fenster auf die angegebene Arbeitsfläche
+SendToNextWorkspace &lt;nummer&gt;   #Verschiebt das Fenster auf die Arbeitsfläche + Nummer
+SendToPrevWorkspace &lt;nummer&gt;   #Verschiebt das Fenster auf die Arbeitsfläche - Nummer
+TakeToWorkspace &lt;nummer&gt;   #Verschiebt das Fenster auf die angegebene Arbeitsfläche und zeigt diese an
+TakeToNextWorkspace &lt;nummer&gt;   #Verschiebt das Fenster auf die Arbeitsfläche + Nummer und zeigt diese an
+TakeToPrevWorkspace &lt;nummer&gt;   #Verschiebt das Fenster auf die Arbeitsfläche - Nummer und zeigt diese an
+KillWindow   #Forciert das Schliessen des Fensters (kill)
+NextTab   #Schaltet zum nächsten Reiter (Tab) um
+PrevTab   #Schaltet zum vorherigen Reiter (Tab) um
+MoveTabLeft   #Verschiebt das Fenster nach links
+MoveTabRight   #Verschiebt das Fenster nach rechts
+DetachClient   #Löst das Fenster von einer Gruppe
+SetHead &lt;int&gt;   #Verschiebt das Fenster auf den angegebenen Bildschirm --&gt; xinerama
+FocusUp   #Fokussiert das nördlich liegende Fenster
+FocusDown   #Fokussiert das südlich liegende Fenster
+FocusLeft   #Fokussiert das westlich liegende Fenster
+FocusRight   #Fokussiert das östlich liegende Fenster</pre>
+
+<h3>3.3 Befehle für die Arbeitsfläche</h3>
+
+<pre>NextWorkspace   #Schaltet zur nächsten (rechts von der aktuellen) Arbeitsfläche
+PrevWorkspace   #Schaltet zur vorherigen (links von der aktuellen) Arbeitsfläche
+RightWorkspace &lt;anzahl&gt;   #Schaltet um &quot;anzahl&quot; Arbeitsflächen nach rechts
+LeftWorkspace &lt;anzahl&gt;   #Schaltet um &quot;anzahl&quot; Arbeitsflächen nach links
+Workspace &lt;n&gt;   #Schaltet zur Arbeitsfläche n
+NextWindow &lt;bitmask&gt;   #siehe weiter unten
+PrevWindow &lt;bitmask&gt;   #siehe weiter unten
+ArrangeWindows   #Ordnet die Fenster nebeneinander an
+ShowDesktop   #Minimiert alle Fenster der aktuellen Arbeitsfläche
+RootMenu   #Zeigt das Fluxboxmenu (Rechtsklick) an
+WorkspaceMenu   #Zeigt das Arbeitsflächenmenu (Mittelklick) an
+WindowMenu   #Zeigt das Fenstermenü an
+SetWorkspaceName &lt;name&gt;   #Bennennt die aktuelle Arbeitsläche um
+Deiconify LastWorkspace   #Zeigt die minimierten Fenster wieder an
+Deiconify Last OriginQuiet   #Bennennt die aktuelle Arbeitsläche um
+Deiconify All OriginQuiet   #Bennennt die aktuelle Arbeitsläche um</pre>
+
+<h3>3.4 Spezielle Befehle</h3>
+
+<pre>MacroCmd   #siehe weiter unten
+ReloadStyle   #Der Stil wird neu geladen
+BindKey &lt;key&gt;&lt;value&gt;: &lt;action&gt;   #Weist eine Taste einem Befehl zu</pre>
+
+<h3>3.5 Diverses</h3>
+
+<code>TakeToWorkspace</code>: Zeigt, im Gegensatz zu &quot;SendToWorkspace&quot; die angegebene Arbeitsfläche nach dem Verschieben des Fensters an<br />
+<code>PrevWindow/NextWindow</code>-Parameter sind eine Bitmask:
 <ul>
-<li>TakeToWorkspace: Zeigt, im Gegensatz zu &quot;SendToWorkspace&quot; die angegebene Arbeitsfläche</li>
+<li>0 oder nicht angegeben = Aktuelles Verhalten - kein Überspringen</li>
+<li>1 Zwischen Gruppen Umschalten</li>
+<li>2 Klebende (auf allen Arbeitsflächen) Fenster überspringen</li>
+<li>4 Aufgerollte Fenster überspringen</li>
+<li>8 Lineares Umschalten (Immer die selbe Reihenfolge)
 </ul>
-<p>nach dem Verschieben des Fensters an</p>
-<ul>
-<li>PrevWindow/NextWindow Parameter sind eine Bitmask:</li>
-</ul>
-<p>:* 0 oder nicht angegeben = Aktuelles Verhalten - kein Überspringen</p>
-<p>:* 1 Zwischen Gruppen Umschalten</p>
-<p>:* 2 Klebende (auf allen Arbeitsflächen) Fenster überspringen</p>
-<p>:* 4 Aufgerollte Fenster überspringen</p>
-<p>:* 8 Lineares Umschalten (Immer die selbe Reihenfolge) Beispiel::</p>
-<p><code>  Mod1 tab :NextWindow 6</code></p>
+
+<p>Beispiel::</p>
+
+<pre>Mod1 tab :NextWindow 6</pre>
+
 <p>überspringt aufgerollte und klebende Fenster, da 6 = 4 + 2.</p>
-<ul>
-<li>Der Deltawert ist die Differenz zwischen dem aktuellen und dem gewünschten Wert. Angenommen ein Fenster ist 100 pixel breit</li>
-</ul>
-<p><code>  Mod1 r :ResizeHorizontal 10</code></p>
+
+<p>Der Deltawert ist die Differenz zwischen dem aktuellen und dem gewünschten Wert. Angenommen ein Fenster ist 100 pixel breit</p>
+
+<pre>Mod1 r :ResizeHorizontal 10</pre>
+
 <p>würde dann das Fenster auf 110 vergrössern.</p>
-<p><code>  Mod1 R :ResizeHorizontal -10</code></p>
-<p>Hingegen verkleinert das Fenster um 10, also auf 90 pixel.</p>
+
+<pre>Mod1 R :ResizeHorizontal -10</pre>
+
+<p>hingegen verkleinert das Fenster um 10, also auf 90 pixel.</p>
+
+<p>Der <code>MoveTo</code> Befehl wird wie folgt verwendet:<p>
+
+<pre>:MoveTo [int|*] [int|*] [reference corner]</pre>
+
+<p><code>*</code> bedeutet der aktuelle Wert, <code>reference corner</code> ist die Ecke auf die sich die Angaben beziehen. Folgende sind möglich:</p>
 <ul>
-<li>Der MoveTo Befehl wird wie folgt verwendet:</li>
+<li>Left, Right</li>
+<li>Upper, UpperLeft, UpperRight</li>
+<li>Lower, LowerLeft, LowerRight</li>
 </ul>
-<p><code>  :MoveTo [int|*] [int|*] [reference corner]</code></p>
-<ul>
-<li>bedeutet der aktuelle Wert, reference corner ist die Ecke auf die sich die Angaben beziehen. Folgende sind möglich:</li>
-</ul>
-<p>:* Left, Right</p>
-<p>:* Upper, UpperLeft, UpperRight</p>
-<p>:* Lower, LowerLeft, LowerRight Beispiel:</p>
-<p><code>  :MoveTo 0 * Left       -&gt; Das Fenster wird an den linken Rand verschoben</code></p>
-<h2 id="macrocmd-syntax-multiple-befehle-mit-einem-tastendruck">MacroCmd Syntax (Multiple Befehle mit einem Tastendruck)</h2>
-<p><code>  Mod1 r :MacroCmd {command1} {command2} {command3}...</code></p>
-<p>Ermöglicht das Ausführen mehrer Befehle nacheinander. Beispiele:</p>
-<p><code>  Mod1 u :MacroCmd {Moveto 10 5} {ResizeTo 1260 590}</code></p>
+
+<p>Beispiel:</p>
+<pre>  :MoveTo 0 * Left     #Das Fenster wird an den linken Rand verschoben</pre>
+<h2>4. MacroCmd Syntax (Multiple Befehle mit einem Tastendruck)</h2>
+<pre>Mod1 r :MacroCmd {command1} {command2} {command3}...</pre>
+<p>ermöglicht das Ausführen mehrer Befehle nacheinander. Beispiele:</p>
+<pre>Mod1 u :MacroCmd {Moveto 10 5} {ResizeTo 1260 590}</pre>
 <p>Die Befehlskette Verschiebt ein Fenster nach oben links und vergrössert es anschliessend.</p>
-<h2 id="toggle-command-umschalten">Toggle Command (Umschalten)</h2>
-<p><code>  Mod1 t :ToggleCmd {command1} {command2}</code></p>
-<p>Ermöglicht eine Art Schalter zu erstellen, beim ersten Tastendruck wird command1 ausgeführt, beim zweiten command2.</p>
-<h2 id="keymodes">Keymodes</h2>
-<p>Siehe unbedingt <a href="Howto_keymodes" title="wikilink">Howto_keymodes</a></p>
-<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+<h2>5. Toggle Command (Umschalten)</h2>
+<pre>Mod1 t :ToggleCmd {command1} {command2}</pre>
+<p>ermöglicht eine Art Schalter zu erstellen, beim ersten Tastendruck wird command1 ausgeführt, beim zweiten command2.</p>
+
+<h2>6. Keymodes</h2>
+<p>Siehe unbedingt <a href="../en/Keymodes.html" title="wikilink">Howto_keymodes</a></p>
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+    
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+  <div class="footer">
+    <br>
+    <a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      <br>
+  </div>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
