@@ -66,12 +66,19 @@
 <p>Diese Dateien entsprechen einem freedesktop Standard und sollten inzwischen von GDM und KDM problemlos interpretiert werden können.</p>
 <p>Dieser Ordner befindet sich nicht immer an der selben Stelle, bei vielen Distributionen ist es jedoch <code>/usr/share/xsessions/</code></p>
 <p>In diesem Ordner erstellen wir die Textdatei <code>fluxbox.desktop</code> mit folgendem Inhalt:</p>
-<p><code> [Desktop Entry]</code><br /><code> Encoding=UTF-8</code><br /><code> Name=Fluxbox</code><br /><code> Comment=Highly configureable low resource X11 Window Manager</code><br /><code> Exec=</code><code>/usr/local/bin/startfluxbox</code><br /><code> Terminal=False</code><br /><code> TryExec=</code><code>/usr/local/bin/startfluxbox</code><br /><code> Type=Application</code></p>
+<pre>[Desktop Entry]
+Encoding=UTF-8
+Name=Fluxbox
+Comment=Highly configureable low resource X11 Window Manager
+Exec=/usr/local/bin/startfluxbox
+Terminal=False
+TryExec=/usr/local/bin/startfluxbox
+Type=Application</pre>
 <p>Wichtig: Der Pfad <code>/usr/local/bin</code> wird eigentlich nur von einem git-Fluxbox verwendet, die meisten Distributionen installieren fluxbox nach <code>/usr/bin</code>. Ergo muss man das anpassen.</p>
 <p>Die genaue Position von <code>startfluxbox</code> liefern die Befehle</p>
-<p><code>which startfluxbox </code></p>
+<pre>which startfluxbox</pre>
 <p>respektive</p>
-<p><code>whereis startfluxbox</code></p>
+<pre>whereis startfluxbox</pre>
 
 <!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
 
