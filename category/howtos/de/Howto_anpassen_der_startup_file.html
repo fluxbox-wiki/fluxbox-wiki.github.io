@@ -1,35 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="EC" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Fluxbox Wiki</title>
+<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
 </head>
+
 <body>
-<p>__TOC__</p>
-<h2 id="editieren-der-startup-datei">Editieren der Startup Datei</h2>
-<p>Die Datei ~/.fluxbox/startup wird ausgeführt, wenn fluxbox über den Befehl &quot;startfluxbox&quot; anstelle von &quot;fluxbox&quot; gestartet wird.</p>
+
+<div class="container theme-showcase" role="main">
+
+<!-- BEGINNING: NAV MENU -->
+<div class="header">
+  <ul class="nav nav-pills pull-right" style="font-size:15px">
+    <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+    <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+    <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+    <li><a href="#searchfield">Search</a></li>
+    <li class="dropdown, active">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+        </ul>
+    </li>
+    <li> 
+    </li>
+  </ul>
+<p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+</div>
+    
+<!-- END: NAV MENU -->   
+
+
+<div class="page-header">
+<h1>Editieren der Startup Datei</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>0. Einleitung</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+<p>Die Datei <code>~/.fluxbox/startup</code> wird ausgeführt, wenn <code>fluxbox</code> über den Befehl <code>startfluxbox</code> anstelle von <code>fluxbox</code> gestartet wird.</p>
 <p>Sie entspricht einer Art Autostart, enthält also Applikationen, welche zusammen mit oder nach fluxbox gestartet werden.</p>
 <p>Die Datei kann mit jedem beliebigen Texteditor bearbeitet werden.</p>
+
+<h2>1. Allgemeines</h2>
 <p>Zu beachten ist dabei folgendes:</p>
 <p>Zeilen, die mit einem # beginnen sind Kommentare und werden ignoriert.</p>
-<p>Applikationen, welche kontinuierlich laufen, müssen mit einem &amp; am Schluss gestartet werden.</p>
+<p>Applikationen, die kontinuierlich laufen, müssen mit einem &amp; am Schluss gestartet werden.</p>
 <p>Beispiel:</p>
-<p><code># Applications you want to run with fluxbox.</code><br /><code># MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN </code><em><code>&amp;</code></em><code> AT THE END.</code><br /><code>#</code><br /><code># unclutter -idle 2 &amp;</code><br /><code># wmnd &amp;</code><br /><code># wmsmixer -w &amp;</code><br /><code># idesk &amp;</code><br /></p>
-<p>Ganz am Schluss der Datei wird fluxbox selber gestartet, wobei man noch einmal explizit Parameter, zum Beispiel den zum erstellen einer Logdatei, angeben kann.</p>
-<p>Dies ist der einzige Befehl dem &quot;exec&quot; vorangestellt werden muss.</p>
+<pre># Applications you want to run with fluxbox.
+# MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN &amp; AT THE END.
+#
+# unclutter -idle 2 &amp;
+# wmnd &amp;
+# wmsmixer -w &amp;
+# idesk &amp; </pre>
+
+<p>Ganz am Schluss der Datei wird <code>fluxbox</code> selber gestartet, wobei man noch einmal explizit Parameter, zum Beispiel den zum erstellen einer Logdatei, angeben kann.</p>
+<p>Dies ist der einzige Befehl, dem &quot;exec&quot; vorangestellt werden muss.</p>
 <p>Beispiel:</p>
-<p><code>exec /usr/local/bin/fluxbox</code><br /><code># Oder mit einem Logfile: </code><br /><code># exec /usr/local/bin/fluxbox -log ~/.fluxbox/log</code></p>
-<p>Der Pfad muss dabei natürlich angepasst werden, sollte fluxbox nicht in /usr/local/bin/ liegen.</p>
-<h2 id="applikationen-nach-fluxbox-starten">Applikationen nach Fluxbox starten</h2>
+<pre>exec /usr/local/bin/fluxbox
+# Oder mit einem Logfile: 
+# exec /usr/local/bin/fluxbox -log ~/.fluxbox/log</pre>
+<p>Der Pfad muss dabei natürlich angepasst werden, sollte fluxbox nicht in <code>/usr/local/bin/</code> liegen.</p>
+
+<h2>2. Applikationen nach Fluxbox starten</h2>
+
 <p>Anwendungen lassen sich ziemlich einfach nach Fluxbox starten. Das sollte zwar nur in ein paar wenigen Fällen nötig sein, hier dennoch die Anleitung: Am besten erstellt man eine Startup Datei ähnlich dieser hier, welche aus dem englischen HowTo Artikel stammt und im Original von <a href="http://darkshed.net/">akira</a> erstellt wurde:</p>
-<p><code> #!/bin/sh</code><br /><code> # fluxbox startup-script: </code><br /><code> #</code><br /><code> </code><br /><code> # Wiederholungsrate</code><br /><code> xset r rate 195 35</code><br /><code> xmodmap ~/.Xmodmap</code><br /><code> </code><br /><code> exec fluxbox &amp;</code><br /><code> fbpid=$!</code><br /><code> </code><br /><code> sleep 1 </code><br /><code> { </code><br /><code>    xsetroot -cursor_name left_ptr -fg white -bg black &amp;</code><br /><code>    ipager &amp;</code><br /><code>    gkrellm2 &amp;</code><br /><code> } &amp;</code><br /><code> </code><br /><code> wait $fbpid</code></p>
-<p>Der Wert nach sleep kann dabei angepasst werden. Er entspricht der Zeit zwischen dem Start von Fluxbox (welcher dadurch nicht verzögert wird) und dem Starten der in den Klammern angegebenen Applikationen.</p>
-<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+<pre>
+#!/bin/sh
+# fluxbox startup-script: 
+#
+
+# Wiederholungsrate
+xset r rate 195 35
+xmodmap ~/.Xmodmap
+
+exec fluxbox &amp;
+fbpid=$!
+
+sleep 1 
+{ 
+   xsetroot -cursor_name left_ptr -fg white -bg black &amp;
+   ipager &amp;
+   gkrellm2 &amp;
+} &amp;
+
+wait $fbpid</pre>
+
+<p>Der Wert nach <code>sleep</code> kann dabei angepasst werden. Er entspricht der Zeit zwischen dem Start von Fluxbox (welcher dadurch nicht verzögert wird) und dem Starten der in den Klammern angegebenen Applikationen.</p>
+
+<h2>3. Siehe auch</h2>
+
+<p>Die Datei <code>startup</code> kann auch zum <a href='Crashhandling_und_Wiederherstellung.html'>Crashhandling</a> von Fluxbox verwendet werden, siehe den entsprechenden <a href='Crashhandling_und_Wiederherstellung.html'>Artikel</a>.<p>
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+    
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+  <div class="footer">
+    <br>
+    <a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      <br>
+  </div>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
