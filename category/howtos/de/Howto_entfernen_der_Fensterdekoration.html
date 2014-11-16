@@ -1,35 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="EC" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Fluxbox Wiki</title>
+<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
 </head>
+
 <body>
-<h2 id="entfernen-der-fensterdekoration-fenster-ohne-rahmen">Entfernen der Fensterdekoration (Fenster ohne Rahmen)</h2>
-<p>Es gibg mehrere Möglichkeiten den Rahmen um die Fenster zu entfernen. Am einfachsten ist folgende Methode:</p>
-<p>In der <strong>~/.fluxbox/keys</strong> Datei setzt man eine Zeile:</p>
-<p><code>  Mod4 t :ToggleDecor</code></p>
-<p>(Mod4 t ist Windows+t, man kann natürlich eine andere Tastenkombination wählen)</p>
-<p>Jetzt muss man Fluxbox nur die neue Konfiguration einlesen lassen,</p>
-<p><code>  fluxbox menu -&gt; reload config</code></p>
-<p>Oder mit SIGUSR2 von der Kommandozeile:</p>
-<p><code> kill -s usr2 `pgrep fluxbox`</code></p>
-<p>Jetzt kann man das gewünschte Programm starten, nehmen wir mal aterm als Beispiel:</p>
-<p>Ein Rechtsklick auf den Fenstertitel öffnet das Fenstermenü. Unter &quot;Einstellungen merken&quot; (Remember) muss nun &quot;beim Schliessen speichern&quot; (save on close) und &quot;Dekoration&quot; aktiviert werden.</p>
-<p>Wenn das Fenster nun geschlossen wird schreibt Fluxbox die Einstellungen in die apps Datei und alle Aterms werden von nun an ohne Rahmen / Dekoration gestartet.</p>
-<p>Mit der gesetzten Tastenkombination kann man auch Fenster temporär Rahmenlos machen.</p>
-<p>Die zweite Möglichkeit ist ein klein wenig komplizierter und sollte nicht unter laufendem Fluxbox durchgeführt werden.</p>
-<p>Mittels xprop kann man Fensterklasse oder Fenstername der gewünchten Applikation ermitteln.</p>
-<p>Anschliessend öffnet man mit einem Texteditor die Datei ~/.fluxbox/apps und fügt folgende Zeilen hinzu:</p>
-<p><code>  [app] (Fenstername / Fensterklasse)</code><br /><code>     [Deco]    {NONE}</code><br /><code>  [end]</code></p>
-<p>Nach dem Speichern der Datei kann Fluxbox gestartet werden und die Einstellungen sind aktiv.</p>
-<p>Die apps Datei sollte nicht bei laufendem Fluxbox von Hand editiert werden, da die Änderungen ansonsten bei einem Neustart verloren gehen.</p>
-<p><a href="Category:German howtos" title="wikilink">Category:German howtos</a></p>
+
+<div class="container theme-showcase" role="main">
+
+<!-- BEGINNING: NAV MENU -->
+<div class="header">
+  <ul class="nav nav-pills pull-right" style="font-size:15px">
+    <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+    <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+    <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+    <li><a href="#searchfield">Search</a></li>
+    <li class="dropdown, active">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+          <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+        </ul>
+    </li>
+    <li> 
+    </li>
+  </ul>
+<p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+</div>
+    
+<!-- END: NAV MENU -->   
+
+
+<div class="page-header">
+<h1>Entfernen der Fensterdekoration (Fenster ohne Rahmen)</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+
+
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>0. Umschalten per Tastenkombination </h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+<p>In der Datei <code>~/.fluxbox/keys</code> setzt man eine Zeile:</p>
+<pre>Mod4 t :ToggleDecor</pre>
+<p><code>Mod4 t</code> bedeutet, dass <kbd>Windows</kbd> + <kbd>t</kbd> gedrückt werden muss. Man kann natürlich eine andere Tastenkombination wählen. Siehe dazu den <a href='Howto_anpassen_der_keys_file.html'>Artikel zur <code>keys</code> Datei</a>.</p>
+<p>Jetzt muss die neue Konfiguration in Fluxbox eingelesen werden. Dies geht über den Punkt <code>Reconfigure</code> im Fluxbox-Menü oder mit <code>SIGUSR2</code> von der Kommandozeile:</p>
+<pre>kill -s usr2 `pgrep fluxbox`</pre>
+<p>Mit der gewählten Tastenkombination kann nun der Rahmen des aktiven Fensters an- und ausgeschalten werden.
+<h2>1. Pro Anwendung (generell)</h2>
+<p>Ein Rechtsklick auf den Fenstertitel oder den entsprechenden Eintrag in der Toolbar öffnet das Fenstermenü. Unter <code>Einstellungen merken...</code> (Remember) muss <code>Beim Schließen speichern</code> (save on close) und <code>Dekoration</code> aktiviert werden.</p> <!-- TODO: Muss wirklich save on close aktiviert werden? Das hat damit doch gar nichts zu tun, ohne die Einstellung müsste halt nur das Einstellungen merken NACH dem Entfernen des Rahmens gemacht werden -->
+
+<p>Wenn das Fenster geschlossen wird, z. B. über einen Rechtsklick auf den entsprechenden Eintrag in der Toolbar und Auswahl von <code>Schließen</code> (close), schreibt Fluxbox die Einstellungen in die <code>apps</code> Datei.  Falls der Rahmen vor dem Schließen ausgeschaltet war, wird die gewählte Anwendung von nun an ohne Rahmen gestartet.</p>
+
+<!-- TODO: Bei mir klappt das nicht, weil in apps nicht nur name oder class, sondern role gespeichert wird. Warum? Und was ist "role"? -->
+
+<p>Der Eintrag in die <code>apps</code> Datei kann auch von Hand vorgenommen werden. Dazu ermittelt man mittels <code>xprop</code> Fensterklasse und Fenstername der gewünschten Applikation. Anschließend öffnet man mit einem Texteditor die Datei <code>~/.fluxbox/apps</code> und fügt folgende Zeilen hinzu:</p>
+<pre>
+[app] (name=&lt;Fenstername&gt;) (class=&lt;Fensterklasse&gt;)
+  [Deco]    {NONE}
+[end]</pre>
+<p>Nach dem Speichern der Datei ist die Einstellung ab dem nächsten Öffnen eines Fensters aktiv.</p>
+<p>Bei älteren Fluxbox-Versionen sollte dies allerdings nicht unter laufendem Fluxbox durchgeführt werden, da die Änderungen ansonsten bei einem Neustart verloren gehen.</p> <!-- TODO: Ab welcher Version ist es ok? -->
+<p>Mehr zur <code>apps</code> Datei ist in <a href='Howto_anpassen_der_apps_file.html'>diesem Artikel</a> zu finden.</p> 
+
+<h2>2. Pro Anwendung (spezifisch)</h2>
+Die zuvor genannte Möglichkeit setzt die rahmenlose Einstellung für alle Instanzen einer bestimmten Anwendung. Wenn  aber z. B. ein <code>aterm</code> mit <code>irssi</code> ohne Rahmen gestartet werden soll, alle anderen Instanzen von <code>aterm</code> dagegen mit Rahmen, muss für das spezielle <code>aterm</code> ein Namen gesetzt werden. Die meinsten Terminals kennen dafür die Option <code>-name</code>:
+<pre>
+$ aterm -name irssiterm -e irssi
+</pre>
+<p>Wenn nun wie unter 1. beschrieben per Rechtsklick unter <code>Einstellungen merken...</code> die Einträge <code>Beim Schließen speichern</code> und <code>Dekoration</code> aktiviert werden, wird in der <code>apps</code> Datei folgender Eintrag generiert:</p>
+<pre>
+[app] (name=irssiterm) (class=Aterm)
+  [Deco]        {NONE}
+  [Close]       {yes}
+[end]
+</pre> <!-- TODO: Was nicht stimmt, denn mit save on close wird auch noch eine Zeile [Close] yes eingefügt! -->
+<p>Dieser kann natürlich auch (wie ebenfalls unter 1. beschrieben) von Hand gesetzt werden.</p>
+
+<h2>3. Generelles Abschalten</h2>
+Rahmen können auch generell abgeschaltet werden. Dazu dient folgender Eintrag in der Datei <code>~/.fluxbox/init</code>:
+<pre>
+session.screen0.defaultDeco: NONE
+</pre>
+<!-- TODO: Evtl Link zum init-Artikel? -->
+Zur Aktivierung muss die Konfiguration neu geladen werden, siehe analog dazu unter 0. die Aktivierung der Tastenkombination.
+
+<h2>4. Weitere Infos</h2>
+<p>Außer dem Abschalten der Rahmen gibt es noch weitere Möglichkeiten, die so genannte Fensterdekoration einzustellen. Siehe dazu unter <code>man fluxbox-apps</code> die möglichen Werte für <code>[Deco]</code>.</p>
+<!-- TODO: mögliche Werte hier aufführen? -->
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+    
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+  <div class="footer">
+    <br>
+    <a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      <br>
+  </div>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 </html>
