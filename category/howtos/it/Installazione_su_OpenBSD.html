@@ -1,64 +1,207 @@
+
+
+
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-</head>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="EC" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Fluxbox Wiki</title>
+	<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+	<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+	<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+	<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
+  </head>
+
+
+
 <body>
-<p>__TOC__</p>
+
+<div class="container theme-showcase" role="main">
+ 
+ <!-- BEGINNING: NAV MENU -->
+      <div class="header">
+          <ul class="nav nav-pills pull-right" style="font-size:15px">
+            <li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+            <li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+            <li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+            <li><a href="#searchfield">Search</a></li>
+            <li class="dropdown, active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+                <li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+              </ul>
+
+            </li>
+            <li> 
+           
+            </li>
+        </ul>
+        <p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+
+      </div>
+      
+<!-- END: NAV MENU -->   
+
+
+
+
+<div class="page-header">
+<h1>Installazione su OpenBSD</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->  
+</div>
+  
+<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->  
+ 
+ 
+<!-- ******* BEGINNING OF THE CONTENT ****** -->   
+
+<h2>0. Introduzione</h2><!-- EACH SECTION MUST HAVE A TITLE H2 --> 
+
+
 <p>Nei ports di openbsd c'è fluxbox però c'è una versione abbastanza vecchia, la 0.9.15.1. I mantenitori di OpenBSD hanno le loro ragioni per tenere ancora questa versione. Se si desidera installare l'ultima versione di fluxbox non bisogna avere paura di sporcarsi un po' le mani. Questa guida è stata scritta utilizzando OpenBSD 4.6 architettura i386/amd64. Su altre architetture la procedura può essere molto diversa.</p>
-<h2 id="git-specifiche">Git specifiche</h2>
+      
+       
+
+<h2>1. Git Specifiche</h2>
+
+
 <p>Se desideriamo utilizzare la versione git di fluxbox bisogna fare alcuni passaggi aggiuntivi. In caso contrario l'installazione non differisce dalla versione stabile. Prima di tutto bisogna installare i pacchetti necessari:</p>
-<p><code># pkg_add automake</code><br /><code># pkg_add autoconf</code><br /><code># pkg_add GIT</code></p>
+<pre>
+# pkg_add automake
+# pkg_add autoconf
+# pkg_add GIT
+</pre>
 <p>Scaricare il codice dai seguenti repository Git - usando le istruzioni. Poi bisogna definire alcune variabili d'ambiente:</p>
-<p><code>export AUTOCONF_VERSION $ = 2.61</code><br /><code>export AUTOMAKE_VERSION $ = 1.9</code></p>
+<pre>
+export AUTOCONF_VERSION $ = 2.61
+export AUTOMAKE_VERSION $ = 1.9
+</pre>
 <p>Le versioni possono cambiare con il tempo quindi per sicurezza e meglio dare sempre un'occhiata per vedere la versione utilizata:</p>
-<p><code>pkg_info autoconf </code><br /><code>pkg_info automake </code></p>
-<p>Come da regola del thumb, solo per verifica, dare autoconf-$VERSIONE_AUTOCONF e automake-$VERSIONE_AUTOMAKE exist nel proprio $PATH. Ora siete pronti a partire con l'installazione</p>
-<p><code>$ ./Autogen</code></p>
-<p>La parte di che riguarda il git finisce qui.</p>
-<h2 id="costruzione-e-installazione">Costruzione e installazione</h2>
+<pre>
+pkg_info autoconf 
+pkg_info automake 
+</pre>
+<p>Come da regola del thumb, solo per verifica, dare <code>autoconf-$VERSIONE_AUTOCONF </code>e <code>automake-$VERSIONE_AUTOMAKE exist</code> nel proprio $PATH. Ora siete pronti a partire con l'installazione</p>
+<pre>
+$ ./Autogen
+</pre>
+
+       
+       
+       
+
+<h2>2. "Costruzione" ed installazione</h2>
+
+
 <p>Se non volete la versione git basta scaricare il <a href="http://fluxbox.org/download/">tarball stabile</a> e estrarlo come al solito:</p>
-<p><code>tar -zxvf nomefile.tar.gz</code></p>
+<pre>
+tar -zxvf nomefile.tar.gz
+</pre>
 <p>oppure per il pacchetto .tar.bz2</p>
-<p><code>tar -jxvf nomefile.tar.bz2</code></p>
+<pre>
+tar -jxvf nomefile.tar.bz2
+</pre>
 <p>Ora possiamo partire con la configurazione:</p>
-<p><code>$ ./configure --program-prefix=&quot;&quot; --program-suffix=&quot;&quot; --prefix=/usr/local</code></p>
+<pre>
+$ ./configure --program-prefix=&quot;&quot; --program-suffix=&quot;&quot; --prefix=/usr/local
+</pre>
 <p>Il prefisso deve essere impostato a /usr/local in parte per rispettare le convenzioni di OpenBSD e in parte per sovrascrivere fluxbox se è già installato. Ora modifichiamo il Makefile risultante, trovare SUBDIRS è impostarlo come segue:</p>
-<p><code>SUBDIRS = scr util data</code></p>
+<pre>
+SUBDIRS = scr util data
+</pre>
 <p>NLS non si installa correttamente al momento della scrittura, i documenti non sono costruiti bene e quindi ci dobbiamo sbarazzare di loro. Triste ma vero. Ora lanciate:</p>
-<p><code>$ make</code></p>
-<p>Se utilizzare fluxbox-1.1.1 dovrebbe compilare senza nessuno problema. Con fluxbox-git del 28/10/2009 la compilazione si blocca in src/FbTk/StringUtil.cc con il seguente errore:</p>
-<p><code>StringUtil.cc:87: error: `::extractLongNumber' undeclared (first use here)</code></p>
+<pre>
+$ make
+</pre>
+<p>Se utilizzare fluxbox-1.1.1 dovrebbe compilare senza nessuno problema. Con fluxbox-git del 28/10/2009 la compilazione si blocca in <code>src/FbTk/StringUtil.cc</code> con il seguente errore:</p>
+<pre>
+StringUtil.cc:87: error: `::extractLongNumber' undeclared (first use here)
+</pre>
 <p>Per risolvere basta modificare quella stringa e cancellare “::”, rendendola:</p>
-<p><code>if (extractLongNumber (in.c_str (), risultato) &amp; &amp; out&gt; = 0) (</code></p>
+<pre>
+if (extractLongNumber (in.c_str (), risultato) &amp; &amp; out&gt; = 0) 
+</pre>
 <p>ed eseguite di nuovo il comando make Adesso diventate root e date:</p>
-<p><code># Make install</code><br /></p>
+<pre>
+# Make install
+</pre>
 <p>A questo punto è finita l'installazione di fluxbox.</p>
-<h2 id="avvio-di-fluxbox">Avvio di FluxBox</h2>
-<p>Se si esegue X utilizzando il comando startx è necessario aggiungere startfluxbox nel file .Xinitrc come segue:</p>
-<p><code>$ echo “exec /usr/local/bin/startfluxbox” &gt; ~/.xinitrc</code><br /><code>$ chmod u+x ~/.xinitrc</code></p>
-<p>Attenzione se esiste già il file ~/.xinitrc il contenuto vera sovrascritto altrimenti vera creato il file. Oppure possiamo utilizzare:</p>
-<p><code>$ startx startfluxbox</code></p>
+
+
+
+<h2>3. Avvio di fluxbox</h2>
+
+<p>Se si esegue X utilizzando il comando startx è necessario aggiungere startfluxbox nel file <code>.Xinitrc</code> come segue:</p>
+<pre>
+$ echo “exec /usr/local/bin/startfluxbox” &gt; ~/.xinitrc
+$ chmod u+x ~/.xinitrc
+</pre>
+<p>Attenzione se esiste già il file <code>~/.xinitrc</code> il contenuto vera sovrascritto altrimenti vera creato il file. Oppure possiamo utilizzare:</p>
+<pre>
+$ startx startfluxbox
+</pre>
 <p>Se usi xdm per avviare x è ancora più facile:</p>
-<p><code>$ echo “exec /usr/local/bin/startfluxbox” &gt; .xsession</code></p>
-<h2 id="impostare-lo-sfondo">Impostare lo sfondo</h2>
+<pre>
+$ echo “exec /usr/local/bin/startfluxbox” &gt; .xsession
+</pre> 
+
+
+<h2>4. Impostare lo sfondo</h2>
+
 <p>Nella versione 4.6 non c'è fornito un setter wallpaper di default quindi bisogna installarlo:</p>
-<p><code># pkg_add feh</code></p>
+<pre>
+# pkg_add feh
+</pre>
 <p>oppure</p>
-<p><code># pkg_add chbg</code></p>
+<pre>
+# pkg_add chbg
+</pre>
 <p>Anche alcune versioni di fbsetbg non funzionano correttamente su OpenBSD. Se avete qualcosa di simile:</p>
-<p><code>bash-4.0$ fbsetbg -f ~/.fluxbox/backgrounds/some_background.png </code><br /><code>ldd: Esetroot:: No such file or directory</code><br /><code>ldd: Command: No such file or directory</code><br /><code>ldd: not: No such file or directory</code><br /><code>ldd: found.: No such file or directory</code><br /><code>/usr/local/bin/fbsetbg[537]: wmsetbg: not found</code><br /><code>/usr/local/bin/fbsetbg[542]: gxmessage: not found</code></p>
+<pre>
+bash-4.0$ fbsetbg -f ~/.fluxbox/backgrounds/some_background.png 
+ldd: Esetroot:: No such file or directory
+ldd: Command: No such file or directory
+ldd: not: No such file or directory
+ldd: found.: No such file or directory
+/usr/local/bin/fbsetbg[537]: wmsetbg: not found
+/usr/local/bin/fbsetbg[542]: gxmessage: not found
+</pre>
 <p>basta editare `which fbsetbg` con il vostro editor preferito, trovare la seguente stringa:</p>
-<p><code>[ -n &quot;$1&quot; ] &amp;&amp; hash $1 2&gt; /dev/null</code></p>
+<pre>
+[ -n &quot;$1&quot; ] &amp;&amp; hash $1 2&gt; /dev/null
+</pre>
 <p>e sostituirla con:</p>
-<p><code>which $1 2&gt;&amp;1 &gt; /dev/null</code></p>
-<p><a href="Category:Italiano / Italian howtos" title="wikilink">Category:Italiano / Italian howtos</a></p>
-</body>
+<pre>
+which $1 2&gt;&amp;1 &gt; /dev/null
+</pre>
+
+<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->   
+
+</div> <!-- /container -->
+      
+<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->      
+    <div class="footer">
+    	<br>
+    	<a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+      	<br>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
 </html>
