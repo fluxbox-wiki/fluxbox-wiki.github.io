@@ -1,36 +1,83 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-</head>
-<body>
-<p><strong>How to make windows borderless.</strong> __TOC__</p>
-<h2 id="toggle">Toggle</h2>
-<p>Add the following entry to your <strong>~/.fluxbox/keys</strong> file:</p>
-<p><code>  Mod4 t :ToggleDecor</code></p>
-<p>Use the one above or choose another key combination (windows-key + t in this case).</p>
-<p>You now have to reload the configuration with</p>
-<p><code>  fluxbox menu -&gt; reload config</code></p>
-<p>After the reload your key combo is ready to work and you can toggle the window decoration on and off.</p>
-<h2 id="per-application-global">Per application (global)</h2>
-<p>If you want a specific application to be always borderless, then right click the window title to bring up the windowmenu. Go to the 'Remember' section and enable 'Save on close' and 'Decorations' Options.<br />Now use your keybinding to remove the window decorations. Closing the window will save the settings to your <strong>~/.fluxbox/apps</strong> file. All windows of the respective application you open from now on will have no window decorations.</p>
-<h2 id="per-application-specific">Per application (specific)</h2>
-<p>The previous way will be a global setting for one application. If you want for example your aterm with irssi running in it to be the borderless window BUT all other instances of the aterm show the window decoration normally, you need to set a name for this specific aterm. Most terminals use the &quot;-name&quot; switch for it:</p>
-<p><code>   $ aterm -name irssiterm -e irssi</code></p>
-<p>Applying the key-combination on that special aterm will create an entry in your apps file similar to this here:</p>
-<p><code>   [app] (name=irssiterm) (class=Aterm)</code><br /><code>     [Deco]        {NONE}</code><br /><code>   [end]   </code></p>
-<p>and it will ONLY apply for an app named &quot;irssiterm&quot; which you can force via the -name switch.</p>
-<h2 id="global">Global</h2>
-<p>You can also have all windows borderless by default, set</p>
-<p><code> session.screen0.defaultDeco: NONE</code></p>
-<p>in the <strong>~/.fluxbox/init</strong> file and reload the configuration.</p>
-<p><a href="/category/howtos/en/index.html">Category:English howtos</a></p>
-</body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="EC" content="">
+		<link rel="icon" href="../../favicon.ico">
+		<title>Fluxbox Wiki - Borderless Windows</title>
+		<!-- BEGINNING: STYLE + JAVASCRIPT FOR THE TOC -->
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link href="http://www.fluxbox-wiki.org/jumbotron-custom.css" rel="stylesheet">
+		<script type="text/javascript" src="http://www.fluxbox-wiki.org/generated_toc.js"></script>
+		<!-- TOC Script from http://www.kryogenix.org/code/browser/generated-toc/ -->
+		<!-- END: STYLE + JAVASCRIPT FOR THE TOC -->
+	</head>
+	<body>
+		<div class="container theme-showcase" role="main">
+			<!-- BEGINNING: NAV MENU -->
+			<div class="header">
+				<ul class="nav nav-pills pull-right" style="font-size:15px">
+					<li><a href="http://fluxbox-wiki.org/index.html" >Home</a></li>
+					<li><a href="http://fluxbox-wiki.org/about.html">About</a></li>
+					<li><a href="http://fluxbox-wiki.org/contribute.html">Contribute</a></li>
+					<li><a href="#searchfield">Search</a></li>
+					<li class="dropdown, active">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Languages <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="http://fluxbox-wiki.org/category/howtos/en/index.html">English</a></li>
+							<li><a href="http://fluxbox-wiki.org/category/howtos/it/index.html">Italian</a></li>
+							<li><a href="http://fluxbox-wiki.org/category/howtos/de/index.html">German</a></li>
+							<li><a href="http://fluxbox-wiki.org/category/howtos/fin/index.html">Finnish</a></li>
+							<li><a href="http://fluxbox-wiki.org/category/howtos/br/index.html">Portuguese</a></li>
+							<li><a href="http://fluxbox-wiki.org/category/howtos/ko/index.html">Korean</a></li>
+							<li><a href="http://fluxbox-wiki.org/category/howtos/es/index.html">Spanish</a></li>
+							<li><a href="http://fluxbox-wiki.org/category/howtos/ru/index.html">Russian</a></li>
+						</ul>
+					</li>
+					<li>
+					</li>
+				</ul>
+				<p class="text-muted" style="font-size:30px">Fluxbox Wiki   </p>
+			</div>
+
+			<div class="page-header">
+				<h1>Borderless Windows</h1> <!-- ******* HERE GOES THE TITLE OF THE PAGE ****** -->
+			</div>
+			<div id="generated-toc"class="alert alert-info" role="alert"></div>  <!-- AUTOMATIC TABLE OF CONTENT - DON'T TOUCH -->
+			<h2>Toggling</h2>
+			<p>Add the following entry to your <code>~/.fluxbox/keys</code> file:</p>
+			<pre>Mod4 t :ToggleDecor</pre>
+			<p>Using the above example, you can hold the <kbd>Win</kbd> key and hit <kbd>T</kbd> to toggle window decorations. You may need to reload your configuration, found in the Fluxbox portion of your menu.</p>
+			<h2>Per Application (Global)</h2>
+			<p>If you want a specific application to be always borderless, then right click the window title to bring up the windowmenu. Go to the 'Remember' section and enable 'Save on close' and 'Decorations' Options.<br />Now use your keybinding to remove the window decorations. Closing the window will save the settings to your <code>~/.fluxbox/apps</code> file. All windows of the respective application you open from now on will have no window decorations.</p>
+			<h2>Per Application (Specific)</h2>
+			<p>The previous way will be a global setting for one application. For example, if you want your <code>aterm</code> with irssi running in it to be the borderless window, but all other instances of the aterm show the window decoration normally, you need to set a name for this specific aterm. Most terminals use the <code>-name</code> switch for it:</p>
+			<pre>aterm -name irssiterm -e irssi</pre>
+			<p>Applying the key-combination on that special aterm will create an entry in your <code>apps</code> file similar to this:</p>
+			<pre>[app] (name=irssiterm) (class=Aterm)
+[Deco] {NONE}
+[end]</pre>
+			<p>...and it will <em>only</em> apply for an app named <code>irssiterm</code>, which you can force via the <code>-name</code> switch.</p>
+			<h2>Global</h2>
+			<p>You can also have all windows borderless by default, by placing this inside <code>~/.fluxbox/init</code>:</p>
+			<pre> session.screen0.defaultDeco: NONE</pre>
+			<p>A quick configuration reload will make this stick.</p>
+			<!-- ******* END OF THE CONTENT FORM HERE ON DON'T MODIFY****** -->
+
+		</div> <!-- /container -->
+
+		<!-- BELOW: THE SEARCH BAR AND THE SCRIPTS REQUIRED BY THE PAGE -->
+		<div class="footer">
+			<br>
+			<a name="searchfield"> <center> <iframe src="http://duckduckgo.com/search.html?width=480&site=www.fluxbox-wiki.org&prefill=Fluxbox Wiki&kn=1&kj=b " style="overflow:hidden;margin:0;padding:0;width:550px;height:40px;" frameborder="0"></iframe></center></a>
+			<br>
+		</div>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	</body>
 </html>
