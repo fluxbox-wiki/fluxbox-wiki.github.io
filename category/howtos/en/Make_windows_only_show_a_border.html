@@ -16,7 +16,7 @@
 <p>You need to edit <strong>~/.fluxbox/init</strong>, find the related entry and change its value from NORMAL (the default) to BORDER:</p>
 <p><code>session.screen0.defaultDeco: BORDER</code></p>
 <p>Now save and choose <em>reconfigure</em> or <em>restart</em> from the rootmenu, all apps will show ONLY a border now (if the styles uses one). You can also change the pixelwidth and the color of the border.</p>
-<p>Either do it globally using the <a href="http://fluxbox-wiki.org/index.php/Howto_style_overlay">overlay file</a> or separately for every single style.</p>
+<p>Either do it globally using the <a href="Style_overlay.html">overlay file</a> or separately for every single style.</p>
 <p>In both cases you need to add three lines to the appropriate file:</p>
 <p><code>window.borderWidth:   </code><int><br /><code>window.focus.borderColor: </code><color><br /><code>window.unfocus.borderColor: </code><color></p>
 <p>The meaning should be quite obvious, the integer defines the width for the border in pixel, and the color is the actual color of the border, both for when the window is focused or not.</p>
