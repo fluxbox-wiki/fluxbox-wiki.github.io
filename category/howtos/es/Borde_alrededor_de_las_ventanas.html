@@ -16,7 +16,7 @@
 <h2 id="como-hacer-que-las-ventanas-no-tengan-decoraciones">Como hacer que las ventanas no tengan decoraciones</h2>
 <p>Tienes que editar el archivo <strong>~/.fluxbox/apps</strong> mientras fluxbox no esta ejecutandose. Agrega las siguiente lineas al archivo:</p>
 <p><code>  [app] (.*)</code><br /><code>     [Deco]    {BORDER}</code><br /><code>  [end]</code></p>
-<p>La próxima vez que ejecutes fluxbox, todas las ventanas van a tener solo el borde (si el estilo tiene definido un borde). Puedes cambiar el tamaño y el color del borde Lo puedes hacer globalmente usando el archivo de <a href="http://fluxbox-wiki.org/index.php/Como_style_overlay">overlay</a> o por separado en cada uno de los estilos.</p>
+<p>La próxima vez que ejecutes fluxbox, todas las ventanas van a tener solo el borde (si el estilo tiene definido un borde). Puedes cambiar el tamaño y el color del borde Lo puedes hacer globalmente usando el archivo de <a href="http://fluxbox-wiki.github.io/index.php/Como_style_overlay">overlay</a> o por separado en cada uno de los estilos.</p>
 <p>En ambos casos tenes que agregar las siguientes dos lineas al archivo apropiado:</p>
 <p><code>  window.borderWidth:   </code><numero><br /><code>  window.borderColor:   color (por ej. #009900, black, rgb:00/64/00)</code></p>
 <p>El significado debería ser obvio, el numero define el tamaño del borde en pixels, y el color el el color usado en el borde</p>
